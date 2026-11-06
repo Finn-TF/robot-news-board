@@ -41,6 +41,30 @@ header{display:flex;justify-content:space-between;align-items:flex-start;gap:24p
 .stat b{font-family:var(--mono);font-size:21px;font-weight:700;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
 .stat span{font-size:11px;color:var(--ink3);letter-spacing:.3px}
 
+/* ---------- 本轮速览 ---------- */
+.summary{margin:20px 0 0;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#fffdfb 0%,#fff 60%);overflow:hidden}
+.summary[hidden]{display:none}
+.summary-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:15px 20px 11px}
+.summary-head h2{margin:0;font-size:14px;font-weight:800;letter-spacing:.4px}
+.summary-head .lab{font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+.summary-head .mode{margin-left:auto;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.summary-lead{margin:0;padding:0 20px 13px;font-size:12.5px;color:var(--ink2);border-bottom:1px solid var(--line2);line-height:1.65}
+.summary-analysis{margin:0;padding:14px 20px;font-size:13.5px;line-height:1.82;color:var(--ink);background:var(--blue-soft);border-top:1px solid #e2eafa;border-bottom:1px solid #dbe6fa}
+.spoints{list-style:none;margin:0;padding:4px 20px 14px}
+.spoint{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:13px 0;border-bottom:1px dashed var(--line2)}
+.spoint:last-child{border-bottom:0}
+.sno{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);padding-top:2px}
+.stext{margin:0;font-size:14.5px;line-height:1.55;font-weight:650;letter-spacing:-.1px}
+.stext a{border-bottom:1px solid transparent;transition:.12s}
+.stext a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
+.sdetail{margin:4px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.62}
+.smeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:var(--ink3)}
+.slinks a{color:var(--ink2);border-bottom:1px dotted #d4d8de}
+.slinks a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
+.smeta .vsep{padding:0 1px}
+.smeta .goto{margin-left:0;font-size:10.5px}
+
+
 /* ---------- toolbar ---------- */
 .toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:14px 0 0;margin-top:2px}
 .tabs{display:flex;gap:6px;flex-wrap:wrap}
@@ -163,6 +187,12 @@ details[open] summary:before{content:"−"}
   .tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{white-space:nowrap}
+  .summary-head{padding:13px 15px 10px}
+  .summary-lead{padding:0 15px 11px}
+  .summary-analysis{padding:12px 15px}
+  .spoints{padding:4px 15px 12px}
+  .spoint{grid-template-columns:24px 1fr;gap:8px}
+  .stext{font-size:14px}
   .filters{gap:10px}
   .search{max-width:none}
   .search .kbd{display:none}
@@ -195,6 +225,8 @@ details[open] summary:before{content:"−"}
 
   <div class="stats" id="stats"></div>
 
+  <section class="summary" id="summary" aria-label="本轮速览" hidden></section>
+
   <div class="toolbar">
     <div class="tabs" id="tabs" role="tablist" aria-label="资讯板块"></div>
     <div class="filters">
@@ -226,6 +258,10 @@ details[open] summary:before{content:"−"}
     <div class="legend">
       <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，
         只有 1 家 → <span class="vbadge single">单一来源</span>（未交叉核实）。点来源名可逐一核对原文与发布时间。</span>
+    </div>
+    <div class="legend">
+      <span><b>本轮速览</b>：顶部要点由脚本按事件聚类自动挑选（优先多家印证、时效最新、量产/交付/融资等硬信息），
+        每条都能点回对应原文；无大模型 key 时只出规则式要点，不影响页面内容。</span>
     </div>
     <details id="srcdetails">
       <summary>抓取状态与来源清单</summary>
@@ -442,6 +478,42 @@ details[open] summary:before{content:"−"}
       + '</div></div></article>';
   }
 
+  // 本轮速览：规则式要点（可选大模型分析段），每条都对回真实条目链接
+  function renderSummary(){
+    var s = DATA.summary, host = $("summary"), list = (s && s.points) || [];
+    if(!list.length){ host.hidden = true; return; }
+    var isLlm = (s.mode === "llm" && s.analysis);
+    var mode = isLlm ? "大模型分析 · " + ((s.llm && s.llm.model) ? s.llm.model : "LLM") : "规则式要点";
+    var html = '<div class="summary-head"><h2>本轮速览</h2>'
+      + '<span class="lab">' + esc(s.generated_label || DATA.generated_label || "") + '</span>'
+      + '<span class="mode">' + esc(mode) + '</span></div>'
+      + (s.headline ? '<p class="summary-lead">' + esc(s.headline) + '</p>' : '')
+      + (isLlm ? '<p class="summary-analysis">' + esc(s.analysis) + '</p>' : '');
+    html += '<ul class="spoints">' + list.map(function(p, i){
+      var links = (p.links || []).filter(function(l){ return l && l.url; });
+      var first = links[0];
+      var text = esc(p.text);
+      if(first) text = '<a href="' + esc(first.url) + '" target="_blank" rel="noopener noreferrer">' + text + '</a>';
+      var badge = p.level === "cross"
+        ? '<span class="vbadge cross" title="同一事件有 ' + p.count + ' 家独立站点报道">✓ 多家印证' + (p.count > 2 ? " · " + p.count + " 家" : "") + '</span>'
+        : '<span class="vbadge single" title="仅 1 家独立站点报道，未获交叉印证">单一来源</span>';
+      var names = links.slice(0, 3).map(function(l){
+        return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer" title="' + esc(l.title || "") + '">'
+          + esc(l.source || l.host || "原文") + '</a>';
+      }).join('<span class="vsep">/</span>');
+      var goto = first
+        ? '<a class="goto" href="' + esc(first.url) + '" target="_blank" rel="noopener noreferrer">原文 ↗</a>' : '';
+      return '<li class="spoint"><span class="sno">' + pad(i + 1) + '</span><div>'
+        + '<p class="stext">' + text + '</p>'
+        + (p.detail ? '<p class="sdetail">' + esc(p.detail) + '</p>' : '')
+        + '<div class="smeta">' + badge + '<span class="vsep">·</span>'
+        + '<span class="slinks">' + names + '</span>' + goto + '</div>'
+        + '</div></li>';
+    }).join("") + '</ul>';
+    host.innerHTML = html;
+    host.hidden = false;
+  }
+
   function renderList(){
     var list = filterItems(), b = board();
     var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
@@ -478,7 +550,7 @@ details[open] summary:before{content:"−"}
 
   function renderAll(){
     if(!DATA) return;
-    renderTabs(); renderChips(); renderStats(); renderList(); renderFooter();
+    renderSummary(); renderTabs(); renderChips(); renderStats(); renderList(); renderFooter();
   }
 
   // 地址栏带 ?tab=大厂&q=关键词，方便收藏/分享某个视图

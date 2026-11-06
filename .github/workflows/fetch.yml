@@ -27,6 +27,9 @@ jobs:
           python-version: "3.12"
 
       - name: 执行抓取并写入 data.json / data.js
+        env:
+          # 可选：未配置该 Secret 时脚本自动使用规则式速览，不影响页面
+          ROBOT_LLM_API_KEY: ${{ secrets.ROBOT_LLM_API_KEY }}
         run: python fetch_news.py --max 60 --per-source 16
 
       - name: 提交数据变更

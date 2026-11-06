@@ -72,6 +72,48 @@ https://<你的用户名>.github.io/robot-news-board/
 - **这条路能否稳定跑通取决于 GitHub 美国机房的网络**：国内站点和 Bing 检索可能出现超时或被反爬，脚本会照常写出「失败通道」到 `data.json.source_report` 和 Actions 日志。若云端大面积失败，继续用本地 `python fetch_news.py` + `update.ps1` 兜底；
 - 定时任务只会在仓库默认分支上按 cron 触发。
 
+## 本轮速览（页面顶部总结）
+
+每轮抓取结束都会生成 `data.json` 的 `summary` 字段，页面顶部「本轮速览」直接读取它：
+
+- **事件聚类**：复用标题指纹（中文 2 字窗口 + 英文词，Jaccard 相似度 ≥ 0.30），把同一事件的多家报道聚成一组；
+- **打分挑选**：多家独立站点交叉印证 > 标题含量产/交付/融资/上市/订单/营收等硬信息 > 发布时间最新 > 机器人本体/核心零部件词 > 大厂命中；取 3–6 条；
+- **去重**：同一标题反复出现、或同一家大厂同一类事件（如「上市」）只保留一条，避免速览被一件事占满；
+- **不编造**：要点文字取自真实条目标题，补充说明是原文摘要；每条至少带一个原文链接（最多 4 家），并标注「多家印证 · N 家 / 单一来源」；
+- `summary.mode` 为 `rule`（规则式）或 `llm`（附带大模型分析段）。
+
+## 可选：接入大模型总结（默认关闭）
+
+`config.json` 里预留了开关：
+
+```json
+"llm": {
+  "enabled": false,
+  "provider": "openai-compatible",
+  "model": "",
+  "base_url": "https://api.openai.com/v1",
+  "api_key": "",
+  "api_key_env": "ROBOT_LLM_API_KEY",
+  "timeout": 45
+}
+```
+
+启用步骤：
+
+1. 把 `llm.enabled` 改为 `true`，填 `model`（如 `gpt-4o-mini`）和 `base_url`（OpenAI 兼容接口，末尾不要带 `/chat/completions`）；
+2. **不要把 key 写进 `config.json` 提交**。本地运行时用环境变量：
+
+   ```powershell
+   $env:ROBOT_LLM_API_KEY = "sk-..."
+   python fetch_news.py
+   ```
+
+   云端在仓库 **Settings → Secrets and variables → Actions** 新建 Secret：`ROBOT_LLM_API_KEY`（`fetch.yml` 已把该 Secret 注入抓取步骤）；
+3. 有 key 时，脚本把本轮精选要点喂给模型，生成一段中文分析（主线 / 趋势 / 值得注意的信号），放在速览顶部；规则要点仍保留并带原文链接；
+4. 无 key、模型未配置、接口超时或报错时，**自动降级回规则式速览**，页面不会空白；`summary.llm.error` 只记录错误类型与简短原因，key 不会写入 `data.json`、`data.js` 或日志。
+
+大模型只能看到脚本给它的条目，prompt 明确禁止编造；事实与链接始终来自下方真实条目。
+
 ## 文件说明
 
 | 文件 | 作用 |
@@ -81,7 +123,7 @@ https://<你的用户名>.github.io/robot-news-board/
 | `data.json` | 数据源文件：4 个板块的条目 + 抓取状态报告 |
 | `data.js` | `data.json` 的内嵌副本，供 `file://` 双击打开时使用（浏览器会拦截本地 fetch） |
 | `translate_cache.json` | 英文标题/摘要的翻译缓存，加速重复运行，可删除 |
-| `config.json` | 定时抓取配置：间隔分钟数、重试次数、每板块条数、是否翻译 |
+| `config.json` | 抓取配置：间隔分钟数、重试次数、每板块条数、是否翻译，以及可选的大模型总结开关（默认关闭） |
 | `daemon.log` | 定时模式日志：每轮时间、各板块条数、失败通道（运行后自动生成） |
 | `update.ps1` | 一键 commit + push（Windows，中文提交信息不乱码） |
 | `.github/workflows/deploy.yml` | push 到 main 后发布到 GitHub Pages |

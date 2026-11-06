@@ -436,11 +436,8 @@ def site_of(url):
     return host[4:] if host.startswith("www.") else host
 
 
-def attach_verification(records):
-    """给每条资讯附上「信息核对」信息：同事件的其他独立来源与原文链接。
-
-    说明：只统计真实抓到的条目，按站点域名判独立；没有第二家就如实标单一来源。
-    """
+def event_clusters(records):
+    """按标题指纹把同一事件的条目聚成一组（速览与信息核对共用同一套聚类口径）。"""
     groups = []
     for rec in sorted(records, key=lambda r: r["published"], reverse=True):
         key_text = rec["title"] + " " + (rec.get("title_original") or "")
@@ -453,8 +450,15 @@ def attach_verification(records):
             best["items"].append(rec)
         else:
             groups.append({"key": key_text, "items": [rec]})
+    return groups
 
-    for g in groups:
+
+def attach_verification(records):
+    """给每条资讯附上「信息核对」信息：同事件的其他独立来源与原文链接。
+
+    说明：只统计真实抓到的条目，按站点域名判独立；没有第二家就如实标单一来源。
+    """
+    for g in event_clusters(records):
         sources, seen = [], set()
         for rec in sorted(g["items"], key=lambda r: r["published"]):
             host = site_of(rec["url"])
@@ -474,6 +478,274 @@ def attach_verification(records):
                        + [s for s in sources if s["host"] != own])
             rec["verify"] = {"level": level, "count": len(sources),
                              "sources": ordered}
+
+
+# ------------------------------------------------------------ 本轮速览 ----
+# 规则式速览：事件聚类 → 打分（多家印证 / 时效 / 硬信息 / 本体与大厂）→ 3-6 条要点。
+# 要点只从真实条目的标题与摘要派生，链接直接取自这些条目，不生成任何新事实。
+HARD_ZH = ["量产", "量产线", "交付", "下线", "投产", "产线", "工厂", "出货",
+           "订单", "签约", "中标", "融资", "轮融资", "亿元", "IPO", "上市",
+           "财报", "营收", "发布", "首发", "开售", "预售", "落地", "试点",
+           "扩产", "合作", "收购", "降价", "涨价"]
+HARD_EN = ["mass production", "production line", "factory", "gigafactory",
+           "deploy", "deployment", "rollout", "launch", "unveil", "funding",
+           "raises", "raised", "series a", "series b", "series c", "ipo",
+           "order", "orders", "shipping", "deliver", "delivery", "contract",
+           "partnership", "acquisition", "acquire", "revenue", "earnings",
+           "commercial"]
+BODY_ZH = ["人形机器人", "机器人本体", "灵巧手", "四足机器人", "机器狗",
+           "具身智能", "机械臂"]
+BODY_EN = ["humanoid", "humanoids", "dexterous", "quadruped", "manipulation",
+           "embodied"]
+
+# 同一家大厂的同一类事件只留一条，避免速览被同一件事占满
+TOPIC_GROUPS = {
+    "ipo": ["ipo", "上市", "纳斯达克", "goes public", "publicly listed",
+            "stock market", "listing"],
+    "funding": ["融资", "funding", "raises", "raised", "series a", "series b", "series c"],
+    "massprod": ["量产", "mass production", "production line", "下线", "交付",
+                 "deliver", "deployment", "rollout", "出货", "订单", "产线"],
+    "launch": ["发布", "launch", "unveil", "首发", "开售", "预售"],
+    "earnings": ["财报", "营收", "revenue", "earnings", "亏损", "销量"],
+    "policy": ["政策", "监管", "标准", "regulation", "standard"],
+}
+
+SUMMARY_MAX_POINTS = 6
+SUMMARY_LINK_LIMIT = 4
+
+
+def fresh_hours(published, now):
+    """条目距本轮抓取时间的时长（小时）；时间解析失败按最旧处理。"""
+    try:
+        dt = datetime.fromisoformat(published)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=CST)
+        return max(0.0, (now - dt).total_seconds() / 3600.0)
+    except Exception:  # noqa: BLE001
+        return 24 * 7
+
+
+def pick_rep(items):
+    """优先挑中文标题条目做要点，再按发布时间取最新。"""
+    zh = [r for r in items if CJK_CHAR.search(r.get("title") or "")]
+    pool = zh or items
+    return max(pool, key=lambda r: r.get("published") or "")
+
+
+def build_links(items, limit=SUMMARY_LINK_LIMIT):
+    """要点对应的原文链接：同一站点只取一条，按发布时间倒序。"""
+    links, seen = [], set()
+    for rec in sorted(items, key=lambda r: r.get("published") or "", reverse=True):
+        host = site_of(rec.get("url"))
+        if not rec.get("url") or host in seen:
+            continue
+        seen.add(host)
+        links.append({"title": rec.get("title") or "", "url": rec["url"],
+                      "source": rec.get("source") or host,
+                      "published": rec.get("published") or "", "host": host})
+        if len(links) >= limit:
+            break
+    return links
+
+
+def score_cluster(items, now):
+    """给一个事件聚类打分：cross 印证 > 硬信息 > 时效 > 本体/大厂。"""
+    verify = (items[0].get("verify") or {}) if items else {}
+    level = verify.get("level") or "single"
+    count = int(verify.get("count") or 1)
+    latest = max(items, key=lambda r: r.get("published") or "")
+    hours = fresh_hours(latest.get("published"), now)
+    score = 0.0
+    if level == "cross":
+        score += 4.0 + min(1.5, 0.5 * max(0, count - 2))
+    score += max(0.0, 2.0 - hours / 12.0)
+    title_low = (latest.get("title") or "").lower()
+    all_low = " ".join(((r.get("title") or "") + " " + (r.get("summary") or "")).lower()
+                       for r in items)
+    if any(w.lower() in title_low for w in HARD_ZH + HARD_EN):
+        score += 2.5
+    elif any(w.lower() in all_low for w in HARD_ZH + HARD_EN):
+        score += 1.0
+    if any(w.lower() in title_low for w in BODY_ZH + BODY_EN):
+        score += 1.0
+    if latest.get("companies"):
+        score += 1.2
+    if latest.get("board") == "bigtech":
+        score += 0.6
+    return score, latest, level, count
+
+
+def topic_tags(text):
+    """标题/摘要命中的事件类型，用于同一公司同类事件的去重。"""
+    low = (text or "").lower()
+    tags = set()
+    for tag, words in TOPIC_GROUPS.items():
+        if any(w in low for w in words):
+            tags.add(tag)
+    return tags
+
+
+def build_rule_points(selected, now, limit=SUMMARY_MAX_POINTS):
+    """把本轮条目聚成事件并挑出要点；返回按重要性排序的 3-6 条。"""
+    scored = []
+    for g in event_clusters(selected):
+        items = g["items"]
+        if not items:
+            continue
+        score, latest, level, count = score_cluster(items, now)
+        scored.append((score, items, pick_rep(items), level, count))
+    scored.sort(key=lambda x: (x[0], x[2].get("published") or ""), reverse=True)
+
+    points, seen_reps, seen_co_topics = [], [], {}
+    for score, items, rep, level, count in scored:
+        if len(points) >= limit:
+            break
+        text = (rep.get("title") or "").strip()
+        if not text:
+            continue
+        # 同一事件换标题重复出现：按标题相似度再挡一层
+        if any(title_sim(text, t) >= 0.28 for t in seen_reps):
+            continue
+        # 同一家大厂的同一类事件（如 Agility 上市被多家写成多条）只留一条；
+        # 公司名取整个聚类的并集，避免代表条目标题没点名公司时漏判
+        cos = sorted({c for r in items for c in (r.get("companies") or [])})
+        tag_text = " ".join((r.get("title") or "") + " " + (r.get("summary") or "")
+                            for r in items)
+        tags = topic_tags(tag_text)
+        if tags and cos:
+            if any(tags & seen_co_topics.get(c, set()) for c in cos):
+                continue
+            for c in cos:
+                seen_co_topics[c] = seen_co_topics.get(c, set()) | tags
+
+        detail = (rep.get("summary") or "").strip()
+        if detail and not CJK_CHAR.search(detail):
+            detail = ""                     # 未翻译的英文摘要不混进中文要点
+        if detail and norm_title(detail)[:16] == norm_title(text)[:16]:
+            detail = ""
+        detail = shorten(detail, 140)
+        points.append({
+            "text": text,
+            "detail": detail,
+            "level": level,
+            "count": count,
+            "board": rep.get("board") or "",
+            "source": rep.get("source") or "",
+            "published": rep.get("published") or "",
+            "companies": rep.get("companies") or [],
+            "links": build_links(items),
+        })
+        seen_reps.append(text)
+    return points
+
+
+def http_post_json(url, payload, headers, timeout=45):
+    """最小可用的 JSON POST（仅用于可选的 LLM 总结，避免引入第三方依赖）。"""
+    body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=body, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        raw = resp.read()
+        enc = (resp.headers.get("Content-Encoding") or "").lower()
+        if enc == "gzip":
+            raw = gzip.decompress(raw)
+        elif enc == "deflate":
+            raw = zlib.decompress(raw)
+        return json.loads(raw.decode("utf-8", "replace"))
+
+
+def llm_analysis(cfg, summary):
+    """可选的 LLM 分析：只喂本轮精选条目，失败由调用方降级回规则式。"""
+    llm = cfg.get("llm") or {}
+    model = (llm.get("model") or "").strip()
+    if not model:
+        raise RuntimeError("config.llm.model 未配置")
+    env_name = (llm.get("api_key_env") or "ROBOT_LLM_API_KEY").strip()
+    key = (os.environ.get(env_name) or llm.get("api_key") or "").strip()
+    if not key:
+        raise RuntimeError(f"未提供 API key（环境变量 {env_name} 为空）")
+    base = (llm.get("base_url") or "https://api.openai.com/v1").rstrip("/")
+    url = base + "/chat/completions"
+
+    lines = [f"本轮概况：{summary['headline']}", "精选条目："]
+    for i, p in enumerate(summary["points"], 1):
+        tags = "多家印证" if p["level"] == "cross" else "单一来源"
+        src = "、".join(l.get("source") or l.get("host") or "" for l in p["links"]) or p["source"]
+        lines.append(f"{i}. [{tags}] {p['text']}")
+        if p.get("detail"):
+            lines.append(f"   摘要：{p['detail']}")
+        lines.append(f"   来源：{src}（{p.get('published', '')[:16]}）")
+
+    messages = [
+        {"role": "system", "content":
+         "你是机器人产业研究员。只能依据用户给出的条目撰写分析，"
+         "不得编造条目以外的事件、公司、数字或链接。"
+         "请用 5-8 句中文写一段连贯分析，讲清本轮主线、趋势变化与值得注意的信号；"
+         "不要逐条复述标题，不要输出网址，不要使用条目中没有的专有名词。"},
+        {"role": "user", "content": "\n".join(lines) + "\n\n请基于以上条目写分析。"},
+    ]
+    data = http_post_json(url, {
+        "model": model, "messages": messages,
+        "temperature": 0.3, "max_tokens": 900,
+    }, {"Content-Type": "application/json",
+        "Authorization": "Bearer " + key},
+        timeout=int(llm.get("timeout") or 45))
+
+    text = ((data.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
+    text = re.sub(r"https?://\S+", "", text).strip()
+    if len(text) < 20:
+        raise RuntimeError("模型返回内容为空")
+    return shorten(text, 1200)
+
+
+def build_summary(selected, now, cfg, counts=None, verbose=True):
+    """生成本轮速览：规则式为默认；LLM 仅在 enabled + 有 key 时补充，失败自动降级。"""
+    counts = counts or {}
+    cross_n = len([r for r in selected if (r.get("verify") or {}).get("level") == "cross"])
+    headline = (f"本轮收录 {len(selected)} 条（国内 {counts.get('domestic', 0)} / "
+                f"海外 {counts.get('overseas', 0)} / 大厂 {counts.get('bigtech', 0)}），"
+                f"{cross_n} 条获多家独立站点交叉印证。")
+    llm = cfg.get("llm") or {}
+    summary = {
+        "mode": "rule",
+        "generated_at": now.isoformat(),
+        "generated_label": now.strftime("%Y-%m-%d %H:%M"),
+        "headline": headline,
+        "analysis": "",
+        "points": build_rule_points(selected, now),
+        "stats": {
+            "items": len(selected),
+            "cross": cross_n,
+            "single": len(selected) - cross_n,
+            "clusters": len(event_clusters(selected)),
+        },
+        "llm": {
+            "enabled": bool(llm.get("enabled")),
+            "used": False,
+            "provider": llm.get("provider") or "",
+            "model": llm.get("model") or "",
+            "error": "",
+        },
+    }
+
+    if not llm.get("enabled"):
+        return summary
+    if not summary["points"]:
+        summary["llm"]["error"] = "本轮无可用于总结的条目"
+        return summary
+    try:
+        text = llm_analysis(cfg, summary)
+        summary["analysis"] = text
+        summary["mode"] = "llm"
+        summary["llm"]["used"] = True
+        if verbose:
+            print(f"      速览：已用 {summary['llm']['model']} 生成分析段", flush=True)
+    except Exception as e:  # noqa: BLE001
+        # 失败一律降级回规则式；错误只记录类型与简短原因，不含 key
+        summary["llm"]["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+        if verbose:
+            print(f"      速览：LLM 调用失败，降级为规则式（{summary['llm']['error']}）",
+                  flush=True)
+    return summary
 
 
 # ---------------------------------------------------------------- 翻译 ----
@@ -743,12 +1015,18 @@ PLACEHOLDER_JOKES = [
 def load_config():
     """读取 config.json；缺失或损坏时回落到默认值，不让进程因此退出。"""
     cfg = {"interval_minutes": 60, "retries": 1, "max": 60,
-           "per_source": 16, "translate": True}
+           "per_source": 16, "translate": True,
+           "llm": {"enabled": False, "provider": "openai-compatible", "model": "",
+                   "base_url": "https://api.openai.com/v1", "api_key": "",
+                   "api_key_env": "ROBOT_LLM_API_KEY", "timeout": 45}}
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
             cfg.update({k: v for k, v in data.items() if k in cfg})
+            if isinstance(data.get("llm"), dict):
+                cfg["llm"].update({k: v for k, v in data["llm"].items()
+                                   if k in cfg["llm"]})
         except Exception as e:  # noqa: BLE001
             print(f"[WARN] config.json 读取失败，使用默认配置：{e}", flush=True)
     return cfg
@@ -829,6 +1107,12 @@ def run_round(args, cfg):
     cross = len([r for r in selected if r["verify"]["level"] == "cross"])
     print(f"      信息核对：已交叉印证 {cross} 条，单一来源 {len(selected) - cross} 条")
 
+    summary = build_summary(selected, now, cfg,
+                            counts={k: len(boards[k])
+                                    for k in ["domestic", "overseas", "bigtech"]})
+    mode_txt = "大模型分析 + 规则要点" if summary["mode"] == "llm" else "规则式要点"
+    print(f"      速览：{len(summary['points'])} 条要点（{mode_txt}）")
+
     # 保留已有段子（脚本绝不改写段子内容）
     existing_jokes = []
     if os.path.exists(DATA_JSON):
@@ -867,6 +1151,7 @@ def run_round(args, cfg):
                       "items": boards["jokes"], "ok_sources": 0, "failed_sources": 0},
         },
         "source_report": report,
+        "summary": summary,
         "meta": {
             "total_items": sum(len(boards[k]) for k in ["domestic", "overseas", "bigtech"]),
             "translated": 0 if not do_translate else len([r for r in selected if r["title_original"]]),
