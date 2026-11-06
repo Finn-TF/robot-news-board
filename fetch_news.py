@@ -540,9 +540,12 @@ def build_links(items, limit=SUMMARY_LINK_LIMIT):
         if not rec.get("url") or host in seen:
             continue
         seen.add(host)
+        name = rec.get("source") or host
+        if name in ("Bing 新闻检索", "Bing News"):
+            name = host          # 与信息核对一致：检索通道没解析出媒体名时用原站域名
         links.append({"title": rec.get("title") or "", "url": rec["url"],
-                      "source": rec.get("source") or host,
-                      "published": rec.get("published") or "", "host": host})
+                      "source": name, "published": rec.get("published") or "",
+                      "host": host})
         if len(links) >= limit:
             break
     return links
