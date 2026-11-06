@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1">
+<title>机器人行业资讯看板</title>
+<style>
+:root{
+  --paper:#ffffff;--ink:#0c0e11;--ink2:#464c55;--ink3:#8c929a;
+  --line:#e7e9ec;--line2:#f2f3f5;--bg2:#fafbfc;
+  --accent:#e8401f;--accent-soft:#fff1ec;--blue:#0b57d0;--blue-soft:#eef3fe;
+  --amber:#a86400;--amber-soft:#fdf3e0;--green:#0b7b45;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:14px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 70px}
+
+/* ---------- header ---------- */
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.brand h1{margin:0;font-size:26px;line-height:1.15;letter-spacing:-.7px;font-weight:800;display:flex;align-items:center;gap:10px}
+.mark{width:10px;height:10px;background:var(--accent);border-radius:2px;flex:none;transform:rotate(45deg)}
+.brand .en{font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;color:var(--ink3);text-transform:uppercase;margin-top:8px}
+.brand .desc{margin-top:9px;font-size:12.5px;color:var(--ink2);max-width:640px}
+.status{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none;padding-top:2px}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:600;color:var(--ink2);background:#fff;white-space:nowrap}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--green);display:block}
+.pill.warn{border-color:#f3d7c9;color:var(--accent);background:var(--accent-soft)}
+.pill.warn i{background:var(--accent)}
+.stamp{font-family:var(--mono);font-size:10.5px;color:var(--ink3);white-space:nowrap}
+
+/* ---------- stats ---------- */
+.stats{display:flex;gap:26px;flex-wrap:wrap;padding:16px 0 20px;border-bottom:1px solid var(--line)}
+.stat{display:flex;flex-direction:column;gap:1px}
+.stat b{font-family:var(--mono);font-size:21px;font-weight:700;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--ink3);letter-spacing:.3px}
+
+/* ---------- toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:14px 0 0;margin-top:2px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{
+  appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink2);
+  font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;transition:.15s;
+}
+.tab:hover{border-color:#cfd4da;color:var(--ink)}
+.tab b{font-family:var(--mono);font-weight:600;font-size:11px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab[aria-selected="true"] b{color:rgba(255,255,255,.65)}
+.tab:focus-visible,.chip:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.filters{display:flex;flex-direction:column;gap:8px;padding:12px 0 13px;border-bottom:1px solid var(--line)}
+.frow{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.search{position:relative;flex:1;min-width:230px;max-width:420px}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;fill:none;stroke:var(--ink3);stroke-width:1.8}
+.search input{
+  width:100%;font:inherit;font-size:13px;color:var(--ink);background:var(--bg2);
+  border:1px solid var(--line);border-radius:9px;padding:8px 32px 8px 33px;transition:.15s;
+}
+.search input:focus{background:#fff;border-color:#b9c0c8;outline:none}
+.search .kbd{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:10px;color:var(--ink3);border:1px solid var(--line);border-radius:4px;padding:1px 5px;background:#fff}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chips[hidden]{display:none}
+.chip{
+  appearance:none;font:inherit;font-size:11.5px;color:var(--ink2);background:transparent;
+  border:1px solid transparent;border-radius:999px;padding:4px 9px;cursor:pointer;transition:.12s;
+}
+.chip:hover{background:var(--line2)}
+.chip[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue);border-color:#d5e2fb;font-weight:600}
+.chip.zero{opacity:.45}
+.divider{width:1px;height:16px;background:var(--line)}
+
+/* ---------- list ---------- */
+.board-head{display:flex;align-items:baseline;gap:10px;padding:20px 0 10px;flex-wrap:wrap}
+.board-head h2{margin:0;font-size:13px;letter-spacing:.6px;font-weight:700;text-transform:uppercase;color:var(--ink)}
+.board-head .d{font-size:11.5px;color:var(--ink3)}
+.board-head .live{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+.list{border-top:1px solid var(--line)}
+.item{
+  display:grid;grid-template-columns:118px 1fr;gap:18px;
+  padding:16px 2px 17px;border-bottom:1px solid var(--line);
+}
+.lcol{display:flex;flex-direction:column;gap:5px;padding-top:1px}
+.time{font-family:var(--mono);font-size:11.5px;color:var(--ink2);letter-spacing:-.2px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.time .today{color:var(--accent);font-weight:600}
+.src{font-size:11.5px;color:var(--ink3);line-height:1.45;word-break:break-word}
+.body{min-width:0}
+.title{margin:0;font-size:15.5px;line-height:1.45;font-weight:650;letter-spacing:-.15px}
+.title a{border-bottom:1px solid transparent;transition:.12s}
+.title a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
+.title mark{background:#fff2a8;color:inherit;padding:0 1px;border-radius:2px}
+.orig{margin:5px 0 0;font-size:11.5px;color:var(--ink3);line-height:1.45;font-weight:400}
+.sum{margin:6px 0 0;font-size:13px;color:var(--ink2);line-height:1.62;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sum mark{background:#fff2a8;color:inherit;border-radius:2px}
+.sum.empty{color:#a3a8ae;font-style:normal}
+.foot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px}
+/* 信息核对：来源清单 + 核对徽标（口径见页脚说明） */
+.vgroup{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:100%}
+.vsrc{display:inline-flex;align-items:center;gap:2px;flex-wrap:wrap;font-size:11px;color:var(--ink3)}
+.vsrc a{color:var(--ink2);text-decoration:none;border-bottom:1px dotted #d4d8de}
+.vsrc a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
+.vsep{color:#c3c8ce;font-size:10.5px;padding:0 2px}
+.vbadge{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;border-radius:999px;padding:1px 8px 1px 6px;font-weight:650;cursor:default}
+.vbadge.cross{color:#12703a;background:#eaf7ef;border:1px solid #cbe8d7}
+.vbadge.single{color:#96601a;background:#fdf4e3;border:1px solid #f1dfbd}
+.tag{font-size:10.5px;color:var(--blue);background:var(--blue-soft);border-radius:4px;padding:1.5px 6px;font-weight:600;letter-spacing:.2px}
+.tag.warm{color:var(--amber);background:var(--amber-soft)}
+.via{font-size:10.5px;color:#a8adb4}
+.goto{margin-left:auto;font-size:11px;color:var(--ink3);font-family:var(--mono);display:inline-flex;align-items:center;gap:4px}
+.goto:hover{color:var(--blue)}
+
+/* jokes */
+.item.joke{grid-template-columns:118px 1fr}
+.joke .title{font-weight:600}
+.joke .sum{padding:10px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-top:8px;-webkit-line-clamp:unset;display:block;font-size:13.5px}
+.placeholder{color:var(--amber);background:var(--amber-soft);border-radius:4px;padding:1.5px 6px;font-size:10.5px;font-weight:600}
+.joke-note{margin:14px 0 0;padding:14px 16px;border:1px dashed #e3d6bd;background:#fffdf7;border-radius:10px;font-size:12.5px;color:#7a5a1c;line-height:1.68}
+.joke-note code{font-family:var(--mono);background:#fff;border:1px solid #eee3cc;border-radius:4px;padding:1px 5px;font-size:11.5px}
+
+/* states */
+.state{padding:56px 0 62px;text-align:center;color:var(--ink3)}
+.state h3{margin:0 0 7px;font-size:15px;color:var(--ink2);font-weight:650}
+.state p{margin:0 auto;max-width:460px;font-size:12.5px;line-height:1.7}
+.state .ic{font-family:var(--mono);font-size:24px;color:#c9ced4;margin-bottom:10px;letter-spacing:2px}
+.state.error{color:#8a5a52}
+.skel{border-top:1px solid var(--line)}
+.skel .row{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:18px 2px;border-bottom:1px solid var(--line)}
+.skel .b{background:linear-gradient(90deg,#f3f4f6 25%,#eceef1 37%,#f3f4f6 63%);background-size:400% 100%;animation:sh 1.3s infinite;border-radius:5px;height:11px}
+.skel .b.t{height:16px;width:64%;margin-bottom:9px}
+.skel .b.s{width:92%;height:10px}
+@keyframes sh{0%{background-position:100% 0}100%{background-position:0 0}}
+
+/* footer */
+footer{margin-top:38px;border-top:1px solid var(--line);padding-top:18px;color:var(--ink3);font-size:11.5px;line-height:1.75}
+footer h4{margin:0 0 8px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink2)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+.legend b{color:var(--ink2);font-weight:600}
+details{border-top:1px solid var(--line2);padding:10px 0}
+details summary{cursor:pointer;font-size:11.5px;color:var(--ink2);list-style:none;display:flex;align-items:center;gap:7px}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:"+";font-family:var(--mono);color:var(--ink3)}
+details[open] summary:before{content:"−"}
+.srctable{width:100%;border-collapse:collapse;margin-top:9px;font-size:11px}
+.srctable td{padding:4px 8px 4px 0;border-bottom:1px solid var(--line2);vertical-align:top}
+.srctable td.n{font-family:var(--mono);text-align:right;color:var(--ink3)}
+.srctable .ok{color:var(--green)}
+.srctable .bad{color:var(--accent)}
+.mono{font-family:var(--mono)}
+
+@media (max-width:760px){
+  .wrap{padding:20px 16px 56px}
+  header{flex-direction:column;gap:14px}
+  .status{align-items:flex-start;flex-direction:row;gap:10px;flex-wrap:wrap}
+  .brand h1{font-size:21px}
+  .stats{gap:20px;padding:14px 0 16px}
+  .stat b{font-size:18px}
+  .toolbar{position:static;backdrop-filter:none}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap}
+  .filters{gap:10px}
+  .search{max-width:none}
+  .search .kbd{display:none}
+  .item{grid-template-columns:1fr;gap:6px;padding:14px 0 15px}
+  .lcol{flex-direction:row;align-items:center;gap:9px}
+  .lcol .src:before{content:"·";margin-right:7px;color:#c3c8ce}
+  .title{font-size:15px}
+  .sum{-webkit-line-clamp:3}
+  .goto{margin-left:0;width:100%}
+  .divider{display:none}
+  details summary{font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <h1><span class="mark"></span>机器人行业资讯看板</h1>
+      <div class="en">Robot Industry News Board</div>
+      <div class="desc">国内 / 海外 / 大厂三条线，按发布时间倒序。每条均带来源与原文链接，摘要为原文摘录，英文条目附中文译文。</div>
+    </div>
+    <div class="status">
+      <span class="pill" id="statusPill"><i></i><span id="statusText">数据加载中</span></span>
+      <span class="stamp" id="stamp">—</span>
+    </div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <div class="tabs" id="tabs" role="tablist" aria-label="资讯板块"></div>
+    <div class="filters">
+      <div class="frow">
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="搜索标题、摘要、来源…" autocomplete="off" aria-label="关键词搜索">
+          <span class="kbd">/</span>
+        </div>
+        <div class="chips" id="rangeChips"></div>
+      </div>
+      <div class="chips" id="companyChips" hidden></div>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="skel" id="skeleton">
+      <div class="row"><div><div class="b" style="width:64px"></div></div><div><div class="b t"></div><div class="b s"></div></div></div>
+      <div class="row"><div><div class="b" style="width:52px"></div></div><div><div class="b t" style="width:74%"></div><div class="b s"></div></div></div>
+      <div class="row"><div><div class="b" style="width:60px"></div></div><div><div class="b t" style="width:58%"></div><div class="b s"></div></div></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="legend">
+      <span><b>来源</b>：公开 RSS（量子位 / 雷峰网 / IT之家 / 钛媒体 / IEEE Spectrum / TechCrunch / OpenAI / NVIDIA / DeepMind）+ Bing 新闻检索（含宇树、优必选、智元、Figure、Boston Dynamics、Agility、1X、Physical Intelligence）</span>
+      <span><b>更新方式</b>：<span class="mono">python fetch_news.py</span>（或定时模式 <span class="mono">python fetch_news.py --daemon</span>）</span>
+    </div>
+    <div class="legend">
+      <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，
+        只有 1 家 → <span class="vbadge single">单一来源</span>（未交叉核实）。点来源名可逐一核对原文与发布时间。</span>
+    </div>
+    <details id="srcdetails">
+      <summary>抓取状态与来源清单</summary>
+      <div id="srcbody"></div>
+    </details>
+    <details>
+      <summary>口径与限制</summary>
+      <div style="padding:8px 0 2px 0">
+        摘要为原文摘录（英文条目机翻成中文，保留英文原标题可核对），不做二次改写；标题与链接均指向原始页面。
+        微信公众号原文有反爬与登录限制，未直接抓取，相关报道通过媒体 RSS 与新闻检索覆盖。
+        抓取失败或某板块为空的来源会在上表标红，页面不会用虚构内容填充。
+      </div>
+    </details>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var TABS = [
+    {key:"domestic", name:"国内新闻", short:"国内"},
+    {key:"overseas", name:"海外新闻", short:"海外"},
+    {key:"bigtech",  name:"大厂重点", short:"大厂"},
+    {key:"jokes",    name:"近期段子", short:"段子"}
+  ];
+  var state = {tab:"domestic", q:"", range:"all", company:null};
+  // 「机器人大厂」标准集合：抓取脚本 ROBOT_COMPANIES 与此保持一致
+  var COMPANIES = ["OpenAI","特斯拉","英伟达","谷歌 DeepMind","Meta",
+                   "宇树 Unitree","优必选 UBTECH","智元 AgiBot","Figure",
+                   "Boston Dynamics","Agility","1X","Physical Intelligence"];
+  var DATA = null, MODE = "";
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  function esc(s){
+    return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function hl(text, q){
+    var safe = esc(text);
+    if(!q) return safe;
+    var re = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + ")", "gi");
+    return safe.replace(re, "<mark>$1</mark>");
+  }
+  function pad(n){ return n<10?"0"+n:String(n); }
+
+  // 数据时间均为北京时间（+08:00）
+  function cnNow(){
+    return new Date(Date.now() + (new Date().getTimezoneOffset() + 480) * 60000);
+  }
+  function dayParts(iso){
+    if(!iso) return {date:"", hhmm:"", today:false};
+    var m = iso.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    if(!m) return {date:"", hhmm:"", today:false};
+    var now = cnNow();
+    var today = (m[1]==now.getFullYear() && +m[2]==now.getMonth()+1 && +m[3]==now.getDate());
+    var yest = new Date(now.getTime() - 86400000);
+    var isYest = (m[1]==yest.getFullYear() && +m[2]==yest.getMonth()+1 && +m[3]==yest.getDate());
+    return {
+      date: m[2]+"-"+m[3], hhmm: m[4]+":"+m[5], today: today,
+      label: today ? "今天" : (isYest ? "昨天" : m[2]+"-"+m[3])
+    };
+  }
+  function ageHours(iso){
+    if(!iso) return 1e9;
+    var t = Date.parse(iso);
+    return isNaN(t) ? 1e9 : (Date.now() - t) / 3600000;
+  }
+
+  function items(){ return DATA && DATA.boards && DATA.boards[state.tab] ? DATA.boards[state.tab].items || [] : []; }
+  function board(){ return DATA.boards[state.tab]; }
+
+  function filterItems(){
+    var q = state.q.trim().toLowerCase();
+    return items().filter(function(it){
+      if(state.range === "today" && ageHours(it.published) > 24) return false;
+      if(state.range === "week" && ageHours(it.published) > 24*7) return false;
+      if(state.company && (it.companies||[]).indexOf(state.company) < 0) return false;
+      if(!q) return true;
+      var hay = (it.title+" "+(it.title_original||"")+" "+(it.summary||"")+" "+(it.source||"")+" "+(it.companies||[]).join(" ")).toLowerCase();
+      return hay.indexOf(q) >= 0;
+    }).sort(function(a,b){ return (b.published||"").localeCompare(a.published||""); });
+  }
+
+  function renderTabs(){
+    var host = $("tabs");
+    host.innerHTML = TABS.map(function(t){
+      var n = (DATA.boards[t.key] && DATA.boards[t.key].items) ? DATA.boards[t.key].items.length : 0;
+      return '<button class="tab" role="tab" data-key="'+t.key+'" aria-selected="'+(state.tab===t.key)+'">'
+        + '<span>'+t.name+'</span><b>'+(n||"–")+'</b></button>';
+    }).join("");
+    Array.prototype.forEach.call(host.querySelectorAll(".tab"), function(btn){
+      btn.addEventListener("click", function(){
+        state.tab = btn.dataset.key; state.company = null; state.q = ""; $("q").value = "";
+        syncUrl(); renderAll(); window.scrollTo({top:0, behavior:"smooth"});
+      });
+    });
+  }
+
+  function renderStats(){
+    var all = 0, today = 0, srcSet = {};
+    ["domestic","overseas","bigtech"].forEach(function(k){
+      (DATA.boards[k].items||[]).forEach(function(it){
+        all++; srcSet[it.source] = 1;
+        if(ageHours(it.published) <= 24) today++;
+      });
+    });
+    var fail = (DATA.source_report||[]).filter(function(s){ return s.status!=="ok"; }).length;
+    $("stats").innerHTML =
+      '<div class="stat"><b>'+today+'</b><span>近 24 小时</span></div>'+
+      '<div class="stat"><b>'+all+'</b><span>收录条目</span></div>'+
+      '<div class="stat"><b>'+Object.keys(srcSet).length+'</b><span>媒体来源</span></div>'+
+      '<div class="stat"><b>'+(DATA.source_report||[]).length+'</b><span>抓取通道</span></div>';
+    $("stamp").textContent = "更新于 " + (DATA.generated_label || "—");
+    if(fail){
+      $("statusPill").className = "pill warn";
+      $("statusText").textContent = "已更新 · "+fail+" 个源抓取失败";
+    }else{
+      $("statusPill").className = "pill";
+      $("statusText").textContent = "数据已更新";
+    }
+  }
+
+  function renderChips(){
+    // 时间范围
+    var ranges = [["all","不限时间"],["today","近 24 小时"],["week","近 7 天"]];
+    $("rangeChips").innerHTML = ranges.map(function(r){
+      return '<button class="chip" data-range="'+r[0]+'" aria-pressed="'+(state.range===r[0])+'">'+r[1]+'</button>';
+    }).join("");
+    Array.prototype.forEach.call($("rangeChips").querySelectorAll(".chip"), function(c){
+      c.addEventListener("click", function(){ state.range = c.dataset.range; renderAll(); });
+    });
+
+    // 大厂板块：公司筛选
+    var host = $("companyChips"), box = $("companyChips");
+    if(state.tab !== "bigtech"){ box.hidden = true; return; }
+    var counts = {};
+    items().forEach(function(it){ (it.companies||[]).forEach(function(c){ counts[c]=(counts[c]||0)+1; }); });
+    // 固定顺序展示「机器人大厂」全集；本轮 0 条的通道也保留，点击后如实显示 0 条
+    var extra = Object.keys(counts).filter(function(c){ return COMPANIES.indexOf(c) < 0; });
+    var list = COMPANIES.concat(extra.sort(function(a,b){ return counts[b]-counts[a]; }));
+    box.hidden = false;
+    var html = '<button class="chip" data-co="" aria-pressed="'+(state.company===null)+'">全部大厂</button>';
+    html += list.map(function(c){
+      var n = counts[c] || 0;
+      return '<button class="chip'+(n?"":" zero")+'" data-co="'+esc(c)+'" aria-pressed="'+(state.company===c)+'" title="'+(n?"":"本轮无收录")+'">'+esc(c)+' <span class="mono" style="opacity:.55">'+n+'</span></button>';
+    }).join("");
+    box.innerHTML = html;
+    Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
+      c.addEventListener("click", function(){ state.company = c.dataset.co || null; renderAll(); });
+    });
+  }
+
+  function emptyState(){
+    var b = board();
+    if(!b) return "";
+    if(state.q){
+      return '<div class="state"><div class="ic">∅</div><h3>没有匹配「'+esc(state.q)+'」的资讯</h3><p>试试更短的关键词，或把时间范围切回「全部」。</p></div>';
+    }
+    if(state.company){
+      return '<div class="state"><div class="ic">—</div><h3>「'+esc(state.company)+'」本轮无收录</h3><p>该机器人大厂通道本轮没有通过机器人相关性判定的条目。'
+        + '抓不到就留空，页面不会用旧内容或虚构内容填充；可点「全部大厂」查看其他通道。</p></div>';
+    }
+    var t = (b.items||[]).length;
+    return '<div class="state"><div class="ic">—</div><h3>暂无数据</h3><p>本板块当前没有可用条目（数据生成于 '+esc(DATA.generated_label||"")+'）。'
+      + (b.failed_sources ? '<br>有 '+b.failed_sources+' 个来源抓取失败，可查看页脚「抓取状态」。' : '')
+      + '<br>可在本地运行 <span class="mono">python fetch_news.py</span> 重新抓取；页面不会用虚构内容填充。</p></div>';
+  }
+
+  // 信息核对：列出同一事件的真实来源链接，并标注「已核 / 单一来源」
+  function verifyHtml(it){
+    var v = it.verify || {};
+    var list = (v.sources && v.sources.length) ? v.sources : [{name: it.source, url: it.url, published: it.published}];
+    var src = list.map(function(s){
+      var nm = esc(s.name || s.host || "—");
+      var time = (s.published || "").slice(0, 16).replace("T", " ");
+      var tip = esc((s.name || "") + (time ? " · " + time : ""));
+      return s.url
+        ? '<a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer" title="'+tip+'">'+nm+'</a>'
+        : nm;
+    }).join('<span class="vsep">/</span>');
+    var badge = "";
+    if(v.level === "cross"){
+      badge = '<span class="vbadge cross" title="同一事件在 '+v.count+' 家独立站点出现，已交叉印证；点击来源名可核对原文">✓ 已核</span>';
+    }else if(v.level === "single"){
+      badge = '<span class="vbadge single" title="仅 1 家独立站点报道，未获其他媒体交叉印证">单一来源</span>';
+    }
+    return '<span class="vgroup"><span class="vsrc">'+src+'</span>'+badge+'</span>';
+  }
+
+  function renderItem(it){
+    var t = dayParts(it.published);
+    var isJoke = state.tab === "jokes";
+    var titleHtml = it.url
+      ? '<a href="'+esc(it.url)+'" target="_blank" rel="noopener noreferrer">'+hl(it.title, state.q)+'</a>'
+      : hl(it.title, state.q);
+    var sum = it.summary
+      ? '<p class="sum">'+hl(it.summary, state.q)+'</p>'
+      : '<p class="sum empty">'+(it.is_placeholder ? "" : "该来源未提供摘要，点击标题查看原文")+'</p>';
+    var tags = (it.companies||[]).map(function(c){ return '<span class="tag">'+esc(c)+'</span>'; }).join("");
+    if(it.is_placeholder) tags = '<span class="placeholder">示例占位</span>' + tags;
+    var orig = it.title_original ? '<p class="orig">'+esc(it.title_original)+'</p>' : '';
+    return '<article class="item'+(isJoke?" joke":"")+'">'
+      + '<div class="lcol"><span class="time">'
+      + (t.today ? '<span class="today">今天</span> '+t.hhmm : (t.date ? t.date+' '+t.hhmm : "—"))
+      + '</span><span class="src">'+esc(it.source||"—")+'</span></div>'
+      + '<div class="body"><h3 class="title">'+titleHtml+'</h3>'+orig+sum
+      + '<div class="foot">'
+      + (isJoke ? '' : verifyHtml(it))
+      + (tags ? '<span class="divider"></span>'+tags : '')
+      + (it.via && it.via !== it.source ? '<span class="via">经 '+esc(it.via)+'</span>' : '')
+      + (it.url ? '<a class="goto" href="'+esc(it.url)+'" target="_blank" rel="noopener noreferrer">原文 ↗</a>' : '')
+      + '</div></div></article>';
+  }
+
+  function renderList(){
+    var list = filterItems(), b = board();
+    var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
+      + '<span class="live">'+(state.q ? list.length+" / "+(b.items||[]).length+" 条" : (b.items||[]).length+" 条 · 按发布时间倒序")+'</span></div>';
+    var body = list.length
+      ? '<div class="list">'+list.map(renderItem).join("")+'</div>'
+      : emptyState();
+    var jokeNote = "";
+    if(state.tab === "jokes"){
+      var ph = (b.items||[]).length && (b.items||[]).every(function(x){ return x.is_placeholder; });
+      if(ph){
+        jokeNote = '<p class="joke-note">当前条目为<b>示例占位</b>，不是真实段子。把你收集的段子按 '
+          + '<code>{"title":"…","summary":"…","source":"…","published":"2026-11-06T15:00:00+08:00"}</code> '
+          + '写入 <code>data.json</code> 的 <code>boards.jokes.items</code>（或让它为空数组后重跑脚本，脚本会保留你写入的段子），刷新页面即可显示。</p>';
+      }
+    }
+    $("main").innerHTML = head + body + jokeNote;
+  }
+
+  function renderFooter(){
+    var rep = DATA.source_report || [];
+    var ok = rep.filter(function(s){ return s.status==="ok"; });
+    var bad = rep.filter(function(s){ return s.status!=="ok"; });
+    var rows = rep.map(function(s){
+      var mark = s.status==="ok" ? '<span class="ok">OK</span>' : '<span class="bad">FAIL</span>';
+      var note = s.status==="ok" ? ("保留 "+s.count+" 条") : esc(s.error||"抓取失败");
+      return '<tr><td>'+mark+'</td><td>'+esc(s.name)+'</td><td class="n">'+(s.raw||0)+'</td><td>'+note+'</td></tr>';
+    }).join("");
+    $("srcbody").innerHTML =
+      '<div style="margin-top:8px;font-size:11.5px;color:#464c55">本次运行：'+ok.length+' 个通道成功，'+bad.length+' 个失败。表内 <span class="mono">原始</span> 为源条目数，最后一列为入库条数或失败原因。</div>'
+      + '<table class="srctable"><tbody>'+rows+'</tbody></table>'
+      + '<div style="margin-top:8px;font-size:11px;color:#8c929a">数据文件：data.json（页面优先读取）· data.js（本地双击打开时的内嵌副本，由脚本同步生成）</div>';
+  }
+
+  function renderAll(){
+    if(!DATA) return;
+    renderTabs(); renderChips(); renderStats(); renderList(); renderFooter();
+  }
+
+  // 地址栏带 ?tab=大厂&q=关键词，方便收藏/分享某个视图
+  function syncUrl(){
+    try{
+      var p = new URLSearchParams();
+      if(state.tab !== "domestic") p.set("tab", state.tab);
+      if(state.q) p.set("q", state.q);
+      var qs = p.toString();
+      history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
+    }catch(e){ /* file:// 下可能禁止改写地址，忽略 */ }
+  }
+  function readUrl(){
+    try{
+      var p = new URLSearchParams(location.search);
+      var t = p.get("tab");
+      if(t && TABS.some(function(x){ return x.key === t; })) state.tab = t;
+      var q = p.get("q");
+      if(q){ state.q = q; }
+    }catch(e){}
+  }
+
+  function boot(){
+    // 1) 优先 fetch data.json（http 服务下可拿到最新数据）
+    // 2) file:// 双击打开时 fetch 被拦截，改用 data.js 注入的全局变量
+    var done = function(data, mode){
+      DATA = data; MODE = mode;
+      if(!DATA.boards){ $("main").innerHTML = '<div class="state error"><h3>数据格式异常</h3><p>data.json 缺少 boards 字段。</p></div>'; return; }
+      readUrl();
+      if(state.q) $("q").value = state.q;
+      renderAll();
+    };
+    var fallback = function(){
+      if(window.ROBOT_NEWS_DATA){ done(window.ROBOT_NEWS_DATA, "embedded"); return; }
+      $("statusPill").className = "pill warn";
+      $("statusText").textContent = "数据未加载";
+      $("stamp").textContent = "—";
+      $("main").innerHTML = '<div class="state error"><div class="ic">!</div><h3>找不到数据文件</h3>'
+        + '<p>请确认 <span class="mono">data.json</span> / <span class="mono">data.js</span> 与本页面在同一目录。<br>'
+        + '首次使用可在本目录运行：<span class="mono">python fetch_news.py</span>，完成后刷新页面。</p></div>';
+    };
+    try{
+      fetch("data.json", {cache:"no-store"})
+        .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+        .then(function(j){ done(j, "json"); })
+        .catch(fallback);
+    }catch(e){ fallback(); }
+  }
+
+  // 交互
+  document.addEventListener("DOMContentLoaded", function(){
+    $("q").addEventListener("input", function(e){
+      state.q = e.target.value;
+      // 搜索时自动放宽时间范围，避免“搜不到”其实是过滤所致
+      if(state.q && state.range !== "all"){ state.range = "all"; }
+      syncUrl(); renderChips(); renderList();
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "/" && document.activeElement !== $("q")){ e.preventDefault(); $("q").focus(); }
+      if(e.key === "Escape" && document.activeElement === $("q")){ $("q").value=""; state.q=""; renderList(); }
+    });
+    boot();
+  });
+})();
+</script>
+</body>
+</html>

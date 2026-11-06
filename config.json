@@ -1,0 +1,7 @@
+{
+  "interval_minutes": 60,
+  "retries": 2,
+  "max": 60,
+  "per_source": 16,
+  "translate": true
+}

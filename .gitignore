@@ -1,0 +1,13 @@
+# 运行时产物
+__pycache__/
+*.pyc
+daemon.log
+.screenshots/
+
+# 本地临时文件
+*.tmp
+~$*
+
+# 打包产物与本地缓存（不进仓库）
+*.zip
+translate_cache.json

@@ -1,0 +1,66 @@
+name: 定时抓取并发布
+
+# 每小时在云端跑一次抓取（cron 用 UTC，第 5 分钟 = 北京时间每小时 05 分）
+on:
+  schedule:
+    - cron: "5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 执行抓取并写入 data.json / data.js
+        run: python fetch_news.py --max 60 --per-source 16
+
+      - name: 提交数据变更
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json data.js
+          if git diff --cached --quiet; then
+            echo "数据无变化，跳过提交"
+          else
+            git commit -m "chore: 自动更新资讯数据（$(date -u +'%Y-%m-%d %H:%M') UTC）"
+            git push
+          fi
+
+  deploy:
+    needs: fetch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 重新拉取，拿到 fetch 刚提交的最新数据
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: 准备静态站点文件
+        run: |
+          mkdir -p _site
+          cp index.html data.json data.js _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
