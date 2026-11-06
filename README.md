@@ -15,7 +15,9 @@ python -m http.server 8765
 
 ## 部署到 GitHub Pages（在线访问）
 
-当前状态：**还没上线**。本机没装 `gh` CLI、也没有登录态，所以没有代你建仓或推送；仓库已初始化好（分支 `main`、文件已 `git add`），workflow 与一键脚本都已备好，你执行下面几条命令即可。
+当前状态：**已上线**，访问地址 <https://finn-tf.github.io/robot-news-board/>（仓库 <https://github.com/Finn-TF/robot-news-board>，Pages 构建方式为 GitHub Actions workflow，`deploy.yml` 已验证构建成功）。
+
+下面保留首次建仓/推送的命令，供换机器或换仓库时参考。
 
 ```powershell
 # 0) 先设置提交身份（只需一次）
