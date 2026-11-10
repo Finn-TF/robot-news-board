@@ -1,12 +1,69 @@
 {
- "generated_at": "2026-11-11T04:44:55.270725+08:00",
- "generated_label": "2026-11-11 04:44",
+ "generated_at": "2026-11-11T05:40:23.740124+08:00",
+ "generated_label": "2026-11-11 05:40",
  "boards": {
   "domestic": {
    "key": "domestic",
    "name": "国内新闻",
    "desc": "中国人形机器人、产业链与国产机器人公司的公开新闻",
    "items": [
+    {
+     "board": "domestic",
+     "title": "苹果、谷歌、OpenAI加速入局，物理AI四大产业链方向（附名单）_机器 ...",
+     "title_original": "",
+     "summary": "研究人员先用计算机生成1000个虚拟家庭，让机器人在这些环境中学习走路、坐下、绕过障碍物、推动箱子等动作。整个训练过程没有使用真实家庭的数据。 随后，研究人员把训练好的系统装到宇树G1机器人上，在6个此前没有接触过的真实环境中进行了360次单项任务测试，平均成功率达到91%。 但当研究人员把几个动作连起来，让机器人连续完成一组任务时，成功率下降到了70%。 11月7日，国金证券发布《物理AI：巨头 ...",
+     "summary_original": "",
+     "source": "Bing News",
+     "via": "",
+     "url": "https://www.sohu.com/a/1099790389_120732800",
+     "published": "2026-11-10T21:37:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "OpenAI",
+      "谷歌 DeepMind"
+     ],
+     "is_placeholder": false,
+     "id": "d446f5f49c84",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1099790389_120732800",
+        "published": "2026-11-10T21:37:00+08:00",
+        "host": "sohu.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "资本退潮、GPT-6疾进时，谁在替具身智能修路？",
+     "title_original": "",
+     "summary": "投资人仍在观望下半场，一群人已经给机器人写起了App。 2008年7月10日，App Store上线第一天，首批应用只有500款，寥寥几页就能浏览结束。乔布斯后来在回顾时，把这描述为自己职业生涯中规模最大的发布之一。 这个看似单薄的数据，开启了一套全新范式：普通人无需隶属于苹果团队，也不必经过官方特许，就能为一台通用计算设备开发应用，供给全球用户下载使用。 当天，独立工作室Imangi提交了一款小 ...",
+     "summary_original": "",
+     "source": "Bing 新闻检索",
+     "via": "",
+     "url": "https://www.sohu.com/a/1099787583_123050526",
+     "published": "2026-11-10T21:16:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "408858d0c6ae",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1099787583_123050526",
+        "published": "2026-11-10T21:16:00+08:00",
+        "host": "sohu.com"
+       }
+      ]
+     }
+    },
     {
      "board": "domestic",
      "title": "双足人形机器人首夺CES最高创新奖，银河星仔",
@@ -36,27 +93,27 @@
     },
     {
      "board": "domestic",
-     "title": "人形机器人板块维持高位震荡，机器人ETF易方达（159530）标的指数 ...",
+     "title": "Mosaic 获 4700 万美元种子轮融资，开发用于外科手术的空间智能",
      "title_original": "",
-     "summary": "11月10日，人形机器人板块高开后维持高位震荡，截至收盘，国证机器人产业指数上涨2.6%。 “特别声明：以上作品内容(包括在内的视频、图片或音频)为凤凰网旗下自媒体平台“大风号”用户上传并发布，本平台仅提供信息存储空间服务。 Notice: The content above (including the videos, pictures and audios if any) is uploade ...",
+     "summary": "Mosaic Intelligence Labs 于 2026 年 11 月 10 日宣布结束隐身模式，获得 4700 万美元种子轮融资，用于开发支持感知的空间智能和外科手术机器人系统，初期将聚焦通过血管系统实施的手术。 这家总部位于旧金山的公司表示，8VC、Fundomo、Lingotto Innovation 和 Obvious Ventures 均为其投资方。首席执行官 Ileana Pir ...",
      "summary_original": "",
-     "source": "凤凰网资讯频道",
+     "source": "Unite.AI",
      "via": "Bing",
-     "url": "https://news.ifeng.com/c/8xwYhQSppUi",
-     "published": "2026-11-10T18:35:00+08:00",
+     "url": "https://www.unite.ai/zh-cn/mosaic-raises-47m-seed-to-develop-spatial-intelligence-for-surgery/",
+     "published": "2026-11-10T18:56:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "153aec70229a",
+     "id": "c282a434c653",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "凤凰网资讯频道",
-        "url": "https://news.ifeng.com/c/8xwYhQSppUi",
-        "published": "2026-11-10T18:35:00+08:00",
-        "host": "news.ifeng.com"
+        "name": "Unite.AI",
+        "url": "https://www.unite.ai/zh-cn/mosaic-raises-47m-seed-to-develop-spatial-intelligence-for-surgery/",
+        "published": "2026-11-10T18:56:00+08:00",
+        "host": "unite.ai"
        }
       ]
      }
@@ -84,35 +141,6 @@
         "url": "https://www.sohu.com/a/1099742115_120708504",
         "published": "2026-11-10T18:34:00+08:00",
         "host": "sohu.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "Apollo 2 人形机器人在 Mercedes-Benz 分拣概念验证中达到 96% 成功率",
-     "title_original": "",
-     "summary": "Google DeepMind 于 2026 年 11 月 10 日推出 Gemini Robotics 2.5，并报告称，在一项概念验证中，Apptronik 的 Apollo 2 人形机器人在 Mercedes-Benz 正常运转的生产线上分拣汽车零部件，成功率达到 96%。 Gemini Robotics 2.5 是一种视觉-语言-动作（VLA）模型，能够将视觉和语言理解转化为机器人动作。D ...",
-     "summary_original": "",
-     "source": "Unite.AI",
-     "via": "Bing",
-     "url": "https://www.unite.ai/zh-cn/apollo-2-humanoids-hit-96-in-mercedes-benz-sorting-proof-of-concept/",
-     "published": "2026-11-10T17:44:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "谷歌 DeepMind"
-     ],
-     "is_placeholder": false,
-     "id": "e4d2f2fe3c5c",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Unite.AI",
-        "url": "https://www.unite.ai/zh-cn/apollo-2-humanoids-hit-96-in-mercedes-benz-sorting-proof-of-concept/",
-        "published": "2026-11-10T17:44:00+08:00",
-        "host": "unite.ai"
        }
       ]
      }
@@ -279,33 +307,6 @@
         "url": "https://www.leiphone.com/category/industrynews/Hh7kHix5gWd00cEC.html",
         "published": "2026-11-10T13:02:00+08:00",
         "host": "leiphone.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "具身智能迎来第一个资本寒冬",
-     "title_original": "",
-     "summary": "还有一位投资人透露，最近几家头部具身智能公司正在融新一轮。但跟还是不跟，在不少老股东机构内部，争议很大。 过去其他行业需要数年走完的融资历程，具身智能压缩到了两三年。估值一路狂飙，可技术、产品和商业化成熟的速度，却并没有跟上。",
-     "summary_original": "",
-     "source": "虎嗅网",
-     "via": "Bing",
-     "url": "https://www.huxiu.com/article/4904390.html",
-     "published": "2026-11-10T12:12:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "9675f19b93ff",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "虎嗅网",
-        "url": "https://www.huxiu.com/article/4904390.html",
-        "published": "2026-11-10T12:12:00+08:00",
-        "host": "huxiu.com"
        }
       ]
      }
@@ -537,84 +538,27 @@
     },
     {
      "board": "domestic",
-     "title": "苹果、谷歌、OpenAI加速入局，物理AI四大产业链方向（附名单）_机器 ...",
-     "title_original": "",
-     "summary": "研究人员先用计算机生成1000个虚拟家庭，让机器人在这些环境中学习走路、坐下、绕过障碍物、推动箱子等动作。整个训练过程没有使用真实家庭的数据。 随后，研究人员把训练好的系统装到宇树G1机器人上，在6个此前没有接触过的真实环境中进行了360次单项任务测试，平均成功率达到91%。 但当研究人员把几个动作连起来，让机器人连续完成一组任务时，成功率下降到了70%。 11月7日，国金证券发布《物理AI：巨头 ...",
-     "summary_original": "",
-     "source": "Bing News",
-     "via": "",
-     "url": "https://www.sohu.com/a/1099790389_120732800",
-     "published": "2026-11-10T07:37:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "OpenAI",
-      "谷歌 DeepMind"
-     ],
-     "is_placeholder": false,
-     "id": "d446f5f49c84",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1099790389_120732800",
-        "published": "2026-11-10T07:37:00+08:00",
-        "host": "sohu.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
      "title": "智能人形机器人销量高增叠加物理AI入局，机器人ETF易方达（159530 ...",
      "title_original": "",
      "summary": "11月10日，截至15:00，机器人产业上涨2.64%。个股方面，震裕科技涨超7%，昊志机电涨超4%，埃斯顿、领益智造等涨超3%，浙江荣泰、绿的谐波等涨超2%，科大讯飞、机器人等涨超1%。 机器人ETF易方达连续5日净流入。",
      "summary_original": "",
      "source": "金融界财经 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/money/%E9%80%9A%E7%94%A8/%E6%99%BA%E8%83%BD%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%94%80%E9%87%8F%E9%AB%98%E5%A2%9E%E5%8F%A0%E5%8A%A0%E7%89%A9%E7%90%86ai%E5%85%A5%E5%B1%80-%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%98%93%E6%96%B9%E8%BE%BE-159530-%E6%8C%81%E7%BB%AD%E8%8E%B7%E8%B5%84%E9%87%91%E9%9D%92%E7%9D%90/ar-AA2h7yTN",
+     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E6%99%BA%E8%83%BD%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%94%80%E9%87%8F%E9%AB%98%E5%A2%9E%E5%8F%A0%E5%8A%A0%E7%89%A9%E7%90%86ai%E5%85%A5%E5%B1%80-%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%98%93%E6%96%B9%E8%BE%BE-159530-%E6%8C%81%E7%BB%AD%E8%8E%B7%E8%B5%84%E9%87%91%E9%9D%92%E7%9D%90/ar-AA2h7yTN",
      "published": "2026-11-10T07:21:21+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "141810ce623a",
+     "id": "984ab0324157",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
         "name": "金融界财经 on MSN",
-        "url": "https://www.msn.cn/zh-cn/money/%E9%80%9A%E7%94%A8/%E6%99%BA%E8%83%BD%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%94%80%E9%87%8F%E9%AB%98%E5%A2%9E%E5%8F%A0%E5%8A%A0%E7%89%A9%E7%90%86ai%E5%85%A5%E5%B1%80-%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%98%93%E6%96%B9%E8%BE%BE-159530-%E6%8C%81%E7%BB%AD%E8%8E%B7%E8%B5%84%E9%87%91%E9%9D%92%E7%9D%90/ar-AA2h7yTN",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E6%99%BA%E8%83%BD%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%94%80%E9%87%8F%E9%AB%98%E5%A2%9E%E5%8F%A0%E5%8A%A0%E7%89%A9%E7%90%86ai%E5%85%A5%E5%B1%80-%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%98%93%E6%96%B9%E8%BE%BE-159530-%E6%8C%81%E7%BB%AD%E8%8E%B7%E8%B5%84%E9%87%91%E9%9D%92%E7%9D%90/ar-AA2h7yTN",
         "published": "2026-11-10T07:21:21+08:00",
         "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "资本退潮、GPT-6疾进时，谁在替具身智能修路？",
-     "title_original": "",
-     "summary": "投资人仍在观望下半场，一群人已经给机器人写起了App。 2008年7月10日，App Store上线第一天，首批应用只有500款，寥寥几页就能浏览结束。乔布斯后来在回顾时，把这描述为自己职业生涯中规模最大的发布之一。 这个看似单薄的数据，开启了一套全新范式：普通人无需隶属于苹果团队，也不必经过官方特许，就能为一台通用计算设备开发应用，供给全球用户下载使用。 当天，独立工作室Imangi提交了一款小 ...",
-     "summary_original": "",
-     "source": "Bing 新闻检索",
-     "via": "",
-     "url": "https://www.sohu.com/a/1099787583_123050526",
-     "published": "2026-11-10T07:16:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "408858d0c6ae",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1099787583_123050526",
-        "published": "2026-11-10T07:16:00+08:00",
-        "host": "sohu.com"
        }
       ]
      }
@@ -639,9 +583,36 @@
       "sources": [
        {
         "name": "证券之星股票频道 on MSN",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%8B%9B%E5%95%86-11%E6%9C%886%E6%97%A5%E8%9E%8D%E8%B5%84%E4%B9%B0%E5%85%A536591%E4%B8%87%E5%85%83-%E8%9E%8D%E8%B5%84%E8%9E%8D%E5%88%B8%E4%BD%99%E9%A2%9D116463%E4%B8%87%E5%85%83/ar-AA2h2km0",
-        "published": "2026-11-09T06:49:24+08:00",
+        "url": "https://www.msn.cn/zh-cn/news/other/%E6%9C%BA%E5%99%A8%E4%BA%BAtf-11%E6%9C%889%E6%97%A5%E8%9E%8D%E8%B5%84%E4%B9%B0%E5%85%A515117%E4%B8%87%E5%85%83-%E8%9E%8D%E8%B5%84%E8%9E%8D%E5%88%B8%E4%BD%99%E9%A2%9D65413%E4%B8%87%E5%85%83/ar-AA2h74ki",
+        "published": "2026-11-10T07:15:34+08:00",
         "host": "msn.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "具身智能迎来第一个资本寒冬",
+     "title_original": "",
+     "summary": "还有一位投资人透露，最近几家头部具身智能公司正在融新一轮。但跟还是不跟，在不少老股东机构内部，争议很大。 过去其他行业需要数年走完的融资历程，具身智能压缩到了两三年。估值一路狂飙，可技术、产品和商业化成熟的速度，却并没有跟上。",
+     "summary_original": "",
+     "source": "虎嗅网",
+     "via": "Bing",
+     "url": "https://www.huxiu.com/article/4904390.html",
+     "published": "2026-11-10T04:11:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "9675f19b93ff",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "虎嗅网",
+        "url": "https://www.huxiu.com/article/4904390.html",
+        "published": "2026-11-10T04:11:00+08:00",
+        "host": "huxiu.com"
        }
       ]
      }
@@ -652,25 +623,25 @@
      "title_original": "",
      "summary": "11月10日上午A股收盘，上证指数上涨0.06%，深证成指上涨0.76%，创业板指上涨1.49%，科创综指上涨1.32%。 全市场逾3800只个股上涨，全市场成交额为9681亿元。人形机器人、AI视频、算力等板块上涨，油气开采、保险、港口航运等板块下跌。 人形机器人板块上涨 今天上午，人形机器人板块上涨，宇树科技上涨8.73%；福莱新材涨停，股价创历史新高。海昌新材、同星科技等个股大涨。 最近，人 ...",
      "summary_original": "",
-     "source": "东方财富网财经频道",
+     "source": "新浪财经",
      "via": "Bing",
-     "url": "https://finance.eastmoney.com/a/202611103927200762.html",
+     "url": "https://finance.sina.com.cn/jjxw/2026-11-10/doc-iniyfqsy5917286.shtml",
      "published": "2026-11-10T00:00:00+08:00",
      "lang": "zh",
      "companies": [
       "宇树 Unitree"
      ],
      "is_placeholder": false,
-     "id": "bfc6ddec76af",
+     "id": "fc3d2893c523",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/a/202611103927200762.html",
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/jjxw/2026-11-10/doc-iniyfqsy5917286.shtml",
         "published": "2026-11-10T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
+        "host": "finance.sina.com.cn"
        }
       ]
      }
@@ -870,27 +841,87 @@
     },
     {
      "board": "domestic",
-     "title": "独家｜优理奇机器人UniX AI完成5亿元Pre-A轮融资，产业资本协同推动具 ...",
+     "title": "让具身智能专利“拿得稳、用得上” ——访国家知识产权局专利局 ...",
      "title_original": "",
-     "summary": "近日，通用具身智能机器人企业优理奇机器人（UniX AI）宣布完成5亿元 Pre-A 轮融资。老股东谢诺投资、涌铧投资连续多轮超额追加投资，新进机构包括绿地集团、柯力传感、华工创投、新景富盈、红鸟启航基金、玉林产投等产业及财务投资人。作为优理奇下游重要应用伙伴，绿地集团以战略投资人身份加入，并将与优理奇一同围绕安保、酒店、康养等场景，协同推进机器人模型、本体、数据与解决方案的全闭环落地。客户从产品 ...",
+     "summary": "国家“十五五”规划纲要提出，要前瞻布局未来产业。推动具身智能等成为新的经济增长点。作为融合人工智能与物理实体的前沿方向，具身智能正在从实验室加速跑向生产线。然而，当一项创新同时包含算法模型、硬件结构和场景应用时，专利审查如何支撑具身智能领域融合创新？国家知识产权局专利局电学发明审查部质量保障处处长邹斌表示：“审查不是创新的终点裁判，而是新质生产力培育链条上的关键传导环节。完善具身智能领域专利申请的 ...",
      "summary_original": "",
-     "source": "Bing 新闻检索",
-     "via": "",
-     "url": "https://www.sohu.com/a/1099092881_122063396",
-     "published": "2026-11-09T13:00:00+08:00",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/tech/roll/2026-11-09/doc-iniycmty6533450.shtml",
+     "published": "2026-11-09T14:49:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "02f1db122186",
+     "id": "1c833f52e96c",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1099092881_122063396",
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/tech/roll/2026-11-09/doc-iniycmty6533450.shtml",
+        "published": "2026-11-09T14:49:00+08:00",
+        "host": "finance.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "独家｜优理奇机器人UniX AI完成5亿元Pre-A轮融资，产业资本协同推动具 ...",
+     "title_original": "",
+     "summary": "近日，通用具身智能 机器人 企业优理奇机器人（ UniX AI ）宣布完成5亿元 Pre-A 轮融资。老股东谢诺投资、涌铧投资连续多轮超额追加投资，新进机构包括绿地集团、 柯力传感 、华工创投、 新景富盈 、红鸟启航基金、玉林产投等产业及财务投资人。 作为优理奇下游重要应用伙伴，绿地集团以战略投资人身份加入，并将与优理奇 一同 围绕安保、酒店、康养等场景，协同推进机器人模型、本体、数据与解决方案的 ...",
+     "summary_original": "",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/cj/2026-11-09/doc-iniycfmy3009826.shtml",
+     "published": "2026-11-09T13:00:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "abf61ad7cdcb",
+     "verify": {
+      "level": "cross",
+      "count": 2,
+      "sources": [
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/cj/2026-11-09/doc-iniycfmy3009826.shtml",
         "published": "2026-11-09T13:00:00+08:00",
-        "host": "sohu.com"
+        "host": "finance.sina.com.cn"
+       },
+       {
+        "name": "投资界 on MSN",
+        "url": "https://www.msn.cn/zh-cn/news/other/%E4%BC%98%E7%90%86%E5%A5%87%E6%9C%BA%E5%99%A8%E4%BA%BA-unix-ai-%E5%AE%8C%E6%88%905%E4%BA%BF%E5%85%83pre-a%E8%BD%AE%E8%9E%8D%E8%B5%84-%E6%8E%A8%E5%8A%A8%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%A7%84%E6%A8%A1%E5%8C%96%E8%90%BD%E5%9C%B0/ar-AA2h33Ar",
+        "published": "2026-11-09T06:47:00+08:00",
+        "host": "msn.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "全球具身模型能力飞跃将推动机器人应用落地加速，机器人ETF嘉实 ...",
+     "title_original": "",
+     "summary": "2026年11月9日早盘，机器人、人形机器人等板块概念表现活跃，截至10:54，中证机器人指数(H30590)强势上涨1.47%，成分股禾川科技上涨9.70%，江苏雷利上涨7.69%，博杰股份上涨6.33%，鼎智科技，天准科技等个股跟涨。11月8日，上纬新材启元机器人第10000台个人机器人正式下线。今年10月，启元机器人整机生产工厂正式量产，从5 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261109A065IC00",
+     "published": "2026-11-09T11:43:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "a36918f41bd0",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261109A065IC00",
+        "published": "2026-11-09T11:43:00+08:00",
+        "host": "news.qq.com"
        }
       ]
      }
@@ -924,54 +955,33 @@
     },
     {
      "board": "domestic",
-     "title": "机器人ETF招商：11月6日融资买入365.91万元，融资融券余额1164.63万元",
+     "title": "优理奇机器人（UniX AI）完成5亿元Pre-A轮融资，推动具身智能规模化落地",
      "title_original": "",
-     "summary": "证券之星消息，11月6日，机器人ETF招商（560770）融资买入365.91万元，融资偿还380.04万元，融资净卖出14.13万元，融资余额1164.63万元。 融券方面，当日无融券交易。 融资融券余额1164.63万元，较昨日下滑1.2%。 小知识 ...",
+     "summary": "优理奇智能科技（苏州）有限公司（下称“优理奇”）成立于2024年，是一家全栈式、具有全球技术视野的具身智能高科技企业，专注于前沿研发、销售和产业化落地应用。投资界11月9日消息，优理奇机器人完成5亿元Pre-A轮融资。老股东谢诺投资、涌铧投资连续多轮超额追加投资，新进机构包括绿地集团、柯力传感、华工创投、新景富盈、红鸟启航基金、玉林产投等产业及财务投资人。本 ...",
      "summary_original": "",
-     "source": "证券之星股票频道 on MSN",
+     "source": "投资界 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%8B%9B%E5%95%86-11%E6%9C%886%E6%97%A5%E8%9E%8D%E8%B5%84%E4%B9%B0%E5%85%A536591%E4%B8%87%E5%85%83-%E8%9E%8D%E8%B5%84%E8%9E%8D%E5%88%B8%E4%BD%99%E9%A2%9D116463%E4%B8%87%E5%85%83/ar-AA2h2km0",
-     "published": "2026-11-09T06:49:24+08:00",
+     "url": "https://www.msn.cn/zh-cn/news/other/%E4%BC%98%E7%90%86%E5%A5%87%E6%9C%BA%E5%99%A8%E4%BA%BA-unix-ai-%E5%AE%8C%E6%88%905%E4%BA%BF%E5%85%83pre-a%E8%BD%AE%E8%9E%8D%E8%B5%84-%E6%8E%A8%E5%8A%A8%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%A7%84%E6%A8%A1%E5%8C%96%E8%90%BD%E5%9C%B0/ar-AA2h33Ar",
+     "published": "2026-11-09T06:47:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "b7b09c652bbe",
+     "id": "93ae0a74bd86",
      "verify": {
-      "level": "single",
-      "count": 1,
+      "level": "cross",
+      "count": 2,
       "sources": [
        {
-        "name": "证券之星股票频道 on MSN",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E6%8B%9B%E5%95%86-11%E6%9C%886%E6%97%A5%E8%9E%8D%E8%B5%84%E4%B9%B0%E5%85%A536591%E4%B8%87%E5%85%83-%E8%9E%8D%E8%B5%84%E8%9E%8D%E5%88%B8%E4%BD%99%E9%A2%9D116463%E4%B8%87%E5%85%83/ar-AA2h2km0",
-        "published": "2026-11-09T06:49:24+08:00",
+        "name": "投资界 on MSN",
+        "url": "https://www.msn.cn/zh-cn/news/other/%E4%BC%98%E7%90%86%E5%A5%87%E6%9C%BA%E5%99%A8%E4%BA%BA-unix-ai-%E5%AE%8C%E6%88%905%E4%BA%BF%E5%85%83pre-a%E8%BD%AE%E8%9E%8D%E8%B5%84-%E6%8E%A8%E5%8A%A8%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%A7%84%E6%A8%A1%E5%8C%96%E8%90%BD%E5%9C%B0/ar-AA2h33Ar",
+        "published": "2026-11-09T06:47:00+08:00",
         "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "全球具身模型能力飞跃将推动机器人应用落地加速，机器人ETF嘉实 ...",
-     "title_original": "",
-     "summary": "2026年11月9日早盘，机器人、人形机器人等板块概念表现活跃，截至10:54，中证机器人指数(H30590)强势上涨1.47%，成分股禾川科技上涨9.70%，江苏雷利上涨7.69%，博杰股份上涨6.33%，鼎智科技，天准科技等个股跟涨。",
-     "summary_original": "",
-     "source": "商业新知 on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.com/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E5%85%A8%E7%90%83%E5%85%B7%E8%BA%AB%E6%A8%A1%E5%9E%8B%E8%83%BD%E5%8A%9B%E9%A3%9E%E8%B7%83%E5%B0%86%E6%8E%A8%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%BA%94%E7%94%A8%E8%90%BD%E5%9C%B0%E5%8A%A0%E9%80%9F-%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E5%98%89%E5%AE%9E-159526-%E8%81%9A%E7%84%A6%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%85%A8%E4%BA%A7%E4%B8%9A%E9%93%BE/ar-AA2h2sQE",
-     "published": "2026-11-09T03:28:04+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "c8d86a334825",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
+       },
        {
-        "name": "商业新知 on MSN",
-        "url": "https://www.msn.com/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E5%85%A8%E7%90%83%E5%85%B7%E8%BA%AB%E6%A8%A1%E5%9E%8B%E8%83%BD%E5%8A%9B%E9%A3%9E%E8%B7%83%E5%B0%86%E6%8E%A8%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%BA%94%E7%94%A8%E8%90%BD%E5%9C%B0%E5%8A%A0%E9%80%9F-%E6%9C%BA%E5%99%A8%E4%BA%BAetf%E5%98%89%E5%AE%9E-159526-%E8%81%9A%E7%84%A6%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%85%A8%E4%BA%A7%E4%B8%9A%E9%93%BE/ar-AA2h2sQE",
-        "published": "2026-11-09T03:28:04+08:00",
-        "host": "msn.com"
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/cj/2026-11-09/doc-iniycfmy3009826.shtml",
+        "published": "2026-11-09T13:00:00+08:00",
+        "host": "finance.sina.com.cn"
        }
       ]
      }
@@ -1304,6 +1314,33 @@
     },
     {
      "board": "domestic",
+     "title": "机器人赛道“换血”：破产清算与百亿融资同时发生，出清才刚开始丨深度",
+     "title_original": "",
+     "summary": "融资百亿、订单十亿的故事仍在具身智能赛道上演，但破产清算、欠薪停工 ...",
+     "summary_original": "",
+     "source": "红星新闻 on MSN",
+     "via": "Bing",
+     "url": "https://www.msn.cn/zh-cn/news/national/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%9B%E9%81%93-%E6%8D%A2%E8%A1%80-%E7%A0%B4%E4%BA%A7%E6%B8%85%E7%AE%97%E4%B8%8E%E7%99%BE%E4%BA%BF%E8%9E%8D%E8%B5%84%E5%90%8C%E6%97%B6%E5%8F%91%E7%94%9F-%E5%87%BA%E6%B8%85%E6%89%8D%E5%88%9A%E5%BC%80%E5%A7%8B%E4%B8%A8%E6%B7%B1%E5%BA%A6/ar-AA2gKyDP",
+     "published": "2026-11-04T23:37:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "aba1895471cd",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "红星新闻 on MSN",
+        "url": "https://www.msn.cn/zh-cn/news/national/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%9B%E9%81%93-%E6%8D%A2%E8%A1%80-%E7%A0%B4%E4%BA%A7%E6%B8%85%E7%AE%97%E4%B8%8E%E7%99%BE%E4%BA%BF%E8%9E%8D%E8%B5%84%E5%90%8C%E6%97%B6%E5%8F%91%E7%94%9F-%E5%87%BA%E6%B8%85%E6%89%8D%E5%88%9A%E5%BC%80%E5%A7%8B%E4%B8%A8%E6%B7%B1%E5%BA%A6/ar-AA2gKyDP",
+        "published": "2026-11-04T23:37:00+08:00",
+        "host": "msn.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
      "title": "订单火热却赚不到钱？机器人产业链的一体两面丨三季报专题",
      "title_original": "",
      "summary": "进入2026年第三季度，国内机器人产业正转向订单交付与财务验证的关键阶段。A股三季报集中披露后，产业链呈现清晰的结构性特征：整机环节订单回暖，但多数企业仍面临增收不增利；核心零部件成为业绩兑现主力，减速器、伺服、电机、关节模组上市公司营收利润同步走高；整机赛道内部已经出现分化，少数企业实现盈利，仍有大量主体承受高额研发投入与营运资金压力。 从产业大环境看，国内工业机器人产量保持高速增长，叠加国家层 ...",
@@ -1331,27 +1368,27 @@
     },
     {
      "board": "domestic",
-     "title": "太希智行外骨骼机器人实测：Mark0.1 Pro双电池版，长辈的“隐形腿力 ...",
+     "title": "外骨骼机器人技术商业化加速，雷赛智能率先披露三季报",
      "title_original": "",
-     "summary": "周末陪父母去城郊爬山，走到后半程，老爷子膝盖开始发沉，老太太上陡坡也得扶着栏杆喘气。作为数码爱好者，我平时接触过不少穿戴设备，但真正落到“帮人走路”这个刚需上，还是头一回认真上手。这次入手的太希智行 TECHNIK MARCH外骨骼行走助力器 Mark0.1 Pro双电池版，我连续戴着它跑了两周城市通勤、爬楼和轻度徒步，今天就把真实数据和使用体感摊开聊聊。 本次实测为期14天，累计负重穿戴约60小 ...",
+     "summary": "外骨骼机器人龙头之一的雷赛智能，其2026年前三季度营业收入和归母净利润同比高增，运动控制与机器人零部件订单放量。 在技术和应用双重驱动下，外骨骼机器人技术近年来商业化呈现加速趋势。外骨骼机器人概念龙头雷赛智能新近披露的2026年第三季度报告显示，今年前三季度，公司营业收入和归母净利润分别同比增长46.77%和86.80%。值得一提的是，雷赛智能泛人形机器人等重点战略性行业及新兴业务收入贡献逐步提 ...",
      "summary_original": "",
-     "source": "Bing 新闻检索",
-     "via": "",
-     "url": "https://www.sohu.com/a/1095648313_122645060",
-     "published": "2026-11-01T11:14:00+08:00",
+     "source": "证券市场周刊 on MSN",
+     "via": "Bing",
+     "url": "https://www.msn.cn/zh-cn/news/other/%E5%A4%96%E9%AA%A8%E9%AA%BC%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E5%95%86%E4%B8%9A%E5%8C%96%E5%8A%A0%E9%80%9F-%E9%9B%B7%E8%B5%9B%E6%99%BA%E8%83%BD%E7%8E%87%E5%85%88%E6%8A%AB%E9%9C%B2%E4%B8%89%E5%AD%A3%E6%8A%A5/ar-AA2gIMiZ",
+     "published": "2026-11-04T17:15:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "468b53c504fe",
+     "id": "c04cf3c24543",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1095648313_122645060",
-        "published": "2026-11-01T11:14:00+08:00",
-        "host": "sohu.com"
+        "name": "证券市场周刊 on MSN",
+        "url": "https://www.msn.cn/zh-cn/news/other/%E5%A4%96%E9%AA%A8%E9%AA%BC%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E5%95%86%E4%B8%9A%E5%8C%96%E5%8A%A0%E9%80%9F-%E9%9B%B7%E8%B5%9B%E6%99%BA%E8%83%BD%E7%8E%87%E5%85%88%E6%8A%AB%E9%9C%B2%E4%B8%89%E5%AD%A3%E6%8A%A5/ar-AA2gIMiZ",
+        "published": "2026-11-04T17:15:00+08:00",
+        "host": "msn.cn"
        }
       ]
      }
@@ -1631,36 +1668,6 @@
     },
     {
      "board": "overseas",
-     "title": "忘掉人工智能——人形机器人的到来速度比任何人预期的都要快",
-     "title_original": "Forget AI - humanoid robots are coming faster than anyone expected",
-     "summary": "尽管全世界都在关注生成式人工智能，但该视频认为，人形机器人技术在短短三年内经历了一场悄然的革命。 Tesla Optimus、Figure、Google DeepMind、波士顿动力公司和......",
-     "summary_original": "While the world focuses on generative AI, the video argues that humanoid robotics has undergone a quiet revolution in just three years. Tesla Optimus, Figure, Google DeepMind, Boston Dynamics and ...",
-     "source": "Cold Fusion on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.com/en-gb/video/other/forget-ai-humanoid-robots-are-coming-faster-than-anyone-expected/vi-AA2dgm9e",
-     "published": "2026-11-10T17:20:47+08:00",
-     "lang": "en",
-     "companies": [
-      "特斯拉",
-      "谷歌 DeepMind"
-     ],
-     "is_placeholder": false,
-     "id": "1af4077612dc",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Cold Fusion on MSN",
-        "url": "https://www.msn.com/en-gb/video/other/forget-ai-humanoid-robots-are-coming-faster-than-anyone-expected/vi-AA2dgm9e",
-        "published": "2026-11-10T17:20:47+08:00",
-        "host": "msn.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
      "title": "北美仓库自动化市场规模、份额、增长分析和预测，2026 年...",
      "title_original": "North America Warehouse Automation Market Size, Share, Growth Analysis, and Forecast, 2026 ...",
      "summary": "自动化投资针对劳动力短缺和当日交货需求，利用货到人机器人技术和人工智能驱动的库存工具提高效率和投资回报率。 都柏林，11 月 (环球通讯社) -- ...",
@@ -1771,7 +1778,7 @@
      "board": "overseas",
      "title": "人形机器人的夜间人类主管",
      "title_original": "Overnight Human Supervisors for Humanoid Robots",
-     "summary": "在硅谷，一种直到最近还像科幻小说一样的职业正在形成：在夜班期间控制人形机器人，确保它们正常工作......",
+     "summary": "在硅谷，一种直到最近还像科幻小说一样的职业正在形成：在夜班期间控制人形机器人，确保它们正常工作……",
      "summary_original": "In Silicon Valley, a profession is taking shape that until recently would have seemed like science fiction: controlling humanoid robots during the night shift, ensuring they function correctly ...",
      "source": "Il Messaggero",
      "via": "Bing",
@@ -1790,35 +1797,6 @@
         "url": "https://www.ilmessaggero.it/en/overnight_human_supervisors_for_humanoid_robots-9881265.html",
         "published": "2026-11-10T13:05:00+08:00",
         "host": "ilmessaggero.it"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
-     "title": "通缉：一名愿意在墓地轮班照顾机器人的人",
-     "title_original": "Wanted: A human willing to babysit robots on the graveyard shift",
-     "summary": "机器人初创公司Figure AI正在招聘一名夜班协调员来监督人形机器人和人类操作员。",
-     "summary_original": "Robotics startup Figure AI is hiring a night-shift coordinator to oversee humanoid robots and human operators.",
-     "source": "YAHOO!",
-     "via": "Bing",
-     "url": "https://tech.yahoo.com/ai/articles/wanted-human-willing-babysit-robots-105201154.html",
-     "published": "2026-11-10T10:52:00+08:00",
-     "lang": "en",
-     "companies": [
-      "Figure"
-     ],
-     "is_placeholder": false,
-     "id": "1ff0dc0298c5",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "YAHOO!",
-        "url": "https://tech.yahoo.com/ai/articles/wanted-human-willing-babysit-robots-105201154.html",
-        "published": "2026-11-10T10:52:00+08:00",
-        "host": "tech.yahoo.com"
        }
       ]
      }
@@ -1875,33 +1853,6 @@
         "url": "https://blog.tmcnet.com/blog/rich-tehrani/robot/rainbow-dynamics-warehouse-robotics-speed-software.html",
         "published": "2026-11-10T00:00:00+08:00",
         "host": "blog.tmcnet.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
-     "title": "买回时间还是购买新的风险？家庭机器人的权衡",
-     "title_original": "Buying Back Time or Buying New Risk? The Home Robot Trade-Off",
-     "summary": "Gary Perkins，首席信息安全官，2026 年 11 月 10 日 “将大量信息委托给联网设备。”你愿意花多少钱来做家务...",
-     "summary_original": "Gary Perkins, Chief Information Security Officer November 10, 2026 “That’s an extraordinary amount of information to entrust to a connected device.” What would you pay to make your household chores ...",
-     "source": "Security Boulevard",
-     "via": "Bing",
-     "url": "https://securityboulevard.com/2026/11/buying-back-time-or-buying-new-risk-the-home-robot-trade-off/",
-     "published": "2026-11-10T00:00:00+08:00",
-     "lang": "en",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "cf8d8741e1f8",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Security Boulevard",
-        "url": "https://securityboulevard.com/2026/11/buying-back-time-or-buying-new-risk-the-home-robot-trade-off/",
-        "published": "2026-11-10T00:00:00+08:00",
-        "host": "securityboulevard.com"
        }
       ]
      }
@@ -1991,7 +1942,7 @@
     },
     {
      "board": "overseas",
-     "title": "认识一下 RobotX AI，这家尔湾初创公司将机器人集成到现实世界的工作中",
+     "title": "认识一下 RobotX AI，这是一家将机器人融入现实工作的尔湾初创公司",
      "title_original": "Meet RobotX AI, the Irvine Startup That Integrates Robots Into Real-World Jobs",
      "summary": "这家尔湾机器人初创公司结合了硬件、集成和物理人工智能开发，帮助企业和学校……",
      "summary_original": "This Irvine robotics startup combines hardware, integration, and physical AI development to help businesses and schools ...",
@@ -2347,6 +2298,33 @@
     },
     {
      "board": "overseas",
+     "title": "这家初创公司提供机器人工人，起价仅为每小时 14 美元。只有 1 个捕获点",
+     "title_original": "This startup offers robot workers beginning at only $14 an hour. There’s just 1 catch",
+     "summary": "Tutor Intelligence 宣布获得由 Andreessen Horowitz 领投的 7500 万美元 B 轮融资。这是他们的机器人可以做的事情。",
+     "summary_original": "Tutor Intelligence announced a $75 million Series B led by Andreessen Horowitz. Here’s what their bots can do.",
+     "source": "Inc.com on MSN",
+     "via": "Bing",
+     "url": "https://www.msn.com/en-us/money/general/this-startup-offers-robot-workers-beginning-at-only-14-an-hour-there-s-just-1-catch/ar-AA2gLlkT",
+     "published": "2026-11-03T13:00:00+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "2e43d8aac12c",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "Inc.com on MSN",
+        "url": "https://www.msn.com/en-us/money/general/this-startup-offers-robot-workers-beginning-at-only-14-an-hour-there-s-just-1-catch/ar-AA2gLlkT",
+        "published": "2026-11-03T13:00:00+08:00",
+        "host": "msn.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "overseas",
      "title": "机器人“大脑”之争：上半年中国人工智能投入激增五倍",
      "title_original": "Race for the robot ‘brain’: China’s embodied AI funding surges fivefold in H1",
      "summary": "中国企业正在加速人形机器人的商业部署，投入资源开发人工智能（AI），使机器人能够执行更广泛的工作。",
@@ -2368,33 +2346,6 @@
         "url": "https://www.zaobao.com.sg/en/news/china/race-robot-brain-chinas-embodied-ai-funding-surges-fivefold-h1",
         "published": "2026-11-03T12:31:00+08:00",
         "host": "zaobao.com.sg"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
-     "title": "机器人初创公司 Tutor Intelligence 获得 7500 万美元投资",
-     "title_original": "Robotics startup Tutor Intelligence nabs $75M investment",
-     "summary": "仓库自动化提供商 Tutor Intelligence Inc. 今天宣布已筹集 7500 万美元资金。 Andreessen Horowitz 领投了 A 轮投资。联合广场风险投资公司 (Union Square Ventures) 也加入了...",
-     "summary_original": "Warehouse automation provider Tutor Intelligence Inc. today announced that it has raised $75 million in funding. Andreessen Horowitz led the Series A investment. It was joined by Union Square Ventures ...",
-     "source": "SiliconANGLE",
-     "via": "Bing",
-     "url": "https://siliconangle.com/2026/11/02/robotics-startup-tutor-intelligence-nabs-75m-investment/",
-     "published": "2026-11-03T01:08:00+08:00",
-     "lang": "en",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "062aaba60ea3",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "SiliconANGLE",
-        "url": "https://siliconangle.com/2026/11/02/robotics-startup-tutor-intelligence-nabs-75m-investment/",
-        "published": "2026-11-03T01:08:00+08:00",
-        "host": "siliconangle.com"
        }
       ]
      }
@@ -2484,7 +2435,7 @@
      "board": "overseas",
      "title": "周五视频：现场播放展示其全身操纵",
      "title_original": "Video Friday: Spot Plays to Show Its Whole-Body Manipulation",
-     "summary": "Video Friday 是您每周精选的精彩机器人视频，由您在 IEEE Spectrum 机器人领域的朋友收集。我们还发布了未来几个月即将举行的机器人活动的每周日历。请将您的活动发送给我们以供收录。 CoRL 2026：2026 年 11 月 9-12 日，AUSTIN Humanoids 2026：2026 年 12 月 6-9 日，加利福尼亚州圣克拉拉 欣赏今天的视频！ RAI 提供了一些一流的全身操控，尽管很难判断是否……",
+     "summary": "Video Friday 是您每周精选的精彩机器人视频，由您在 IEEE Spectrum 机器人领域的朋友收集。我们还发布了未来几个月即将举行的机器人活动的每周日历。请将您的活动发送给我们以供收录。 CoRL 2026：2026 年 11 月 9-12 日，AUSTIN Humanoids 2026：2026 年 12 月 6-9 日，加利福尼亚州圣克拉拉 欣赏今天的视频！ RAI 提供了一些一流的全身操作，尽管很难判断是否……",
      "summary_original": "Video Friday is your weekly selection of awesome robotics videos, collected by your friends at IEEE Spectrum robotics. We also post a weekly calendar of upcoming robotics events for the next few months. Please send us your events for inclusion. CoRL 2026 : 9–12 November 2026, AUSTIN Humanoids 2026 : 6–9 December 2026, SANTA CLARA, CA Enjoy today’s videos! Some top-notch whole-body manipulation here from RAI, although it’s a little hard to tell whether ther…",
      "source": "IEEE Spectrum Robotics",
      "via": "",
@@ -2538,7 +2489,7 @@
      "board": "overseas",
      "title": "跳过闲聊：在 TechCrunch 创始人峰会上与 Braindate 建立改变游戏规则的联系",
      "title_original": "Skip the small talk: Make game-changing connections at TechCrunch Founder Summit with Braindate",
-     "summary": "在 11 月 4 日在波士顿 SoWa Power Station 举行的 TechCrunch 创始人峰会 2026 上，由 Braindate 提供支持的网络旨在让这些对话更容易找到，无论是在 1:1 还是小组现场会议中。在活动开始前注册，您的通行证可节省高达 100 美元，还可免费获得第二张通行证。",
+     "summary": "在 11 月 4 日在波士顿 SoWa Power Station 举行的 TechCrunch 创始人峰会 2026 上，由 Braindate 提供支持的网络旨在让这些对话更容易找到，无论是在 1:1 还是小组现场会议中。在活动开始前注册，您的通行证可节省高达 100 美元，并可免费获得第二张通行证。",
      "summary_original": "At TechCrunch Founder Summit 2026, happening November 4 at SoWa Power Station in Boston, networking powered by Braindate is designed to make those conversations easier to find, whether they are in 1:1 or small-group on-site meetings. Register before the event starts to save up to $100 on your pass, plus get a second for free.",
      "source": "TechCrunch Robotics",
      "via": "",
@@ -2671,6 +2622,39 @@
     },
     {
      "board": "overseas",
+     "title": "第三季度机器人初创企业融资飙升 185% 至 99 亿美元，中国和美国领先......",
+     "title_original": "Q3 robot startup funding surges 185% to $9.9 billion, with China and the US leading ...",
+     "summary": "ChainCatcher 报告显示，根据 Crunchbase 数据，2026 年第三季度全球对机器人初创公司的风险投资达到 99 亿美元，超过 2026 年第三季度。",
+     "summary_original": "ChainCatcher report, according to Crunchbase data, global venture investment in robotics startups reached $9.9 billion in the third quarter of 2026, more than d ...",
+     "source": "Bing News",
+     "via": "",
+     "url": "https://www.kucoin.com/news/flash/q3-robot-startup-funding-surges-185-to-9-9b-china-and-us-lead-physical-ai-growth",
+     "published": "2026-10-28T01:55:00+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "a21bd0db7549",
+     "verify": {
+      "level": "cross",
+      "count": 2,
+      "sources": [
+       {
+        "name": "kucoin.com",
+        "url": "https://www.kucoin.com/news/flash/q3-robot-startup-funding-surges-185-to-9-9b-china-and-us-lead-physical-ai-growth",
+        "published": "2026-10-28T01:55:00+08:00",
+        "host": "kucoin.com"
+       },
+       {
+        "name": "Crunchbase News",
+        "url": "https://news.crunchbase.com/venture/q3-2026-us-china-robotics-startup-funding-jumps-physical-ai-push/",
+        "published": "2026-10-27T12:00:00+08:00",
+        "host": "news.crunchbase.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "overseas",
      "title": "您的机器人的安全功能已经发挥作用。如果输入说谎怎么办？",
      "title_original": "Your Robot’s Safety Functions Already Work. What If the Input Lies?",
      "summary": "本文由 VicOne 为您带来。移动机器人在走廊里为某人减慢速度。当工人靠近时，协作手臂会放松动作。一个人形生物停下来让一个人通过。每个响应都取决于有关机器人或其周围环境的信息：距离读数、位置估计或停止信号。",
@@ -2701,7 +2685,7 @@
     },
     {
      "board": "overseas",
-     "title": "Crunchbase 数据显示，第三季度机器人初创企业融资猛增 185%，美国和中国引领物理...",
+     "title": "Crunchbase 数据显示，第三季度机器人初创公司融资猛增 185%，美国和中国引领物理...",
      "title_original": "Crunchbase Data Shows Q3 Robotics Startup Funding Jumps 185% As US And China Lead Physical ...",
      "summary": "Crunchbase 的数据显示，2026 年机器人初创公司的风险投资猛增，其中大部分投资流向中国和美国的公司。总而言之，全球对机器人技术的风险投资......",
      "summary_original": "Venture funding to robotics startups has soared in 2026, with the bulk of investment going to companies based in China and the U.S., Crunchbase data shows. All told, global venture funding to robotics ...",
@@ -2714,14 +2698,20 @@
      "is_placeholder": false,
      "id": "7dafcdd1dfff",
      "verify": {
-      "level": "single",
-      "count": 1,
+      "level": "cross",
+      "count": 2,
       "sources": [
        {
         "name": "Crunchbase News",
         "url": "https://news.crunchbase.com/venture/q3-2026-us-china-robotics-startup-funding-jumps-physical-ai-push/",
         "published": "2026-10-27T12:00:00+08:00",
         "host": "news.crunchbase.com"
+       },
+       {
+        "name": "kucoin.com",
+        "url": "https://www.kucoin.com/news/flash/q3-robot-startup-funding-surges-185-to-9-9b-china-and-us-lead-physical-ai-growth",
+        "published": "2026-10-28T01:55:00+08:00",
+        "host": "kucoin.com"
        }
       ]
      }
@@ -2755,7 +2745,7 @@
     },
     {
      "board": "overseas",
-     "title": "110个人形机器人在中国创造同步舞蹈吉尼斯世界纪录，虎视眈眈",
+     "title": "110个人形机器人在中国创造同步舞蹈吉尼斯世界纪录，虎视眈眈...",
      "title_original": "110 humanoid robots set Guinness world record for synchronized dancing in China, eyeing ...",
      "summary": "中国仿人机器人产业正从单机示范走向大规模部署，110台仿人机器人创下了最多仿人机器人的吉尼斯世界纪录称号……",
      "summary_original": "China's humanoid robot industry is moving from single-machine demonstration toward large-scale deployment, as 110 humanoid robots set a Guinness World Records title for the most humanoid robots ...",
@@ -2897,7 +2887,7 @@
      "board": "overseas",
      "title": "拉普拉斯情报公司在机器人和自动驾驶汽车进入现实世界之前对它们进行红队评估",
      "title_original": "Laplace Intelligence red-teams robots and self-driving cars before they hit the real world",
-     "summary": "密歇根大学的衍生公司 Laplace Intelligence 使用人工智能代理和交互式模拟在部署前对机器人和自动驾驶车辆进行压力测试。这家盈利的初创公司将于 10 月 13 日至 15 日在旧金山参加 TechCrunch Disrupt 的初创公司战场 (Startup Battlefield) 竞赛。",
+     "summary": "密歇根大学的衍生公司 Laplace Intelligence 使用人工智能代理和交互式模拟在部署前对机器人和自动驾驶车辆进行压力测试。这家盈利的初创公司将于 10 月 13 日至 15 日在旧金山参加 TechCrunch Disrupt 的“初创公司战场”。",
      "summary_original": "University of Michigan spinout Laplace Intelligence uses AI agents and interactive simulation to stress-test robots and self-driving vehicles before deployment. The profitable startup is competing in Startup Battlefield at TechCrunch Disrupt, October 13-15 in San Francisco.",
      "source": "TechCrunch Robotics",
      "via": "",
@@ -3129,50 +3119,9 @@
      "is_placeholder": false,
      "id": "89b70aae2d10",
      "verify": {
-      "level": "cross",
-      "count": 2,
+      "level": "single",
+      "count": 1,
       "sources": [
-       {
-        "name": "TechRepublic",
-        "url": "https://www.techrepublic.com/article/news-deepseek-winverse-robotics-ai-funding-china-apac/",
-        "published": "2026-10-13T15:22:00+08:00",
-        "host": "techrepublic.com"
-       },
-       {
-        "name": "Crypto Briefing",
-        "url": "https://cryptobriefing.com/deepseek-leads-robot-ai-startup-funding/",
-        "published": "2026-10-12T12:55:00+08:00",
-        "host": "cryptobriefing.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
-     "title": "DeepSeek 领投一轮融资，对一家中国机器人人工智能初创公司估值达 4 亿美元",
-     "title_original": "DeepSeek leads funding round valuing a Chinese robot AI startup at $400 million",
-     "summary": "DeepSeek 领投了一轮融资，对一家中国机器人人工智能初创公司的估值为 4 亿美元，在持有 Unitree 2.31% 的股份后，扩大了其机器人业务的发展。",
-     "summary_original": "DeepSeek led a round valuing a Chinese robot AI startup at $400 million, extending its robotics push after a 2.31% Unitree stake.",
-     "source": "Crypto Briefing",
-     "via": "Bing",
-     "url": "https://cryptobriefing.com/deepseek-leads-robot-ai-startup-funding/",
-     "published": "2026-10-12T12:55:00+08:00",
-     "lang": "en",
-     "companies": [
-      "宇树 Unitree"
-     ],
-     "is_placeholder": false,
-     "id": "275d6f4cf3ba",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "Crypto Briefing",
-        "url": "https://cryptobriefing.com/deepseek-leads-robot-ai-startup-funding/",
-        "published": "2026-10-12T12:55:00+08:00",
-        "host": "cryptobriefing.com"
-       },
        {
         "name": "TechRepublic",
         "url": "https://www.techrepublic.com/article/news-deepseek-winverse-robotics-ai-funding-china-apac/",
@@ -3184,7 +3133,7 @@
     },
     {
      "board": "overseas",
-     "title": "为什么公司正在建造人形机器人以及它对您的工作意味着什么",
+     "title": "为什么公司正在建造人形机器人以及这对您的工作意味着什么",
      "title_original": "Why Companies Are Building Humanoid Robots And What It Means For Your Job",
      "summary": "这种语音体验是由人工智能生成的。了解更多。这种语音体验是由人工智能生成的。了解更多。在人工技术进步的推动下，全球仿人机器人市场正在蓬勃发展……",
      "summary_original": "This voice experience is generated by AI. Learn more. This voice experience is generated by AI. Learn more. The global market for humanoid robots is surging, driven by advances in artificial ...",
@@ -3238,6 +3187,90 @@
        }
       ]
      }
+    },
+    {
+     "board": "overseas",
+     "title": "这只没有实体的手就是你所需要的机器人",
+     "title_original": "This Disembodied Hand Is All the Robot You Need",
+     "summary": "对于大多数人来说，手臂末端都有一只手，但如果机器人不必遵循与我们相同的规则呢？苏黎世联邦理工学院的研究人员将现成的机械手变成了一个完全独立的机器人，它可以用指尖行走，同时使用这些手指来操纵环境。",
+     "summary_original": "A hand attached to the end of an arm is a given for most humans, but what if robots didn’t have to play by the same rules as we do? Researchers from ETH Zurich have turned an off-the-shelf robotic hand into a completely self-contained robot that walks on its fingertips while using those same fingers to manipulate its environment.",
+     "source": "IEEE Spectrum Robotics",
+     "via": "",
+     "url": "https://spectrum.ieee.org/walking-robotic-hand",
+     "published": "2026-10-08T20:00:02+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "3204df7181a0",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "IEEE Spectrum Robotics",
+        "url": "https://spectrum.ieee.org/walking-robotic-hand",
+        "published": "2026-10-08T20:00:02+08:00",
+        "host": "spectrum.ieee.org"
+       }
+      ]
+     }
+    },
+    {
+     "board": "overseas",
+     "title": "HiPHI：高精度人体运动和物体交互的大规模基准",
+     "title_original": "HiPHI: A Large-Scale Benchmark for High-Precision Human Motion and Object Interaction",
+     "summary": "本白皮书为机器人研究人员和工程师提供了一个新的大规模动作捕捉数据集的概述，该数据集旨在缩小限制人形机器人学习的数据差距。它还展示了在数据集上训练的策略如何转移到真正的人形机器人。您将学到什么：为什么人形机器人学习是实体人工智能和物理人工智能的核心问题，需要互联网视频和现有动作捕捉数据集无法提供的数据。",
+     "summary_original": "This White Paper gives robotics researchers and engineers an overview of a new large-scale motion capture dataset built to close the data gap limiting humanoid robot learning. It also shows how policies trained on the dataset transfer to a real humanoid robot. What you will learn about: Why humanoid robot learning, a central problem in embodied AI and Physical AI, needs data that internet video and existing motion capture datasets cannot provide.",
+     "source": "IEEE Spectrum Robotics",
+     "via": "",
+     "url": "https://content.knowledgehub.wiley.com/hiphi-a-large-scale-benchmark-for-high-precision-human-motion-and-object-interaction/",
+     "published": "2026-10-07T21:49:48+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "a565969baf6d",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "IEEE Spectrum Robotics",
+        "url": "https://content.knowledgehub.wiley.com/hiphi-a-large-scale-benchmark-for-high-precision-human-motion-and-object-interaction/",
+        "published": "2026-10-07T21:49:48+08:00",
+        "host": "content.knowledgehub.wiley.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "overseas",
+     "title": "周五视频：信天翁坠落、旋转、自我维权和扬帆远航",
+     "title_original": "Video Friday: Albatross Falls, Spins, Self-Rights, and Sails Away",
+     "summary": "Video Friday 是您每周精选的精彩机器人视频，由您在 IEEE Spectrum 机器人领域的朋友收集。我们还发布了未来几个月即将举行的机器人活动的每周日历。请将您的活动发送给我们以供收录。 CoRL 2026：2026 年 11 月 9-12 日，AUSTIN Humanoids 2026：2026 年 12 月 6-9 日，加利福尼亚州圣克拉拉 欣赏今天的视频！我们开发了 ALBATROSS（带有浮力自动旋转航行传感器的机载着陆器），这是一种混合航空……",
+     "summary_original": "Video Friday is your weekly selection of awesome robotics videos, collected by your friends at IEEE Spectrum robotics. We also post a weekly calendar of upcoming robotics events for the next few months. Please send us your events for inclusion. CoRL 2026 : 9–12 November 2026, AUSTIN Humanoids 2026 : 6–9 December 2026, SANTA CLARA, CA Enjoy today’s videos! We’ve developed ALBATROSS (Airborne Lander with Buoyant AuToROtating Sailing Sensor), a hybrid aerial-…",
+     "source": "IEEE Spectrum Robotics",
+     "via": "",
+     "url": "https://spectrum.ieee.org/video-friday-bioinspired-robotics",
+     "published": "2026-10-03T00:30:02+08:00",
+     "lang": "en",
+     "companies": [
+      "宇树 Unitree",
+      "优必选 UBTECH"
+     ],
+     "is_placeholder": false,
+     "id": "b2a406e7c6ff",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "IEEE Spectrum Robotics",
+        "url": "https://spectrum.ieee.org/video-friday-bioinspired-robotics",
+        "published": "2026-10-03T00:30:02+08:00",
+        "host": "spectrum.ieee.org"
+       }
+      ]
+     }
     }
    ],
    "ok_sources": 10,
@@ -3248,6 +3281,35 @@
    "name": "大厂重点",
    "desc": "机器人大厂动态：OpenAI、特斯拉、英伟达、DeepMind、Meta，以及宇树、优必选、智元、Figure、Boston Dynamics 等",
    "items": [
+    {
+     "board": "bigtech",
+     "title": "Memories.ai 推出记忆上传，将第一人称视频转化为训练就绪数据......",
+     "title_original": "Memories.ai Launches Memories Upload, Turning First-Person Video Into Training-Ready Data ...",
+     "summary": "美国加利福尼亚州旧金山，2026 年 11 月 10 日 /EINPresswire.com/ — 今天，用于构建物理智能的机器人实验室的视频数据基础设施 Memories.ai 宣布 Memories ...",
+     "summary_original": "SAN FRANCISCO, CA, UNITED STATES, November 10, 2026 /EINPresswire.com/ — Today, Memories.ai, the video data infrastructure for the robotics labs building physical intelligence, announced Memories ...",
+     "source": "The Columbus Dispatch",
+     "via": "Bing",
+     "url": "https://www.dispatch.com/press-release/story/265668/memories-ai-launches-memories-upload-turning-first-person-video-into-training-ready-data-for-frontier-robotics-labs/",
+     "published": "2026-11-10T20:52:00+08:00",
+     "lang": "en",
+     "companies": [
+      "Physical Intelligence"
+     ],
+     "is_placeholder": false,
+     "id": "c639a5c41c0e",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "The Columbus Dispatch",
+        "url": "https://www.dispatch.com/press-release/story/265668/memories-ai-launches-memories-upload-turning-first-person-video-into-training-ready-data-for-frontier-robotics-labs/",
+        "published": "2026-11-10T20:52:00+08:00",
+        "host": "dispatch.com"
+       }
+      ]
+     }
+    },
     {
      "board": "bigtech",
      "title": "Figure AI 招聘夜班管理员照看人形机器人，时薪最高 45 美元",
@@ -3294,55 +3356,43 @@
      "is_placeholder": false,
      "id": "73d87016f564",
      "verify": {
-      "level": "cross",
-      "count": 2,
+      "level": "single",
+      "count": 1,
       "sources": [
        {
         "name": "腾讯网",
         "url": "https://news.qq.com/rain/a/20261110A0DU2000",
         "published": "2026-11-10T20:19:00+08:00",
         "host": "news.qq.com"
-       },
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1099760359_114760",
-        "published": "2026-11-10T19:24:00+08:00",
-        "host": "sohu.com"
        }
       ]
      }
     },
     {
      "board": "bigtech",
-     "title": "号称行业首个具身全模态端到端交互大模型，智元发布WITA-Omni",
+     "title": "英伟达发布DexUMI：国产触觉传感器助力机器人革命",
      "title_original": "",
-     "summary": "IT之家 11 月 10 日消息，“智元 AGIBOT”公众号今天（10 日）晚间发文宣布，智元正式发布 WITA-Omni（硅光动语全模态大模型）。 根据官方介绍，该模型也是行业首个具身全模态端到端交互大模型。WITA-Omni 基于机器人本体感知数据深度训练，除了音视频输入输出，还新增支持触觉、本体状态等输入，以及机器人动作、表情等输出，让机器人第一次拥有为物理世界而生的“交互大脑”。 基于流 ...",
+     "summary": "在机器人技术飞速发展的今天，英伟达于2025年11月9日在得克萨斯州奥斯汀举行的机器人学习会议CoRL2026上，推出了其最新的机器人基础模型GR00T2，并同时发布了开源计划，其中包括了一款革命性的可穿戴数据采集设备——DexUMI。该设备的设计方案及其核心组件都引发了广泛关注，尤其是其触觉传感器的国产化进程，标志着国内科技力量的崛起。 DexUMI的亮点之一在于其触觉传感器，分别位于设备的指尖 ...",
      "summary_original": "",
      "source": "Bing News",
      "via": "",
-     "url": "https://www.sohu.com/a/1099760359_114760",
-     "published": "2026-11-10T19:24:00+08:00",
+     "url": "https://www.sohu.com/a/1099768214_122004016",
+     "published": "2026-11-10T19:40:00+08:00",
      "lang": "zh",
      "companies": [
-      "智元 AgiBot"
+      "英伟达"
      ],
      "is_placeholder": false,
-     "id": "fb137179336f",
+     "id": "0ff4155e0c61",
      "verify": {
-      "level": "cross",
-      "count": 2,
+      "level": "single",
+      "count": 1,
       "sources": [
        {
         "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1099760359_114760",
-        "published": "2026-11-10T19:24:00+08:00",
+        "url": "https://www.sohu.com/a/1099768214_122004016",
+        "published": "2026-11-10T19:40:00+08:00",
         "host": "sohu.com"
-       },
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261110A0DU2000",
-        "published": "2026-11-10T20:19:00+08:00",
-        "host": "news.qq.com"
        }
       ]
      }
@@ -3517,6 +3567,35 @@
         "url": "https://news.qq.com/rain/a/20261110A09W4P00",
         "published": "2026-11-10T15:43:00+08:00",
         "host": "news.qq.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "独家：在机器人训练数据的竞赛中，前 Meta 研究人员的初创公司转向零工......",
+     "title_original": "Exclusive: In the race for robot training data, ex-Meta researchers’ startup turns to gig ...",
+     "summary": "该初创公司表示，其客户包括三个前沿人工智能实验室，因为机器人开发人员正在寻求更多人类从事体力工作的例子。",
+     "summary_original": "The startup says its customers include three frontier AI labs, as robotics developers seek more examples of humans doing physical work.",
+     "source": "Fortune on MSN",
+     "via": "Bing",
+     "url": "https://www.msn.com/en-us/technology/artificial-intelligence/exclusive-in-the-race-for-robot-training-data-ex-meta-researchers-startup-turns-to-gig-workers-with-cameras/ar-AA2h8wVE",
+     "published": "2026-11-10T13:00:00+08:00",
+     "lang": "en",
+     "companies": [
+      "Meta"
+     ],
+     "is_placeholder": false,
+     "id": "1e60d8127ca3",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "Fortune on MSN",
+        "url": "https://www.msn.com/en-us/technology/artificial-intelligence/exclusive-in-the-race-for-robot-training-data-ex-meta-researchers-startup-turns-to-gig-workers-with-cameras/ar-AA2h8wVE",
+        "published": "2026-11-10T13:00:00+08:00",
+        "host": "msn.com"
        }
       ]
      }
@@ -4711,35 +4790,6 @@
     },
     {
      "board": "bigtech",
-     "title": "国泰海通｜机械：Agility Robotics：“能干活的人形机器人”第一股",
-     "title_original": "国泰海通｜机械：Agility Robotics：“能干活的人形机器人”第一股",
-     "summary": "本文转载自微信公众号：国泰君安证券研究报告导读：Agility Robotics于2026年11月5日登陆纳斯达克，合并后融资约4.65亿美元。本次上市明确了人形机器人产业提速的全球趋势，国内核心产业链有望受益。投资建议：Agility Robotics上市明确了人形机器人产业提速是全球化的产业趋势，Agility Robotics的商业模式亦是 ...",
-     "summary_original": "本文转载自微信公众号：国泰君安证券研究报告导读：Agility Robotics于2026年11月5日登陆纳斯达克，合并后融资约4.65亿美元。本次上市明确了人形机器人产业提速的全球趋势，国内核心产业链有望受益。投资建议：Agility Robotics上市明确了人形机器人产业提速是全球化的产业趋势，Agility Robotics的商业模式亦是 ...",
-     "source": "腾讯网",
-     "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261108A0C98V00",
-     "published": "2026-11-08T21:59:00+08:00",
-     "lang": "en",
-     "companies": [
-      "Agility"
-     ],
-     "is_placeholder": false,
-     "id": "bacc5f88bfc6",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261108A0C98V00",
-        "published": "2026-11-08T21:59:00+08:00",
-        "host": "news.qq.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
      "title": "英伟达等重新设计VLA推理！机器人动作提速3.4倍",
      "title_original": "",
      "summary": "本文第一作者为纽约大学计算机科学博士生 Jack Lu，研究工作完成于他在英伟达实习期间。本文由英伟达资深研究科学家、Alpamayo 研究技术负责人 Yan Wang，以及英伟达自动驾驶研究负责人、斯坦福大学副教授 Marco Pavone 共同指导。",
@@ -4800,7 +4850,7 @@
      "board": "bigtech",
      "title": "Nvidia 的吉姆·范 (Jim Fan) 表示 GR00T 主题预告片展示了正常速度下的真正自主机器人",
      "title_original": "Nvidia’s Jim Fan says GR00T keynote teaser shows real autonomous robots at normal speed",
-     "summary": "Nvidia 的 Jim Fan 确认他的 CoRL 2026 主题演讲预告片展示了真实的 GR00T 项目人形硬件以正常速度自主运行。",
+     "summary": "Nvidia 的 Jim Fan 确认他的 CoRL 2026 主题演讲预告片展示了真正的 Project GR00T 人形硬件以正常速度自主运行。",
      "summary_original": "Nvidia's Jim Fan confirms his CoRL 2026 keynote teaser shows real Project GR00T humanoid hardware running autonomously at normal speed.",
      "source": "Crypto Briefing",
      "via": "Bing",
@@ -4857,28 +4907,28 @@
     {
      "board": "bigtech",
      "title": "【国际动态】美国人形机器人第一股诞生！Agility Robotics正式登陆 ...",
-     "title_original": "",
-     "summary": "这家以Digit机器人闻名的企业，成功从创业公司迈入公开资本市场。富士康、英伟达、亚马逊和软银等产业与投资机构均与其存在投资或战略合作关系。 Agility Robotics此次通过与特殊目的收购公司Churchill Capital Corp XI完成业务合并，正式进入公开资本市场。",
-     "summary_original": "",
-     "source": "新浪财经",
-     "via": "Bing",
-     "url": "https://finance.sina.com.cn/wm/2026-11-07/doc-inixwhsk8413462.shtml",
-     "published": "2026-11-07T08:00:00+08:00",
-     "lang": "zh",
+     "title_original": "【国际动态】美国人形机器人第一股诞生！Agility Robotics正式登陆 ...",
+     "summary": "人形机器人行业迎来一个重要里程碑。 2026年11月5日，美国人形机器人企业Agility Robotics正式登陆纳斯达克，股票代码为 AGLT，认股权证代码为 AGLTW。 Agility由此成为美国首家拥有实际商业部署经验、以人形机器人为核心业务的上市公司。 这家以Digit机器人闻名的企业，成功从创业公司迈入公开资本市场。富士康、英伟达、亚马逊和软银等产业与投资机构均与其存在投资或战略合作 ...",
+     "summary_original": "人形机器人行业迎来一个重要里程碑。 2026年11月5日，美国人形机器人企业Agility Robotics正式登陆纳斯达克，股票代码为 AGLT，认股权证代码为 AGLTW。 Agility由此成为美国首家拥有实际商业部署经验、以人形机器人为核心业务的上市公司。 这家以Digit机器人闻名的企业，成功从创业公司迈入公开资本市场。富士康、英伟达、亚马逊和软银等产业与投资机构均与其存在投资或战略合作 ...",
+     "source": "Bing News",
+     "via": "",
+     "url": "https://www.sohu.com/a/1098321005_122014422",
+     "published": "2026-11-07T08:11:00+08:00",
+     "lang": "en",
      "companies": [
       "Agility"
      ],
      "is_placeholder": false,
-     "id": "f32303c7ec66",
+     "id": "00caa069e1db",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/wm/2026-11-07/doc-inixwhsk8413462.shtml",
-        "published": "2026-11-07T08:00:00+08:00",
-        "host": "finance.sina.com.cn"
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1098321005_122014422",
+        "published": "2026-11-07T08:11:00+08:00",
+        "host": "sohu.com"
        }
       ]
      }
@@ -4943,6 +4993,35 @@
     },
     {
      "board": "bigtech",
+     "title": "“美国版宇树”上市！手握20亿订单，硬扛美股暴跌",
+     "title_original": "“美国版宇树”上市！手握20亿订单，硬扛美股暴跌",
+     "summary": "继中国的宇树科技，美国也迎来了自己的“人形机器人第一股”。 当地时间11月5日，Agility Robotics正式登陆纳斯达克，成为美国首家上市的纯人形机器人公司。 上市首日，在纳斯达克指数大跌5.52%的背景下，Agility股价最终收涨2.22%，表现出一定韧性。 不过，资本市场给出的估值并不算高。Agility上市估值约25亿美元(约合人民币167亿元)，远低于部分尚未上市的人形机器人竞争 ...",
+     "summary_original": "继中国的宇树科技，美国也迎来了自己的“人形机器人第一股”。 当地时间11月5日，Agility Robotics正式登陆纳斯达克，成为美国首家上市的纯人形机器人公司。 上市首日，在纳斯达克指数大跌5.52%的背景下，Agility股价最终收涨2.22%，表现出一定韧性。 不过，资本市场给出的估值并不算高。Agility上市估值约25亿美元(约合人民币167亿元)，远低于部分尚未上市的人形机器人竞争 ...",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261106A0B6QK00",
+     "published": "2026-11-06T17:13:00+08:00",
+     "lang": "en",
+     "companies": [
+      "宇树 Unitree"
+     ],
+     "is_placeholder": false,
+     "id": "88be4db4cca5",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261106A0B6QK00",
+        "published": "2026-11-06T17:13:00+08:00",
+        "host": "news.qq.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
      "title": "宇树科技首只消费级收藏机器狗亮相第九届进博会！UNI-DOGGIE引爆赛博 ...",
      "title_original": "",
      "summary": "2026年11月5日，上海国家会展中心灯火如昼——第九届中国国际进口博览会（进博会）正式拉开帷幕。而就在万众瞩目的科技展区C位，一只通体泛着哑光金属蓝、瞳孔会随情绪变色、尾巴能360°螺旋摇摆的机器狗，正稳稳蹲坐、突然抬爪比心，引得围观人群爆发出阵阵惊呼：‘这哪是机器狗？这是赛博汪星人出道现场啊！’ 没错，它就是宇树科技（Unitree Robotics）联合巨星传奇共同打造的首款消费级收藏机器狗 ...",
@@ -4972,117 +5051,59 @@
     },
     {
      "board": "bigtech",
-     "title": "Agility Robotics美股上市，人形机器人距规模交付还有多远？",
-     "title_original": "Agility Robotics美股上市，人形机器人距规模交付还有多远？",
-     "summary": "11月5日，Agility Robotics在纳斯达克开始交易，股票代码为AGLT。 这家人形机器人公司前一天完成了与特殊目的收购公司（SPAC）Churchill Capital Corp XI的合并，连同相关融资共筹得约4.65亿美元。 据Agility Robotics官方公布信息显示，上市之前，在美国佐治亚州，Agility的双足机器人Digit已经在物流商GXO的仓库里搬了超过10万个周 ...",
-     "summary_original": "11月5日，Agility Robotics在纳斯达克开始交易，股票代码为AGLT。 这家人形机器人公司前一天完成了与特殊目的收购公司（SPAC）Churchill Capital Corp XI的合并，连同相关融资共筹得约4.65亿美元。 据Agility Robotics官方公布信息显示，上市之前，在美国佐治亚州，Agility的双足机器人Digit已经在物流商GXO的仓库里搬了超过10万个周 ...",
-     "source": "Bing News",
-     "via": "",
-     "url": "https://www.sohu.com/a/1097876486_120549004",
-     "published": "2026-11-06T09:36:00+08:00",
-     "lang": "en",
-     "companies": [
-      "Agility"
-     ],
-     "is_placeholder": false,
-     "id": "afa48d2f1fd4",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1097876486_120549004",
-        "published": "2026-11-06T09:36:00+08:00",
-        "host": "sohu.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "Agility Robotics纳斯达克上市 人形机器人商业化模式曝光",
-     "title_original": "Agility Robotics纳斯达克上市 人形机器人商业化模式曝光",
-     "summary": "Agility Robotics成为美国首家上市的人形机器人专业开发商，已于11月5日在纳斯达克挂牌。公司披露订阅模式下每台机器人部署费约2.5万美元、月费8500美元；购买模式则为一次性20万美元加年费3.6万美元，新一代Digit 5将于2027年起交付客户。",
-     "summary_original": "Agility Robotics成为美国首家上市的人形机器人专业开发商，已于11月5日在纳斯达克挂牌。公司披露订阅模式下每台机器人部署费约2.5万美元、月费8500美元；购买模式则为一次性20万美元加年费3.6万美元，新一代Digit 5将于2027年起交付客户。",
-     "source": "至顶网 on MSN",
+     "title": "Meta & Fourier 能否使用 NVIDIA 处理器打造实体 AI？",
+     "title_original": "Can Meta & Fourier Make Embodied AI with NVIDIA Processors?",
+     "summary": "Meta 利用傅里叶和 NVIDIA 技术打造人形机器人 Max，Alex Gu 表示机器人必须进入人们的生活、照顾他们并理解互动……",
+     "summary_original": "Meta builds humanoid robot Max with Fourier and NVIDIA tech as Alex Gu says robots must enter people’s lives, care for them and understand interaction ...",
+     "source": "Technology Magazine",
      "via": "Bing",
-     "url": "https://www.msn.com/zh-cn/news/other/agility-robotics%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E4%B8%8A%E5%B8%82-%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%95%86%E4%B8%9A%E5%8C%96%E6%A8%A1%E5%BC%8F%E6%9B%9D%E5%85%89/ar-AA2gSzUj",
-     "published": "2026-11-06T08:28:46+08:00",
-     "lang": "en",
-     "companies": [
-      "Agility"
-     ],
-     "is_placeholder": false,
-     "id": "2be3492632f3",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "至顶网 on MSN",
-        "url": "https://www.msn.com/zh-cn/news/other/agility-robotics%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E4%B8%8A%E5%B8%82-%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%95%86%E4%B8%9A%E5%8C%96%E6%A8%A1%E5%BC%8F%E6%9B%9D%E5%85%89/ar-AA2gSzUj",
-        "published": "2026-11-06T08:28:46+08:00",
-        "host": "msn.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "Agility Robotics与Churchill SPAC合并后开始在纳斯达克交易",
-     "title_original": "Agility Robotics与Churchill SPAC合并后开始在纳斯达克交易",
-     "summary": "Agility Robotics于2026年11月5日宣布，在与Churchill Capital Corp XI完成业务合并后，其普通股和认股权证已开始在纳斯达克交易。此次交易及相关融资在扣除交易费用前提供了约4.65亿美元的总资本。 公司称，此次上市使其成为美国首家拥有成熟且正在进行的商业部署的纯人形机器人上市公司，并指出其拥有近三年的真实场景部署经验，机器人运行时间超过65,000小时。Di ...",
-     "summary_original": "Agility Robotics于2026年11月5日宣布，在与Churchill Capital Corp XI完成业务合并后，其普通股和认股权证已开始在纳斯达克交易。此次交易及相关融资在扣除交易费用前提供了约4.65亿美元的总资本。 公司称，此次上市使其成为美国首家拥有成熟且正在进行的商业部署的纯人形机器人上市公司，并指出其拥有近三年的真实场景部署经验，机器人运行时间超过65,000小时。Di ...",
-     "source": "Unite.AI",
-     "via": "Bing",
-     "url": "https://www.unite.ai/zh-cn/agility-robotics-starts-nasdaq-trading-after-churchill-spac-merger/",
-     "published": "2026-11-05T21:52:00+08:00",
-     "lang": "en",
-     "companies": [
-      "Agility"
-     ],
-     "is_placeholder": false,
-     "id": "1880f6ff8f0d",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Unite.AI",
-        "url": "https://www.unite.ai/zh-cn/agility-robotics-starts-nasdaq-trading-after-churchill-spac-merger/",
-        "published": "2026-11-05T21:52:00+08:00",
-        "host": "unite.ai"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "Nvidia 支持的 Agility Robotics 以 2.5B 美元上市，实现人形机器人里程碑",
-     "title_original": "Nvidia-Backed Agility Robotics Goes Public at $2.5B in Humanoid Robot Milestone",
-     "summary": "Nvidia 支持的 Agility Robotics 以 25 亿美元的估值上市，筹集了 4.65 亿美元的总资本，以扩大其数字人形机器人业务。",
-     "summary_original": "Nvidia-backed Agility Robotics goes public at a $2.5 billion valuation, raising $465 million in gross capital to expand its Digit humanoid robot business.",
-     "source": "TechRepublic",
-     "via": "Bing",
-     "url": "https://www.techrepublic.com/article/news-agility-robotics-nasdaq-debut-2-5-billion-valuation/",
-     "published": "2026-11-05T21:11:00+08:00",
+     "url": "https://technologymagazine.com/news/can-meta-fourier-make-embodied-ai-with-nvidia-processors",
+     "published": "2026-11-06T14:06:00+08:00",
      "lang": "en",
      "companies": [
       "英伟达",
-      "Agility"
+      "Meta"
      ],
      "is_placeholder": false,
-     "id": "8498955b906a",
+     "id": "df1b0392c682",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "TechRepublic",
-        "url": "https://www.techrepublic.com/article/news-agility-robotics-nasdaq-debut-2-5-billion-valuation/",
-        "published": "2026-11-05T21:11:00+08:00",
-        "host": "techrepublic.com"
+        "name": "Technology Magazine",
+        "url": "https://technologymagazine.com/news/can-meta-fourier-make-embodied-ai-with-nvidia-processors",
+        "published": "2026-11-06T14:06:00+08:00",
+        "host": "technologymagazine.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "Unitree 人形机器人零训练就能画画、下棋，首席执行官称",
+     "title_original": "Unitree humanoid robots paint and play chess with zero training, claims CEO",
+     "summary": "Unitree Robotics 表示，其人形机器人现在可以画画和下棋，而无需......",
+     "summary_original": "Unitree Robotics says its humanoid robots can now paint pictures and play chess without ...",
+     "source": "Interesting Engineering on MSN",
+     "via": "Bing",
+     "url": "https://www.msn.com/en-us/news/other/unitree-humanoid-robots-paint-and-play-chess-with-zero-training-claims-ceo/ar-AA2gTNfR",
+     "published": "2026-11-06T13:31:23+08:00",
+     "lang": "en",
+     "companies": [
+      "宇树 Unitree"
+     ],
+     "is_placeholder": false,
+     "id": "d2a06c4da434",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "Interesting Engineering on MSN",
+        "url": "https://www.msn.com/en-us/news/other/unitree-humanoid-robots-paint-and-play-chess-with-zero-training-claims-ceo/ar-AA2gTNfR",
+        "published": "2026-11-06T13:31:23+08:00",
+        "host": "msn.com"
        }
       ]
      }
@@ -5184,8 +5205,8 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 12,
-   "raw": 12,
+   "count": 11,
+   "raw": 11,
    "error": ""
   },
   {
@@ -5194,7 +5215,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BA%A7%E4%B8%9A%E9%93%BE&format=rss",
    "status": "ok",
-   "count": 9,
+   "count": 10,
    "raw": 12,
    "error": ""
   },
@@ -5204,7 +5225,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD&format=rss",
    "status": "ok",
-   "count": 10,
+   "count": 11,
    "raw": 12,
    "error": ""
   },
@@ -5224,8 +5245,8 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E8%9E%8D%E8%B5%84&format=rss",
    "status": "ok",
-   "count": 9,
-   "raw": 11,
+   "count": 10,
+   "raw": 12,
    "error": ""
   },
   {
@@ -5234,7 +5255,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E9%87%8F%E4%BA%A7&format=rss",
    "status": "ok",
-   "count": 8,
+   "count": 7,
    "raw": 11,
    "error": ""
   },
@@ -5285,7 +5306,7 @@
    "url": "https://www.bing.com/news/search?q=humanoid%20robot&format=rss",
    "status": "ok",
    "count": 4,
-   "raw": 10,
+   "raw": 11,
    "error": ""
   },
   {
@@ -5294,8 +5315,8 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=Figure%20AI%20humanoid%20robot&format=rss",
    "status": "ok",
-   "count": 9,
-   "raw": 11,
+   "count": 6,
+   "raw": 8,
    "error": ""
   },
   {
@@ -5315,7 +5336,7 @@
    "url": "https://www.bing.com/news/search?q=robotics%20startup%20funding&format=rss",
    "status": "ok",
    "count": 10,
-   "raw": 10,
+   "raw": 11,
    "error": ""
   },
   {
@@ -5334,8 +5355,8 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=Atlas%20robot%20Boston%20Dynamics&format=rss",
    "status": "ok",
-   "count": 3,
-   "raw": 11,
+   "count": 4,
+   "raw": 12,
    "error": ""
   },
   {
@@ -5384,8 +5405,8 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=OpenAI%20%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 6,
-   "raw": 12,
+   "count": 5,
+   "raw": 11,
    "error": ""
   },
   {
@@ -5394,7 +5415,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=OpenAI%20%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD&format=rss",
    "status": "ok",
-   "count": 4,
+   "count": 6,
    "raw": 9,
    "error": ""
   },
@@ -5415,7 +5436,7 @@
    "url": "https://www.bing.com/news/search?q=%E8%8B%B1%E4%BC%9F%E8%BE%BE%20%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
    "count": 9,
-   "raw": 11,
+   "raw": 12,
    "error": ""
   },
   {
@@ -5435,7 +5456,7 @@
    "url": "https://www.bing.com/news/search?q=Google%20DeepMind%20robotics&format=rss",
    "status": "ok",
    "count": 2,
-   "raw": 11,
+   "raw": 9,
    "error": ""
   },
   {
@@ -5444,8 +5465,8 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=Meta%20robotics%20embodied%20AI&format=rss",
    "status": "ok",
-   "count": 3,
-   "raw": 4,
+   "count": 6,
+   "raw": 7,
    "error": ""
   },
   {
@@ -5494,7 +5515,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=%E6%99%BA%E5%85%83%E6%9C%BA%E5%99%A8%E4%BA%BA%20AgiBot&format=rss",
    "status": "ok",
-   "count": 10,
+   "count": 11,
    "raw": 12,
    "error": ""
   },
@@ -5505,7 +5526,7 @@
    "url": "https://www.bing.com/news/search?q=Figure%20AI%20humanoid&format=rss",
    "status": "ok",
    "count": 3,
-   "raw": 8,
+   "raw": 9,
    "error": ""
   },
   {
@@ -5534,8 +5555,8 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=1X%20Technologies%20humanoid%20NEO&format=rss",
    "status": "ok",
-   "count": 3,
-   "raw": 6,
+   "count": 2,
+   "raw": 5,
    "error": ""
   },
   {
@@ -5544,46 +5565,18 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=Physical%20Intelligence%20robot&format=rss",
    "status": "ok",
-   "count": 2,
-   "raw": 6,
+   "count": 4,
+   "raw": 8,
    "error": ""
   }
  ],
  "summary": {
   "mode": "rule",
-  "generated_at": "2026-11-11T04:44:55.270725+08:00",
-  "generated_label": "2026-11-11 04:44",
-  "headline": "本轮收录 174 条（国内 54 / 海外 60 / 大厂 60），19 条获多家独立站点交叉印证。",
+  "generated_at": "2026-11-11T05:40:23.740124+08:00",
+  "generated_label": "2026-11-11 05:40",
+  "headline": "本轮收录 175 条（国内 55 / 海外 60 / 大厂 60），19 条获多家独立站点交叉印证。",
   "analysis": "",
   "points": [
-   {
-    "text": "智元发布WITA-Omni具身全模态大模型",
-    "detail": "IT时代网11月10日消息，智元通过「智元 AGIBOT」公众号发文，正式发布 WITA-Omni（硅光动语全模态大模型）。根据官方介绍，这是行业首个具身全模态端到端交互大模型。",
-    "level": "cross",
-    "count": 2,
-    "board": "bigtech",
-    "source": "腾讯网",
-    "published": "2026-11-10T20:19:00+08:00",
-    "companies": [
-     "智元 AgiBot"
-    ],
-    "links": [
-     {
-      "title": "智元发布WITA-Omni具身全模态大模型",
-      "url": "https://news.qq.com/rain/a/20261110A0DU2000",
-      "source": "腾讯网",
-      "published": "2026-11-10T20:19:00+08:00",
-      "host": "news.qq.com"
-     },
-     {
-      "title": "号称行业首个具身全模态端到端交互大模型，智元发布WITA-Omni",
-      "url": "https://www.sohu.com/a/1099760359_114760",
-      "source": "sohu.com",
-      "published": "2026-11-10T19:24:00+08:00",
-      "host": "sohu.com"
-     }
-    ]
-   },
    {
     "text": "天翼电信终端与优必选合作，未来三年推10万台仿生人形机器人规模 ...",
     "detail": "贝壳财经记者了解到，按照规划，未来三年，双方将共同推动家庭陪伴机器人终端行业规模突破百万台，推动超仿生人形机器人、轮式人形机器人等终端行业规模突破十万台。 郑重声明：1.根据《证券法》规定，禁止编造、传播虚假信息或者误导性信息，扰乱证券市场；",
@@ -5742,13 +5735,39 @@
       "host": "unite.ai"
      }
     ]
+   },
+   {
+    "text": "独家｜优理奇机器人UniX AI完成5亿元Pre-A轮融资，产业资本协同推动具 ...",
+    "detail": "近日，通用具身智能 机器人 企业优理奇机器人（ UniX AI ）宣布完成5亿元 Pre-A 轮融资。老股东谢诺投资、涌铧投资连续多轮超额追加投资，新进机构包括绿地集团、 柯力传感 、华工创投、 新景富盈 、红鸟启航基金、玉林产投等产业及财务投资人。",
+    "level": "cross",
+    "count": 2,
+    "board": "domestic",
+    "source": "新浪财经",
+    "published": "2026-11-09T13:00:00+08:00",
+    "companies": [],
+    "links": [
+     {
+      "title": "独家｜优理奇机器人UniX AI完成5亿元Pre-A轮融资，产业资本协同推动具 ...",
+      "url": "https://finance.sina.com.cn/cj/2026-11-09/doc-iniycfmy3009826.shtml",
+      "source": "新浪财经",
+      "published": "2026-11-09T13:00:00+08:00",
+      "host": "finance.sina.com.cn"
+     },
+     {
+      "title": "优理奇机器人（UniX AI）完成5亿元Pre-A轮融资，推动具身智能规模化落地",
+      "url": "https://www.msn.cn/zh-cn/news/other/%E4%BC%98%E7%90%86%E5%A5%87%E6%9C%BA%E5%99%A8%E4%BA%BA-unix-ai-%E5%AE%8C%E6%88%905%E4%BA%BF%E5%85%83pre-a%E8%BD%AE%E8%9E%8D%E8%B5%84-%E6%8E%A8%E5%8A%A8%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%A7%84%E6%A8%A1%E5%8C%96%E8%90%BD%E5%9C%B0/ar-AA2h33Ar",
+      "source": "投资界 on MSN",
+      "published": "2026-11-09T06:47:00+08:00",
+      "host": "msn.cn"
+     }
+    ]
    }
   ],
   "stats": {
-   "items": 174,
+   "items": 175,
    "cross": 19,
-   "single": 155,
-   "clusters": 159
+   "single": 156,
+   "clusters": 161
   },
   "llm": {
    "enabled": false,
@@ -5759,16 +5778,16 @@
   }
  },
  "meta": {
-  "total_items": 174,
-  "translated": 93,
+  "total_items": 175,
+  "translated": 94,
   "bigtech_filter": {
-   "bt_raw": 294,
+   "bt_raw": 297,
    "bt_dropped": 187,
-   "bt_demoted": 10
+   "bt_demoted": 9
   },
   "verify": {
    "cross": 19,
-   "single": 155
+   "single": 156
   },
   "note": "数据来自公开 RSS 与新闻检索；每条含来源与原文链接。抓取失败的源见 source_report。"
  }
