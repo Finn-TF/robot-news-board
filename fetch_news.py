@@ -1585,7 +1585,7 @@ def run_round(args, cfg, daily=False):
         prev = load_today_report(today)
         if prev and prev.get("mode") == "deepseek":
             daily_report = prev
-            print("      日报：沿用今日 9:00 的 DeepSeek 版（常规轮次只更新列表）")
+            print("      日报：沿用今日已生成的 DeepSeek 版（常规轮次只更新列表）")
     mode_txt = "DeepSeek 生成" if daily_report["mode"] == "deepseek" else "规则式（常规轮次或无 key 降级）"
     print(f"      日报：第 {issue_no} 期，重点 {len(daily_report['top_news'])} 条、"
           f"信号 {len(daily_report['signals'])} 条（{mode_txt}）")
