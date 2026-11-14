@@ -26,6 +26,8 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html data.json data.js _site/
+          # 往期日报归档（若存在）
+          if [ -d archive ]; then cp -r archive _site/; fi
           ls -lh _site
 
       - uses: actions/upload-pages-artifact@v3

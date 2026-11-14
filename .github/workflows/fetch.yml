@@ -1,9 +1,9 @@
 name: 定时抓取并发布
 
-# 每小时在云端跑一次抓取（cron 用 UTC，第 5 分钟 = 北京时间每小时 05 分）
+# 每 30 分钟抓取一次（cron 用 UTC；*/30 对每个整点和半点都触发）
 on:
   schedule:
-    - cron: "5 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,21 +26,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 执行抓取并写入 data.json / data.js
-        env:
-          # 可选：未配置该 Secret 时脚本自动使用规则式速览，不影响页面
-          ROBOT_LLM_API_KEY: ${{ secrets.ROBOT_LLM_API_KEY }}
+      - name: 执行抓取并写入日报 / 归档
+        # 常规轮次不调用大模型：脚本内部强制关闭 llm，只更新列表与规则式日报
         run: python fetch_news.py --max 60 --per-source 16
 
       - name: 提交数据变更
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.json data.js
+          git add data.json data.js archive
           if git diff --cached --quiet; then
             echo "数据无变化，跳过提交"
           else
-            git commit -m "chore: 自动更新资讯数据（$(date -u +'%Y-%m-%d %H:%M') UTC）"
+            git commit -m "chore: 自动更新机器人日报（$(date -u +'%Y-%m-%d %H:%M') UTC）"
             git push
           fi
 
@@ -60,6 +58,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html data.json data.js _site/
+          if [ -d archive ]; then cp -r archive _site/; fi
 
       - uses: actions/upload-pages-artifact@v3
         with:

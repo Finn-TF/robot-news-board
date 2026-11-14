@@ -1,0 +1,71 @@
+name: 每日 9 点生成日报
+
+# 北京时间每天 09:00 = UTC 01:00（GitHub cron 只认 UTC）
+# 这里只负责“正式日报”：拉取最新候选池 → DeepSeek 排序/撰写 → 归档当日一期 → 发布
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 生成当日日报（DeepSeek，失败自动降级规则式）
+        env:
+          # 在仓库 Settings → Secrets and variables → Actions 配置；
+          # 未配置时脚本自动使用规则式日报并照常归档，不会让当天没有日报。
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: python fetch_news.py --daily --max 60 --per-source 16
+
+      - name: 提交日报与归档
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json data.js archive
+          if git diff --cached --quiet; then
+            echo "日报无变化，跳过提交"
+          else
+            git commit -m "chore: 机器人产业日报（$(date -u +'%Y-%m-%d') UTC）"
+            git push
+          fi
+
+  deploy:
+    needs: daily
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: 准备静态站点文件
+        run: |
+          mkdir -p _site
+          cp index.html data.json data.js _site/
+          if [ -d archive ]; then cp -r archive _site/; fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

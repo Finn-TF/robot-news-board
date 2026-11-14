@@ -1,246 +1,174 @@
-# 机器人行业资讯看板
+# 机器人产业日报 · 国联民生研究所汽车组
 
-一个纯静态的机器人资讯看板：国内新闻 / 海外新闻 / 大厂重点 / 近期段子 四个板块，按发布时间倒序，支持关键词搜索与时间、公司筛选。
+面向客户的机器人产业日报产品（静态页面）：首屏是当日成品日报（报头 / 今日主线 / 重点新闻 TOP 3–5 / 值得跟踪的信号），下方保留国内新闻、海外新闻、机器人大厂、近期段子四个分类详表，支持搜索、时间与公司筛选、多方来源核对。
 
-## 快速开始
+- 线上地址：<https://finn-tf.github.io/robot-news-board/>（仓库 <https://github.com/Finn-TF/robot-news-board>）
+- 技术栈：纯静态 HTML + Python 标准库脚本，无需构建、无外部依赖。
 
-**直接双击 `index.html`** 即可在浏览器打开（页面会自动读取同目录的 `data.js` 内嵌数据）。
+## 日报是怎么生成的
 
-也可以用本地服务打开（能读到最新的 `data.json`）：
+每次抓取都会做同一套规则筛选，作为「候选池」：
+
+1. **事件聚类**：用标题指纹（中文 2 字窗口 + 英文词，Jaccard ≥ 0.30）把同一事件的多家报道聚成一组；
+2. **打分**：多家独立站点交叉印证 > 标题含量产/交付/订单/融资/上市/政策/财报等硬信息 > 发布时间最新 > 机器人本体与核心零部件词 > 头部机器人公司；
+3. **去重**：同一标题反复出现、或同一家公司同一类事件（如「上市」）只保留一条；
+4. **固定口径**：候选池最多 16 条，日报的重点新闻、跟踪信号**只能**从候选池里产生，候选池以外的内容不进入日报。
+
+在此基础上：
+
+- **规则模式（默认，无需 key）**：按打分排序取 3–5 条重点新闻；「影响判断」按事件类型套用固定口径（量产/融资/上市/政策/新品/组织调整），识别不了时明确写「暂无明确信号」；跟踪信号从量产、融资、上市、政策、财报、新品类条目中提取。
+- **DeepSeek 模式（配置 key 后启用）**：把候选池按编号交给模型，使用固定提示词与固定 JSON 结构输出「今日主线 + 重点新闻（事件 + 影响判断）+ 跟踪信号」；脚本对输出做严格校验（编号必须来自候选池、不得重复、长度合规），不合格的条目直接丢弃，有效重点新闻不足 3 条则整体降级为规则模式。**链接一律取真实条目，不使用模型给出的链接。**
+- 模型只能看到脚本给的候选条目，提示词明确禁止引入候选之外的公司、数字、订单、金额与来源，禁止目标价与投资评级。
+
+日报写入 `data.json` 的 `report` 字段，页面直接渲染。
+
+## 时间安排
+
+| 任务 | 频率 | 北京时间 | GitHub cron（UTC） | 是否会调用 DeepSeek |
+| --- | --- | --- | --- | --- |
+| 新闻抓取（`fetch.yml`） | 每 30 分钟 | 每小时 00 / 30 分 | `*/30 * * * *` | 否，只更新列表与规则式日报 |
+| 正式日报（`daily.yml`） | 每天一次 | 09:00 | `0 1 * * *` | 是（有 key 时），失败自动降级 |
+
+- GitHub Actions 的 cron **只认 UTC**；北京时间 09:00 = UTC 01:00，所以写 `0 1 * * *`。
+- 9:00 的正式日报会重新抓取一轮，用当天累积的最新候选池生成当日一期并归档，然后触发部署更新线上首页。
+- 30 分钟的常规抓取**不会**调用 DeepSeek，避免无谓消耗；它只刷新板块列表与规则式日报。
+- 若 9:00 那次 DeepSeek 调用失败（超时、限流、key 无效、JSON 解析失败等），自动用规则式生成当日日报并照常归档，不会出现「当天没有日报」；失败原因写入 `report.llm.error` 与 Actions 日志（不含 key）。
+- 常规抓取也会写入当日快照：如果当天已经生成过 DeepSeek 版，常规轮次**不会覆盖**它；如果 9:00 任务因故没跑，当天至少仍有一份规则式日报可看。
+
+## 归档机制
+
+- 每期日报完整快照写到 `archive/YYYY-MM-DD.json`，索引写到 `archive/index.json`；
+- 同一日期重跑只覆盖当日快照（当天日报滚动更新），**其他日期永不改写**，重新抓取不会覆盖历史日报；
+- 期号按归档天数递增，同一天沿用同一期号；
+- 页面右上角「往期」下拉可切换日期，默认最新一期；用 `?date=YYYY-MM-DD` 可直接分享某一期；
+- 归档目录会随 Pages 一起发布（`deploy.yml` / `daily.yml` / `fetch.yml` 都会复制 `archive/`）；
+- 本地双击打开（`file://`）时，浏览器无法读取 `archive/` 目录，只能看最新一期；要回看往期请用本地服务或线上地址。
+
+## 接入 DeepSeek（用户自行配置 key）
+
+`config.json` 中已预留：
+
+```json
+"llm": {
+  "enabled": false,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "max_tokens": 1600,
+  "temperature": 0.3,
+  "timeout": 60
+}
+```
+
+启用步骤：
+
+1. 在仓库 **Settings → Secrets and variables → Actions** 新建 Secret：`DEEPSEEK_API_KEY`（只填在 GitHub，**不要**写进 `config.json`、代码或日志）；
+2. 把 `config.json` 的 `llm.enabled` 改为 `true`（`model`、`base_url` 可按需修改，`base_url` 末尾不要带 `/chat/completions`）；
+3. 本地调试时用同名环境变量：
+
+   ```powershell
+   $env:DEEPSEEK_API_KEY = "..."   # 只在本机终端设置，不要提交
+   python fetch_news.py --daily
+   ```
+
+4. 手动验证一次：Actions → **每日 9 点生成日报** → Run workflow；
+5. 打开线上页面，报头右侧的模式标签应显示「DeepSeek 辅助生成 · deepseek-chat」；仍显示「规则口径」说明 key 未生效或调用被降级，可看 Actions 日志中的 `日报：DeepSeek 失败，降级为规则式（原因）`。
+
+没有 key 或 `enabled=false` 时，一切照常运行，只是使用规则口径。
+
+## 本地运行
+
+**直接双击 `index.html`** 即可打开（页面读取同目录 `data.js` 的内嵌数据，含最新一期与归档索引）。
+
+也可以用本地服务打开（能读到 `data.json` 并切换往期）：
 
 ```
 python -m http.server 8765
 # 浏览器访问 http://127.0.0.1:8765/index.html
 ```
 
-## 部署到 GitHub Pages（在线访问）
-
-当前状态：**已上线**，访问地址 <https://finn-tf.github.io/robot-news-board/>（仓库 <https://github.com/Finn-TF/robot-news-board>，Pages 构建方式为 GitHub Actions workflow，`deploy.yml` 已验证构建成功）。
-
-下面保留首次建仓/推送的命令，供换机器或换仓库时参考。
-
-```powershell
-# 0) 先设置提交身份（只需一次）
-git config --global user.name "你的名字"
-git config --global user.email "你的邮箱"
-
-# 1) 首次提交
-git commit -m "init: 机器人行业资讯看板"
-
-# 2) 建公开仓库并推送（推荐，需要 gh）
-winget install --id GitHub.cli      # 若没装 gh
-gh auth login                       # 浏览器里授权
-gh repo create robot-news-board --public --source=. --remote=origin --push
-
-# 3) 把 Pages 切到 GitHub Actions 发布
-gh api --method POST repos/{owner}/{repo}/pages -f build_type=workflow
-```
-
-不想装 `gh` 的话，第 2 步改成网页建仓后手动关联：
-
-```powershell
-# 在 github.com 新建一个 public 仓库（建议名 robot-news-board），然后：
-git remote add origin https://github.com/<你的用户名>/robot-news-board.git
-git push -u origin main
-# 再到仓库 Settings → Pages → Source 选 "GitHub Actions"
-```
-
-部署完成后访问地址是：
+常用命令：
 
 ```
-https://<你的用户名>.github.io/robot-news-board/
-```
-
-注意：Pages **首次发布要等构建**（通常 1–2 分钟，慢时几分钟），在仓库的 **Actions** 标签页看到 `Deploy Pages` 变绿、并出现 `github-pages` 环境的 URL 才算真的上线；在此之前不要当作已发布。
-
-**以后怎么更新**
-
-- 本地改了数据或段子：`powershell -ExecutionPolicy Bypass -File .\update.ps1`（一条命令完成 commit + pull --rebase + push，提交信息默认带时间，可用 `-Message "..."` 自定义，脚本内部用 UTF-8 提交避免中文乱码）；
-- 只改网页：同样跑 `update.ps1`，push 后 `deploy.yml` 自动重新发布；
-- 想手动在网页上发布：Actions → Deploy Pages → Run workflow。
-
-**换了仓库要改哪里**
-
-- 只换地址：`git remote set-url origin <新仓库地址>`，workflow 不用改；
-- 换默认分支：`deploy.yml` 与 `fetch.yml` 里的 `branches: [main]`、`ref: main` 以及 `update.ps1` 里的 `origin main` 一起改；
-- 仓库名/用户名变了：只需更新本 README 里的访问地址，代码里没有硬编码仓库地址。
-
-**云端定时抓取（`fetch.yml`）**
-
-- 每小时第 5 分钟跑一次（GitHub cron 是 UTC，整点偏移不影响「每小时」），抓取后自动提交 `data.json` / `data.js` 并重新发布，本地电脑不用开机；
-- 免费额度足够这个体量（每小时 1 次、单次约 1–2 分钟）；
-- **这条路能否稳定跑通取决于 GitHub 美国机房的网络**：国内站点和 Bing 检索可能出现超时或被反爬，脚本会照常写出「失败通道」到 `data.json.source_report` 和 Actions 日志。若云端大面积失败，继续用本地 `python fetch_news.py` + `update.ps1` 兜底；
-- 定时任务只会在仓库默认分支上按 cron 触发。
-
-## 本轮速览（页面顶部总结）
-
-每轮抓取结束都会生成 `data.json` 的 `summary` 字段，页面顶部「本轮速览」直接读取它：
-
-- **事件聚类**：复用标题指纹（中文 2 字窗口 + 英文词，Jaccard 相似度 ≥ 0.30），把同一事件的多家报道聚成一组；
-- **打分挑选**：多家独立站点交叉印证 > 标题含量产/交付/融资/上市/订单/营收等硬信息 > 发布时间最新 > 机器人本体/核心零部件词 > 大厂命中；取 3–6 条；
-- **去重**：同一标题反复出现、或同一家大厂同一类事件（如「上市」）只保留一条，避免速览被一件事占满；
-- **不编造**：要点文字取自真实条目标题，补充说明是原文摘要；每条至少带一个原文链接（最多 4 家），并标注「多家印证 · N 家 / 单一来源」；
-- `summary.mode` 为 `rule`（规则式）或 `llm`（附带大模型分析段）。
-
-## 可选：接入大模型总结（默认关闭）
-
-`config.json` 里预留了开关：
-
-```json
-"llm": {
-  "enabled": false,
-  "provider": "openai-compatible",
-  "model": "",
-  "base_url": "https://api.openai.com/v1",
-  "api_key": "",
-  "api_key_env": "ROBOT_LLM_API_KEY",
-  "timeout": 45
-}
-```
-
-启用步骤：
-
-1. 把 `llm.enabled` 改为 `true`，填 `model`（如 `gpt-4o-mini`）和 `base_url`（OpenAI 兼容接口，末尾不要带 `/chat/completions`）；
-2. **不要把 key 写进 `config.json` 提交**。本地运行时用环境变量：
-
-   ```powershell
-   $env:ROBOT_LLM_API_KEY = "sk-..."
-   python fetch_news.py
-   ```
-
-   云端在仓库 **Settings → Secrets and variables → Actions** 新建 Secret：`ROBOT_LLM_API_KEY`（`fetch.yml` 已把该 Secret 注入抓取步骤）；
-3. 有 key 时，脚本把本轮精选要点喂给模型，生成一段中文分析（主线 / 趋势 / 值得注意的信号），放在速览顶部；规则要点仍保留并带原文链接；
-4. 无 key、模型未配置、接口超时或报错时，**自动降级回规则式速览**，页面不会空白；`summary.llm.error` 只记录错误类型与简短原因，key 不会写入 `data.json`、`data.js` 或日志。
-
-大模型只能看到脚本给它的条目，prompt 明确禁止编造；事实与链接始终来自下方真实条目。
-
-## 文件说明
-
-| 文件 | 作用 |
-| --- | --- |
-| `index.html` | 页面入口，无外部依赖，双击可用 |
-| `fetch_news.py` | 抓取脚本（仅用 Python 标准库，需 Python 3.8+） |
-| `data.json` | 数据源文件：4 个板块的条目 + 抓取状态报告 |
-| `data.js` | `data.json` 的内嵌副本，供 `file://` 双击打开时使用（浏览器会拦截本地 fetch） |
-| `translate_cache.json` | 英文标题/摘要的翻译缓存，加速重复运行，可删除 |
-| `config.json` | 抓取配置：间隔分钟数、重试次数、每板块条数、是否翻译，以及可选的大模型总结开关（默认关闭） |
-| `daemon.log` | 定时模式日志：每轮时间、各板块条数、失败通道（运行后自动生成） |
-| `update.ps1` | 一键 commit + push（Windows，中文提交信息不乱码） |
-| `.github/workflows/deploy.yml` | push 到 main 后发布到 GitHub Pages |
-| `.github/workflows/fetch.yml` | 云端每小时抓取 → 提交数据 → 重新发布 |
-| `config.json` / `.gitignore` / `.gitattributes` | 定时配置、忽略规则、换行符规则 |
-
-## 更新数据
-
-```
-python fetch_news.py                 # 抓取 + 补摘要 + 翻译英文为中文，写入 data.json / data.js
+python fetch_news.py                 # 常规抓取：更新列表 + 规则式日报 + 当日归档
+python fetch_news.py --daily         # 正式日报：允许调用 DeepSeek，强制归档当日一期
 python fetch_news.py --no-translate  # 不翻译，英文保留原文
 python fetch_news.py --max 80        # 每板块最多条数（默认 60）
 python fetch_news.py --sync-only     # 不联网，仅用当前 data.json 重新生成 data.js
-python fetch_news.py --daemon        # 常驻定时抓取（间隔读 config.json）
-python fetch_news.py --daemon --interval 30   # 临时把间隔改成 30 分钟
+python fetch_news.py --daemon        # 常驻定时抓取（间隔读 config.json，默认 30 分钟）
 ```
-
-## 定时自动更新
-
-两种方式，任选其一。
-
-**方式一：内置常驻定时（`--daemon`）**
-
-```
-python fetch_news.py --daemon
-```
-
-- 按 `config.json` 的 `interval_minutes` 循环抓取，每轮结束自动写 `data.json` / `data.js`，刷新页面即可看到新数据；
-- 每轮失败会用 `retries` 指定的次数重试（间隔递增），重试用尽只记录日志并保留上一份数据，**进程不退出**；
-- 每轮开始前重新读取 `config.json`，改间隔不用重启进程；
-- 日志同时打印到终端并追加到 `daemon.log`，格式为：`[时间] 本轮完成：国内新闻 x 条、海外新闻 y 条、大厂重点 z 条；失败通道 …；耗时 …s`。
 
 `config.json` 字段：
 
 ```json
 {
-  "interval_minutes": 60,
+  "interval_minutes": 30,
   "retries": 2,
   "max": 60,
   "per_source": 16,
-  "translate": true
+  "translate": true,
+  "llm": { "...": "见上" }
 }
 ```
 
-`interval_minutes` 抓取间隔（分钟）；`retries` 单轮失败重试次数；`max` 每板块最多条数；`per_source` 单通道每板块条数上限；`translate` 是否把英文标题/摘要翻成中文。
+`interval_minutes` 常驻模式抓取间隔（分钟，默认 30）；`retries` 单轮失败重试次数；`max` 每板块最多条数；`per_source` 单通道每板块条数上限；`translate` 是否把英文标题/摘要翻成中文。
 
-**方式二：Windows 计划任务**
+## 页面结构
 
-```
-schtasks /create /tn "RobotNewsFetch" /tr "python C:\Users\27335\Documents\Trae-CN\temp_20261106_01\fetch_news.py" /sc hour /mo 1 /st 09:00 /f
-```
+1. **报头**：`机器人产业日报 · 第 N 期`、日期与星期、国联民生研究所汽车组、数据更新时间、往期下拉、通道状态；
+2. **今日主线**：一句话概括当日机器人板块核心变化，并列出收录条数、多家印证条数、媒体数、通道成功率；
+3. **重点新闻 TOP 3–5**：大卡片置顶，第一条高亮；每条含「事件 → 摘要 → 影响判断 → 来源链接」，标注「多家印证 · N 家 / 单一来源」；
+4. **值得跟踪的信号**：量产/交付、订单、融资、上市、政策等前瞻信息，每条带日期与来源；
+5. **分类详表**：国内新闻 / 海外新闻 / 机器人大厂 / 近期段子，保留原有 Tab、搜索、时间与公司筛选、核对徽标；
+6. **页脚**：免责声明（通用占位，可替换为机构合规模板）、数据口径、抓取状态与来源清单。
 
-- `/sc hour /mo 1` 表示每小时一次；改成 `/sc minute /mo 30` 即每 30 分钟；`/st` 是首次启动时间；
-- 删除：`schtasks /delete /tn "RobotNewsFetch" /f`；
-- 立即跑一次验证：`schtasks /run /tn "RobotNewsFetch"`。
-- 注意：计划任务用的是系统默认 Python 路径，必要时把 `/tr` 里的 `python` 换成完整路径（如 `C:\Python313\python.exe`）。
+## 抓取来源（共 78 个通道）
 
-需要能访问外网（Bing 新闻、各站 RSS、translate.googleapis.com）。运行时每个抓取通道的结果会打印在终端；失败的通道会写入 `data.json` 的 `source_report`，页面页脚「抓取状态与来源清单」里可以看到并标红。
+- **国内财经与科技媒体**：量子位、雷峰网、IT之家、钛媒体、36氪、虎嗅、机器之心、智东西、爱范儿、界面新闻、新浪科技、中国机器人网、OFweek 机器人；
+- **国内检索**：Bing 中文新闻检索（人形机器人、机器人产业链、具身智能、优必选、机器人融资、机器人量产、外骨骼、政策、订单交付、行业研报、上市公司、机器人产业联盟、具身智能融资）；
+- **海外机器人垂直媒体**：IEEE Spectrum Robotics、TechCrunch Robotics、The Robot Report、Robotics 24/7、Robohub、VentureBeat AI、The Verge、Engadget、WIRED AI、Ars Technica；
+- **海外检索**：Bing 英文检索（humanoid robot、Figure AI、Boston Dynamics、robotics funding、humanoid deployment、dexterous hand、warehouse automation 等）；
+- **大厂官方博客 / 新闻室**：OpenAI、NVIDIA、Google DeepMind、Google AI、Meta AI、Microsoft Research、Amazon Science、Apple Machine Learning、Boston Dynamics Blog；
+- **大厂与头部公司检索**：OpenAI、英伟达、特斯拉 Optimus、DeepMind、Meta、宇树、优必选、智元、Figure、Boston Dynamics、Agility、1X、Physical Intelligence 等。
 
-**每次运行都会原样保留你手动写入的段子，不会覆盖。**
-
-## 添加段子
-
-编辑 `data.json` 里 `boards.jokes.items`（`items` 为数组），每条字段：
-
-```json
-{
-  "title": "段子标题或一句话",
-  "summary": "段子正文",
-  "source": "来源（如：群聊/微博/知乎，可留空）",
-  "published": "2026-11-06T15:00:00+08:00",
-  "url": "可选，原始链接，没有就留空字符串",
-  "is_placeholder": false
-}
-```
-
-改完后：
-
-- 用 `python -m http.server` 打开 → 刷新即可；
-- 双击打开 → 需要先跑一次 `python fetch_news.py --sync-only`，把 `data.json` 同步到 `data.js`，再刷新。
-
-当前段子板块的 3 条是**示例占位**（`is_placeholder: true`），会显示「示例占位」徽章；替换成真实内容后请把该字段设为 `false`，或直接删除占位条目。
-
-## 抓取来源
-
-- 国内：量子位、雷峰网、IT之家、钛媒体 RSS；Bing 中文新闻检索（人形机器人 / 机器人产业链 / 具身智能 / 优必选 / 机器人融资 / 机器人量产 / 外骨骼）
-- 海外：IEEE Spectrum Robotics、TechCrunch Robotics、The Verge（机器人关键词过滤）；Bing 英文检索（humanoid robot / Figure AI / Boston Dynamics / robotics funding / Atlas 等）
-- 大厂（机器人大厂）：OpenAI、NVIDIA、Google DeepMind 官方博客 RSS；Bing 检索覆盖 OpenAI / 英伟达 / 特斯拉 Optimus / DeepMind / Meta，以及头部机器人公司宇树 Unitree、优必选 UBTECH、智元 AgiBot、Figure、Boston Dynamics、Agility Robotics、1X、Physical Intelligence（共 41 个通道）。
-
-条目入库规则：60 天内、关键词命中、标题去重、单来源限额。来源名称优先取原始媒体（Bing RSS 的 `<News:Source>`），页面上标「经 Bing」表示经检索通道获得。
-
-**「大厂重点」口径（机器人大厂，不是泛科技大厂）**：条目必须与机器人强相关，才允许进该板块 ——
-
-- 标题命中机器人词（人形机器人 / 具身智能 / 机械臂 / 灵巧手 / 四足 / 减速器 / 伺服 / VLA 等），或摘要出现强相关词（机器人本体、核心零部件、机器人量产/供应链、具身智能等）；
-- 且标题或摘要点名「机器人大厂」公司；官方博客通道按来源公司归属；
-- 只是顺带提一句机器人、或与机器人无关的科技新闻，会被分流到国内/海外板块或直接丢弃，不进「大厂重点」。
-- 英文关键词按词边界匹配，并排除 `robots.txt`、RPA（robotic process automation）等误命中。
+每个通道的成败逐条记录在 `data.json.source_report`，页面页脚可展开查看「原始条数 / 入库条数 / 失败原因」；抓不到的通道如实标红，不会用假数据填充。云端抓取受 GitHub 美国机房网络影响，国内部分站点（36氪、虎嗅、机器之心、界面等）可能返回 403/超时，属已知情况。
 
 ## 信息核对
 
-每条资讯底部列出该事件的来源清单：同一事件在 **≥2 家独立站点（按域名判定）** 出现时标绿色「✓ 已核」；只有 1 家时标「单一来源」，表示未获其他媒体交叉印证。
+每条资讯底部列出该事件的来源清单：同一事件在 **≥2 家独立站点（按域名判定）** 出现时标绿色「✓ 已核」；只有 1 家时标「单一来源」。
 
-- 来源名可点击，直接打开对应原文；鼠标悬停显示该来源的发布时间；
-- 事件归并用标题指纹（中文 2 字窗口 + 英文词）计算相似度，阈值 0.30，只做聚类辅助，不改变原文标题与链接；
-- 核对结果只来自本轮真实抓到的条目，抓不到第二家就如实标单一来源，不会编造「已核」。
+- 来源名可点击，直接打开对应原文；
+- 核对结果只来自本轮真实抓到的条目，抓不到第二家就如实标单一来源，不会编造「已核」；
+- `data.json` 中每条记录带 `verify` 字段（`level: cross/single`、`count`、`sources[]`）。
 
-`data.json` 中每条记录带 `verify` 字段（`level: cross/single`、`count`、`sources[]`），可按需二次开发。
+## 文件说明
+
+| 文件 | 作用 |
+| --- | --- |
+| `index.html` | 日报页面入口，无外部依赖，双击可用 |
+| `fetch_news.py` | 抓取 + 候选池 + 日报生成（规则 / DeepSeek）+ 归档 |
+| `data.json` | 最新一期完整数据：`report`（日报）+ `boards`（分类详表）+ `source_report`（通道状态） |
+| `data.js` | `data.json` 的内嵌副本 + 归档索引，供 `file://` 双击打开时使用 |
+| `archive/YYYY-MM-DD.json` | 往期日报快照（完整数据） |
+| `archive/index.json` | 归档索引（日期、期号、主线、板块条数） |
+| `config.json` | 抓取间隔、条数、翻译开关、DeepSeek 开关 |
+| `translate_cache.json` | 英文翻译缓存（本地运行加速，不提交仓库） |
+| `daemon.log` | 常驻模式日志（运行后生成，不提交） |
+| `update.ps1` | 一键 commit + push（Windows） |
+| `.github/workflows/deploy.yml` | push 到 main 后发布 Pages |
+| `.github/workflows/fetch.yml` | 每 30 分钟抓取 → 提交 → 发布 |
+| `.github/workflows/daily.yml` | 每天 UTC 01:00（北京 09:00）生成正式日报 → 归档 → 发布 |
+
+## 免责声明
+
+页面页脚当前为通用占位表述：「本资料仅供交流参考，不构成投资建议」。该文字可由使用方替换为机构正式合规模板，直接修改 `index.html` 页脚 `.disclaimer` 区块即可；本仓库不包含任何机构正式合规条款。
 
 ## 已知限制
 
-1. **微信公众号未直接抓取**：搜狗微信搜索与 `mp.weixin.qq.com` 链接存在反爬与跳转校验，脚本无法稳定拿到可核查的原文链接，因此没有纳入；公众号内容通过上述媒体 RSS 与检索通道间接覆盖。
-2. **Google 新闻检索已移除**：其 RSS 链接是 `news.google.com` 跳转地址（需访问 Google 才能打开），不如 Bing 的原文直链可靠。
-3. **The Robot Report 等站点 403**：部分站点对脚本请求做反爬，抓不到就不入库，也不会造假。
-4. **翻译**：英文条目的中文标题/摘要调用 Google 翻译公开接口，机翻可能有偏差，页面保留英文原标题便于核对；接口不可用时该条保留英文原文。
-5. **摘要**：来自 RSS 描述或文章页 `meta description` 摘录，缺失时页面显示「该来源未提供摘要」。
-6. **信息核对的边界**：只做「多家独立站点是否报道同一事件」的交叉印证，不等于事实核查；同一稿件的转载、通稿会被当作多来源，标题聚类也存在漏配可能，判断真伪仍需点开原文。
-
-## 托管
-
-当前环境没有可用的在线托管账号/凭证（BytePlus Edge Pages 需要账号 + AK/SK + 开通 CDN），因此**未做在线托管**，交付为本地可双击打开的完整页面。如需分享，可把整个目录上传到任意静态托管（GitHub Pages / Vercel / 对象存储静态网站），`index.html` 无需构建。
+1. **微信公众号未直接抓取**：搜狗微信与 `mp.weixin.qq.com` 存在反爬与跳转校验，无法稳定拿到可核查的原文链接，公众号内容通过媒体 RSS 与检索通道间接覆盖。
+2. **Google 新闻检索未使用**：其 RSS 链接是 `news.google.com` 跳转地址，不如 Bing 的原文直链可靠。
+3. **部分站点反爬**：如 36氪、虎嗅、机器之心、界面、Robotics 24/7、Meta AI Blog 等可能 403/404/限流，脚本如实记录失败，不造假。
+4. **翻译**：英文条目的中文标题/摘要调用 Google 翻译公开接口，机翻可能有偏差，页面保留英文原标题便于核对；接口不可用时保留英文原文。
+5. **信息核对的边界**：只做「多家独立站点是否报道同一事件」的交叉印证，不等于事实核查；转载、通稿会被当作多来源，标题聚类也可能漏配，判断真伪仍需点开原文。
+6. **规则式影响判断**：无 key 时「影响判断」是按事件类型生成的通用口径，不是针对具体公司的深度分析，页面会标明「规则口径」。

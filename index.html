@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1">
-<title>机器人行业资讯看板</title>
+<meta name="theme-color" content="#ffffff">
+<title>机器人产业日报 · 国联民生研究所汽车组</title>
 <style>
 :root{
   --paper:#ffffff;--ink:#0c0e11;--ink2:#464c55;--ink3:#8c929a;
@@ -20,95 +21,100 @@ body{
   font-size:14px;line-height:1.62;-webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 70px}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 22px 64px}
 
-/* ---------- header ---------- */
-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:18px;border-bottom:1px solid var(--line)}
-.brand h1{margin:0;font-size:26px;line-height:1.15;letter-spacing:-.7px;font-weight:800;display:flex;align-items:center;gap:10px}
-.mark{width:10px;height:10px;background:var(--accent);border-radius:2px;flex:none;transform:rotate(45deg)}
-.brand .en{font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;color:var(--ink3);text-transform:uppercase;margin-top:8px}
-.brand .desc{margin-top:9px;font-size:12.5px;color:var(--ink2);max-width:640px}
-.status{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none;padding-top:2px}
-.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:600;color:var(--ink2);background:#fff;white-space:nowrap}
+/* ---------- 报头 ---------- */
+.rpt-head{padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.kicker{font-size:11px;letter-spacing:1.4px;color:var(--accent);font-weight:700;text-transform:uppercase}
+.rpt-head h1{margin:8px 0 0;font-size:30px;line-height:1.12;letter-spacing:-1px;font-weight:800;display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+.rpt-head h1 .issue{font-family:var(--mono);font-size:12.5px;letter-spacing:0;color:var(--accent);font-weight:700;border:1px solid #f2c9bd;background:var(--accent-soft);border-radius:999px;padding:2px 10px;transform:translateY(-4px)}
+.head-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:9px;font-size:12.5px;color:var(--ink2)}
+.head-row .dot{width:3px;height:3px;border-radius:50%;background:#c3c8ce}
+.head-row .team{font-weight:650;color:var(--ink)}
+.head-tools{margin-left:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.arch{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink3)}
+.arch select{font:inherit;font-size:11.5px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 8px;max-width:190px}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:11px;font-weight:600;color:var(--ink2);background:#fff;white-space:nowrap}
 .pill i{width:6px;height:6px;border-radius:50%;background:var(--green);display:block}
 .pill.warn{border-color:#f3d7c9;color:var(--accent);background:var(--accent-soft)}
 .pill.warn i{background:var(--accent)}
-.stamp{font-family:var(--mono);font-size:10.5px;color:var(--ink3);white-space:nowrap}
+.past-bar{display:none;margin-top:12px;padding:9px 12px;border:1px solid #d5e2fb;background:var(--blue-soft);border-radius:9px;font-size:12px;color:#1d4ed8;align-items:center;gap:10px;flex-wrap:wrap}
+.past-bar.on{display:flex}
+.past-bar button{appearance:none;font:inherit;font-size:11.5px;font-weight:650;color:#fff;background:var(--blue);border:0;border-radius:6px;padding:4px 10px;cursor:pointer}
 
-/* ---------- stats ---------- */
-.stats{display:flex;gap:26px;flex-wrap:wrap;padding:16px 0 20px;border-bottom:1px solid var(--line)}
-.stat{display:flex;flex-direction:column;gap:1px}
-.stat b{font-family:var(--mono);font-size:21px;font-weight:700;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
-.stat span{font-size:11px;color:var(--ink3);letter-spacing:.3px}
+/* ---------- 今日主线 ---------- */
+.mainline{padding:20px 0 18px;border-bottom:1px solid var(--line)}
+.sec-label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1.5px;font-weight:800;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.sec-label:before{content:"";width:7px;height:7px;background:var(--accent);border-radius:1px;transform:rotate(45deg)}
+.sec-label .sub{font-size:10.5px;letter-spacing:.6px;color:var(--ink3);font-weight:600;text-transform:none;margin-left:auto}
+.mainline p{margin:0;font-size:18px;line-height:1.62;font-weight:650;letter-spacing:-.2px;max-width:960px}
+.mainline .facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:13px;font-size:11.5px;color:var(--ink3)}
+.mainline .facts b{font-family:var(--mono);color:var(--ink);font-size:14px;margin-right:3px;font-variant-numeric:tabular-nums}
 
-/* ---------- 本轮速览 ---------- */
-.summary{margin:20px 0 0;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#fffdfb 0%,#fff 60%);overflow:hidden}
-.summary[hidden]{display:none}
-.summary-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:15px 20px 11px}
-.summary-head h2{margin:0;font-size:14px;font-weight:800;letter-spacing:.4px}
-.summary-head .lab{font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
-.summary-head .mode{margin-left:auto;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
-.summary-lead{margin:0;padding:0 20px 13px;font-size:12.5px;color:var(--ink2);border-bottom:1px solid var(--line2);line-height:1.65}
-.summary-analysis{margin:0;padding:14px 20px;font-size:13.5px;line-height:1.82;color:var(--ink);background:var(--blue-soft);border-top:1px solid #e2eafa;border-bottom:1px solid #dbe6fa}
-.spoints{list-style:none;margin:0;padding:4px 20px 14px}
-.spoint{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:13px 0;border-bottom:1px dashed var(--line2)}
-.spoint:last-child{border-bottom:0}
-.sno{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);padding-top:2px}
-.stext{margin:0;font-size:14.5px;line-height:1.55;font-weight:650;letter-spacing:-.1px}
-.stext a{border-bottom:1px solid transparent;transition:.12s}
-.stext a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
-.sdetail{margin:4px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.62}
-.smeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:var(--ink3)}
-.slinks a{color:var(--ink2);border-bottom:1px dotted #d4d8de}
-.slinks a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
-.smeta .vsep{padding:0 1px}
-.smeta .goto{margin-left:0;font-size:10.5px}
+/* ---------- 重点新闻 ---------- */
+.top-news{padding:20px 0 6px;border-bottom:1px solid var(--line)}
+.tcard{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:17px 0;border-top:1px solid var(--line)}
+.tcard:first-of-type{border-top:0}
+.tcard.lead{background:linear-gradient(180deg,#fffdfb,#fff);border:1px solid #f0d9d1;border-radius:14px;padding:18px;margin-bottom:6px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.trank{font-family:var(--mono);font-size:20px;font-weight:800;color:#d9dde2;line-height:1.15;letter-spacing:-1px;padding-top:1px}
+.tcard.lead .trank{color:var(--accent)}
+.tevent{margin:0;font-size:17.5px;line-height:1.45;font-weight:750;letter-spacing:-.3px}
+.tcard.lead .tevent{font-size:19.5px}
+.tevent a:hover{color:var(--blue)}
+.tdetail{margin:7px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.65}
+.timpact{margin-top:10px;padding:9px 11px;background:var(--bg2);border-left:2px solid var(--accent);border-radius:0 7px 7px 0;font-size:13px;line-height:1.68;color:#2f353c}
+.timpact b{color:var(--accent);font-weight:700;margin-right:6px;font-size:11.5px;letter-spacing:.3px}
+.tmeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--ink3)}
+.tmeta .vsrc a{color:var(--ink2);border-bottom:1px dotted #d4d8de}
+.tmeta .vsrc a:hover{color:var(--blue)}
+.tmeta .goto{margin-left:auto;font-family:var(--mono);font-size:10.5px}
+.tmeta .goto:hover{color:var(--blue)}
+.vbadge{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;border-radius:999px;padding:1px 8px 1px 6px;font-weight:650;cursor:default}
+.vbadge.cross{color:#12703a;background:#eaf7ef;border:1px solid #cbe8d7}
+.vbadge.single{color:#96601a;background:#fdf4e3;border:1px solid #f1dfbd}
 
+/* ---------- 跟踪信号 ---------- */
+.signals{padding:20px 0 16px;border-bottom:1px solid var(--line)}
+.sig-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line2)}
+.sig{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line2)}
+.stag{font-size:10.5px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:4px;padding:2px 7px;white-space:nowrap;justify-self:start}
+.stext{font-size:13.5px;line-height:1.55;font-weight:600}
+.stext a:hover{color:var(--blue)}
+.sdate{font-family:var(--mono);font-size:10.5px;color:var(--ink3);white-space:nowrap}
+.sig-empty{padding:12px 0;font-size:12.5px;color:var(--ink3)}
 
-/* ---------- toolbar ---------- */
-.toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:14px 0 0;margin-top:2px}
+/* ---------- 分类详表 ---------- */
+.dash{padding-top:22px}
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);padding:2px 0 0}
 .tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tab{
-  appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink2);
-  font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;
-  display:inline-flex;align-items:center;gap:7px;transition:.15s;
-}
+.tab{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink2);font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.15s}
 .tab:hover{border-color:#cfd4da;color:var(--ink)}
 .tab b{font-family:var(--mono);font-weight:600;font-size:11px;color:var(--ink3);font-variant-numeric:tabular-nums}
 .tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .tab[aria-selected="true"] b{color:rgba(255,255,255,.65)}
-.tab:focus-visible,.chip:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.tab:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .filters{display:flex;flex-direction:column;gap:8px;padding:12px 0 13px;border-bottom:1px solid var(--line)}
 .frow{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.search{position:relative;flex:1;min-width:230px;max-width:420px}
+.search{position:relative;flex:1;min-width:220px;max-width:420px}
 .search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;fill:none;stroke:var(--ink3);stroke-width:1.8}
-.search input{
-  width:100%;font:inherit;font-size:13px;color:var(--ink);background:var(--bg2);
-  border:1px solid var(--line);border-radius:9px;padding:8px 32px 8px 33px;transition:.15s;
-}
+.search input{width:100%;font:inherit;font-size:13px;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:8px 32px 8px 33px;transition:.15s}
 .search input:focus{background:#fff;border-color:#b9c0c8;outline:none}
 .search .kbd{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:10px;color:var(--ink3);border:1px solid var(--line);border-radius:4px;padding:1px 5px;background:#fff}
 .chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .chips[hidden]{display:none}
-.chip{
-  appearance:none;font:inherit;font-size:11.5px;color:var(--ink2);background:transparent;
-  border:1px solid transparent;border-radius:999px;padding:4px 9px;cursor:pointer;transition:.12s;
-}
+.chip{appearance:none;font:inherit;font-size:11.5px;color:var(--ink2);background:transparent;border:1px solid transparent;border-radius:999px;padding:4px 9px;cursor:pointer;transition:.12s}
 .chip:hover{background:var(--line2)}
 .chip[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue);border-color:#d5e2fb;font-weight:600}
 .chip.zero{opacity:.45}
 .divider{width:1px;height:16px;background:var(--line)}
 
-/* ---------- list ---------- */
-.board-head{display:flex;align-items:baseline;gap:10px;padding:20px 0 10px;flex-wrap:wrap}
+/* ---------- 列表 ---------- */
+.board-head{display:flex;align-items:baseline;gap:10px;padding:18px 0 10px;flex-wrap:wrap}
 .board-head h2{margin:0;font-size:13px;letter-spacing:.6px;font-weight:700;text-transform:uppercase;color:var(--ink)}
 .board-head .d{font-size:11.5px;color:var(--ink3)}
 .board-head .live{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
 .list{border-top:1px solid var(--line)}
-.item{
-  display:grid;grid-template-columns:118px 1fr;gap:18px;
-  padding:16px 2px 17px;border-bottom:1px solid var(--line);
-}
+.item{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:16px 2px 17px;border-bottom:1px solid var(--line)}
 .lcol{display:flex;flex-direction:column;gap:5px;padding-top:1px}
 .time{font-family:var(--mono);font-size:11.5px;color:var(--ink2);letter-spacing:-.2px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .time .today{color:var(--accent);font-weight:600}
@@ -121,24 +127,20 @@ header{display:flex;justify-content:space-between;align-items:flex-start;gap:24p
 .orig{margin:5px 0 0;font-size:11.5px;color:var(--ink3);line-height:1.45;font-weight:400}
 .sum{margin:6px 0 0;font-size:13px;color:var(--ink2);line-height:1.62;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .sum mark{background:#fff2a8;color:inherit;border-radius:2px}
-.sum.empty{color:#a3a8ae;font-style:normal}
+.sum.empty{color:#a3a8ae}
 .foot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px}
-/* 信息核对：来源清单 + 核对徽标（口径见页脚说明） */
 .vgroup{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:100%}
 .vsrc{display:inline-flex;align-items:center;gap:2px;flex-wrap:wrap;font-size:11px;color:var(--ink3)}
 .vsrc a{color:var(--ink2);text-decoration:none;border-bottom:1px dotted #d4d8de}
 .vsrc a:hover{color:var(--blue);border-bottom-color:#c9d8f5}
 .vsep{color:#c3c8ce;font-size:10.5px;padding:0 2px}
-.vbadge{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;border-radius:999px;padding:1px 8px 1px 6px;font-weight:650;cursor:default}
-.vbadge.cross{color:#12703a;background:#eaf7ef;border:1px solid #cbe8d7}
-.vbadge.single{color:#96601a;background:#fdf4e3;border:1px solid #f1dfbd}
 .tag{font-size:10.5px;color:var(--blue);background:var(--blue-soft);border-radius:4px;padding:1.5px 6px;font-weight:600;letter-spacing:.2px}
 .tag.warm{color:var(--amber);background:var(--amber-soft)}
 .via{font-size:10.5px;color:#a8adb4}
 .goto{margin-left:auto;font-size:11px;color:var(--ink3);font-family:var(--mono);display:inline-flex;align-items:center;gap:4px}
 .goto:hover{color:var(--blue)}
 
-/* jokes */
+/* 段子 */
 .item.joke{grid-template-columns:118px 1fr}
 .joke .title{font-weight:600}
 .joke .sum{padding:10px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-top:8px;-webkit-line-clamp:unset;display:block;font-size:13.5px}
@@ -146,8 +148,8 @@ header{display:flex;justify-content:space-between;align-items:flex-start;gap:24p
 .joke-note{margin:14px 0 0;padding:14px 16px;border:1px dashed #e3d6bd;background:#fffdf7;border-radius:10px;font-size:12.5px;color:#7a5a1c;line-height:1.68}
 .joke-note code{font-family:var(--mono);background:#fff;border:1px solid #eee3cc;border-radius:4px;padding:1px 5px;font-size:11.5px}
 
-/* states */
-.state{padding:56px 0 62px;text-align:center;color:var(--ink3)}
+/* 状态 */
+.state{padding:48px 0 54px;text-align:center;color:var(--ink3)}
 .state h3{margin:0 0 7px;font-size:15px;color:var(--ink2);font-weight:650}
 .state p{margin:0 auto;max-width:460px;font-size:12.5px;line-height:1.7}
 .state .ic{font-family:var(--mono);font-size:24px;color:#c9ced4;margin-bottom:10px;letter-spacing:2px}
@@ -159,10 +161,13 @@ header{display:flex;justify-content:space-between;align-items:flex-start;gap:24p
 .skel .b.s{width:92%;height:10px}
 @keyframes sh{0%{background-position:100% 0}100%{background-position:0 0}}
 
-/* footer */
-footer{margin-top:38px;border-top:1px solid var(--line);padding-top:18px;color:var(--ink3);font-size:11.5px;line-height:1.75}
-footer h4{margin:0 0 8px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink2)}
-.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+/* 页脚 */
+footer{margin-top:36px;border-top:2px solid var(--ink);padding-top:16px;color:var(--ink3);font-size:11.5px;line-height:1.75}
+.disclaimer{padding:13px 15px;background:var(--bg2);border:1px solid var(--line);border-radius:9px;color:var(--ink2);font-size:12px;line-height:1.75;margin-bottom:15px}
+.disclaimer b{color:var(--ink)}
+.disclaimer .note{display:block;margin-top:5px;color:var(--ink3);font-size:11px}
+footer h4{margin:16px 0 8px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink2)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px}
 .legend b{color:var(--ink2);font-weight:600}
 details{border-top:1px solid var(--line2);padding:10px 0}
 details summary{cursor:pointer;font-size:11.5px;color:var(--ink2);list-style:none;display:flex;align-items:center;gap:7px}
@@ -177,22 +182,28 @@ details[open] summary:before{content:"−"}
 .mono{font-family:var(--mono)}
 
 @media (max-width:760px){
-  .wrap{padding:20px 16px 56px}
-  header{flex-direction:column;gap:14px}
-  .status{align-items:flex-start;flex-direction:row;gap:10px;flex-wrap:wrap}
-  .brand h1{font-size:21px}
-  .stats{gap:20px;padding:14px 0 16px}
-  .stat b{font-size:18px}
+  .wrap{padding:16px 15px 52px}
+  .rpt-head h1{font-size:24px;gap:8px}
+  .rpt-head h1 .issue{font-size:11px;transform:none}
+  .head-row{font-size:12px;gap:9px}
+  .head-tools{margin-left:0;width:100%}
+  .arch{margin-left:auto}
+  .mainline p{font-size:16.5px}
+  .mainline .facts{gap:14px}
+  .mainline .facts b{font-size:13px}
+  .tcard{grid-template-columns:30px 1fr;gap:9px;padding:15px 0}
+  .tcard.lead{padding:15px;border-radius:12px}
+  .trank{font-size:15px;padding-top:3px}
+  .tevent,.tcard.lead .tevent{font-size:16.5px}
+  .tdetail{font-size:12px}
+  .timpact{font-size:12.5px;padding:8px 10px}
+  .tmeta .goto{margin-left:0;width:100%}
+  .sig{grid-template-columns:1fr;gap:5px;padding:10px 0}
+  .sdate{margin-left:0}
   .toolbar{position:static;backdrop-filter:none}
   .tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{white-space:nowrap}
-  .summary-head{padding:13px 15px 10px}
-  .summary-lead{padding:0 15px 11px}
-  .summary-analysis{padding:12px 15px}
-  .spoints{padding:4px 15px 12px}
-  .spoint{grid-template-columns:24px 1fr;gap:8px}
-  .stext{font-size:14px}
   .filters{gap:10px}
   .search{max-width:none}
   .search .kbd{display:none}
@@ -211,57 +222,81 @@ details[open] summary:before{content:"−"}
 <body>
 <div class="wrap">
 
-  <header>
-    <div class="brand">
-      <h1><span class="mark"></span>机器人行业资讯看板</h1>
-      <div class="en">Robot Industry News Board</div>
-      <div class="desc">国内 / 海外 / 大厂三条线，按发布时间倒序。每条均带来源与原文链接，摘要为原文摘录，英文条目附中文译文。</div>
+  <header class="rpt-head">
+    <div class="kicker">国联民生研究所 · 汽车组 · 机器人产业研究</div>
+    <h1>机器人产业日报 <span class="issue" id="issue">第 — 期</span></h1>
+    <div class="head-row">
+      <span class="team" id="team">国联民生研究所汽车组</span>
+      <span class="dot"></span>
+      <span id="dateLabel">—</span>
+      <span class="dot"></span>
+      <span id="updateLabel">数据更新 —</span>
+      <div class="head-tools">
+        <label class="arch">往期
+          <select id="archSelect" aria-label="选择往期日报"></select>
+        </label>
+        <span class="pill" id="statusPill"><i></i><span id="statusText">数据加载中</span></span>
+      </div>
     </div>
-    <div class="status">
-      <span class="pill" id="statusPill"><i></i><span id="statusText">数据加载中</span></span>
-      <span class="stamp" id="stamp">—</span>
+    <div class="past-bar" id="pastBar">
+      <span id="pastText">正在查看往期日报</span>
+      <button id="backLatest" type="button">回到最新一期</button>
     </div>
   </header>
 
-  <div class="stats" id="stats"></div>
+  <section class="mainline" aria-label="今日主线">
+    <div class="sec-label">今日主线<span class="sub" id="modeLabel">规则口径</span></div>
+    <p id="mainline">数据加载中…</p>
+    <div class="facts" id="facts"></div>
+  </section>
 
-  <section class="summary" id="summary" aria-label="本轮速览" hidden></section>
+  <section class="top-news" aria-label="重点新闻">
+    <div class="sec-label">重点新闻<span class="sub" id="topCount">TOP 3-5</span></div>
+    <div id="topNews"></div>
+  </section>
 
-  <div class="toolbar">
-    <div class="tabs" id="tabs" role="tablist" aria-label="资讯板块"></div>
-    <div class="filters">
-      <div class="frow">
-        <div class="search">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-          <input id="q" type="search" placeholder="搜索标题、摘要、来源…" autocomplete="off" aria-label="关键词搜索">
-          <span class="kbd">/</span>
+  <section class="signals" aria-label="值得跟踪的信号">
+    <div class="sec-label">值得跟踪的信号<span class="sub">量产 · 订单 · 融资 · 政策</span></div>
+    <div id="signals"></div>
+  </section>
+
+  <section class="dash" aria-label="分类详表">
+    <div class="sec-label">分类详表<span class="sub">可搜索 / 筛选 / 核对</span></div>
+    <div class="toolbar">
+      <div class="tabs" id="tabs" role="tablist" aria-label="资讯板块"></div>
+      <div class="filters">
+        <div class="frow">
+          <div class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input id="q" type="search" placeholder="搜索标题、摘要、来源…" autocomplete="off" aria-label="关键词搜索">
+            <span class="kbd">/</span>
+          </div>
+          <div class="chips" id="rangeChips"></div>
         </div>
-        <div class="chips" id="rangeChips"></div>
+        <div class="chips" id="companyChips" hidden></div>
       </div>
-      <div class="chips" id="companyChips" hidden></div>
     </div>
-  </div>
-
-  <main id="main">
-    <div class="skel" id="skeleton">
-      <div class="row"><div><div class="b" style="width:64px"></div></div><div><div class="b t"></div><div class="b s"></div></div></div>
-      <div class="row"><div><div class="b" style="width:52px"></div></div><div><div class="b t" style="width:74%"></div><div class="b s"></div></div></div>
-      <div class="row"><div><div class="b" style="width:60px"></div></div><div><div class="b t" style="width:58%"></div><div class="b s"></div></div></div>
-    </div>
-  </main>
+    <main id="main">
+      <div class="skel" id="skeleton">
+        <div class="row"><div><div class="b" style="width:64px"></div></div><div><div class="b t"></div><div class="b s"></div></div></div>
+        <div class="row"><div><div class="b" style="width:52px"></div></div><div><div class="b t" style="width:74%"></div><div class="b s"></div></div></div>
+      </div>
+    </main>
+  </section>
 
   <footer>
-    <div class="legend">
-      <span><b>来源</b>：公开 RSS（量子位 / 雷峰网 / IT之家 / 钛媒体 / IEEE Spectrum / TechCrunch / OpenAI / NVIDIA / DeepMind）+ Bing 新闻检索（含宇树、优必选、智元、Figure、Boston Dynamics、Agility、1X、Physical Intelligence）</span>
-      <span><b>更新方式</b>：<span class="mono">python fetch_news.py</span>（或定时模式 <span class="mono">python fetch_news.py --daemon</span>）</span>
+    <div class="disclaimer">
+      <b>免责声明：</b>本资料仅供交流参考，不构成投资建议。
+      <span class="note">以上为通用占位表述，可由机构替换为正式合规模板（修改 index.html 页脚文字即可）。</span>
     </div>
     <div class="legend">
-      <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，
-        只有 1 家 → <span class="vbadge single">单一来源</span>（未交叉核实）。点来源名可逐一核对原文与发布时间。</span>
+      <span><b>数据口径</b>：公开 RSS、新闻检索与官方博客；每条保留来源与原文链接，摘要为原文摘录，英文条目附中文译文。抓取失败的通道在下方「抓取状态」中逐条标出，不用虚构内容填充。</span>
     </div>
     <div class="legend">
-      <span><b>本轮速览</b>：顶部要点由脚本按事件聚类自动挑选（优先多家印证、时效最新、量产/交付/融资等硬信息），
-        每条都能点回对应原文；无大模型 key 时只出规则式要点，不影响页面内容。</span>
+      <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，只有 1 家 → <span class="vbadge single">单一来源</span>。点来源名可核对原文与发布时间。</span>
+    </div>
+    <div class="legend">
+      <span><b>日报生成</b>：规则先按事件聚类筛候选池（多家印证 / 硬信息 / 头部公司），再由 DeepSeek 在候选池内排序并撰写影响判断；无 key 或调用失败时自动使用规则口径，页面不会空白。</span>
     </div>
     <details id="srcdetails">
       <summary>抓取状态与来源清单</summary>
@@ -271,6 +306,7 @@ details[open] summary:before{content:"−"}
       <summary>口径与限制</summary>
       <div style="padding:8px 0 2px 0">
         摘要为原文摘录（英文条目机翻成中文，保留英文原标题可核对），不做二次改写；标题与链接均指向原始页面。
+        重点新闻与信号的链接一律取自本轮真实条目，不由模型生成。
         微信公众号原文有反爬与登录限制，未直接抓取，相关报道通过媒体 RSS 与新闻检索覆盖。
         抓取失败或某板块为空的来源会在上表标红，页面不会用虚构内容填充。
       </div>
@@ -285,7 +321,7 @@ details[open] summary:before{content:"−"}
   var TABS = [
     {key:"domestic", name:"国内新闻", short:"国内"},
     {key:"overseas", name:"海外新闻", short:"海外"},
-    {key:"bigtech",  name:"大厂重点", short:"大厂"},
+    {key:"bigtech",  name:"机器人大厂", short:"大厂"},
     {key:"jokes",    name:"近期段子", short:"段子"}
   ];
   var state = {tab:"domestic", q:"", range:"all", company:null};
@@ -293,7 +329,7 @@ details[open] summary:before{content:"−"}
   var COMPANIES = ["OpenAI","特斯拉","英伟达","谷歌 DeepMind","Meta",
                    "宇树 Unitree","优必选 UBTECH","智元 AgiBot","Figure",
                    "Boston Dynamics","Agility","1X","Physical Intelligence"];
-  var DATA = null, MODE = "";
+  var DATA = null, LATEST = null, ARCH = [];
 
   var $ = function(id){ return document.getElementById(id); };
 
@@ -309,7 +345,6 @@ details[open] summary:before{content:"−"}
   }
   function pad(n){ return n<10?"0"+n:String(n); }
 
-  // 数据时间均为北京时间（+08:00）
   function cnNow(){
     return new Date(Date.now() + (new Date().getTimezoneOffset() + 480) * 60000);
   }
@@ -326,8 +361,11 @@ details[open] summary:before{content:"−"}
       label: today ? "今天" : (isYest ? "昨天" : m[2]+"-"+m[3])
     };
   }
+  function mmdd(iso){
+    var p = dayParts(iso);
+    return p.date ? p.date + " " + p.hhmm : "—";
+  }
   function ageHours(iso){
-    if(!iso) return 1e9;
     var t = Date.parse(iso);
     return isNaN(t) ? 1e9 : (Date.now() - t) / 3600000;
   }
@@ -347,6 +385,121 @@ details[open] summary:before{content:"−"}
     }).sort(function(a,b){ return (b.published||"").localeCompare(a.published||""); });
   }
 
+  // ---------- 往期归档 ----------
+  function isLatest(){ return DATA && LATEST && DATA.report && LATEST.report && DATA.report.date === LATEST.report.date; }
+
+  function renderArch(){
+    var sel = $("archSelect");
+    if(!ARCH || !ARCH.length){
+      sel.innerHTML = '<option>暂无归档</option>'; sel.disabled = true; return;
+    }
+    sel.disabled = false;
+    var cur = (DATA && DATA.report) ? DATA.report.date : "";
+    var list = ARCH.slice().sort(function(a,b){ return (b.date||"").localeCompare(a.date||""); });
+    sel.innerHTML = list.map(function(e){
+      var lab = "第 " + (e.issue_no || "—") + " 期 · " + (e.date || "").slice(5)
+        + (e.date === (list[0] && list[0].date) ? "（最新）" : "");
+      return '<option value="'+esc(e.date)+'"'+(e.date===cur?' selected':'')+'>'+esc(lab)+'</option>';
+    }).join("");
+  }
+
+  function setPastBar(){
+    var on = !isLatest();
+    $("pastBar").className = "past-bar" + (on ? " on" : "");
+    if(on && DATA.report){
+      $("pastText").textContent = "正在查看往期：第 " + (DATA.report.issue_no||"—") + " 期 · " + (DATA.report.date_label||DATA.report.date);
+    }
+  }
+
+  function switchDay(date){
+    if(!date || !LATEST) return;
+    var latestDate = LATEST.report ? LATEST.report.date : "";
+    if(date === latestDate){
+      DATA = LATEST; state.tab = "domestic"; renderAll();
+      history.replaceState(null,"",location.pathname); window.scrollTo({top:0,behavior:"smooth"});
+      return;
+    }
+    fetch("archive/" + date + ".json", {cache:"no-store"})
+      .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+      .then(function(j){
+        DATA = j; state.tab = "domestic"; state.q = ""; state.company = null;
+        if($("q")) $("q").value = "";
+        renderAll(); window.scrollTo({top:0,behavior:"smooth"});
+        try{ history.replaceState(null,"",location.pathname + "?date=" + date); }catch(e){}
+      })
+      .catch(function(){
+        alert("读取往期归档失败。\n本地双击打开时无法读取 archive 目录，请用本地服务（python -m http.server 8765）或访问线上页面。");
+        $("archSelect").value = (DATA.report ? DATA.report.date : latestDate);
+      });
+  }
+
+  // ---------- 日报主体 ----------
+  function renderReport(){
+    var rep = DATA.report;
+    $("team").textContent = (rep && rep.team) || "国联民生研究所汽车组";
+    $("issue").textContent = "第 " + ((rep && rep.issue_no) || "—") + " 期";
+    $("dateLabel").textContent = (rep && rep.date_label) || DATA.generated_label || "—";
+    $("updateLabel").textContent = "数据更新 " + (DATA.generated_label || "—");
+    $("mainline").textContent = (rep && rep.mainline) || "本期暂无主线判断，请查看下方分类详表。";
+    var mode = "规则口径";
+    if(rep && rep.mode === "deepseek"){
+      mode = "DeepSeek 辅助生成" + (rep.llm && rep.llm.model ? " · " + rep.llm.model : "");
+    }else if(rep && rep.llm && rep.llm.enabled && rep.llm.error){
+      mode = "规则口径（大模型降级）";
+    }
+    $("modeLabel").textContent = mode;
+
+    var st = (rep && rep.stats) || {};
+    var srcN = (DATA.source_report||[]).length;
+    var okN = (DATA.source_report||[]).filter(function(s){ return s.status === "ok"; }).length;
+    var media = {};
+    ["domestic","overseas","bigtech"].forEach(function(k){
+      ((DATA.boards[k]||{}).items||[]).forEach(function(it){ media[it.source]=1; });
+    });
+    $("facts").innerHTML =
+      '<span><b>'+((rep && rep.stats && rep.stats.items) || DATA.meta && DATA.meta.total_items || 0)+'</b>条收录</span>'+
+      '<span><b>'+(st.cross||0)+'</b>条多家印证</span>'+
+      '<span><b>'+Object.keys(media).length+'</b>家媒体</span>'+
+      '<span><b>'+okN+'/'+srcN+'</b>通道成功</span>';
+
+    var tops = (rep && rep.top_news) || [];
+    $("topCount").textContent = tops.length ? ("TOP " + tops.length) : "暂无";
+    $("topNews").innerHTML = tops.length ? tops.map(function(t,i){
+      var links = (t.links||[]).filter(function(l){ return l && l.url; });
+      var first = links[0];
+      var event = esc(t.event);
+      if(first) event = '<a href="'+esc(first.url)+'" target="_blank" rel="noopener noreferrer">'+event+'</a>';
+      var badge = t.level === "cross"
+        ? '<span class="vbadge cross">✓ 多家印证'+(t.count>2?" · "+t.count+" 家":"")+'</span>'
+        : '<span class="vbadge single">单一来源</span>';
+      var names = links.slice(0,3).map(function(l){
+        return '<a href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer" title="'+esc(l.title||"")+'">'
+          + esc(l.source || l.host || "原文") + '</a>';
+      }).join('<span class="vsep">/</span>');
+      var tags = (t.companies||[]).map(function(c){ return '<span class="tag">'+esc(c)+'</span>'; }).join("");
+      var goto = first ? '<a class="goto" href="'+esc(first.url)+'" target="_blank" rel="noopener noreferrer">原文 ↗</a>' : "";
+      return '<article class="tcard'+(i===0?" lead":"")+'">'
+        + '<div class="trank">'+pad(i+1)+'</div>'
+        + '<div><h2 class="tevent">'+event+'</h2>'
+        + (t.detail ? '<p class="tdetail">'+esc(t.detail)+'</p>' : '')
+        + '<div class="timpact"><b>影响判断</b>'+esc(t.impact||"暂无明确信号")+'</div>'
+        + '<div class="tmeta">'+badge+'<span class="vsrc">'+names+'</span>'
+        + '<span class="vsep">·</span><span>'+esc(mmdd(t.published))+'</span>'+tags+goto+'</div>'
+        + '</div></article>';
+    }).join("") : '<p class="sig-empty">本期暂无重点新闻（抓取条目不足或全部未通过核对）。</p>';
+
+    var sigs = (rep && rep.signals) || [];
+    $("signals").innerHTML = sigs.length
+      ? '<ul class="sig-list">'+sigs.map(function(s){
+          var txt = esc(s.text);
+          if(s.url) txt = '<a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+txt+'</a>';
+          return '<li class="sig"><span class="stag">'+esc(s.tag||"动态")+'</span>'
+            + '<span class="stext">'+txt+'</span>'
+            + '<span class="sdate">'+esc((s.published||"").slice(5,10))+' · '+esc(s.source||"")+'</span></li>';
+        }).join("")+'</ul>'
+      : '<p class="sig-empty">暂无明确信号。</p>';
+  }
+
   function renderTabs(){
     var host = $("tabs");
     host.innerHTML = TABS.map(function(t){
@@ -362,32 +515,7 @@ details[open] summary:before{content:"−"}
     });
   }
 
-  function renderStats(){
-    var all = 0, today = 0, srcSet = {};
-    ["domestic","overseas","bigtech"].forEach(function(k){
-      (DATA.boards[k].items||[]).forEach(function(it){
-        all++; srcSet[it.source] = 1;
-        if(ageHours(it.published) <= 24) today++;
-      });
-    });
-    var fail = (DATA.source_report||[]).filter(function(s){ return s.status!=="ok"; }).length;
-    $("stats").innerHTML =
-      '<div class="stat"><b>'+today+'</b><span>近 24 小时</span></div>'+
-      '<div class="stat"><b>'+all+'</b><span>收录条目</span></div>'+
-      '<div class="stat"><b>'+Object.keys(srcSet).length+'</b><span>媒体来源</span></div>'+
-      '<div class="stat"><b>'+(DATA.source_report||[]).length+'</b><span>抓取通道</span></div>';
-    $("stamp").textContent = "更新于 " + (DATA.generated_label || "—");
-    if(fail){
-      $("statusPill").className = "pill warn";
-      $("statusText").textContent = "已更新 · "+fail+" 个源抓取失败";
-    }else{
-      $("statusPill").className = "pill";
-      $("statusText").textContent = "数据已更新";
-    }
-  }
-
   function renderChips(){
-    // 时间范围
     var ranges = [["all","不限时间"],["today","近 24 小时"],["week","近 7 天"]];
     $("rangeChips").innerHTML = ranges.map(function(r){
       return '<button class="chip" data-range="'+r[0]+'" aria-pressed="'+(state.range===r[0])+'">'+r[1]+'</button>';
@@ -396,19 +524,17 @@ details[open] summary:before{content:"−"}
       c.addEventListener("click", function(){ state.range = c.dataset.range; renderAll(); });
     });
 
-    // 大厂板块：公司筛选
-    var host = $("companyChips"), box = $("companyChips");
+    var box = $("companyChips");
     if(state.tab !== "bigtech"){ box.hidden = true; return; }
     var counts = {};
     items().forEach(function(it){ (it.companies||[]).forEach(function(c){ counts[c]=(counts[c]||0)+1; }); });
-    // 固定顺序展示「机器人大厂」全集；本轮 0 条的通道也保留，点击后如实显示 0 条
     var extra = Object.keys(counts).filter(function(c){ return COMPANIES.indexOf(c) < 0; });
     var list = COMPANIES.concat(extra.sort(function(a,b){ return counts[b]-counts[a]; }));
     box.hidden = false;
     var html = '<button class="chip" data-co="" aria-pressed="'+(state.company===null)+'">全部大厂</button>';
     html += list.map(function(c){
       var n = counts[c] || 0;
-      return '<button class="chip'+(n?"":" zero")+'" data-co="'+esc(c)+'" aria-pressed="'+(state.company===c)+'" title="'+(n?"":"本轮无收录")+'">'+esc(c)+' <span class="mono" style="opacity:.55">'+n+'</span></button>';
+      return '<button class="chip'+(n?"":" zero")+'" data-co="'+esc(c)+'" aria-pressed="'+(state.company===c)+'" title="'+(n?"":"本期无收录")+'">'+esc(c)+' <span class="mono" style="opacity:.55">'+n+'</span></button>';
     }).join("");
     box.innerHTML = html;
     Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
@@ -423,16 +549,14 @@ details[open] summary:before{content:"−"}
       return '<div class="state"><div class="ic">∅</div><h3>没有匹配「'+esc(state.q)+'」的资讯</h3><p>试试更短的关键词，或把时间范围切回「全部」。</p></div>';
     }
     if(state.company){
-      return '<div class="state"><div class="ic">—</div><h3>「'+esc(state.company)+'」本轮无收录</h3><p>该机器人大厂通道本轮没有通过机器人相关性判定的条目。'
-        + '抓不到就留空，页面不会用旧内容或虚构内容填充；可点「全部大厂」查看其他通道。</p></div>';
+      return '<div class="state"><div class="ic">—</div><h3>「'+esc(state.company)+'」本期无收录</h3><p>该大厂通道本期没有通过机器人相关性判定的条目。'
+        + '抓不到就留空，页面不会用旧内容或虚构内容填充。</p></div>';
     }
-    var t = (b.items||[]).length;
     return '<div class="state"><div class="ic">—</div><h3>暂无数据</h3><p>本板块当前没有可用条目（数据生成于 '+esc(DATA.generated_label||"")+'）。'
       + (b.failed_sources ? '<br>有 '+b.failed_sources+' 个来源抓取失败，可查看页脚「抓取状态」。' : '')
-      + '<br>可在本地运行 <span class="mono">python fetch_news.py</span> 重新抓取；页面不会用虚构内容填充。</p></div>';
+      + '<br>页面不会用虚构内容填充。</p></div>';
   }
 
-  // 信息核对：列出同一事件的真实来源链接，并标注「已核 / 单一来源」
   function verifyHtml(it){
     var v = it.verify || {};
     var list = (v.sources && v.sources.length) ? v.sources : [{name: it.source, url: it.url, published: it.published}];
@@ -446,9 +570,9 @@ details[open] summary:before{content:"−"}
     }).join('<span class="vsep">/</span>');
     var badge = "";
     if(v.level === "cross"){
-      badge = '<span class="vbadge cross" title="同一事件在 '+v.count+' 家独立站点出现，已交叉印证；点击来源名可核对原文">✓ 已核</span>';
+      badge = '<span class="vbadge cross" title="同一事件在 '+v.count+' 家独立站点出现">✓ 已核</span>';
     }else if(v.level === "single"){
-      badge = '<span class="vbadge single" title="仅 1 家独立站点报道，未获其他媒体交叉印证">单一来源</span>';
+      badge = '<span class="vbadge single" title="仅 1 家独立站点报道">单一来源</span>';
     }
     return '<span class="vgroup"><span class="vsrc">'+src+'</span>'+badge+'</span>';
   }
@@ -478,42 +602,6 @@ details[open] summary:before{content:"−"}
       + '</div></div></article>';
   }
 
-  // 本轮速览：规则式要点（可选大模型分析段），每条都对回真实条目链接
-  function renderSummary(){
-    var s = DATA.summary, host = $("summary"), list = (s && s.points) || [];
-    if(!list.length){ host.hidden = true; return; }
-    var isLlm = (s.mode === "llm" && s.analysis);
-    var mode = isLlm ? "大模型分析 · " + ((s.llm && s.llm.model) ? s.llm.model : "LLM") : "规则式要点";
-    var html = '<div class="summary-head"><h2>本轮速览</h2>'
-      + '<span class="lab">' + esc(s.generated_label || DATA.generated_label || "") + '</span>'
-      + '<span class="mode">' + esc(mode) + '</span></div>'
-      + (s.headline ? '<p class="summary-lead">' + esc(s.headline) + '</p>' : '')
-      + (isLlm ? '<p class="summary-analysis">' + esc(s.analysis) + '</p>' : '');
-    html += '<ul class="spoints">' + list.map(function(p, i){
-      var links = (p.links || []).filter(function(l){ return l && l.url; });
-      var first = links[0];
-      var text = esc(p.text);
-      if(first) text = '<a href="' + esc(first.url) + '" target="_blank" rel="noopener noreferrer">' + text + '</a>';
-      var badge = p.level === "cross"
-        ? '<span class="vbadge cross" title="同一事件有 ' + p.count + ' 家独立站点报道">✓ 多家印证' + (p.count > 2 ? " · " + p.count + " 家" : "") + '</span>'
-        : '<span class="vbadge single" title="仅 1 家独立站点报道，未获交叉印证">单一来源</span>';
-      var names = links.slice(0, 3).map(function(l){
-        return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer" title="' + esc(l.title || "") + '">'
-          + esc(l.source || l.host || "原文") + '</a>';
-      }).join('<span class="vsep">/</span>');
-      var goto = first
-        ? '<a class="goto" href="' + esc(first.url) + '" target="_blank" rel="noopener noreferrer">原文 ↗</a>' : '';
-      return '<li class="spoint"><span class="sno">' + pad(i + 1) + '</span><div>'
-        + '<p class="stext">' + text + '</p>'
-        + (p.detail ? '<p class="sdetail">' + esc(p.detail) + '</p>' : '')
-        + '<div class="smeta">' + badge + '<span class="vsep">·</span>'
-        + '<span class="slinks">' + names + '</span>' + goto + '</div>'
-        + '</div></li>';
-    }).join("") + '</ul>';
-    host.innerHTML = html;
-    host.hidden = false;
-  }
-
   function renderList(){
     var list = filterItems(), b = board();
     var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
@@ -525,15 +613,15 @@ details[open] summary:before{content:"−"}
     if(state.tab === "jokes"){
       var ph = (b.items||[]).length && (b.items||[]).every(function(x){ return x.is_placeholder; });
       if(ph){
-        jokeNote = '<p class="joke-note">当前条目为<b>示例占位</b>，不是真实段子。把你收集的段子按 '
-          + '<code>{"title":"…","summary":"…","source":"…","published":"2026-11-06T15:00:00+08:00"}</code> '
-          + '写入 <code>data.json</code> 的 <code>boards.jokes.items</code>（或让它为空数组后重跑脚本，脚本会保留你写入的段子），刷新页面即可显示。</p>';
+        jokeNote = '<p class="joke-note">当前条目为<b>示例占位</b>，不是真实段子。可把真实段子按 '
+          + '<code>{"title":"…","summary":"…","source":"…","published":"2026-11-14T15:00:00+08:00"}</code> '
+          + '写入 <code>data.json</code> 的 <code>boards.jokes.items</code>，刷新页面即可显示。</p>';
       }
     }
     $("main").innerHTML = head + body + jokeNote;
   }
 
-  function renderFooter(){
+  function renderStatus(){
     var rep = DATA.source_report || [];
     var ok = rep.filter(function(s){ return s.status==="ok"; });
     var bad = rep.filter(function(s){ return s.status!=="ok"; });
@@ -545,23 +633,33 @@ details[open] summary:before{content:"−"}
     $("srcbody").innerHTML =
       '<div style="margin-top:8px;font-size:11.5px;color:#464c55">本次运行：'+ok.length+' 个通道成功，'+bad.length+' 个失败。表内 <span class="mono">原始</span> 为源条目数，最后一列为入库条数或失败原因。</div>'
       + '<table class="srctable"><tbody>'+rows+'</tbody></table>'
-      + '<div style="margin-top:8px;font-size:11px;color:#8c929a">数据文件：data.json（页面优先读取）· data.js（本地双击打开时的内嵌副本，由脚本同步生成）</div>';
+      + '<div style="margin-top:8px;font-size:11px;color:#8c929a">数据文件：data.json（最新一期）· archive/&lt;日期&gt;.json（往期快照）· data.js（本地双击时的内嵌副本）</div>';
+
+    if(bad.length){
+      $("statusPill").className = "pill";
+      $("statusText").textContent = ok.length + "/" + rep.length + " 通道正常";
+    }else{
+      $("statusPill").className = "pill";
+      $("statusText").textContent = "数据已更新";
+    }
   }
 
   function renderAll(){
     if(!DATA) return;
-    renderSummary(); renderTabs(); renderChips(); renderStats(); renderList(); renderFooter();
+    renderReport(); renderArch(); setPastBar(); renderTabs(); renderChips();
+    renderList(); renderStatus();
   }
 
-  // 地址栏带 ?tab=大厂&q=关键词，方便收藏/分享某个视图
   function syncUrl(){
     try{
       var p = new URLSearchParams();
       if(state.tab !== "domestic") p.set("tab", state.tab);
       if(state.q) p.set("q", state.q);
+      var cur = DATA && DATA.report ? DATA.report.date : "";
+      if(cur && LATEST && LATEST.report && cur !== LATEST.report.date) p.set("date", cur);
       var qs = p.toString();
       history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
-    }catch(e){ /* file:// 下可能禁止改写地址，忽略 */ }
+    }catch(e){}
   }
   function readUrl(){
     try{
@@ -569,25 +667,44 @@ details[open] summary:before{content:"−"}
       var t = p.get("tab");
       if(t && TABS.some(function(x){ return x.key === t; })) state.tab = t;
       var q = p.get("q");
-      if(q){ state.q = q; }
-    }catch(e){}
+      if(q) state.q = q;
+      return p.get("date") || "";
+    }catch(e){ return ""; }
+  }
+
+  function applyIndex(list){
+    ARCH = (list && list.length) ? list : [];
+    renderArch();
+  }
+
+  function start(data, mode){
+    LATEST = data; DATA = data;
+    var wantDate = readUrl();
+    if(state.q) $("q").value = state.q;
+    renderAll();
+    if(location.protocol === "file:"){
+      // 本地双击：浏览器禁止读取目录，只能用 data.js 内嵌的归档索引
+      applyIndex(window.ROBOT_NEWS_ARCHIVE || []);
+    }else{
+      // 线上 / 本地服务：始终以 archive/index.json 为准，避免 data.js 滞后
+      fetch("archive/index.json", {cache:"no-store"})
+        .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+        .then(applyIndex)
+        .catch(function(){ applyIndex(window.ROBOT_NEWS_ARCHIVE || []); });
+    }
+    var latestDate = (data.report && data.report.date) || "";
+    if(wantDate && wantDate !== latestDate){
+      setTimeout(function(){ switchDay(wantDate); }, 30);
+    }
   }
 
   function boot(){
-    // 1) 优先 fetch data.json（http 服务下可拿到最新数据）
-    // 2) file:// 双击打开时 fetch 被拦截，改用 data.js 注入的全局变量
-    var done = function(data, mode){
-      DATA = data; MODE = mode;
-      if(!DATA.boards){ $("main").innerHTML = '<div class="state error"><h3>数据格式异常</h3><p>data.json 缺少 boards 字段。</p></div>'; return; }
-      readUrl();
-      if(state.q) $("q").value = state.q;
-      renderAll();
-    };
     var fallback = function(){
-      if(window.ROBOT_NEWS_DATA){ done(window.ROBOT_NEWS_DATA, "embedded"); return; }
+      if(window.ROBOT_NEWS_DATA){
+        start(window.ROBOT_NEWS_DATA, "embedded"); return;
+      }
       $("statusPill").className = "pill warn";
       $("statusText").textContent = "数据未加载";
-      $("stamp").textContent = "—";
       $("main").innerHTML = '<div class="state error"><div class="ic">!</div><h3>找不到数据文件</h3>'
         + '<p>请确认 <span class="mono">data.json</span> / <span class="mono">data.js</span> 与本页面在同一目录。<br>'
         + '首次使用可在本目录运行：<span class="mono">python fetch_news.py</span>，完成后刷新页面。</p></div>';
@@ -595,18 +712,22 @@ details[open] summary:before{content:"−"}
     try{
       fetch("data.json", {cache:"no-store"})
         .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-        .then(function(j){ done(j, "json"); })
+        .then(function(j){ start(j, "json"); })
         .catch(fallback);
     }catch(e){ fallback(); }
   }
 
-  // 交互
   document.addEventListener("DOMContentLoaded", function(){
     $("q").addEventListener("input", function(e){
       state.q = e.target.value;
-      // 搜索时自动放宽时间范围，避免“搜不到”其实是过滤所致
       if(state.q && state.range !== "all"){ state.range = "all"; }
       syncUrl(); renderChips(); renderList();
+    });
+    $("archSelect").addEventListener("change", function(e){ switchDay(e.target.value); });
+    $("backLatest").addEventListener("click", function(){
+      DATA = LATEST; state.tab = "domestic"; renderAll();
+      try{ history.replaceState(null,"",location.pathname); }catch(e){}
+      window.scrollTo({top:0,behavior:"smooth"});
     });
     document.addEventListener("keydown", function(e){
       if(e.key === "/" && document.activeElement !== $("q")){ e.preventDefault(); $("q").focus(); }

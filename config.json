@@ -1,16 +1,17 @@
 {
-  "interval_minutes": 60,
+  "interval_minutes": 30,
   "retries": 2,
   "max": 60,
   "per_source": 16,
   "translate": true,
   "llm": {
     "enabled": false,
-    "provider": "openai-compatible",
-    "model": "",
-    "base_url": "https://api.openai.com/v1",
-    "api_key": "",
-    "api_key_env": "ROBOT_LLM_API_KEY",
-    "timeout": 45
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "base_url": "https://api.deepseek.com",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "max_tokens": 1600,
+    "temperature": 0.3,
+    "timeout": 60
   }
 }

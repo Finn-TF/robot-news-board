@@ -38,6 +38,7 @@ DATA_JSON = os.path.join(BASE_DIR, "data.json")
 DATA_JS = os.path.join(BASE_DIR, "data.js")
 CACHE_FILE = os.path.join(BASE_DIR, "translate_cache.json")
 CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
+ARCHIVE_DIR = os.path.join(BASE_DIR, "archive")
 LOG_FILE = os.path.join(BASE_DIR, "daemon.log")
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -48,7 +49,7 @@ CST = timezone(timedelta(hours=8))
 # 机器人相关词（标题级判定：命中即可视为在讲机器人）
 ROBOT_ZH = ["机器人", "人形", "具身智能", "具身", "机械臂", "灵巧手", "四足", "机器狗",
             "外骨骼", "协作机器人", "工业机器人", "服务机器人", "减速器", "伺服",
-            "丝杠", "电子皮肤", "遥操作", "世界模型", "VLA", "宇树", "优必选", "智元",
+            "丝杠", "电子皮肤", "遥操作", "VLA", "宇树", "优必选", "智元",
             "银河通用", "傅利叶", "众擎", "星动纪元", "逐际动力", "开普勒", "松延动力",
             "乐聚", "擎朗", "云深处"]
 ROBOT_EN = ["robot", "robots", "robotic", "robotics", "humanoid", "humanoids", "embodied",
@@ -187,6 +188,88 @@ SOURCES = [
      "url": bing("1X Technologies humanoid NEO"), "filter": "robot_only"},
     {"id": "bing-bt-16", "name": "Bing News", "board": "bigtech", "lang": "en",
      "url": bing("Physical Intelligence robot"), "filter": "robot_only"},
+
+    # ---- 国内财经 / 科技媒体（新增） ----
+    {"id": "36kr", "name": "36氪", "board": "domestic", "lang": "zh",
+     "url": "https://36kr.com/feed", "filter": "zh_title"},
+    {"id": "huxiu", "name": "虎嗅", "board": "domestic", "lang": "zh",
+     "url": "https://www.huxiu.com/rss/0.xml", "filter": "zh_title"},
+    {"id": "jiqizhixin", "name": "机器之心", "board": "domestic", "lang": "zh",
+     "url": "https://www.jiqizhixin.com/rss", "filter": "zh_title"},
+    {"id": "zhidx", "name": "智东西", "board": "domestic", "lang": "zh",
+     "url": "https://zhidx.com/feed", "filter": "zh_title"},
+    {"id": "ifanr", "name": "爱范儿", "board": "domestic", "lang": "zh",
+     "url": "https://www.ifanr.com/feed", "filter": "zh_title"},
+    {"id": "jiemian", "name": "界面新闻", "board": "domestic", "lang": "zh",
+     "url": "https://www.jiemian.com/rss", "filter": "zh_title"},
+    {"id": "sina-tech", "name": "新浪科技", "board": "domestic", "lang": "zh",
+     "url": "http://rss.sina.com.cn/tech/rollnews.xml", "filter": "zh_title"},
+    {"id": "robotchina", "name": "中国机器人网", "board": "domestic", "lang": "zh",
+     "url": "https://www.robot-china.com/rss.xml", "filter": "zh_title"},
+    {"id": "ofweek-robot", "name": "OFweek 机器人", "board": "domestic", "lang": "zh",
+     "url": "https://robot.ofweek.com/rss.xml", "filter": "zh_title"},
+    {"id": "bing-cn-8", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("机器人 政策"), "filter": "zh"},
+    {"id": "bing-cn-9", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("人形机器人 量产"), "filter": "zh"},
+    {"id": "bing-cn-10", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("机器人 订单 交付"), "filter": "zh"},
+    {"id": "bing-cn-11", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("机器人 行业 研报"), "filter": "zh"},
+    {"id": "bing-cn-12", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("机器人 上市公司"), "filter": "zh"},
+    {"id": "bing-cn-13", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("中国机器人产业联盟"), "filter": "zh"},
+    {"id": "bing-cn-14", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("具身智能 融资"), "filter": "zh"},
+
+    # ---- 海外机器人垂直媒体（新增） ----
+    {"id": "therobotreport", "name": "The Robot Report", "board": "overseas", "lang": "en",
+     "url": "https://www.therobotreport.com/feed/", "filter": None},
+    {"id": "robotics247", "name": "Robotics 24/7", "board": "overseas", "lang": "en",
+     "url": "https://www.robotics247.com/rss", "filter": None},
+    {"id": "robohub", "name": "Robohub", "board": "overseas", "lang": "en",
+     "url": "https://robohub.org/feed/", "filter": None},
+    {"id": "venturebeat", "name": "VentureBeat AI", "board": "overseas", "lang": "en",
+     "url": "https://venturebeat.com/category/ai/feed/", "filter": "en_title"},
+    {"id": "engadget", "name": "Engadget", "board": "overseas", "lang": "en",
+     "url": "https://www.engadget.com/rss.xml", "filter": "en_title"},
+    {"id": "wired-ai", "name": "WIRED AI", "board": "overseas", "lang": "en",
+     "url": "https://www.wired.com/feed/tag/ai/latest/rss", "filter": "en_title"},
+    {"id": "arstechnica", "name": "Ars Technica", "board": "overseas", "lang": "en",
+     "url": "https://feeds.arstechnica.com/arstechnica/technology-lab", "filter": "en_title"},
+    {"id": "bing-en-8", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("humanoid robot funding deployment"), "filter": "en"},
+    {"id": "bing-en-9", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("dexterous robot hand manipulation"), "filter": "en"},
+    {"id": "bing-en-10", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("warehouse robotics automation orders"), "filter": "en"},
+
+    # ---- 大厂官方博客 / 新闻室（新增） ----
+    {"id": "bostondynamics", "name": "Boston Dynamics Blog", "board": "bigtech", "lang": "en",
+     "url": "https://bostondynamics.com/blog/feed/", "filter": "robot_only"},
+    {"id": "metaai", "name": "Meta AI Blog", "board": "bigtech", "lang": "en",
+     "url": "https://ai.meta.com/blog/rss/", "filter": "robot_only"},
+    {"id": "googleai", "name": "Google AI Blog", "board": "bigtech", "lang": "en",
+     "url": "https://blog.google/technology/ai/rss/", "filter": "robot_only"},
+    {"id": "msr", "name": "Microsoft Research Blog", "board": "bigtech", "lang": "en",
+     "url": "https://www.microsoft.com/en-us/research/feed/", "filter": "robot_only"},
+    {"id": "amazonscience", "name": "Amazon Science", "board": "bigtech", "lang": "en",
+     "url": "https://www.amazon.science/index.rss", "filter": "robot_only"},
+    {"id": "appleml", "name": "Apple Machine Learning", "board": "bigtech", "lang": "en",
+     "url": "https://machinelearning.apple.com/rss.xml", "filter": "robot_only"},
+
+    # ---- 大厂/头部公司检索补充（新增） ----
+    {"id": "bing-bt-17", "name": "Bing News", "board": "bigtech", "lang": "zh",
+     "url": bing("宇树科技 上市"), "filter": "robot_only"},
+    {"id": "bing-bt-18", "name": "Bing News", "board": "bigtech", "lang": "zh",
+     "url": bing("智元机器人 量产"), "filter": "robot_only"},
+    {"id": "bing-bt-19", "name": "Bing News", "board": "bigtech", "lang": "zh",
+     "url": bing("特斯拉 Optimus 量产"), "filter": "robot_only"},
+    {"id": "bing-bt-20", "name": "Bing News", "board": "bigtech", "lang": "en",
+     "url": bing("Figure 03 humanoid"), "filter": "robot_only"},
+    {"id": "bing-bt-21", "name": "Bing News", "board": "bigtech", "lang": "zh",
+     "url": bing("1X NEO 家庭 机器人"), "filter": "robot_only"},
 ]
 
 # ---------------------------------------------------------------- 工具 ----
@@ -468,6 +551,7 @@ def attach_verification(records):
             name = rec["source"] or host
             if name in ("Bing 新闻检索", "Bing News"):
                 name = host          # 检索通道没解析出媒体名时，用原站域名更可核对
+            name = clean_source_name(name)
             sources.append({"name": name, "url": rec["url"],
                             "published": rec["published"], "host": host})
         sources = sources[:MAX_VERIFY_SOURCES]
@@ -508,10 +592,43 @@ TOPIC_GROUPS = {
     "launch": ["发布", "launch", "unveil", "首发", "开售", "预售"],
     "earnings": ["财报", "营收", "revenue", "earnings", "亏损", "销量"],
     "policy": ["政策", "监管", "标准", "regulation", "standard"],
+    "org": ["撤销", "解散", "裁员", "离职", "重组", "团队调整", "layoff", "restructur"],
 }
 
 SUMMARY_MAX_POINTS = 6
 SUMMARY_LINK_LIMIT = 4
+CANDIDATE_MAX = 16
+TOP_MIN, TOP_MAX = 3, 5
+
+# 日报「影响判断」的规则口径：按事件类型给出通用判断，不含任何未在原文出现的事实
+IMPACT_BY_TOPIC = {
+    "massprod": "量产/交付信号直接影响产业链订单预期，重点跟踪产能爬坡与实际出货节奏。",
+    "funding": "融资进展反映一级市场对赛道的定价，关注资金投向与后续量产兑现。",
+    "ipo": "资本化进程推进，短期影响板块关注度，后续跟踪募资用途与业绩披露。",
+    "launch": "新品或新模型发布带来产品力对比窗口，关注性能参数与商业化落地进度。",
+    "earnings": "经营数据影响盈利预期，留意收入结构、毛利率与订单能见度。",
+    "policy": "政策口径变化可能影响行业准入、补贴与采购节奏，需持续跟踪细则。",
+    "org": "组织与团队调整反映大厂在具身智能路线上的取舍，关注后续资源投入变化。",
+}
+IMPACT_FALLBACK = "产业动态更新，暂无明确信号，建议结合原文核对细节。"
+
+SIGNAL_ORDER = [("massprod", "量产/交付"), ("funding", "融资"), ("ipo", "上市/资本化"),
+                ("policy", "政策"), ("earnings", "财报"), ("launch", "新品"),
+                ("org", "组织调整")]
+SIGNAL_LABEL = dict(SIGNAL_ORDER)
+
+# 媒体标题里常见的栏目前缀（如「观察 | …」「重磅 | …」），日报正文里去掉
+COLUMN_PREFIX = re.compile(r"^[\u4e00-\u9fff]{2,6}\s*[|｜]\s*")
+
+
+def clean_headline(title):
+    return COLUMN_PREFIX.sub("", (title or "").strip()).strip()
+
+
+def clean_source_name(name):
+    """把「澎湃新闻 on MSN」这类聚合站后缀去掉，保留原始媒体名。"""
+    name = (name or "").strip()
+    return re.sub(r"\s+on\s+MSN$", "", name, flags=re.I).strip()
 
 
 def fresh_hours(published, now):
@@ -543,6 +660,7 @@ def build_links(items, limit=SUMMARY_LINK_LIMIT):
         name = rec.get("source") or host
         if name in ("Bing 新闻检索", "Bing News"):
             name = host          # 与信息核对一致：检索通道没解析出媒体名时用原站域名
+        name = clean_source_name(name)
         links.append({"title": rec.get("title") or "", "url": rec["url"],
                       "source": name, "published": rec.get("published") or "",
                       "host": host})
@@ -588,29 +706,26 @@ def topic_tags(text):
     return tags
 
 
-def build_rule_points(selected, now, limit=SUMMARY_MAX_POINTS):
-    """把本轮条目聚成事件并挑出要点；返回按重要性排序的 3-6 条。"""
+def build_candidates(selected, now, limit=CANDIDATE_MAX):
+    """规则先筛候选池：事件聚类 → 打分排序 → 去重，供重点新闻与 DeepSeek 使用。"""
     scored = []
     for g in event_clusters(selected):
         items = g["items"]
         if not items:
             continue
-        score, latest, level, count = score_cluster(items, now)
+        score, _latest, level, count = score_cluster(items, now)
         scored.append((score, items, pick_rep(items), level, count))
     scored.sort(key=lambda x: (x[0], x[2].get("published") or ""), reverse=True)
 
-    points, seen_reps, seen_co_topics = [], [], {}
+    candidates, seen_reps, seen_co_topics = [], [], {}
     for score, items, rep, level, count in scored:
-        if len(points) >= limit:
+        if len(candidates) >= limit:
             break
         text = (rep.get("title") or "").strip()
         if not text:
             continue
-        # 同一事件换标题重复出现：按标题相似度再挡一层
         if any(title_sim(text, t) >= 0.28 for t in seen_reps):
             continue
-        # 同一家大厂的同一类事件（如 Agility 上市被多家写成多条）只留一条；
-        # 公司名取整个聚类的并集，避免代表条目标题没点名公司时漏判
         cos = sorted({c for r in items for c in (r.get("companies") or [])})
         tag_text = " ".join((r.get("title") or "") + " " + (r.get("summary") or "")
                             for r in items)
@@ -621,25 +736,107 @@ def build_rule_points(selected, now, limit=SUMMARY_MAX_POINTS):
             for c in cos:
                 seen_co_topics[c] = seen_co_topics.get(c, set()) | tags
 
-        detail = (rep.get("summary") or "").strip()
-        if detail and not CJK_CHAR.search(detail):
-            detail = ""                     # 未翻译的英文摘要不混进中文要点
-        if detail and norm_title(detail)[:16] == norm_title(text)[:16]:
-            detail = ""
-        detail = shorten(detail, 140)
-        points.append({
-            "text": text,
-            "detail": detail,
+        candidates.append({
+            "id": len(candidates) + 1,
+            "items": items,
+            "rep": rep,
             "level": level,
             "count": count,
-            "board": rep.get("board") or "",
-            "source": rep.get("source") or "",
-            "published": rep.get("published") or "",
-            "companies": rep.get("companies") or [],
+            "score": round(score, 2),
+            "tags": [t for t, _ in SIGNAL_ORDER if t in tags],
             "links": build_links(items),
         })
         seen_reps.append(text)
-    return points
+    return candidates
+
+
+def candidate_topic(c):
+    """先看代表条目标题命中的事件类型，再看整组聚类，避免「上市」被误判为量产。"""
+    title_low = (c["rep"].get("title") or "").lower()
+    for tag, _label in SIGNAL_ORDER:
+        if any(w.lower() in title_low for w in TOPIC_GROUPS[tag]):
+            return tag
+    return c["tags"][0] if c.get("tags") else ""
+
+
+def impact_for(c):
+    return IMPACT_BY_TOPIC.get(candidate_topic(c), IMPACT_FALLBACK)
+
+
+def candidate_detail(c, limit=160):
+    """候选条目的中文摘要（没有中文摘要就不展示，避免英文原文混入日报正文）。"""
+    detail = (c["rep"].get("summary") or "").strip()
+    if not detail or not CJK_CHAR.search(detail):
+        return ""
+    return shorten(detail, limit)
+
+
+def rule_top_news(candidates, limit=TOP_MAX):
+    out = []
+    for c in candidates[:limit]:
+        rep = c["rep"]
+        out.append({
+            "event": clean_headline(rep.get("title") or ""),
+            "impact": impact_for(c),
+            "impact_mode": "rule",
+            "level": c["level"],
+            "count": c["count"],
+            "companies": rep.get("companies") or [],
+            "board": rep.get("board") or "",
+            "published": rep.get("published") or "",
+            "detail": candidate_detail(c),
+            "links": c["links"],
+        })
+    return out
+
+
+def rule_signals(candidates, top_ids, limit=5):
+    """规则口径的前瞻信号：量产/交付、融资、上市、政策、财报、新品。"""
+    out, seen_text = [], set()
+    for c in candidates:
+        topic = candidate_topic(c)
+        if not topic:
+            continue
+        # 优先用未进重点新闻的条目，避免整份日报只围绕同一件事
+        if c["id"] in top_ids:
+            continue
+        text = clean_headline(c["rep"].get("title") or "")
+        key = norm_title(text)[:24]
+        if key and key in seen_text:
+            continue
+        links = c["links"]
+        rep = c["rep"]
+        out.append({
+            "tag": SIGNAL_LABEL.get(topic, "产业动态"),
+            "text": text,
+            "level": c["level"],
+            "count": c["count"],
+            "published": rep.get("published") or "",
+            "source": (links[0]["source"] if links else (rep.get("source") or "")),
+            "url": (links[0]["url"] if links else (rep.get("url") or "")),
+        })
+        if key:
+            seen_text.add(key)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def rule_mainline(candidates, selected, cross_n, counts):
+    if not candidates:
+        return "本轮未抓到可用条目，暂无明确信号；请查看页脚抓取状态或稍后重试。"
+    first = candidates[0]
+    raw_title = clean_headline(first["rep"].get("title") or "")
+    # 主线里只取标题的主干（冒号/逗号前），避免出现截断的省略号
+    title = re.split(r"[：:，,（(]", raw_title)[0].strip()
+    title = shorten(title, 34)
+    verify_txt = (f"{first['count']} 家独立站点交叉印证" if first["level"] == "cross"
+                  else "单一来源、待进一步核实")
+    hard_n = len([c for c in candidates if candidate_topic(c)])
+    return (f"今日机器人板块焦点为「{title}」（{verify_txt}）；"
+            f"本轮共收录 {len(selected)} 条公开信息（国内 {counts.get('domestic', 0)} / "
+            f"海外 {counts.get('overseas', 0)} / 大厂 {counts.get('bigtech', 0)}），"
+            f"{cross_n} 条获多家印证，另有 {hard_n} 条量产、融资、政策类硬信息值得跟踪。")
 
 
 def http_post_json(url, payload, headers, timeout=45):
@@ -656,99 +853,235 @@ def http_post_json(url, payload, headers, timeout=45):
         return json.loads(raw.decode("utf-8", "replace"))
 
 
-def llm_analysis(cfg, summary):
-    """可选的 LLM 分析：只喂本轮精选条目，失败由调用方降级回规则式。"""
+def redact(text, key):
+    """错误信息里若意外带上 key，一律打码后再记录。"""
+    return (text or "").replace(key, "***") if key else (text or "")
+
+
+DEEPSEEK_SYSTEM_PROMPT = """你是国联民生证券研究所汽车行业研究团队的机器人产业日报编辑。
+必须严格遵守以下规则：
+1. 只能使用用户给出的候选新闻（编号 [#1]…[#N]）中的事实；禁止引入候选之外的公司、产品、订单、金额、数字、时间或来源。
+2. 不得编造数据、链接、引述，不得给出目标价、投资评级或收益承诺。
+3. 只输出一个 JSON 对象，不要 markdown 代码块，不要输出 JSON 之外的任何文字。
+4. JSON 结构必须严格为：
+{"mainline":"一句话概括今日机器人板块核心变化（40-90 字）",
+ "top_news":[{"candidate_id":1,"event":"一句话说清发生了什么（不超过 60 字）","impact":"1-2 句影响判断，说明对产业链、公司或市场情绪的含义（不超过 90 字）"}],
+ "signals":[{"candidate_id":2,"text":"一句前瞻或跟踪信号（不超过 50 字）"}]}
+5. top_news 输出 3-5 条，按重要性从高到低排序；candidate_id 必须来自候选列表，且不能重复。
+6. signals 输出 0-4 条，聚焦量产节点、订单、融资、政策等前瞻信息；候选新闻里没有可用信号时输出空数组 []。
+7. 若某条新闻无法判断影响，impact 写「暂无明确信号」。
+8. mainline 不得罗列条目标题，要概括当日主线。"""
+
+
+def build_candidate_prompt(candidates, date_label):
+    """固定模板：把候选池按编号交给模型，模型只能引用这些编号。"""
+    lines = [f"日期：{date_label}", f"候选新闻共 {len(candidates)} 条（只能引用这些编号）："]
+    for c in candidates:
+        rep = c["rep"]
+        verify = (f"多家印证（{c['count']} 家独立站点）"
+                  if c["level"] == "cross" else "单一来源")
+        cos = "、".join(rep.get("companies") or []) or "未标注"
+        detail = candidate_detail(c, 220) or "无摘要"
+        pub = (rep.get("published") or "")[:16].replace("T", " ")
+        lines.append(f"[#{c['id']}] 标题：{clean_headline(rep.get('title') or '')}")
+        lines.append(f"     来源：{rep.get('source') or ''}；时间：{pub}；"
+                     f"涉及公司：{cos}；印证：{verify}")
+        lines.append(f"     摘要：{detail}")
+    lines.append("请按固定 JSON 结构输出。")
+    return "\n".join(lines)
+
+
+def validate_llm_report(obj, candidates, verbose=True):
+    """严格校验模型输出：编号必须来自候选池，越界/重复/过短一律丢弃。"""
+    by_id = {c["id"]: c for c in candidates}
+    if not isinstance(obj, dict):
+        raise RuntimeError("模型输出不是 JSON 对象")
+    mainline = str(obj.get("mainline") or "").strip()
+    if not (8 <= len(mainline) <= 240):
+        raise RuntimeError("mainline 缺失或长度不合规")
+
+    tops, seen = [], set()
+    for item in obj.get("top_news") or []:
+        if not isinstance(item, dict):
+            continue
+        try:
+            cid = int(item.get("candidate_id"))
+        except (TypeError, ValueError):
+            continue
+        if cid in seen or cid not in by_id:
+            continue
+        event = str(item.get("event") or "").strip()
+        impact = str(item.get("impact") or "").strip()
+        if not (4 <= len(event) <= 110) or not (4 <= len(impact) <= 170):
+            continue
+        c = by_id[cid]
+        rep = c["rep"]
+        tops.append({
+            "event": event,
+            "impact": impact,
+            "impact_mode": "deepseek",
+            "level": c["level"],
+            "count": c["count"],
+            "companies": rep.get("companies") or [],
+            "board": rep.get("board") or "",
+            "published": rep.get("published") or "",
+            "detail": candidate_detail(c),
+            "links": c["links"],          # 链接一律取真实条目，不用模型输出
+        })
+        seen.add(cid)
+        if len(tops) >= TOP_MAX:
+            break
+    if len(tops) < TOP_MIN:
+        raise RuntimeError(f"有效重点新闻仅 {len(tops)} 条，低于 {TOP_MIN} 条")
+
+    signals, seen_sig = [], set()
+    for item in obj.get("signals") or []:
+        if not isinstance(item, dict):
+            continue
+        try:
+            cid = int(item.get("candidate_id"))
+        except (TypeError, ValueError):
+            continue
+        text = str(item.get("text") or "").strip()
+        if cid in seen_sig or cid not in by_id or not (4 <= len(text) <= 70):
+            continue
+        c = by_id[cid]
+        rep = c["rep"]
+        links = c["links"]
+        topic = candidate_topic(c)
+        signals.append({
+            "tag": SIGNAL_LABEL.get(topic, "产业动态"),
+            "text": text,
+            "level": c["level"],
+            "count": c["count"],
+            "published": rep.get("published") or "",
+            "source": (links[0]["source"] if links else (rep.get("source") or "")),
+            "url": (links[0]["url"] if links else (rep.get("url") or "")),
+        })
+        seen_sig.add(cid)
+        if len(signals) >= 4:
+            break
+    return {"mainline": mainline, "top_news": tops, "signals": signals}
+
+
+def deepseek_report(cfg, candidates, date_label):
+    """按固定提示词模板调用 DeepSeek（OpenAI 兼容），返回校验后的日报内容。"""
     llm = cfg.get("llm") or {}
     model = (llm.get("model") or "").strip()
     if not model:
         raise RuntimeError("config.llm.model 未配置")
-    env_name = (llm.get("api_key_env") or "ROBOT_LLM_API_KEY").strip()
-    key = (os.environ.get(env_name) or llm.get("api_key") or "").strip()
+    env_name = (llm.get("api_key_env") or "DEEPSEEK_API_KEY").strip()
+    key = (os.environ.get(env_name) or "").strip()
     if not key:
-        raise RuntimeError(f"未提供 API key（环境变量 {env_name} 为空）")
-    base = (llm.get("base_url") or "https://api.openai.com/v1").rstrip("/")
+        raise RuntimeError(f"环境变量 {env_name} 为空，未配置 key")
+    base = (llm.get("base_url") or "https://api.deepseek.com").rstrip("/")
     url = base + "/chat/completions"
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": DEEPSEEK_SYSTEM_PROMPT},
+            {"role": "user", "content": build_candidate_prompt(candidates, date_label)},
+        ],
+        "temperature": float(llm.get("temperature", 0.3)),
+        "max_tokens": int(llm.get("max_tokens", 1600)),
+        "response_format": {"type": "json_object"},
+        "stream": False,
+    }
+    try:
+        data = http_post_json(url, payload, {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + key,
+        }, timeout=int(llm.get("timeout") or 60))
+    except Exception as e:  # noqa: BLE001
+        raise RuntimeError(redact(f"{type(e).__name__}: {str(e)[:200]}", key))
 
-    lines = [f"本轮概况：{summary['headline']}", "精选条目："]
-    for i, p in enumerate(summary["points"], 1):
-        tags = "多家印证" if p["level"] == "cross" else "单一来源"
-        src = "、".join(l.get("source") or l.get("host") or "" for l in p["links"]) or p["source"]
-        lines.append(f"{i}. [{tags}] {p['text']}")
-        if p.get("detail"):
-            lines.append(f"   摘要：{p['detail']}")
-        lines.append(f"   来源：{src}（{p.get('published', '')[:16]}）")
-
-    messages = [
-        {"role": "system", "content":
-         "你是机器人产业研究员。只能依据用户给出的条目撰写分析，"
-         "不得编造条目以外的事件、公司、数字或链接。"
-         "请用 5-8 句中文写一段连贯分析，讲清本轮主线、趋势变化与值得注意的信号；"
-         "不要逐条复述标题，不要输出网址，不要使用条目中没有的专有名词。"},
-        {"role": "user", "content": "\n".join(lines) + "\n\n请基于以上条目写分析。"},
-    ]
-    data = http_post_json(url, {
-        "model": model, "messages": messages,
-        "temperature": 0.3, "max_tokens": 900,
-    }, {"Content-Type": "application/json",
-        "Authorization": "Bearer " + key},
-        timeout=int(llm.get("timeout") or 45))
-
-    text = ((data.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
-    text = re.sub(r"https?://\S+", "", text).strip()
-    if len(text) < 20:
+    try:
+        content = ((data.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
+    except Exception:  # noqa: BLE001
+        content = ""
+    content = content.strip()
+    if not content:
         raise RuntimeError("模型返回内容为空")
-    return shorten(text, 1200)
+    content = re.sub(r"^```(?:json)?|```$", "", content, flags=re.M).strip()
+    try:
+        obj = json.loads(content)
+    except Exception:  # noqa: BLE001
+        m = re.search(r"\{.*\}", content, re.S)
+        if not m:
+            raise RuntimeError("模型输出不是合法 JSON")
+        obj = json.loads(m.group(0))
+    return validate_llm_report(obj, candidates)
 
 
-def build_summary(selected, now, cfg, counts=None, verbose=True):
-    """生成本轮速览：规则式为默认；LLM 仅在 enabled + 有 key 时补充，失败自动降级。"""
+WEEKDAYS = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+
+
+def format_date_label(now):
+    return f"{now.year}年{now.month}月{now.day}日 {WEEKDAYS[now.weekday()]}"
+
+
+def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
+    """生成日报：规则式打底；DeepSeek 开启且有 key 时按固定模板改写，
+    任何解析/超时/限流/鉴权失败都回落到规则式，页面始终有内容。"""
     counts = counts or {}
-    cross_n = len([r for r in selected if (r.get("verify") or {}).get("level") == "cross"])
-    headline = (f"本轮收录 {len(selected)} 条（国内 {counts.get('domestic', 0)} / "
-                f"海外 {counts.get('overseas', 0)} / 大厂 {counts.get('bigtech', 0)}），"
-                f"{cross_n} 条获多家独立站点交叉印证。")
     llm = cfg.get("llm") or {}
-    summary = {
+    candidates = build_candidates(selected, now)
+    cross_n = len([r for r in selected if (r.get("verify") or {}).get("level") == "cross"])
+
+    top_news = rule_top_news(candidates)
+    signals = rule_signals(candidates, {c["id"] for c in candidates[:TOP_MAX]})
+    report = {
+        "issue_no": issue_no,
+        "date": now.strftime("%Y-%m-%d"),
+        "date_label": format_date_label(now),
+        "team": "国联民生研究所汽车组",
         "mode": "rule",
         "generated_at": now.isoformat(),
         "generated_label": now.strftime("%Y-%m-%d %H:%M"),
-        "headline": headline,
-        "analysis": "",
-        "points": build_rule_points(selected, now),
+        "mainline": rule_mainline(candidates, selected, cross_n, counts),
+        "top_news": top_news,
+        "signals": signals,
         "stats": {
             "items": len(selected),
             "cross": cross_n,
             "single": len(selected) - cross_n,
             "clusters": len(event_clusters(selected)),
+            "candidates": len(candidates),
         },
         "llm": {
             "enabled": bool(llm.get("enabled")),
             "used": False,
-            "provider": llm.get("provider") or "",
+            "provider": llm.get("provider") or "deepseek",
             "model": llm.get("model") or "",
             "error": "",
         },
     }
 
     if not llm.get("enabled"):
-        return summary
-    if not summary["points"]:
-        summary["llm"]["error"] = "本轮无可用于总结的条目"
-        return summary
+        return report
+    if not candidates:
+        report["llm"]["error"] = "本轮无候选条目"
+        if verbose:
+            print("      日报：无候选条目，使用规则式", flush=True)
+        return report
     try:
-        text = llm_analysis(cfg, summary)
-        summary["analysis"] = text
-        summary["mode"] = "llm"
-        summary["llm"]["used"] = True
+        out = deepseek_report(cfg, candidates, report["date_label"])
+        report["mainline"] = out["mainline"]
+        report["top_news"] = out["top_news"]
+        report["signals"] = out["signals"]
+        report["mode"] = "deepseek"
+        report["llm"]["used"] = True
         if verbose:
-            print(f"      速览：已用 {summary['llm']['model']} 生成分析段", flush=True)
+            print(f"      日报：DeepSeek（{report['llm']['model']}）生成成功", flush=True)
     except Exception as e:  # noqa: BLE001
-        # 失败一律降级回规则式；错误只记录类型与简短原因，不含 key
-        summary["llm"]["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+        report["llm"]["error"] = redact(f"{type(e).__name__}: {str(e)[:200]}",
+                                        os.environ.get(
+                                            (llm.get("api_key_env") or "DEEPSEEK_API_KEY")
+                                            .strip(), ""))
         if verbose:
-            print(f"      速览：LLM 调用失败，降级为规则式（{summary['llm']['error']}）",
+            print(f"      日报：DeepSeek 失败，降级为规则式（{report['llm']['error']}）",
                   flush=True)
-    return summary
+    return report
 
 
 # ---------------------------------------------------------------- 翻译 ----
@@ -793,6 +1126,25 @@ def translate(text, cache):
 
 
 # ---------------------------------------------------------------- 主流程 ----
+def fetch_sources(sources, workers=10):
+    """并发拉取所有通道；单个通道失败只记录原因，不影响其他通道。"""
+    results = {}
+
+    def one(src):
+        try:
+            return src["id"], fetch(src["url"], timeout=18), ""
+        except Exception as e:  # noqa: BLE001
+            return src["id"], None, f"{type(e).__name__}: {str(e)[:160]}"
+
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(one, s) for s in sources]
+        for fut in as_completed(futures):
+            sid, xml_text, err = fut.result()
+            results[sid] = (xml_text, err)
+    return results
+
+
 def collect(verbose=True):
     now = datetime.now(CST)
     horizon = now - timedelta(days=60)
@@ -800,11 +1152,22 @@ def collect(verbose=True):
     # 大厂通道口径统计：进入判定的条数 / 判定为非机器人被剔除 / 机器人相关但不属大厂被分流
     stats = {"bt_raw": 0, "bt_dropped": 0, "bt_demoted": 0}
 
+    if verbose:
+        print(f"      并发拉取 {len(SOURCES)} 个通道 ...", flush=True)
+    fetched = fetch_sources(SOURCES)
+
     for src in SOURCES:
         status = {"id": src["id"], "name": src["name"], "board": src["board"],
                   "url": src["url"], "status": "ok", "count": 0, "raw": 0, "error": ""}
+        xml_text, err = fetched.get(src["id"], (None, "未抓取"))
+        if xml_text is None or err:
+            status["status"] = "fail"
+            status["error"] = err or "空响应"
+            report.append(status)
+            if verbose:
+                print(f"  [FAIL] {src['name']:<26} {status['error']}")
+            continue
         try:
-            xml_text = fetch(src["url"])
             entries = parse_feed(xml_text)
         except Exception as e:  # noqa: BLE001
             status["status"] = "fail"
@@ -906,7 +1269,8 @@ def collect(verbose=True):
                 "title_original": "",
                 "summary": summary,
                 "summary_original": "",
-                "source": media if (is_gnews or is_bing) and media else src["name"],
+                "source": media if (is_gnews or is_bing) and media else (
+                    site_of(link) if (is_gnews or is_bing) else src["name"]),
                 "source_id": src["id"],
                 "via": ("Bing" if is_bing and media else
                         (src["name"] if is_gnews and media else "")),
@@ -1019,9 +1383,11 @@ def load_config():
     """读取 config.json；缺失或损坏时回落到默认值，不让进程因此退出。"""
     cfg = {"interval_minutes": 60, "retries": 1, "max": 60,
            "per_source": 16, "translate": True,
-           "llm": {"enabled": False, "provider": "openai-compatible", "model": "",
-                   "base_url": "https://api.openai.com/v1", "api_key": "",
-                   "api_key_env": "ROBOT_LLM_API_KEY", "timeout": 45}}
+           "llm": {"enabled": False, "provider": "deepseek",
+                   "model": "deepseek-chat",
+                   "base_url": "https://api.deepseek.com",
+                   "api_key_env": "DEEPSEEK_API_KEY",
+                   "max_tokens": 1600, "temperature": 0.3, "timeout": 60}}
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, "r", encoding="utf-8") as f:
@@ -1035,6 +1401,75 @@ def load_config():
     return cfg
 
 
+def load_archive_index():
+    """读取归档索引（按日期升序）。不存在时返回空列表。"""
+    path = os.path.join(ARCHIVE_DIR, "index.json")
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def save_archive(payload, force=True):
+    """把当日完整日报快照写入 archive/<日期>.json，并更新索引。
+
+    - force=True（每日 9:00 日报任务）：始终覆盖当日快照，写入 DeepSeek 或降级后的规则版；
+    - force=False（每 30 分钟常规抓取）：只在当日尚无 DeepSeek 版时更新规则版，
+      避免把当天已生成的 DeepSeek 日报覆盖掉。历史其他日期永不改写。
+    """
+    os.makedirs(ARCHIVE_DIR, exist_ok=True)
+    rep = payload.get("report") or {}
+    date = rep.get("date") or payload.get("generated_at", "")[:10]
+    if not date:
+        return []
+    index = load_archive_index()
+    existing = [e for e in index if e.get("date") == date]
+    if existing and not force and existing[0].get("mode") == "deepseek":
+        return index
+
+    path = os.path.join(ARCHIVE_DIR, f"{date}.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+
+    entry = {
+        "date": date,
+        "issue_no": rep.get("issue_no"),
+        "date_label": rep.get("date_label") or date,
+        "mainline": rep.get("mainline") or "",
+        "mode": rep.get("mode") or "rule",
+        "generated_label": payload.get("generated_label") or "",
+        "counts": {
+            "domestic": len(payload.get("boards", {}).get("domestic", {}).get("items", [])),
+            "overseas": len(payload.get("boards", {}).get("overseas", {}).get("items", [])),
+            "bigtech": len(payload.get("boards", {}).get("bigtech", {}).get("items", [])),
+        },
+    }
+    index = [e for e in index if e.get("date") != date]
+    index.append(entry)
+    index.sort(key=lambda e: e.get("date") or "")
+    with open(os.path.join(ARCHIVE_DIR, "index.json"), "w", encoding="utf-8") as f:
+        json.dump(index, f, ensure_ascii=False, indent=1)
+    return index
+
+
+def write_data_files(payload, archive_index=None):
+    """写 data.json / data.js；data.js 同时内嵌归档索引，供 file:// 双击时使用。"""
+    with open(DATA_JSON, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    if archive_index is None:
+        archive_index = load_archive_index()
+    with open(DATA_JS, "w", encoding="utf-8") as f:
+        f.write("window.ROBOT_NEWS_DATA = ")
+        json.dump(payload, f, ensure_ascii=False)
+        f.write(";\nwindow.ROBOT_NEWS_ARCHIVE = ")
+        json.dump(archive_index, f, ensure_ascii=False)
+        f.write(";\n")
+
+
 def log_line(msg):
     """同时打印到控制台并追加到 daemon.log，便于回看每轮结果。"""
     line = f"[{datetime.now(CST).strftime('%Y-%m-%d %H:%M:%S')}] {msg}"
@@ -1046,8 +1481,12 @@ def log_line(msg):
         pass
 
 
-def run_round(args, cfg):
-    """跑一轮抓取 + 翻译 + 写数据文件，返回 data payload。"""
+def run_round(args, cfg, daily=False):
+    """跑一轮抓取 + 翻译 + 写数据文件，返回 data payload。
+
+    daily=True：每日 9:00 的正式日报任务，允许调用 DeepSeek 并强制归档当日一期；
+    daily=False：每 30 分钟的常规抓取，只更新列表与规则式日报，不调用大模型。
+    """
     max_items = args.max or int(cfg.get("max", 60))
     per_source = args.per_source or int(cfg.get("per_source", 16))
     do_translate = (not args.no_translate) and bool(cfg.get("translate", True))
@@ -1110,11 +1549,26 @@ def run_round(args, cfg):
     cross = len([r for r in selected if r["verify"]["level"] == "cross"])
     print(f"      信息核对：已交叉印证 {cross} 条，单一来源 {len(selected) - cross} 条")
 
-    summary = build_summary(selected, now, cfg,
-                            counts={k: len(boards[k])
-                                    for k in ["domestic", "overseas", "bigtech"]})
-    mode_txt = "大模型分析 + 规则要点" if summary["mode"] == "llm" else "规则式要点"
-    print(f"      速览：{len(summary['points'])} 条要点（{mode_txt}）")
+    # 期号：同一日期重跑沿用原期号，新日期顺延
+    archive_index = load_archive_index()
+    today = now.strftime("%Y-%m-%d")
+    same_day = [e for e in archive_index if e.get("date") == today]
+    issue_no = (same_day[0].get("issue_no") or len(archive_index) + 1) if same_day \
+        else len(archive_index) + 1
+
+    # 常规抓取不调用大模型：复制一份配置并关闭 llm，节约调用成本
+    report_cfg = cfg
+    if not daily:
+        report_cfg = dict(cfg)
+        report_cfg["llm"] = dict(cfg.get("llm") or {}, enabled=False)
+
+    daily_report = build_report(selected, now, report_cfg,
+                                counts={k: len(boards[k])
+                                        for k in ["domestic", "overseas", "bigtech"]},
+                                issue_no=issue_no)
+    mode_txt = "DeepSeek 生成" if daily_report["mode"] == "deepseek" else "规则式（常规轮次或无 key 降级）"
+    print(f"      日报：第 {issue_no} 期，重点 {len(daily_report['top_news'])} 条、"
+          f"信号 {len(daily_report['signals'])} 条（{mode_txt}）")
 
     # 保留已有段子（脚本绝不改写段子内容）
     existing_jokes = []
@@ -1154,7 +1608,7 @@ def run_round(args, cfg):
                       "items": boards["jokes"], "ok_sources": 0, "failed_sources": 0},
         },
         "source_report": report,
-        "summary": summary,
+        "report": daily_report,
         "meta": {
             "total_items": sum(len(boards[k]) for k in ["domestic", "overseas", "bigtech"]),
             "translated": 0 if not do_translate else len([r for r in selected if r["title_original"]]),
@@ -1164,25 +1618,19 @@ def run_round(args, cfg):
         },
     }
 
-    with open(DATA_JSON, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=1)
-    # 供 file:// 双击打开时使用（fetch 在本地文件协议下会被浏览器拦截）
-    with open(DATA_JS, "w", encoding="utf-8") as f:
-        f.write("window.ROBOT_NEWS_DATA = ")
-        json.dump(payload, f, ensure_ascii=False)
-        f.write(";\n")
+    archive_index = save_archive(payload, force=daily)
+    write_data_files(payload, archive_index)
 
-    print("[3/4] 写入 data.json / data.js 完成")
+    print("[3/4] 写入 data.json / data.js / archive 完成")
     print("[4/4] 汇总：")
     for k in ["domestic", "overseas", "bigtech", "jokes"]:
         n = len(payload["boards"][k]["items"])
         print(f"      {payload['boards'][k]['name']}: {n} 条")
+    print(f"      归档：共 {len(archive_index)} 期，当日快照 archive/{daily_report['date']}.json")
     failed = [r for r in report if r["status"] == "fail"]
+    print(f"      抓取通道：{len(report)} 个，成功 {len(report) - len(failed)} 个，失败 {len(failed)} 个")
     if failed:
-        print(f"      失败来源 {len(failed)} 个：" +
-              ", ".join(f"{r['name']}({r['id']})" for r in failed))
-    else:
-        print("      所有来源抓取成功")
+        print("      失败来源：" + ", ".join(f"{r['name']}({r['id']})" for r in failed))
     return payload
 
 
@@ -1197,7 +1645,7 @@ def daemon_loop(args, cfg):
         payload = None
         for attempt in range(retries + 1):
             try:
-                payload = run_round(args, cfg)
+                payload = run_round(args, cfg, daily=getattr(args, "daily", False))
                 break
             except Exception as e:  # noqa: BLE001
                 log_line(f"本轮抓取失败（第 {attempt + 1} 次尝试）：{type(e).__name__}: {e}")
@@ -1232,16 +1680,15 @@ def main():
     ap.add_argument("--sync-only", action="store_true",
                     help="不联网抓取，仅把现有 data.json 同步生成 data.js（手动改完段子后用）")
     ap.add_argument("--daemon", action="store_true", help="常驻定时抓取模式")
+    ap.add_argument("--daily", action="store_true",
+                    help="每日正式日报：允许调用 DeepSeek 并强制归档当日一期（9:00 任务用）")
     ap.add_argument("--interval", type=int, default=None, help="定时抓取间隔（分钟，覆盖 config.json）")
     args = ap.parse_args()
 
     if args.sync_only:
         with open(DATA_JSON, "r", encoding="utf-8") as f:
             payload = json.load(f)
-        with open(DATA_JS, "w", encoding="utf-8") as f:
-            f.write("window.ROBOT_NEWS_DATA = ")
-            json.dump(payload, f, ensure_ascii=False)
-            f.write(";\n")
+        write_data_files(payload)
         n = len(payload.get("boards", {}).get("jokes", {}).get("items", []))
         print(f"已从 data.json 生成 data.js（段子 {n} 条）。刷新页面即可看到改动。")
         return
@@ -1253,7 +1700,7 @@ def main():
     if args.daemon:
         daemon_loop(args, cfg)
     else:
-        run_round(args, cfg)
+        run_round(args, cfg, daily=args.daily)
 
 
 if __name__ == "__main__":
