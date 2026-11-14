@@ -46,11 +46,48 @@
 
 ## 接入 DeepSeek（用户自行配置 key）
 
-`config.json` 中已预留：
+### 第一步：先在本地确认 key 可用（推荐）
+
+key 还没配到仓库前，可以先在本机自检，不写任何文件、不打印完整 key：
+
+```powershell
+# PowerShell（只对当前终端生效，关闭窗口即失效）
+$env:DEEPSEEK_API_KEY = "sk-..."   # 换成你自己的 key，不要写进 config.json
+python check_llm.py
+```
+
+- 成功会打印：`[成功] DeepSeek 连通，模型有正常返回。`，并显示模型回显与 token 用量；
+- 失败会直接翻译原因：401 表示 key 无效/复制不完整，402 表示余额不足，404 表示接口或模型名不对，429 表示限流，超时表示网络/代理问题；
+- 退出码：0 成功、1 未设置 key、2 调用失败；脚本不会把 key 写入任何文件或日志。
+
+key 在 DeepSeek 开放平台 <https://platform.deepseek.com> 的 **API keys** 页面创建，**只在创建时显示一次**，关掉页面就看不到了，请当场复制。
+
+### 第二步：把 key 加到 GitHub 仓库（图文步骤）
+
+1. 打开仓库 <https://github.com/Finn-TF/robot-news-board>；
+2. 点右上角 **Settings**（仓库设置，不是个人账号设置）；
+3. 左侧栏找到 **Secrets and variables** → 点下面的 **Actions**；
+4. 页面分两块：**Environment secrets** 和 **Repository secrets**。**只用下面那块 Repository secrets**，Environment secrets 不用管；
+5. 点右下角绿色按钮 **New repository secret**；
+6. **Name** 填：`DEEPSEEK_API_KEY`（全大写、下划线，前后不要有空格）；
+7. **Secret** 粘贴你的 key（粘贴后输入框不会显示明文，这是正常的）；
+8. 点 **Add secret**；
+9. 回到列表，看到 `DEEPSEEK_API_KEY` 一行、右侧显示更新时间，就说明保存成功。
+
+注意事项：
+
+- 保存后**再也看不到 key 原文**，这是 GitHub 的正常设计；忘了只能删除重建；
+- 如果页面显示 “This repository has no secrets.”，说明还没保存成功，重新走第 5–8 步；
+- 名称必须完全一致 `DEEPSEEK_API_KEY`，写成 `DEEPSEEK-KEY`、`DEEPSEEK_API_KEY `（带空格）都不会生效；
+- 不要用 Environment secrets 代替，本项目的 workflow 读取的是仓库级 secret。
+
+### 第三步：确认配置并触发
+
+`config.json` 中已预设：
 
 ```json
 "llm": {
-  "enabled": false,
+  "enabled": true,
   "provider": "deepseek",
   "model": "deepseek-chat",
   "base_url": "https://api.deepseek.com",
@@ -61,21 +98,10 @@
 }
 ```
 
-启用步骤：
-
-1. 在仓库 **Settings → Secrets and variables → Actions** 新建 Secret：`DEEPSEEK_API_KEY`（只填在 GitHub，**不要**写进 `config.json`、代码或日志）；
-2. 把 `config.json` 的 `llm.enabled` 改为 `true`（`model`、`base_url` 可按需修改，`base_url` 末尾不要带 `/chat/completions`）；
-3. 本地调试时用同名环境变量：
-
-   ```powershell
-   $env:DEEPSEEK_API_KEY = "..."   # 只在本机终端设置，不要提交
-   python fetch_news.py --daily
-   ```
-
-4. 手动验证一次：Actions → **每日 9 点生成日报** → Run workflow；
-5. 打开线上页面，报头右侧的模式标签应显示「DeepSeek 辅助生成 · deepseek-chat」；仍显示「规则口径」说明 key 未生效或调用被降级，可看 Actions 日志中的 `日报：DeepSeek 失败，降级为规则式（原因）`。
-
-没有 key 或 `enabled=false` 时，一切照常运行，只是使用规则口径。
+- `enabled` 已为 `true`：secret 一旦配好，下一次每天 9:00（北京）的日报任务会自动使用 DeepSeek，**不需要改代码或再推一次**；
+- 想立刻验证：Actions → **每日 9 点生成日报** → **Run workflow**；
+- 看运行日志里的 `日报：DeepSeek（deepseek-chat）生成成功` 即成功；若显示 `DeepSeek 失败，降级为规则式（原因）`，按括号里的原因处理（见上面 401/402/404 的说明）；
+- 成功后页面报头右侧会显示「DeepSeek 辅助生成 · deepseek-chat」，否则显示「规则口径」。
 
 ## 本地运行
 
@@ -153,6 +179,7 @@ python fetch_news.py --daemon        # 常驻定时抓取（间隔读 config.jso
 | `archive/YYYY-MM-DD.json` | 往期日报快照（完整数据） |
 | `archive/index.json` | 归档索引（日期、期号、主线、板块条数） |
 | `config.json` | 抓取间隔、条数、翻译开关、DeepSeek 开关 |
+| `check_llm.py` | DeepSeek 连通性自检（读环境变量，不写文件、不打印完整 key） |
 | `translate_cache.json` | 英文翻译缓存（本地运行加速，不提交仓库） |
 | `daemon.log` | 常驻模式日志（运行后生成，不提交） |
 | `update.ps1` | 一键 commit + push（Windows） |

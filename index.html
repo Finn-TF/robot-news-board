@@ -444,8 +444,6 @@ details[open] summary:before{content:"−"}
     var mode = "规则口径";
     if(rep && rep.mode === "deepseek"){
       mode = "DeepSeek 辅助生成" + (rep.llm && rep.llm.model ? " · " + rep.llm.model : "");
-    }else if(rep && rep.llm && rep.llm.enabled && rep.llm.error){
-      mode = "规则口径（大模型降级）";
     }
     $("modeLabel").textContent = mode;
 
