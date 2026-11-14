@@ -1401,6 +1401,20 @@ def load_config():
     return cfg
 
 
+def load_today_report(date):
+    """读取当日已归档的日报（用于常规轮次沿用 9:00 的 DeepSeek 版）。"""
+    path = os.path.join(ARCHIVE_DIR, f"{date}.json")
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        rep = data.get("report") or {}
+        return rep if rep.get("date") == date else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def load_archive_index():
     """读取归档索引（按日期升序）。不存在时返回空列表。"""
     path = os.path.join(ARCHIVE_DIR, "index.json")
@@ -1566,6 +1580,12 @@ def run_round(args, cfg, daily=False):
                                 counts={k: len(boards[k])
                                         for k in ["domestic", "overseas", "bigtech"]},
                                 issue_no=issue_no)
+    # 常规轮次不覆盖当日 9:00 的 DeepSeek 日报：列表更新，日报正文沿用当天正式一期
+    if not daily:
+        prev = load_today_report(today)
+        if prev and prev.get("mode") == "deepseek":
+            daily_report = prev
+            print("      日报：沿用今日 9:00 的 DeepSeek 版（常规轮次只更新列表）")
     mode_txt = "DeepSeek 生成" if daily_report["mode"] == "deepseek" else "规则式（常规轮次或无 key 降级）"
     print(f"      日报：第 {issue_no} 期，重点 {len(daily_report['top_news'])} 条、"
           f"信号 {len(daily_report['signals'])} 条（{mode_txt}）")
