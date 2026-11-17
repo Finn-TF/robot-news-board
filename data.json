@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-17T18:33:01.151724+08:00",
- "generated_label": "2026-11-17 18:33",
+ "generated_at": "2026-11-17T19:42:18.185013+08:00",
+ "generated_label": "2026-11-17 19:42",
  "boards": {
   "domestic": {
    "key": "domestic",
@@ -23,7 +23,7 @@
      "id": "bf613b9ac45b",
      "verify": {
       "level": "cross",
-      "count": 3,
+      "count": 2,
       "sources": [
        {
         "name": "IT之家",
@@ -32,16 +32,120 @@
         "host": "ithome.com"
        },
        {
-        "name": "中国新闻网",
-        "url": "https://www.chinanews.com/cj/shipin/cns-d/2026/11-17/news1075228.shtml",
-        "published": "2026-11-17T03:17:00+08:00",
-        "host": "chinanews.com"
-       },
-       {
         "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
         "published": "2026-11-17T09:41:22+08:00",
         "host": "msn.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "让具身智能机器人“干成事”，青岛以场景“破卡点”",
+     "title_original": "",
+     "summary": "在王雷看来，具身智能正在推动人工智能从数字认知走向物理世界行动。大模型解决信息理解和认知问题，具身智能进一步解决物理世界中的感知、决策、操作和执行问题，未来两者将深度融合，不断突破机器人能力边界。“具身智能的应用空间不是预先固定的，而是随着能力进步不断扩展的。过去不能自动化的任务，未来可能因环境理解、灵巧操作和泛化能力提升而具备自动化条件。也就是说，机器人能力边界的突破，将持续创造新的场景需求。” ...",
+     "summary_original": "",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/roll/2026-11-17/doc-iniyzhhf1828871.shtml",
+     "published": "2026-11-17T11:38:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "cc7adb0fa5e7",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/roll/2026-11-17/doc-iniyzhhf1828871.shtml",
+        "published": "2026-11-17T11:38:00+08:00",
+        "host": "finance.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "对话蚂蚁灵波科技CEO朱兴：具身智能规模红利兑现时刻尚未到来，具 ...",
+     "title_original": "",
+     "summary": "过去，大模型主要活跃于数字世界，完成文本生成、信息检索、方案推演；如今，具身智能逐步走出仿真环境，机器人开始在工厂、物流场景承担分拣、拆垛、物料搬运等实体作业，具身商业化试点加速落地。 但技术快速发展的同时，跨硬件适配难、行业标准缺失等痛点凸显。赛道未来会形成怎样的竞争格局？参与者又该如何寻找生存位置？11月16日，蚂蚁灵波具身大模型挑战赛在上海收官，蚂蚁灵波科技CEO朱兴接受北京商报等多家媒体采 ...",
+     "summary_original": "",
+     "source": "北京商报网 on MSN",
+     "via": "Bing",
+     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E5%AF%B9%E8%AF%9D%E8%9A%82%E8%9A%81%E7%81%B5%E6%B3%A2%E7%A7%91%E6%8A%80ceo%E6%9C%B1%E5%85%B4-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%A7%84%E6%A8%A1%E7%BA%A2%E5%88%A9%E5%85%91%E7%8E%B0%E6%97%B6%E5%88%BB%E5%B0%9A%E6%9C%AA%E5%88%B0%E6%9D%A5-%E5%85%B7%E8%BA%AB%E5%9F%BA%E6%A8%A1%E9%95%BF%E6%9C%9F%E6%88%96%E4%BB%85%E5%89%A93%E8%87%B35%E5%AE%B6/ar-AA2hCsY4",
+     "published": "2026-11-17T11:20:21+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "2a7c5c544919",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "北京商报网",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E5%AF%B9%E8%AF%9D%E8%9A%82%E8%9A%81%E7%81%B5%E6%B3%A2%E7%A7%91%E6%8A%80ceo%E6%9C%B1%E5%85%B4-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%A7%84%E6%A8%A1%E7%BA%A2%E5%88%A9%E5%85%91%E7%8E%B0%E6%97%B6%E5%88%BB%E5%B0%9A%E6%9C%AA%E5%88%B0%E6%9D%A5-%E5%85%B7%E8%BA%AB%E5%9F%BA%E6%A8%A1%E9%95%BF%E6%9C%9F%E6%88%96%E4%BB%85%E5%89%A93%E8%87%B35%E5%AE%B6/ar-AA2hCsY4",
+        "published": "2026-11-17T11:20:21+08:00",
+        "host": "msn.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "机器人ETF鹏华盘中净申购900万份，政策产业层面迎来密集利好",
+     "title_original": "",
+     "summary": "消息面上，工业和信息化部批准《人工智能 关键基础技术 具身智能数据生成系统技术要求》等274项行业标准。其中，化工行业1项、石化行业2项、建材行业2项、稀土行业1项、机械行业23项、汽车行业18项、轻工行业41项、纺织行业28项、兵工民品行业1项、电子行业92项、通信行业65项。此外，华为云发布昇腾原生具身世界模型 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261117A04VJ800",
+     "published": "2026-11-17T10:43:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "9f4d959c2e44",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261117A04VJ800",
+        "published": "2026-11-17T10:43:00+08:00",
+        "host": "news.qq.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "机器人出货近2万台，产业链兑现节奏待验证",
+     "title_original": "",
+     "summary": "机器人板块11月重新活跃。10月19日至23日，人形机器人指数单周上涨7.03%，跑赢沪深300指数8.60个百分点，单周成交额11110亿元、环比增加32.65%。产业端催化密集：特斯拉三季报披露弗里蒙特工厂大批量产线投产，首批符合量产标准的Optimus下线；Smart Analytics Global数据显示，2026年上半年全球人形机器人出货约1.91万台，同比增长近三倍，中国厂商占97% ...",
+     "summary_original": "",
+     "source": "sohu.com",
+     "via": "",
+     "url": "https://www.sohu.com/a/1102581556_115495",
+     "published": "2026-11-17T10:39:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "特斯拉"
+     ],
+     "is_placeholder": false,
+     "id": "0984aee21118",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1102581556_115495",
+        "published": "2026-11-17T10:39:00+08:00",
+        "host": "sohu.com"
        }
       ]
      }
@@ -54,27 +158,21 @@
      "summary_original": "",
      "source": "快科技 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
+     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
      "published": "2026-11-17T09:41:22+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "2068ac8825c1",
+     "id": "d63238536159",
      "verify": {
       "level": "cross",
-      "count": 3,
+      "count": 2,
       "sources": [
        {
         "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
         "published": "2026-11-17T09:41:22+08:00",
         "host": "msn.cn"
-       },
-       {
-        "name": "中国新闻网",
-        "url": "https://www.chinanews.com/cj/shipin/cns-d/2026/11-17/news1075228.shtml",
-        "published": "2026-11-17T03:17:00+08:00",
-        "host": "chinanews.com"
        },
        {
         "name": "IT之家",
@@ -195,66 +293,93 @@
     },
     {
      "board": "domestic",
-     "title": "华为加码具身智能，切入清扫机器人业务",
+     "title": "“具身智能机器人的发展想象力将超过汽车产业”！雷军在深圳最新 ...",
      "title_original": "",
-     "summary": "盖世汽车讯 11月16日，华为云宣布，其与环卫装备龙头企业福龙马集团联合研制的下一代智能清扫机器人已正式启动预售，新品发布会定于12月在上海举行。这标志着双方正加速推动物理 AI（Physical AI）技术在复杂城市环卫场景中的深度商业化落地。 据介绍，新一代产品的核心架构实现全面升级，深度融合了华为云CloudRobo具身智能平台的能力。华为云为福龙马提供了全栈技术底座，涵盖CloudRobo ...",
+     "summary": "雷军透露，前不久，小米具身智能机器人已经进入工厂开展实际作业测试，能够连续完成8小时工作，并在此期间自主充电两次。“我觉得这个表现已经非常出色。”他认为，随着具身智能技术持续发展，机器人将成为重要的新兴产业，其市场潜力和应用空间可能超过汽车产业。",
      "summary_original": "",
-     "source": "盖世汽车 on MSN",
+     "source": "新浪财经",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E5%8D%8E%E4%B8%BA%E5%8A%A0%E7%A0%81%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD-%E5%88%87%E5%85%A5%E6%B8%85%E6%89%AB%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%9A%E5%8A%A1/ar-AA2hAxMT",
-     "published": "2026-11-17T03:58:41+08:00",
+     "url": "https://finance.sina.com.cn/wm/2026-11-17/doc-iniyzxcx1663477.shtml",
+     "published": "2026-11-17T04:00:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "acac12c70695",
+     "id": "52cdd862b76f",
      "verify": {
-      "level": "single",
-      "count": 1,
+      "level": "cross",
+      "count": 2,
       "sources": [
        {
-        "name": "盖世汽车",
-        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E5%8D%8E%E4%B8%BA%E5%8A%A0%E7%A0%81%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD-%E5%88%87%E5%85%A5%E6%B8%85%E6%89%AB%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%9A%E5%8A%A1/ar-AA2hAxMT",
-        "published": "2026-11-17T03:58:41+08:00",
-        "host": "msn.cn"
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-17/doc-iniyzxcx1663477.shtml",
+        "published": "2026-11-17T04:00:00+08:00",
+        "host": "finance.sina.com.cn"
+       },
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1102804908_115831",
+        "published": "2026-11-17T03:57:00+08:00",
+        "host": "sohu.com"
        }
       ]
      }
     },
     {
      "board": "domestic",
-     "title": "【深圳APEC】雷军：未来具身智能机器人肯定是巨大的产业机会",
+     "title": "雷军：具身智能机器人发展空间可能超过汽车产业",
      "title_original": "",
-     "summary": "2026年APEC工商领导人峰会11月17日至18日在深圳举办，小米集团创始人、董事长兼首席执行官雷军 在会上表示，前不久，我们的具身智能机器人，已经在我们的工厂实习，能够完整地工作8小时，中间还能两次自己去充电。我觉得这个表现，已经非常非常出色。我相信未来的话，这个具身智能机器人肯定是一个巨大的产业机会，它的想象力应该会超过汽车产业。所以我们小米的观点，我们特别看好这个AI进入物理世界以后所带来 ...",
+     "summary": "【CNMO科技消息】11月17日，在2026年亚太经合组织工商领导人峰会上，小米CEO雷军介绍了小米在AI、智能制造和机器人领域的进展。他表示，小米专注机器人研发已有六年，前不久，小米具身智能机器人已进入工厂实习，能够连续完成8小时工作，并在此期间自主进行两次充电。雷军认为，具身智能机器人未来将成为重要产业机会，其发展空间可能超过汽车产业。 雷军 雷军表示，当前各方对AI的投入规模较大，但能够实际 ...",
      "summary_original": "",
-     "source": "中国新闻网",
+     "source": "sohu.com",
+     "via": "",
+     "url": "https://www.sohu.com/a/1102804908_115831",
+     "published": "2026-11-17T03:57:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "f11ee23e05fa",
+     "verify": {
+      "level": "cross",
+      "count": 2,
+      "sources": [
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1102804908_115831",
+        "published": "2026-11-17T03:57:00+08:00",
+        "host": "sohu.com"
+       },
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-17/doc-iniyzxcx1663477.shtml",
+        "published": "2026-11-17T04:00:00+08:00",
+        "host": "finance.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "字节投的机器人公司，要上市了",
+     "title_original": "",
+     "summary": "融资层面，天眼查显示，截至目前，大寰机器人已完成8轮融资，历史投资方包括字节跳动、IDG资本、启明创投、君联资本等。其中字节跳动在2022年通过量子跃动完成战略投资，是较早布局的产业方。",
+     "summary_original": "",
+     "source": "36氪",
      "via": "Bing",
-     "url": "https://www.chinanews.com/cj/shipin/cns-d/2026/11-17/news1075228.shtml",
+     "url": "https://www.36kr.com/p/4073745359393923",
      "published": "2026-11-17T03:17:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "55388e78c54a",
+     "id": "8a5285476a7e",
      "verify": {
-      "level": "cross",
-      "count": 3,
+      "level": "single",
+      "count": 1,
       "sources": [
        {
-        "name": "中国新闻网",
-        "url": "https://www.chinanews.com/cj/shipin/cns-d/2026/11-17/news1075228.shtml",
+        "name": "36氪",
+        "url": "https://www.36kr.com/p/4073745359393923",
         "published": "2026-11-17T03:17:00+08:00",
-        "host": "chinanews.com"
-       },
-       {
-        "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%9B%B7%E5%86%9B-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%83%B3%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%B0%86%E8%B6%85%E8%BF%87%E6%B1%BD%E8%BD%A6/ar-AA2hBO3S",
-        "published": "2026-11-17T09:41:22+08:00",
-        "host": "msn.cn"
-       },
-       {
-        "name": "IT之家",
-        "url": "https://www.ithome.com/1/028/437.htm",
-        "published": "2026-11-17T17:53:00+08:00",
-        "host": "ithome.com"
+        "host": "36kr.com"
        }
       ]
      }
@@ -288,60 +413,6 @@
     },
     {
      "board": "domestic",
-     "title": "近300家企业挤进常州看机器人怎么“干活”",
-     "title_original": "",
-     "summary": "本报记者舒泉清11月16日，常州工业具身智能创新大会上，近300家产业链上下游企业代表把会场内外挤得满满当当。",
-     "summary_original": "",
-     "source": "人民网 on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/%E8%BF%91300%E5%AE%B6%E4%BC%81%E4%B8%9A%E6%8C%A4%E8%BF%9B%E5%B8%B8%E5%B7%9E%E7%9C%8B%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%80%8E%E4%B9%88-%E5%B9%B2%E6%B4%BB/ar-AA2hA8wD",
-     "published": "2026-11-17T02:54:38+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "0591aafd897a",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "人民网",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E8%BF%91300%E5%AE%B6%E4%BC%81%E4%B8%9A%E6%8C%A4%E8%BF%9B%E5%B8%B8%E5%B7%9E%E7%9C%8B%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%80%8E%E4%B9%88-%E5%B9%B2%E6%B4%BB/ar-AA2hA8wD",
-        "published": "2026-11-17T02:54:38+08:00",
-        "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "横琴跑出第一家“小脑”芯片上市企业！",
-     "title_original": "",
-     "summary": "11月12日，珠海一微科技股份有限公司正式在港交所主板挂牌。首日收盘涨幅38.18%，总市值触及59亿港元。一微科技的特殊性在于其产业身位，它并非又一家机器人整机厂商，也不是纯粹的芯片设计公司。按弗若斯特沙利文的界定，一微科技是中国第三大智能移动机器人解决方案提供商，同时是最大的单模态机器人解决方案供应商。更准 ...",
-     "summary_original": "",
-     "source": "腾讯网",
-     "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261117A09YX800",
-     "published": "2026-11-17T02:49:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "439171255584",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261117A09YX800",
-        "published": "2026-11-17T02:49:00+08:00",
-        "host": "news.qq.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
      "title": "雷军：AI走向物理世界将带来巨大机会，具身智能机器人想象力或超 ...",
      "title_original": "",
      "summary": "“AI是一个全新的时代，一定会带来非常多的商业机会，尤其是AI走向物理世界，与终端和各种应用场景深度结合以后，将释放巨大机会。” 11月17日，在2026年亚太经合组织（APEC）工商领导人峰会上，小米CEO雷军表示，当前AI投入非常之大，但能够落地的场景仍非常有限，“大家也有很多困扰，也非常焦虑。”在AI这一轮周期中真正实现商业闭环、挣到钱的公司相对较少。 雷军提到，业界正在探讨AI与手机、汽车 ...",
@@ -369,53 +440,26 @@
     },
     {
      "board": "domestic",
-     "title": "11月17日石头科技涨5.01%，机器人ETF易方达基金重仓该股",
+     "title": "福龙马给扫地车装上华为造的“大脑”，国防科大博士不执着人形 ...",
      "title_original": "",
-     "summary": "证券之星消息，11月17日石头科技（688169）涨5.01%创60日新高，收盘报140.35元，换手率3.65%，成交量9.48万手，成交额13.16亿元。该股为出海龙头、小家电、家电、小米概念股、激光雷达、人工智能、机器人概念热股。",
-     "summary_original": "",
-     "source": "cj.sina.com.cn",
-     "via": "",
-     "url": "https://cj.sina.com.cn/articles/view/1850649324/6e4eaaec02002ndf4",
-     "published": "2026-11-17T02:44:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "76bd817df9e5",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "cj.sina.com.cn",
-        "url": "https://cj.sina.com.cn/articles/view/1850649324/6e4eaaec02002ndf4",
-        "published": "2026-11-17T02:44:00+08:00",
-        "host": "cj.sina.com.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "APEC深圳时间 | 名场面！151台人形机器人街头齐舞，打破吉尼斯世界纪录",
-     "title_original": "",
-     "summary": "11月17日，深圳龙岗机器人街区，151台机器人同台起舞，成功创下全新吉尼斯世界纪录。这项挑战背后，考验运动算法、集群调度与整机稳定等多项硬核技术。正值APEC会议周，深圳以此为窗口向亚太乃至全球展示人形机器人产业创新成果。 记者：张文龙 王广灿 摄像：张文龙 王广灿 剪辑：张文龙 编辑：孙菲菲 杨宗帅 校对：汤琪 ...",
+     "summary": "瑞财经 王敏 11月16日，华为云宣布，与环卫装备企业福龙马联合研制的新一代智能清扫机器人“SD22C”启动预售，12月在上海发布。 华为云将为产品提供CloudRobo开发工具链、感知与规划模型、Agentic运行平台及昇腾云算力。 当天，华为云正式发布并开源昇腾原生具身世界模型CloudRobo-WM1.2，进一步向机器人产业链延伸，在RoboTwin2.0、LiberoPro2.0两个业内公 ...",
      "summary_original": "",
      "source": "腾讯网",
      "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261117A09SLO00",
-     "published": "2026-11-17T02:40:00+08:00",
+     "url": "https://news.qq.com/rain/a/20261117A09CW300",
+     "published": "2026-11-17T02:05:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "c7a901f7c34a",
+     "id": "16ea68d25b8d",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
         "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261117A09SLO00",
-        "published": "2026-11-17T02:40:00+08:00",
+        "url": "https://news.qq.com/rain/a/20261117A09CW300",
+        "published": "2026-11-17T02:05:00+08:00",
         "host": "news.qq.com"
        }
       ]
@@ -450,6 +494,36 @@
     },
     {
      "board": "domestic",
+     "title": "机器人行业日报(11.16) : 机器人产业升温",
+     "title_original": "",
+     "summary": "机器人产业升温，市场规模预计2025年达9150亿元。南方电网与宇树科技签署战略合作，特斯拉人形机器人预计2027年底交付。全球具身智能企业超400家，中国占比半数。京东工业发布机器人零部件采购平台，沈阳市举办融资需求对接会。2026年杭州移动机器人年会聚焦技术升级和应用拓展。社保基金积极布局人形机器人产业链。人形机器人供应链经历大洗牌，面临新挑战。上海交大校友造建筑机器人，获超亿元融资。安徽国星 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261117A09CFU00",
+     "published": "2026-11-17T02:04:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "特斯拉",
+      "宇树 Unitree"
+     ],
+     "is_placeholder": false,
+     "id": "cd57ad12183e",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261114A0B7YT00",
+        "published": "2026-11-14T16:04:00+08:00",
+        "host": "news.qq.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
      "title": "机器人融资调整，部分VC“收手”了",
      "title_original": "",
      "summary": "根据IT桔子投资事件库信息不完全统计，今年10月以来具身智能领域至少有70起融资事件，同时还发生了一些变化。“模型侧”项目融资事件有所减少，传感器、灵巧手及有明确应用场景的机器人厂商仍不时发布融资消息。",
@@ -471,6 +545,33 @@
         "url": "https://www.yicai.com/news/103443693.html",
         "published": "2026-11-17T02:04:00+08:00",
         "host": "yicai.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "48小时真机比拼真本事！蚂蚁灵波朱兴：谁也没看到具身智能的Scaling Law",
+     "title_original": "",
+     "summary": "IT时报记者 孙妍11月16日，首届蚂蚁灵波具身大模型挑战赛总决赛结果在上海出炉。由福田实验室、西北工业大学、普渡机器人、天津大学的五位选手组成的“TARS”战队，以82.5分获得一等奖。华中科技大学、清华大学深圳研究院、湖北元一智能的三位选手组成的“EVA”战队，以及天津大学、北京大学、中国科学院自动化研究所三位选手组成的“SST”战队获得二等奖；“Vida”“FDU_SONIC”“ai-rob ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261117A099M000",
+     "published": "2026-11-17T01:58:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "9a138b1a4907",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261117A099M000",
+        "published": "2026-11-17T01:58:00+08:00",
+        "host": "news.qq.com"
        }
       ]
      }
@@ -531,39 +632,6 @@
     },
     {
      "board": "domestic",
-     "title": "半年融资超10亿，机器人力传感器龙头再获资本集体押注",
-     "title_original": "",
-     "summary": "“ 今年第四轮亿元级融资，近半年融资额超10亿元。2026年11月初，蓝点触控宣布完成数亿元人民币D3轮融资。本轮投资方包括洪泰基金、中关村科学城、弘毅投资、浙创投、厦门海投集团、厦门海沧产投、奥普特、新未来、山证投资、曦晨资本、秦创投、陕西国晟、江门金控、君安控股等14家机构联合投资。资金主要用于新一代机器人力传感器研发、产能扩充与全球化市场布局。公司披露，近半年累计融资额已超过10亿元人民币。",
-     "summary_original": "",
-     "source": "腾讯网",
-     "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261117A08J8V00",
-     "published": "2026-11-17T01:01:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "d19a629fa75e",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261117A08J8V00",
-        "published": "2026-11-17T01:01:00+08:00",
-        "host": "news.qq.com"
-       },
-       {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/a/202611173932808083.html",
-        "published": "2026-11-17T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
      "title": "三大指数集体回调，机器人ETF国泰（159551）近30日资金净流入1427.95万元",
      "title_original": "",
      "summary": "11月17日，A股三大指数集体飘绿，其中上证指数下跌0.90%，深证成指下跌1.08%，创业板指下跌2.19%。在市场震荡回调的背景下，机器人板块相关ETF依然展现出较强的资金吸引力。机器人ETF国泰（159551）紧密跟踪中证机器人指数，该指数选取系统方案商、数字化车间与生产线系统集成商、自动化设备制造商、自动化零部件商以及其它机器人相关上市公司证券作为指数样本，以反映上市公司中机器人相关证券的 ...",
@@ -591,60 +659,6 @@
     },
     {
      "board": "domestic",
-     "title": "AI打开企业市场空间 业内人士：人形机器人会成为全球第一大行业",
-     "title_original": "",
-     "summary": "一个行业的天花板，能被一项技术重新抬高多少？近日在沪举行的2026“未来品类之王”新品类发布会上，与会人士认为， 人工智能 为企业催生了更大的市场空间，未来，人形 机器人 会超过 汽车 成为全球第一大行业。",
-     "summary_original": "",
-     "source": "东方财富网财经频道",
-     "via": "Bing",
-     "url": "https://finance.eastmoney.com/a/202611173932723333.html",
-     "published": "2026-11-17T00:00:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "fe1daf88b106",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/a/202611173932723333.html",
-        "published": "2026-11-17T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "蚂蚁灵波朱兴：具身基模终将收敛至3至5家",
-     "title_original": "",
-     "summary": "上证报中国证券网讯（记者温婷）11月中旬的上海张江，15支战队在48小时内用同一套开源预训练模型LingBot-VLA 2.0、同一款硬件、统一的任务环境开展真机挑战，让机器人单臂抓果蔬、收化妆品、双臂协作清扫桌面，这是首届蚂蚁灵波具身大模型挑战赛决赛现场的真实场景。 “行业目前还在快速迭代，尚未迎来具身智能的Scaling Law（规模定律）时刻。”11月16日，挑战赛落幕当天，蚂蚁灵波CEO朱 ...",
-     "summary_original": "",
-     "source": "东方财富网财经频道",
-     "via": "Bing",
-     "url": "https://finance.eastmoney.com/a/202611173932843226.html",
-     "published": "2026-11-17T00:00:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "a0dbe4522c1c",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/a/202611173932843226.html",
-        "published": "2026-11-17T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
      "title": "14家机构联合押注 机器人力传感器龙头蓝点触控半年融资超10亿元",
      "title_original": "",
      "summary": "上证报中国证券网讯（记者李雁争）国内机器人力传感器领军企业蓝点触控近日宣布完成数亿元D3轮融资，本次融资汇集洪泰基金、中关村科学城、弘毅投资、浙创投等14家投资机构联合参投。 近半年，企业累计融资规模突破10亿元。凭借领先的技术实力与超80%的国内人形机器人六维力传感器市场占有率，蓝点触控持续获得资本加持。新老股东构建起覆盖机器人本体、动力电池、半导体制造、地方产业平台的全链条协同股东矩阵，助力企 ...",
@@ -658,20 +672,14 @@
      "is_placeholder": false,
      "id": "9ed0bb7261c5",
      "verify": {
-      "level": "cross",
-      "count": 2,
+      "level": "single",
+      "count": 1,
       "sources": [
        {
         "name": "东方财富网财经频道",
         "url": "https://finance.eastmoney.com/a/202611173932808083.html",
         "published": "2026-11-17T00:00:00+08:00",
         "host": "finance.eastmoney.com"
-       },
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261117A08J8V00",
-        "published": "2026-11-17T01:01:00+08:00",
-        "host": "news.qq.com"
        }
       ]
      }
@@ -786,137 +794,27 @@
     },
     {
      "board": "domestic",
-     "title": "让具身智能机器人“干成事”，青岛以场景“破卡点”",
+     "title": "瑞晟智能拟募资不超9600万元，加码智能物流搬运机器人产业化",
      "title_original": "",
-     "summary": "在王雷看来，具身智能正在推动人工智能从数字认知走向物理世界行动。大模型解决信息理解和认知问题，具身智能进一步解决物理世界中的感知、决策、操作和执行问题，未来两者将深度融合，不断突破机器人能力边界。“具身智能的应用空间不是预先固定的，而是随着能力进步不断扩展的。过去不能自动化的任务，未来可能因环境理解、灵巧操作和泛化能力提升而具备自动化条件。也就是说，机器人能力边界的突破，将持续创造新的场景需求。” ...",
-     "summary_original": "",
-     "source": "新浪财经",
-     "via": "Bing",
-     "url": "https://finance.sina.com.cn/roll/2026-11-17/doc-iniyzhhf1828871.shtml",
-     "published": "2026-11-16T21:38:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "cc7adb0fa5e7",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/roll/2026-11-17/doc-iniyzhhf1828871.shtml",
-        "published": "2026-11-16T21:38:00+08:00",
-        "host": "finance.sina.com.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "00后上交博士造扑翼机器人，获数千万元融资",
-     "title_original": "",
-     "summary": "机器人前瞻11月17日报道，今天，深圳具身智能仿生扑翼机器人公司鹰瞰智翼，宣布完成数千万元人民币Pre-B轮融资，由商汤国香资本独家投资，深蓝资本担任独家财务顾问。 融资资金将用于下一代扑翼机器人与Vortrix流体仿真引擎研发，供应链与产线建设，以及海外市场拓展。 今年八月，该公司宣布完成数千万元A轮融资，历史股东有元禾璞华、孚腾资本、厚雪资本等。 鹰瞰智翼成立于2025年3月，总部位于深圳，定 ...",
-     "summary_original": "",
-     "source": "sohu.com",
-     "via": "",
-     "url": "https://www.sohu.com/a/1102637817_122054251",
-     "published": "2026-11-16T21:27:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "7af1fb4fe35c",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1102637817_122054251",
-        "published": "2026-11-16T21:27:00+08:00",
-        "host": "sohu.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "机器人ETF鹏华盘中净申购900万份，政策产业层面迎来密集利好",
-     "title_original": "",
-     "summary": "消息面上，工业和信息化部批准《人工智能 关键基础技术 具身智能数据生成系统技术要求》等274项行业标准。其中，化工行业1项、石化行业2项、建材行业2项、稀土行业1项、机械行业23项、汽车行业18项、轻工行业41项、纺织行业28项、兵工民品行业1项、电子行业92项、通信行业65项。此外，华为云发布昇腾原生具身世界模型 ...",
+     "summary": "11月16日晚间，瑞晟智能(688215)公告称，公司拟募集资金总额不超过9600万元，扣除发行费用后净额将用于智能物流搬运机器人及系统产业化项目。公告显示，该项目总投资1.16亿元，实施主体为公司及全资子公司浙江瑞峰智能物联技术有限公司，建设期18个月，旨在推动定制化具身智能机器人、AGV、CTU等协作机器人的产业化落地与规 ...",
      "summary_original": "",
      "source": "腾讯网",
      "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261117A04VJ800",
-     "published": "2026-11-16T20:43:00+08:00",
+     "url": "https://news.qq.com/rain/a/20261116A0CV5P00",
+     "published": "2026-11-16T19:36:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "9f4d959c2e44",
+     "id": "711ba6869591",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
         "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261117A04VJ800",
-        "published": "2026-11-16T20:43:00+08:00",
+        "url": "https://news.qq.com/rain/a/20261116A0CV5P00",
+        "published": "2026-11-16T19:36:00+08:00",
         "host": "news.qq.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "机器人出货近2万台，产业链兑现节奏待验证",
-     "title_original": "",
-     "summary": "机器人板块11月重新活跃。10月19日至23日，人形机器人指数单周上涨7.03%，跑赢沪深300指数8.60个百分点，单周成交额11110亿元、环比增加32.65%。产业端催化密集：特斯拉三季报披露弗里蒙特工厂大批量产线投产，首批符合量产标准的Optimus下线；Smart Analytics Global数据显示，2026年上半年全球人形机器人出货约1.91万台，同比增长近三倍，中国厂商占97% ...",
-     "summary_original": "",
-     "source": "sohu.com",
-     "via": "",
-     "url": "https://www.sohu.com/a/1102581556_115495",
-     "published": "2026-11-16T20:40:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "特斯拉"
-     ],
-     "is_placeholder": false,
-     "id": "0984aee21118",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1102581556_115495",
-        "published": "2026-11-16T20:40:00+08:00",
-        "host": "sohu.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "工业具身智能爆发元年！数百台机器人扎进常州产线，打响万台级 ...",
-     "title_original": "",
-     "summary": "2026年11月16日，常州——不是科幻片片场，也不是AI实验室的玻璃展柜，而是真实滚烫的流水线：机械臂正拧紧线束端子，双目视觉系统在0.3秒内识别插针偏差，AGV小车驮着半成品无声滑过防静电地板……数百台‘会思考、懂分寸、能扛活’的工业具身机器人，正在常州艾博格电器的车间里，和老师傅并肩站岗。 这不是概念演示，不是限时快闪，更不是PPT里的‘未来已来’——这是中国工业具身智能真正落地生根的第一片 ...",
-     "summary_original": "",
-     "source": "sohu.com",
-     "via": "",
-     "url": "https://www.sohu.com/a/1102370910_122066679",
-     "published": "2026-11-16T20:04:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "1da4df0fb522",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1102370910_122066679",
-        "published": "2026-11-16T20:04:00+08:00",
-        "host": "sohu.com"
        }
       ]
      }
@@ -950,6 +848,35 @@
     },
     {
      "board": "domestic",
+     "title": "VC/PE周报｜中际旭创出资做LP，具身智能与AI芯片融资密集",
+     "title_original": "",
+     "summary": "近日，一级市场募资端保持活跃，弘晖基金杭州新质生产力基金完成12亿元首关，LP涵盖浙江省市区三级国资母基金及医药产业上市公司；中际旭创出资5000万元认购光合叁期基金份额，延续以LP身份嵌入科技投资生态的路径。 投资端，具身智能与AI芯片赛道大额融资密集。曦选创智完成5亿元天使轮融资，由沐曦股份与优必选共同发起，聚焦具身智能端侧芯片；灵睿智芯完成数亿元Pre-A+轮融资，美团战投领投，RISC-V ...",
+     "summary_original": "",
+     "source": "凤凰网资讯频道",
+     "via": "Bing",
+     "url": "https://news.ifeng.com/c/8y6WeAA3AK1",
+     "published": "2026-11-16T18:55:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "优必选 UBTECH"
+     ],
+     "is_placeholder": false,
+     "id": "830c9ece532a",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "凤凰网资讯频道",
+        "url": "https://news.ifeng.com/c/8y6WeAA3AK1",
+        "published": "2026-11-16T18:55:00+08:00",
+        "host": "news.ifeng.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
      "title": "造车、造飞机还造机器人！小鹏三季度入账242.8亿 营收、交付均创 ...",
      "title_original": "",
      "summary": "快科技11月16日消息，小鹏集团今日发布2026年第三季度未经审计财务业绩， 季度总收入达人民币242.8亿元，同比增长19.1%，环比增长23.0%，创历史新高。第三季度汽车交付量118,390台，环比增长15%，同样刷新历史纪录。",
@@ -971,6 +898,33 @@
         "url": "https://finance.sina.com.cn/tech/roll/2026-11-16/doc-iniyxpxc6010124.shtml",
         "published": "2026-11-16T18:23:00+08:00",
         "host": "finance.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "飞亚达的机器人业务，开始从航空精密制造走向产业化",
+     "title_original": "",
+     "summary": "从手表到机器人，飞亚达的业务延伸走到哪一步了？11月13日披露的机构调研记录给出了新进展：公司机器人业务已与部分头部客户建立合作，正根据客户需求提升产能，今年以来相关收入持续快速增长。支撑这项业务的，是公司新收购的长空齿轮。航空精密制造经验为它提供了切入机器人零部件市场的基础，但技术能否适应新的产品要求、产线能否承接后续需求，决定了业务从客户合作走向持续交付的进度。航空制造经验，如何变成机器人订单 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261116A0B3S900",
+     "published": "2026-11-16T17:07:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "ffa3c3671a6f",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261116A0B3S900",
+        "published": "2026-11-16T17:07:00+08:00",
+        "host": "news.qq.com"
        }
       ]
      }
@@ -1054,63 +1008,6 @@
         "url": "https://fund.eastmoney.com/a/202611163931810058.html",
         "published": "2026-11-16T16:21:00+08:00",
         "host": "fund.eastmoney.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "南京无境动力爆雷：机器人行业告别“框架订单”时代，8个月从10亿 ...",
-     "title_original": "",
-     "summary": "近10亿订单、1.1亿融资到账，8个月后实控人失联、三四十人被欠薪近800万。这篇没停在「泡沫破裂」，而是拆开那10亿究竟是什么，框架订单这张通行证又为什么失效。 摘要：无境动力用8个月走完了一条完整的叙事曲线：框架订单撑起估值，估值撑起下一轮故事，直到800万薪资把折叠的链条撕开。大额框架订单作为具身智能“通行证”的时代，正在被回款和复购重新定价。 南京无境动力的事，基本事实已经清楚了。2026 ...",
-     "summary_original": "",
-     "source": "红板报 on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.com/zh-cn/money/%E7%BB%8F%E6%B5%8E/%E5%8D%97%E4%BA%AC%E6%97%A0%E5%A2%83%E5%8A%A8%E5%8A%9B%E7%88%86%E9%9B%B7-%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%A1%8C%E4%B8%9A%E5%91%8A%E5%88%AB-%E6%A1%86%E6%9E%B6%E8%AE%A2%E5%8D%95-%E6%97%B6%E4%BB%A3-8%E4%B8%AA%E6%9C%88%E4%BB%8E10%E4%BA%BF%E8%AE%A2%E5%8D%95%E5%88%B0%E6%AC%A0%E8%96%AA800%E4%B8%87/ar-AA2hzSAX",
-     "published": "2026-11-16T16:14:21+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "43c7f6cf4b90",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "红板报",
-        "url": "https://www.msn.com/zh-cn/money/%E7%BB%8F%E6%B5%8E/%E5%8D%97%E4%BA%AC%E6%97%A0%E5%A2%83%E5%8A%A8%E5%8A%9B%E7%88%86%E9%9B%B7-%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%A1%8C%E4%B8%9A%E5%91%8A%E5%88%AB-%E6%A1%86%E6%9E%B6%E8%AE%A2%E5%8D%95-%E6%97%B6%E4%BB%A3-8%E4%B8%AA%E6%9C%88%E4%BB%8E10%E4%BA%BF%E8%AE%A2%E5%8D%95%E5%88%B0%E6%AC%A0%E8%96%AA800%E4%B8%87/ar-AA2hzSAX",
-        "published": "2026-11-16T16:14:21+08:00",
-        "host": "msn.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "机器人行业日报(11.15) : 机器人产业升温",
-     "title_original": "",
-     "summary": "机器人产业升温，多企业与机构合作布局，市场规模预计2025年达9150亿元。南方电网与宇树科技签署战略合作，特斯拉人形机器人预计2027年底交付。全球具身智能企业超400家，中国占比半数。京东工业发布机器人零部件采购平台，沈阳市举办融资需求对接会。2026年杭州移动机器人年会聚焦技术升级和应用拓展。摩根大通预测2030年美国人形机器人产量将达30万至40万台。社保基金积极布局人形机器人产业链。 人 ...",
-     "summary_original": "",
-     "source": "腾讯网",
-     "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261116A0ABL400",
-     "published": "2026-11-16T16:04:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "特斯拉",
-      "宇树 Unitree"
-     ],
-     "is_placeholder": false,
-     "id": "ef5bb506bc13",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261116A0ABL400",
-        "published": "2026-11-16T16:04:00+08:00",
-        "host": "news.qq.com"
        }
       ]
      }
@@ -1252,27 +1149,27 @@
     },
     {
      "board": "domestic",
-     "title": "众筹超500万美元，全球首款多地形跟拍机器人Beni线下首发",
+     "title": "2026常州工业具身智能创新大会举行",
      "title_original": "",
-     "summary": "2026 年 11 月 14 日，深圳湾文化广场北馆INNO100 全球创新旗舰店，Kickstarter为其平台上的众筹爆款新品——妙动科技打造的多地形跟拍机器人Beni，举办“首硬礼”中国线下首发活动。即日起用户可在该线下门店现场体验并直接购买Beni跟拍机器人，标准套装4999元、探索套装5799元。",
+     "summary": "11月16日，2026常州工业具身智能创新大会暨常州市“百场千企”具身智能机器人产业融链强链对接活动举行，500余名具身智能领域专家学者、高校院所、产业链上下游企业和投资机构代表齐聚一堂，搭建高端对接平台，加强具身智能产业上下游链接，赋能制造业智能化转型。 工业和信息化部中小企业发展促进中心党委书记、副主任胡晓华，市委书记李佰平出席活动并共同启动常州市具身智能产业集群建设。市委副书记、市长周伟致辞 ...",
      "summary_original": "",
-     "source": "雷峰网",
-     "via": "",
-     "url": "https://www.leiphone.com/category/weiwu/nFSVApZT1GmSFH9T.html",
-     "published": "2026-11-16T11:50:00+08:00",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxuex2337820.shtml",
+     "published": "2026-11-16T12:28:00+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "f12f39be4541",
+     "id": "49d4d13b4af6",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "雷峰网",
-        "url": "https://www.leiphone.com/category/weiwu/nFSVApZT1GmSFH9T.html",
-        "published": "2026-11-16T11:50:00+08:00",
-        "host": "leiphone.com"
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxuex2337820.shtml",
+        "published": "2026-11-16T12:28:00+08:00",
+        "host": "finance.sina.com.cn"
        }
       ]
      }
@@ -1366,19 +1263,19 @@
      "summary_original": "",
      "source": "至顶网 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/money/%E9%80%9A%E7%94%A8/zacua-ventures%E5%AE%8C%E6%88%901-35%E4%BA%BF%E7%BE%8E%E5%85%83%E8%9E%8D%E8%B5%84%E6%8A%95%E8%B5%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8E%E5%B7%A5%E4%B8%9Aai/ar-AA2hwcr1",
+     "url": "https://www.msn.cn/zh-cn/money/%E9%A3%8E%E9%99%A9%E6%8A%95%E8%B5%84/zacua-ventures%E5%AE%8C%E6%88%901-35%E4%BA%BF%E7%BE%8E%E5%85%83%E8%9E%8D%E8%B5%84%E6%8A%95%E8%B5%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8E%E5%B7%A5%E4%B8%9Aai/ar-AA2hwcr1",
      "published": "2026-11-16T07:38:35+08:00",
      "lang": "zh",
      "companies": [],
      "is_placeholder": false,
-     "id": "6d25adf41c50",
+     "id": "4eb77a28fab4",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
         "name": "至顶网",
-        "url": "https://www.msn.cn/zh-cn/money/%E9%80%9A%E7%94%A8/zacua-ventures%E5%AE%8C%E6%88%901-35%E4%BA%BF%E7%BE%8E%E5%85%83%E8%9E%8D%E8%B5%84%E6%8A%95%E8%B5%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8E%E5%B7%A5%E4%B8%9Aai/ar-AA2hwcr1",
+        "url": "https://www.msn.cn/zh-cn/money/%E9%A3%8E%E9%99%A9%E6%8A%95%E8%B5%84/zacua-ventures%E5%AE%8C%E6%88%901-35%E4%BA%BF%E7%BE%8E%E5%85%83%E8%9E%8D%E8%B5%84%E6%8A%95%E8%B5%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8E%E5%B7%A5%E4%B8%9Aai/ar-AA2hwcr1",
         "published": "2026-11-16T07:38:35+08:00",
         "host": "msn.cn"
        }
@@ -1462,33 +1359,6 @@
         "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E9%80%9A%E7%94%A8/%E5%BA%B7%E5%A4%8D%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%90%BD%E6%88%B7%E5%B8%82%E4%B8%AD%E5%BF%83%E5%8C%BB%E9%99%A2/ar-AA2hv9IB",
         "published": "2026-11-16T02:52:36+08:00",
         "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "domestic",
-     "title": "LG Electronics携手KIRIA推进人形机器人安全认证",
-     "title_original": "",
-     "summary": "LG Electronics于2026年11月16日宣布与Korea Institute for Robot Industry Advancement（KIRIA）达成协议，将开展人形机器人的安全性和可用性评估，并计划在韩国国内推进试点安全认证。谅解备忘录于2026年11月13日在首尔永登浦区的LG Twin Towers签署。 KIRIA会长 Cho Young-hoon和LG质量管理中心负责人 ...",
-     "summary_original": "",
-     "source": "Unite.AI",
-     "via": "Bing",
-     "url": "https://www.unite.ai/zh-cn/lg-electronics-targets-humanoid-safety-certification-with-kiria/",
-     "published": "2026-11-16T02:40:00+08:00",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "7b5f99798723",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Unite.AI",
-        "url": "https://www.unite.ai/zh-cn/lg-electronics-targets-humanoid-safety-certification-with-kiria/",
-        "published": "2026-11-16T02:40:00+08:00",
-        "host": "unite.ai"
        }
       ]
      }
@@ -1683,6 +1553,129 @@
        }
       ]
      }
+    },
+    {
+     "board": "domestic",
+     "title": "字节押注的“机器人之手”启动上市辅导",
+     "title_original": "",
+     "summary": "根据辅导备案文件，大寰机器人控股股东为创始人孙杰，其直接持股12.64%，并通过四个员工持股平台控制14.41%股份对应的表决权。孙杰本科毕业于清华大学，后于英国伦敦国王学院获博士学位，师从英国皇家工程院院士戴建生教授，公司首席科学家亦由戴建生担任。",
+     "summary_original": "",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/wm/2026-11-14/doc-iniytfyz3924549.shtml",
+     "published": "2026-11-14T18:55:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "74c8dac2b005",
+     "verify": {
+      "level": "cross",
+      "count": 2,
+      "sources": [
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-14/doc-iniytfyz3924549.shtml",
+        "published": "2026-11-14T18:55:00+08:00",
+        "host": "finance.sina.com.cn"
+       },
+       {
+        "name": "新京报",
+        "url": "https://www.bjnews.com.cn/detail/1794642592169179.html",
+        "published": "2026-11-14T15:49:00+08:00",
+        "host": "bjnews.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "机器人行业日报(11.13) : 机器人产业升温",
+     "title_original": "",
+     "summary": "北京市市场监督管理局公示，中国石油集团昆仑制造有限公司与宇树科技、北京泛界智能科技有限公司拟新设合营企业，主攻工业具身智能机器人解决方案。南方电网与宇树科技签署战略合作框架协议，推进电力场景技术攻关。中国信通院发布的《具身智能发展报告（2026年）》提出，2026年具身智能试点规模将逐步扩大。机器人产业持续升温，特斯拉人形机器人预计2027年底交付。北京市力争到2028年培育不少于5家国际一流、1 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261114A0B7YT00",
+     "published": "2026-11-14T16:04:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "特斯拉",
+      "宇树 Unitree"
+     ],
+     "is_placeholder": false,
+     "id": "515d50989595",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261114A0B7YT00",
+        "published": "2026-11-14T16:04:00+08:00",
+        "host": "news.qq.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "大寰机器人启动上市辅导，字节跳动曾参投",
+     "title_original": "",
+     "summary": "新京报贝壳财经讯（记者程靓）11月14日，据深圳证监局公开信息显示，大寰机器人科技股份有限公司（以下简称“大寰机器人”）于2026年11月13日正式启动上市辅导备案，国泰海通证券股份有限公司担任辅导机构。",
+     "summary_original": "",
+     "source": "新京报",
+     "via": "Bing",
+     "url": "https://www.bjnews.com.cn/detail/1794642592169179.html",
+     "published": "2026-11-14T15:49:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "5a155d6a9baf",
+     "verify": {
+      "level": "cross",
+      "count": 2,
+      "sources": [
+       {
+        "name": "新京报",
+        "url": "https://www.bjnews.com.cn/detail/1794642592169179.html",
+        "published": "2026-11-14T15:49:00+08:00",
+        "host": "bjnews.com.cn"
+       },
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-14/doc-iniytfyz3924549.shtml",
+        "published": "2026-11-14T18:55:00+08:00",
+        "host": "finance.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "domestic",
+     "title": "具身智能融资“变奏”：资本从“抢项目”到“挑项目”",
+     "title_original": "",
+     "summary": "中经记者 方超 石英婧 上海报道曾被投资人争抢的具身智能赛道，当下行业融资节奏正迈入“换挡期”。IT桔子数据显示，10月份具身智能赛道融资数量33起，融资总额 101.05 亿元。而在9月份，具身智能赛道融资数量、融资总额分别为60起、110.28 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261114A0705A00",
+     "published": "2026-11-14T10:31:00+08:00",
+     "lang": "zh",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "9f73ff152777",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261114A0705A00",
+        "published": "2026-11-14T10:31:00+08:00",
+        "host": "news.qq.com"
+       }
+      ]
+     }
     }
    ],
    "ok_sources": 20,
@@ -1693,6 +1686,66 @@
    "name": "海外新闻",
    "desc": "海外机器人公司、产业动态与人形机器人进展",
    "items": [
+    {
+     "board": "overseas",
+     "title": "Robot swarms trained by trial and error in simulation keep working on real robots",
+     "title_original": "",
+     "summary": "Reinforcement learning lets robots learn behaviors on their own, through trial and error, usually inside a computer simulation. Moving what they learn onto physical robots is another matter. Simulated and real robots never behave quite the same way, a mismatch known as the “reality gap,” and reinforcement learning has long been particularly sensitive to it. […]",
+     "summary_original": "",
+     "source": "Robohub",
+     "via": "",
+     "url": "https://robohub.org/robot-swarms-trained-by-trial-and-error-in-simulation-keep-working-on-real-robots/",
+     "published": "2026-11-17T19:00:30+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "0b98dcde2b32",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "Robohub",
+        "url": "https://robohub.org/robot-swarms-trained-by-trial-and-error-in-simulation-keep-working-on-real-robots/",
+        "published": "2026-11-17T19:00:30+08:00",
+        "host": "robohub.org"
+       }
+      ]
+     }
+    },
+    {
+     "board": "overseas",
+     "title": "Abu Dhabi’s Lunate brings humanoid robot investing to the GCC with new ETF",
+     "title_original": "",
+     "summary": "Sovereign wealth fund will list Boreas VettaFi Humanoid Robots UCITS ETF on Abu Dhabi Securities Exchange next month, giving investors exposure to 41 firms across the robotics value chain ...",
+     "summary_original": "",
+     "source": "Khaleej Times",
+     "via": "Bing",
+     "url": "https://www.khaleejtimes.com/business/abu-dhabis-lunate-brings-humanoid-robot-investing-to-the-gcc-with-new-etf",
+     "published": "2026-11-17T10:44:00+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "564e5437cb12",
+     "verify": {
+      "level": "cross",
+      "count": 2,
+      "sources": [
+       {
+        "name": "Khaleej Times",
+        "url": "https://www.khaleejtimes.com/business/abu-dhabis-lunate-brings-humanoid-robot-investing-to-the-gcc-with-new-etf",
+        "published": "2026-11-17T10:44:00+08:00",
+        "host": "khaleejtimes.com"
+       },
+       {
+        "name": "The National",
+        "url": "https://www.msn.com/en-ae/money/news/abu-dhabis-lunate-to-launch-humanoid-robot-focused-etf-on-adx/ar-AA2hBSUZ",
+        "published": "2026-11-17T09:21:45+08:00",
+        "host": "msn.com"
+       }
+      ]
+     }
+    },
     {
      "board": "overseas",
      "title": "Abu Dhabi's Lunate to launch humanoid robot-focused ETF on ADX",
@@ -1720,7 +1773,7 @@
        {
         "name": "Khaleej Times",
         "url": "https://www.khaleejtimes.com/business/abu-dhabis-lunate-brings-humanoid-robot-investing-to-the-gcc-with-new-etf",
-        "published": "2026-11-16T20:44:00+08:00",
+        "published": "2026-11-17T10:44:00+08:00",
         "host": "khaleejtimes.com"
        }
       ]
@@ -1865,39 +1918,6 @@
         "url": "https://spectrum.ieee.org/telesurgery-stroke",
         "published": "2026-11-16T22:00:02+08:00",
         "host": "spectrum.ieee.org"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
-     "title": "Abu Dhabi’s Lunate brings humanoid robot investing to the GCC with new ETF",
-     "title_original": "",
-     "summary": "Sovereign wealth fund will list Boreas VettaFi Humanoid Robots UCITS ETF on Abu Dhabi Securities Exchange next month, giving investors exposure to 41 firms across the robotics value chain ...",
-     "summary_original": "",
-     "source": "Khaleej Times",
-     "via": "Bing",
-     "url": "https://www.khaleejtimes.com/business/abu-dhabis-lunate-brings-humanoid-robot-investing-to-the-gcc-with-new-etf",
-     "published": "2026-11-16T20:44:00+08:00",
-     "lang": "en",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "564e5437cb12",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "Khaleej Times",
-        "url": "https://www.khaleejtimes.com/business/abu-dhabis-lunate-brings-humanoid-robot-investing-to-the-gcc-with-new-etf",
-        "published": "2026-11-16T20:44:00+08:00",
-        "host": "khaleejtimes.com"
-       },
-       {
-        "name": "The National",
-        "url": "https://www.msn.com/en-ae/money/news/abu-dhabis-lunate-to-launch-humanoid-robot-focused-etf-on-adx/ar-AA2hBSUZ",
-        "published": "2026-11-17T09:21:45+08:00",
-        "host": "msn.com"
        }
       ]
      }
@@ -2457,33 +2477,6 @@
     },
     {
      "board": "overseas",
-     "title": "Portugal: Humanoid robots take centre stage at Web Summit 2026",
-     "title_original": "",
-     "summary": "Dancing humanoid robots and robotic dogs stole the show at Web Summit 2026 in Lisbon. The technology conference has generated nearly €2.5 billion for Portugal's economy over the past decade, according ...",
-     "summary_original": "",
-     "source": "Euronews (English) on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.com/en-ie/technology/robotics/portugal-humanoid-robots-take-centre-stage-at-web-summit-2026/ar-AA2hm9cd",
-     "published": "2026-11-13T08:48:29+08:00",
-     "lang": "en",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "76e4dd625e18",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Euronews (English)",
-        "url": "https://www.msn.com/en-ie/technology/robotics/portugal-humanoid-robots-take-centre-stage-at-web-summit-2026/ar-AA2hm9cd",
-        "published": "2026-11-13T08:48:29+08:00",
-        "host": "msn.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
      "title": "Viam Launchpad aims to accelerate robotics deployments",
      "title_original": "",
      "summary": "The Viam Launchpad is intended to provide the software and engineering infrastructure to help startups bring robots to commercial deployment. The post Viam Launchpad aims to accelerate robotics deployments appeared first on The Robot Report .",
@@ -2625,39 +2618,6 @@
     },
     {
      "board": "overseas",
-     "title": "German AI robotics start-up valued at $8.5 bn after new fundraising",
-     "title_original": "",
-     "summary": "German AI robotics start-up Agile Robots said Thursday that a new funding round valued the company at $8.5 billion (7.7 billion euros), providing additional firepower for a global expansion. The ...",
-     "summary_original": "",
-     "source": "Agence France-Presse on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.com/en-gb/news/other/german-ai-robotics-start-up-valued-at-85-bn-after-new-fundraising/ar-AA2hii4Q",
-     "published": "2026-11-12T12:15:29+08:00",
-     "lang": "en",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "2a307008324f",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "Agence France-Presse",
-        "url": "https://www.msn.com/en-gb/news/other/german-ai-robotics-start-up-valued-at-85-bn-after-new-fundraising/ar-AA2hii4Q",
-        "published": "2026-11-12T12:15:29+08:00",
-        "host": "msn.com"
-       },
-       {
-        "name": "The New York Times",
-        "url": "https://www.nytimes.com/2026/11/12/business/softbank-nvidia-agile-robots.html",
-        "published": "2026-11-12T05:45:00+08:00",
-        "host": "nytimes.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
      "title": "US Humanoid Robot Output Could Hit 400,000 a Year by 2030, Report Says",
      "title_original": "",
      "summary": "US humanoid robot production could reach 300,000 to 400,000 units annually by 2030, according to JPMorgan. The forecast points to a major expansion in the count ...",
@@ -2784,20 +2744,14 @@
      "is_placeholder": false,
      "id": "62afeb46b109",
      "verify": {
-      "level": "cross",
-      "count": 2,
+      "level": "single",
+      "count": 1,
       "sources": [
        {
         "name": "The New York Times",
         "url": "https://www.nytimes.com/2026/11/12/business/softbank-nvidia-agile-robots.html",
         "published": "2026-11-12T05:45:00+08:00",
         "host": "nytimes.com"
-       },
-       {
-        "name": "Agence France-Presse",
-        "url": "https://www.msn.com/en-gb/news/other/german-ai-robotics-start-up-valued-at-85-bn-after-new-fundraising/ar-AA2hii4Q",
-        "published": "2026-11-12T12:15:29+08:00",
-        "host": "msn.com"
        }
       ]
      }
@@ -3335,33 +3289,6 @@
     },
     {
      "board": "overseas",
-     "title": "Robbyant Releases LingBot-Touch to Bring General-Purpose Touch Perception to Robots",
-     "title_original": "",
-     "summary": "Robbyant, an embodied AI company within Ant Group, today announced the open-source release of LingBot-Touch, a tactile foundation model that gives robots a critical missing sense by enabling robust ...",
-     "summary_original": "",
-     "source": "Agence France-Presse",
-     "via": "Bing",
-     "url": "https://www.afp.com/en/infos/robbyant-releases-lingbot-touch-bring-general-purpose-touch-perception-robots",
-     "published": "2026-11-10T09:23:00+08:00",
-     "lang": "en",
-     "companies": [],
-     "is_placeholder": false,
-     "id": "82ccede5740b",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "Agence France-Presse",
-        "url": "https://www.afp.com/en/infos/robbyant-releases-lingbot-touch-bring-general-purpose-touch-perception-robots",
-        "published": "2026-11-10T09:23:00+08:00",
-        "host": "afp.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "overseas",
      "title": "Industrial automation startup Path Robotics raises $300M in funding",
      "title_original": "",
      "summary": "Path Robotics Inc., a startup working to automate industrial welding workflows, today announced that it has raised $300 million in funding. Georgian led the Series E round. It was joined by a ...",
@@ -3413,6 +3340,62 @@
        }
       ]
      }
+    },
+    {
+     "board": "overseas",
+     "title": "AIhub coffee corner: Are humanoids the future of embodied AI?",
+     "title_original": "",
+     "summary": "The AIhub coffee corner captures the musings of AI experts over a short conversation. This month we ask whether humanoids are the future of robotics. How has the technology evolved recently, and what can we expect in the years to come? Joining the conversation this time are: Joydeep Biswas (University of Texas at Austin), Sanmay […]",
+     "summary_original": "",
+     "source": "Robohub",
+     "via": "",
+     "url": "https://robohub.org/aihub-coffee-corner-are-humanoids-the-future-of-embodied-ai/",
+     "published": "2026-11-09T22:21:13+08:00",
+     "lang": "en",
+     "companies": [],
+     "is_placeholder": false,
+     "id": "523ee0d24ce7",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "Robohub",
+        "url": "https://robohub.org/aihub-coffee-corner-are-humanoids-the-future-of-embodied-ai/",
+        "published": "2026-11-09T22:21:13+08:00",
+        "host": "robohub.org"
+       }
+      ]
+     }
+    },
+    {
+     "board": "overseas",
+     "title": "Can Agentic Robotics Solve Robotics’ Data-Scaling Problem?",
+     "title_original": "",
+     "summary": "Robotics companies are investing heavily in the belief that data will solve the most difficult problems in robotics. Once AI systems have ingested enough data from human demonstrations, the thinking goes, robots will be able to perform the vast majority of the manual tasks that humans now do. There are even robotics companies that exist solely to collect training data and sell it to other robotics companies in pursuit of this goal.",
+     "summary_original": "",
+     "source": "IEEE Spectrum Robotics",
+     "via": "",
+     "url": "https://spectrum.ieee.org/agentic-robotics",
+     "published": "2026-11-09T22:00:02+08:00",
+     "lang": "en",
+     "companies": [
+      "英伟达"
+     ],
+     "is_placeholder": false,
+     "id": "f4bac4da4991",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "IEEE Spectrum Robotics",
+        "url": "https://spectrum.ieee.org/agentic-robotics",
+        "published": "2026-11-09T22:00:02+08:00",
+        "host": "spectrum.ieee.org"
+       }
+      ]
+     }
     }
    ],
    "ok_sources": 18,
@@ -3423,6 +3406,35 @@
    "name": "大厂重点",
    "desc": "机器人大厂动态：OpenAI、特斯拉、英伟达、DeepMind、Meta，以及宇树、优必选、智元、Figure、Boston Dynamics 等",
    "items": [
+    {
+     "board": "bigtech",
+     "title": "人形机器人公司优必选：机器人应用场景将地域化、差异化",
+     "title_original": "",
+     "summary": "【财新网】在11月17日举行的2026年亚太经合组织工商领导人峰会上，人形机器人公司优必选科技创始人、CEO周剑称，“未来进入家庭的机器人，对当地市场文化、用户画像的理解都会有很大区别，不同地区的应用场景也会形成差异化。” 周剑认为，人形机器人会在不同的应用场景下，形成不同的解决方案，因为不同地域、行业的特点各不相同，机器人本身需要大量的具体场景数据做训练，因而会成为开发载体，再结合应用目标做二次 ...",
+     "summary_original": "",
+     "source": "财新网",
+     "via": "Bing",
+     "url": "https://www.caixin.com/2026-11-17/102505893.html",
+     "published": "2026-11-17T04:33:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "优必选 UBTECH"
+     ],
+     "is_placeholder": false,
+     "id": "6b0d4a96c8cb",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "财新网",
+        "url": "https://www.caixin.com/2026-11-17/102505893.html",
+        "published": "2026-11-17T04:33:00+08:00",
+        "host": "caixin.com"
+       }
+      ]
+     }
+    },
     {
      "board": "bigtech",
      "title": "宇树科技盘中一度跌超11%，股价跌破630元",
@@ -3482,36 +3494,6 @@
         "name": "新浪财经",
         "url": "https://finance.sina.com.cn/hy/hyjz/2026-11-17/doc-iniyzxec2120030.shtml",
         "published": "2026-11-17T03:39:00+08:00",
-        "host": "finance.sina.com.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "英伟达机器人业务负责人塔拉：OpenAI的Astra将极大推动机器人技术发展",
-     "title_original": "",
-     "summary": "OpenAI 在 9 月发布 Astra 模型后，用户很快发现它擅长理解物理世界相关任务。英伟达机器人业务负责人迪普・塔拉对其表现印象深刻，他在接受 The Information 采访时表示，Astra 是打造可处理多样化作业机器人的一项突破。",
-     "summary_original": "",
-     "source": "新浪财经",
-     "via": "Bing",
-     "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyzxec2132341.shtml",
-     "published": "2026-11-17T03:54:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "OpenAI",
-      "英伟达"
-     ],
-     "is_placeholder": false,
-     "id": "63595be777c7",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyzxec2132341.shtml",
-        "published": "2026-11-17T03:54:00+08:00",
         "host": "finance.sina.com.cn"
        }
       ]
@@ -3586,62 +3568,27 @@
      "board": "bigtech",
      "title": "Hyundai Motor takes full ownership of Boston Dynamics",
      "title_original": "",
-     "summary": "Hyundai Motor Group has acquired full ownership of its US robotics subsidiary Boston Dynamics, accelerating its push to commercialize the Atlas humanoid robot.",
+     "summary": "Hyundai Motor Group now owns 100% of Boston Dynamics after buying SoftBank’s last 9.65% stake, giving it full control of the US robotics unit. Hyundai plans to commercialise the Atlas humanoid robot, ...",
      "summary_original": "",
-     "source": "The Korea Herald",
+     "source": "The Straits Times",
      "via": "Bing",
-     "url": "https://www.koreaherald.com/article/10940043",
-     "published": "2026-11-17T01:31:00+08:00",
+     "url": "https://www.straitstimes.com/business/hyundai-motor-takes-full-ownership-of-boston-dynamics?ref=latest",
+     "published": "2026-11-17T02:09:00+08:00",
      "lang": "en",
      "companies": [
       "Boston Dynamics"
      ],
      "is_placeholder": false,
-     "id": "bd0648fecbe4",
+     "id": "9e78ec581a45",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "The Korea Herald",
-        "url": "https://www.koreaherald.com/article/10940043",
-        "published": "2026-11-17T01:31:00+08:00",
-        "host": "koreaherald.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "OpenAI重组机器人团队 具身智能融合趋势受关注",
-     "title_original": "",
-     "summary": "OpenAI已确认对机器人团队进行重组：机器人研究并入核心研究体系，向首席研究官Mark Chen汇报；应用机器人与硬件团队并入Applied组织，向总裁Greg ...",
-     "summary_original": "",
-     "source": "ITBear科技资讯 on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/openai%E9%87%8D%E7%BB%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%9E%8D%E5%90%88%E8%B6%8B%E5%8A%BF%E5%8F%97%E5%85%B3%E6%B3%A8/ar-AA2hzQL0",
-     "published": "2026-11-17T00:31:09+08:00",
-     "lang": "zh",
-     "companies": [
-      "OpenAI"
-     ],
-     "is_placeholder": false,
-     "id": "b14cc3c088dd",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "ITBear科技资讯",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E9%87%8D%E7%BB%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%9E%8D%E5%90%88%E8%B6%8B%E5%8A%BF%E5%8F%97%E5%85%B3%E6%B3%A8/ar-AA2hzQL0",
-        "published": "2026-11-17T00:31:09+08:00",
-        "host": "msn.cn"
-       },
-       {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/a/202611143931368740.html",
-        "published": "2026-11-15T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
+        "name": "The Straits Times",
+        "url": "https://www.straitstimes.com/business/hyundai-motor-takes-full-ownership-of-boston-dynamics?ref=latest",
+        "published": "2026-11-17T02:09:00+08:00",
+        "host": "straitstimes.com"
        }
       ]
      }
@@ -3867,12 +3814,12 @@
      "id": "3a294ded5a52",
      "verify": {
       "level": "cross",
-      "count": 2,
+      "count": 3,
       "sources": [
        {
         "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqy5628897.shtml",
-        "published": "2026-11-16T14:43:00+08:00",
+        "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxchy8933667.shtml",
+        "published": "2026-11-16T13:04:00+08:00",
         "host": "finance.sina.com.cn"
        },
        {
@@ -3880,6 +3827,94 @@
         "url": "https://www.donews.com/news/detail/1/6772291.html",
         "published": "2026-11-16T10:45:00+08:00",
         "host": "donews.com"
+       },
+       {
+        "name": "中华网新闻频道",
+        "url": "https://news.china.com/socialgd/10000169/20261116/49876183.html",
+        "published": "2026-11-16T12:46:00+08:00",
+        "host": "news.china.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "英伟达机器人学习工程师戴士钦，为支持黄仁勋辞职",
+     "title_original": "",
+     "summary": "戴士钦表示，他眼中的黄仁勋不只是英伟达 CEO， 他钦佩黄仁勋投资那些一下子看不到明确前景的未来技术 。 在深度学习热潮到来之前 ， 黄仁勋就已投入 CUDA ，并在人工智能成为所有人关注焦点之前布局 AI 领域。这些决策帮助 英伟达 建立如今支撑整个 AI 行业的基础设施。",
+     "summary_original": "",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxchy8933667.shtml",
+     "published": "2026-11-16T13:04:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "英伟达"
+     ],
+     "is_placeholder": false,
+     "id": "6d944dc35aa4",
+     "verify": {
+      "level": "cross",
+      "count": 3,
+      "sources": [
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxchy8933667.shtml",
+        "published": "2026-11-16T13:04:00+08:00",
+        "host": "finance.sina.com.cn"
+       },
+       {
+        "name": "DoNews",
+        "url": "https://www.donews.com/news/detail/1/6772291.html",
+        "published": "2026-11-16T10:45:00+08:00",
+        "host": "donews.com"
+       },
+       {
+        "name": "中华网新闻频道",
+        "url": "https://news.china.com/socialgd/10000169/20261116/49876183.html",
+        "published": "2026-11-16T12:46:00+08:00",
+        "host": "news.china.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "英伟达一机器人学习工程师辞职 追随黄仁勋脚步离去",
+     "title_original": "",
+     "summary": "英伟达机器人学习工程师戴士钦昨日宣布将离开公司。他表示，黄仁勋不仅是公司的CEO，更是他所敬佩的人。在深度学习热潮到来之前，黄仁勋就已投入CUDA，并在人工智能成为焦点之前布局该领域，这些决策帮助英伟达建立了支撑整个AI行业的基础设施。 在具身智能领域，黄仁勋同样展现了远见：投资机器人技术、分享开源工具和项目，以及打造可将AI带入物理世界的计算平台。但对戴士钦来说，黄仁勋最珍贵的地方在于他一手建立 ...",
+     "summary_original": "",
+     "source": "中华网新闻频道",
+     "via": "Bing",
+     "url": "https://news.china.com/socialgd/10000169/20261116/49876183.html",
+     "published": "2026-11-16T12:46:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "英伟达"
+     ],
+     "is_placeholder": false,
+     "id": "24637a8646b6",
+     "verify": {
+      "level": "cross",
+      "count": 3,
+      "sources": [
+       {
+        "name": "中华网新闻频道",
+        "url": "https://news.china.com/socialgd/10000169/20261116/49876183.html",
+        "published": "2026-11-16T12:46:00+08:00",
+        "host": "news.china.com"
+       },
+       {
+        "name": "DoNews",
+        "url": "https://www.donews.com/news/detail/1/6772291.html",
+        "published": "2026-11-16T10:45:00+08:00",
+        "host": "donews.com"
+       },
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxchy8933667.shtml",
+        "published": "2026-11-16T13:04:00+08:00",
+        "host": "finance.sina.com.cn"
        }
       ]
      }
@@ -3902,7 +3937,7 @@
      "id": "e89bc3130fd2",
      "verify": {
       "level": "cross",
-      "count": 2,
+      "count": 3,
       "sources": [
        {
         "name": "DoNews",
@@ -3911,9 +3946,15 @@
         "host": "donews.com"
        },
        {
+        "name": "中华网新闻频道",
+        "url": "https://news.china.com/socialgd/10000169/20261116/49876183.html",
+        "published": "2026-11-16T12:46:00+08:00",
+        "host": "news.china.com"
+       },
+       {
         "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqy5628897.shtml",
-        "published": "2026-11-16T14:43:00+08:00",
+        "url": "https://finance.sina.com.cn/wm/2026-11-16/doc-iniyxchy8933667.shtml",
+        "published": "2026-11-16T13:04:00+08:00",
         "host": "finance.sina.com.cn"
        }
       ]
@@ -3979,98 +4020,29 @@
     },
     {
      "board": "bigtech",
-     "title": "无法接受黄仁勋离开，英伟达机器人研究工程师宣布辞职",
+     "title": "禾赛Kosmo与Ropedia达成合作，打通具身智能训练数据生产链路",
      "title_original": "",
-     "summary": "格隆汇11月16日｜英伟达机器人研究工程师Darrell Dai昨日发布公开信称已决定辞职。其表示，“作为英伟达的一名机器人工程师，我眼中的黄仁勋，远不止是公司的首席执行官。我敬佩他愿意为尚不明朗的未来投入资源。早在深度学习热潮到来之前，他就坚定地押注CUDA，并在人工智能成为所有人的优先事项之前，就为英伟达布局了这一领域。这些决策帮助构建了支撑当今人工智能的基础设施。” 关于离职原因，Darre ...",
+     "summary": "11月16日，盖世具身智能获悉，禾赛科技旗下三维世界数据引擎Kosmo已与物理AI基础设施公司Ropedia达成战略合作，双方将共同推进高质量真实世界数据的规模化生产。 此次合作将打通空间数据采集、结构化处理、标准化交付及模型验证的完整链路，面向OpenAI、Meta、DeepMind、NVIDIA、Google、Microsoft等全球科技企业及具身智能、世界模型研发团队，提供可直接用于模型训练 ...",
      "summary_original": "",
-     "source": "格隆汇 on MSN",
+     "source": "盖世汽车 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/%E6%97%A0%E6%B3%95%E6%8E%A5%E5%8F%97%E9%BB%84%E4%BB%81%E5%8B%8B%E7%A6%BB%E5%BC%80-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A0%94%E7%A9%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2hvyBu",
-     "published": "2026-11-16T03:24:42+08:00",
+     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E7%A6%BE%E8%B5%9Bkosmo%E4%B8%8Eropedia%E8%BE%BE%E6%88%90%E5%90%88%E4%BD%9C-%E6%89%93%E9%80%9A%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%94%9F%E4%BA%A7%E9%93%BE%E8%B7%AF/ar-AA2hwlkE",
+     "published": "2026-11-16T05:48:15+08:00",
      "lang": "zh",
      "companies": [
+      "OpenAI",
       "英伟达"
      ],
      "is_placeholder": false,
-     "id": "18417a6d179b",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
-        "published": "2026-11-16T01:19:46+08:00",
-        "host": "msn.cn"
-       },
-       {
-        "name": "红板报",
-        "url": "https://www.msn.com/zh-cn/news/other/%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C-%E9%BB%84%E4%BB%81%E5%8B%8B%E7%A6%BB%E8%81%8C%E8%AE%A9%E6%88%91%E5%A4%B1%E6%9C%9B/ar-AA2hvtPS",
-        "published": "2026-11-15T20:20:35+08:00",
-        "host": "msn.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "英伟达机器人学习工程师戴士钦宣布辞职：“黄仁勋离职让我格外 ...",
-     "title_original": "",
-     "summary": "IT之家 11 月 16 日消息，英伟达机器人学习工程师戴士钦（Darrell Dai）昨日发文，宣布将离开公司。 戴士钦表示，他眼中的黄仁勋不只是英伟达 CEO，他钦佩黄仁勋投资那些一下子看不到明确前景的未来技术。在深度学习热潮到来之前，黄仁勋就已投入 CUDA，并在人工智能成为所有人关注焦点之前布局 AI 领域。这些决策帮助英伟达建立如今支撑整个 AI ...",
-     "summary_original": "",
-     "source": "IT之家 on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.com/zh-cn/news/other/%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%B4%E5%A3%AB%E9%92%A6%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C-%E9%BB%84%E4%BB%81%E5%8B%8B%E7%A6%BB%E8%81%8C%E8%AE%A9%E6%88%91%E6%A0%BC%E5%A4%96%E5%A4%B1%E6%9C%9B/ar-AA2hvKz2",
-     "published": "2026-11-16T02:36:36+08:00",
-     "lang": "zh",
-     "companies": [
-      "英伟达"
-     ],
-     "is_placeholder": false,
-     "id": "bca3ca6d60b1",
-     "verify": {
-      "level": "cross",
-      "count": 2,
-      "sources": [
-       {
-        "name": "红板报",
-        "url": "https://www.msn.com/zh-cn/news/other/%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C-%E9%BB%84%E4%BB%81%E5%8B%8B%E7%A6%BB%E8%81%8C%E8%AE%A9%E6%88%91%E5%A4%B1%E6%9C%9B/ar-AA2hvtPS",
-        "published": "2026-11-15T20:20:35+08:00",
-        "host": "msn.com"
-       },
-       {
-        "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
-        "published": "2026-11-16T01:19:46+08:00",
-        "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "OpenAI六年两次裁撤机器人团队，中国厂商却在给“小脑”持续下注",
-     "title_original": "",
-     "summary": "人形机器人的2027对赌。",
-     "summary_original": "",
-     "source": "钛媒体APP on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%85%AD%E5%B9%B4%E4%B8%A4%E6%AC%A1%E8%A3%81%E6%92%A4%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E4%B8%AD%E5%9B%BD%E5%8E%82%E5%95%86%E5%8D%B4%E5%9C%A8%E7%BB%99-%E5%B0%8F%E8%84%91-%E6%8C%81%E7%BB%AD%E4%B8%8B%E6%B3%A8/ar-AA2huMyb",
-     "published": "2026-11-16T02:07:46+08:00",
-     "lang": "zh",
-     "companies": [
-      "OpenAI"
-     ],
-     "is_placeholder": false,
-     "id": "8e72cdd7bb6a",
+     "id": "d282810c282c",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "钛媒体APP",
-        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%85%AD%E5%B9%B4%E4%B8%A4%E6%AC%A1%E8%A3%81%E6%92%A4%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E4%B8%AD%E5%9B%BD%E5%8E%82%E5%95%86%E5%8D%B4%E5%9C%A8%E7%BB%99-%E5%B0%8F%E8%84%91-%E6%8C%81%E7%BB%AD%E4%B8%8B%E6%B3%A8/ar-AA2huMyb",
-        "published": "2026-11-16T02:07:46+08:00",
+        "name": "盖世汽车",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E7%A6%BE%E8%B5%9Bkosmo%E4%B8%8Eropedia%E8%BE%BE%E6%88%90%E5%90%88%E4%BD%9C-%E6%89%93%E9%80%9A%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%94%9F%E4%BA%A7%E9%93%BE%E8%B7%AF/ar-AA2hwlkE",
+        "published": "2026-11-16T05:48:15+08:00",
         "host": "msn.cn"
        }
       ]
@@ -4084,21 +4056,21 @@
      "summary_original": "",
      "source": "快科技 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
+     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
      "published": "2026-11-16T01:19:46+08:00",
      "lang": "zh",
      "companies": [
       "英伟达"
      ],
      "is_placeholder": false,
-     "id": "a34ebb2e8f56",
+     "id": "682d77a1d546",
      "verify": {
       "level": "cross",
       "count": 2,
       "sources": [
        {
         "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
         "published": "2026-11-16T01:19:46+08:00",
         "host": "msn.cn"
        },
@@ -4168,9 +4140,50 @@
        },
        {
         "name": "快科技",
-        "url": "https://www.msn.cn/zh-cn/news/other/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8/%E9%BB%84%E4%BB%81%E5%8B%8B%E8%B5%B0%E5%90%8E%E5%91%98%E5%B7%A5%E4%B9%9F%E4%B8%8D%E5%B9%B2%E4%BA%86-%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AE%A3%E5%B8%83%E8%BE%9E%E8%81%8C/ar-AA2huW79",
         "published": "2026-11-16T01:19:46+08:00",
         "host": "msn.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "OpenAI撤销机器人团队",
+     "title_original": "",
+     "summary": "据Fortune报道，这个成立仅半年的Robotics团队已被撤销，研究人员并入模型主线，硬件人员并入应用部门。而此时，OpenAI 招聘页面上年薪最高 48.5 万美元的机器人岗位，还没有撤下。 在这166天里，整个具身行业的投入在持续加码。NEURA宣布最高14亿美元的融资；Google DeepMind发布Gemini Robotics ...",
+     "summary_original": "",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/wm/2026-11-15/doc-iniyvkxz3071079.shtml",
+     "published": "2026-11-15T18:35:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "OpenAI"
+     ],
+     "is_placeholder": false,
+     "id": "87a154c3e3ed",
+     "verify": {
+      "level": "cross",
+      "count": 3,
+      "sources": [
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-15/doc-iniyvkxz3071079.shtml",
+        "published": "2026-11-15T18:35:00+08:00",
+        "host": "finance.sina.com.cn"
+       },
+       {
+        "name": "凤凰网科技",
+        "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
+        "published": "2026-11-14T13:38:00+08:00",
+        "host": "tech.ifeng.com"
+       },
+       {
+        "name": "电子工程专辑",
+        "url": "https://www.eet-china.com/mp/a539384.html",
+        "published": "2026-11-15T18:10:00+08:00",
+        "host": "eet-china.com"
        }
       ]
      }
@@ -4193,90 +4206,25 @@
      "id": "7badc154e4e4",
      "verify": {
       "level": "cross",
-      "count": 5,
+      "count": 3,
       "sources": [
        {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
-        "published": "2026-11-14T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
-       },
-       {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
-        "published": "2026-11-14T07:48:00+08:00",
-        "host": "finance.sina.com.cn"
-       },
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1101482064_122054251",
-        "published": "2026-11-14T12:32:00+08:00",
-        "host": "sohu.com"
-       },
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261114A098EW00",
-        "published": "2026-11-14T13:22:00+08:00",
-        "host": "news.qq.com"
+        "name": "电子工程专辑",
+        "url": "https://www.eet-china.com/mp/a539384.html",
+        "published": "2026-11-15T18:10:00+08:00",
+        "host": "eet-china.com"
        },
        {
         "name": "凤凰网科技",
         "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
         "published": "2026-11-14T13:38:00+08:00",
         "host": "tech.ifeng.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "OpenAI撤销机器人团队",
-     "title_original": "",
-     "summary": "166天前，Sam Altman 宣布成立 OpenAI Robotics，并一口气放出 19 个岗位，这在当时一度被外界称之为“人形机器人的 ChatGPT 时刻”。而就在最近，OpenAI把这个刚刚成立不久的机器人团队撤销了。 据Fortune报道，这个成立仅半年的Robotics团队已被撤销，研究人员并入模型主线，硬件人员并入应用部门。而此时，OpenAI 招聘页面上年薪最高 48.5 万美 ...",
-     "summary_original": "",
-     "source": "腾讯网",
-     "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261115A09H7B00",
-     "published": "2026-11-15T17:27:00+08:00",
-     "lang": "en",
-     "companies": [
-      "OpenAI"
-     ],
-     "is_placeholder": false,
-     "id": "31ce75f0637a",
-     "verify": {
-      "level": "cross",
-      "count": 5,
-      "sources": [
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261114A098EW00",
-        "published": "2026-11-14T13:22:00+08:00",
-        "host": "news.qq.com"
-       },
-       {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
-        "published": "2026-11-14T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
        },
        {
         "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
-        "published": "2026-11-14T07:48:00+08:00",
+        "url": "https://finance.sina.com.cn/wm/2026-11-15/doc-iniyvkxz3071079.shtml",
+        "published": "2026-11-15T18:35:00+08:00",
         "host": "finance.sina.com.cn"
-       },
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1101482064_122054251",
-        "published": "2026-11-14T12:32:00+08:00",
-        "host": "sohu.com"
-       },
-       {
-        "name": "凤凰网科技",
-        "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
-        "published": "2026-11-14T13:38:00+08:00",
-        "host": "tech.ifeng.com"
        }
       ]
      }
@@ -4312,6 +4260,35 @@
     },
     {
      "board": "bigtech",
+     "title": "刚招满5个月，OpenAI把机器人团队“吞”回大模型",
+     "title_original": "",
+     "summary": "2026年5月，Sam Altman公开发帖大规模招聘，正式对外命名为OpenAI Robotics，将2027年定为首次公开演示的目标时间。 但内部很快发现，GPT-6 Astra这类通用前沿模型已能直接吞摄像头画面、机器人状态和自然语言指令，输出动作序列，不再需要单独训一个“机器人专属大脑”。",
+     "summary_original": "",
+     "source": "新浪财经",
+     "via": "Bing",
+     "url": "https://finance.sina.com.cn/wm/2026-11-15/doc-iniyuyiy9646338.shtml",
+     "published": "2026-11-15T13:25:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "OpenAI"
+     ],
+     "is_placeholder": false,
+     "id": "77b1fc06ffb3",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/wm/2026-11-15/doc-iniyuyiy9646338.shtml",
+        "published": "2026-11-15T13:25:00+08:00",
+        "host": "finance.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
      "title": "OpenAI 解散独立机器人团队？ 转攻通用智慧与成本控管",
      "title_original": "",
      "summary": "OpenAI因人工智能需求变动而改动公司组织架构，将机器人部门裁撤，并且并入通用智慧。图:翻摄自腾讯网 人工智能巨擘 OpenAI近期内部组织出现重大变动。根据《财星》（ Fortune）杂志报导， OpenAI已经解散独立的机器人团队，并将相关研究人员并入公司其他部门。针对此项消息， OpenAI向《财星》（ Fortune）证实了这项调整，公司发言人强调，机器人技术依然是其长期愿景的核心组成部 ...",
@@ -4327,14 +4304,26 @@
      "is_placeholder": false,
      "id": "0e010ddea6be",
      "verify": {
-      "level": "single",
-      "count": 1,
+      "level": "cross",
+      "count": 3,
       "sources": [
        {
         "name": "阿波罗新闻网",
         "url": "https://www.aboluowang.com/2026/1115/2458005.html",
         "published": "2026-11-15T11:03:00+08:00",
         "host": "aboluowang.com"
+       },
+       {
+        "name": "新浪财经",
+        "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
+        "published": "2026-11-14T07:48:00+08:00",
+        "host": "finance.sina.com.cn"
+       },
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1101482064_122054251",
+        "published": "2026-11-14T12:32:00+08:00",
+        "host": "sohu.com"
        }
       ]
      }
@@ -4370,56 +4359,27 @@
     },
     {
      "board": "bigtech",
-     "title": "刚招满5个月，OpenAI把机器人团队“吞”回大模型",
-     "title_original": "",
-     "summary": "加速而非放弃 ...",
-     "summary_original": "",
-     "source": "格隆汇 on MSN",
-     "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%88%9A%E6%8B%9B%E6%BB%A15%E4%B8%AA%E6%9C%88-openai%E6%8A%8A%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E5%90%9E-%E5%9B%9E%E5%A4%A7%E6%A8%A1%E5%9E%8B/ar-AA2hsEpW",
-     "published": "2026-11-15T05:15:01+08:00",
-     "lang": "zh",
-     "companies": [
-      "OpenAI"
-     ],
-     "is_placeholder": false,
-     "id": "ad166673b79c",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "格隆汇",
-        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%88%9A%E6%8B%9B%E6%BB%A15%E4%B8%AA%E6%9C%88-openai%E6%8A%8A%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E5%90%9E-%E5%9B%9E%E5%A4%A7%E6%A8%A1%E5%9E%8B/ar-AA2hsEpW",
-        "published": "2026-11-15T05:15:01+08:00",
-        "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
      "title": "OpenAI再次解散机器人团队：GPT-6太强，决定All in通用模型",
      "title_original": "",
      "summary": "英伟达一场仿真测试里，GPT-6 Astra 一天都没练过，只靠摄像头画面、机器人状态和一根控制线，就把机械臂任务成功率做到 74.8%，真机苦练的专用策略最高才 51%。同一周，OpenAI 向《财富》确认撤销独立机器人团队。 机器人行业过去有一条很清晰的分工：通用模型负责理解指令，机器人模型负责把视觉、状态和动作对应起来，底层控制器再保证机械臂不会撞上东西。现在这条边界正在变薄。 一项英伟达 ...",
      "summary_original": "",
      "source": "人人都是产品经理 on MSN",
      "via": "Bing",
-     "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
+     "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
      "published": "2026-11-15T03:16:53+08:00",
      "lang": "zh",
      "companies": [
       "OpenAI"
      ],
      "is_placeholder": false,
-     "id": "09e8fae50305",
+     "id": "14ad98ec98ae",
      "verify": {
       "level": "cross",
       "count": 5,
       "sources": [
        {
         "name": "人人都是产品经理",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
         "published": "2026-11-15T03:16:53+08:00",
         "host": "msn.cn"
        },
@@ -4472,68 +4432,15 @@
       "sources": [
        {
         "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/a/202611143931368740.html",
-        "published": "2026-11-15T00:00:00+08:00",
+        "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
+        "published": "2026-11-14T00:00:00+08:00",
         "host": "finance.eastmoney.com"
        },
        {
-        "name": "ITBear科技资讯",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E9%87%8D%E7%BB%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E8%9E%8D%E5%90%88%E8%B6%8B%E5%8A%BF%E5%8F%97%E5%85%B3%E6%B3%A8/ar-AA2hzQL0",
-        "published": "2026-11-17T00:31:09+08:00",
-        "host": "msn.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "OpenAI，解散机器人团队",
-     "title_original": "",
-     "summary": "OpenAI原机器人研究团队已被并入公司的核心研究团队，向首席研究官Mark Chen汇报；而应用机器人团队和硬件团队则被重新划归公司规模更大的应用部门，该部门由OpenAI总裁Greg Brockman领导。 创立初期，OpenAI就曾设有机器人团队，但在2020年逐步解散团队。联合创始人Wojciech ...",
-     "summary_original": "",
-     "source": "新浪财经",
-     "via": "Bing",
-     "url": "https://finance.sina.com.cn/wm/2026-11-14/doc-iniytnhv2630100.shtml",
-     "published": "2026-11-14T22:00:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "OpenAI"
-     ],
-     "is_placeholder": false,
-     "id": "8aea53753a51",
-     "verify": {
-      "level": "cross",
-      "count": 5,
-      "sources": [
-       {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/roll/2026-11-14/doc-iniysepk7546353.shtml",
-        "published": "2026-11-14T09:32:00+08:00",
-        "host": "finance.sina.com.cn"
-       },
-       {
         "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261114A0527S00",
-        "published": "2026-11-14T08:04:00+08:00",
+        "url": "https://news.qq.com/rain/a/20261114A098EW00",
+        "published": "2026-11-14T13:22:00+08:00",
         "host": "news.qq.com"
-       },
-       {
-        "name": "中华网新闻频道",
-        "url": "https://news.china.com/socialgd/10000169/20261114/49871513_all.html",
-        "published": "2026-11-14T10:38:00+08:00",
-        "host": "news.china.com"
-       },
-       {
-        "name": "电子工程专辑",
-        "url": "https://www.eet-china.com/mp/a539296.html",
-        "published": "2026-11-14T20:45:00+08:00",
-        "host": "eet-china.com"
-       },
-       {
-        "name": "人人都是产品经理",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
-        "published": "2026-11-15T03:16:53+08:00",
-        "host": "msn.cn"
        }
       ]
      }
@@ -4584,7 +4491,7 @@
        },
        {
         "name": "人人都是产品经理",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
         "published": "2026-11-15T03:16:53+08:00",
         "host": "msn.cn"
        }
@@ -4638,7 +4545,7 @@
      "id": "0a929f126157",
      "verify": {
       "level": "cross",
-      "count": 5,
+      "count": 3,
       "sources": [
        {
         "name": "凤凰网科技",
@@ -4647,28 +4554,16 @@
         "host": "tech.ifeng.com"
        },
        {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
-        "published": "2026-11-14T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
+        "name": "电子工程专辑",
+        "url": "https://www.eet-china.com/mp/a539384.html",
+        "published": "2026-11-15T18:10:00+08:00",
+        "host": "eet-china.com"
        },
        {
         "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
-        "published": "2026-11-14T07:48:00+08:00",
+        "url": "https://finance.sina.com.cn/wm/2026-11-15/doc-iniyvkxz3071079.shtml",
+        "published": "2026-11-15T18:35:00+08:00",
         "host": "finance.sina.com.cn"
-       },
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1101482064_122054251",
-        "published": "2026-11-14T12:32:00+08:00",
-        "host": "sohu.com"
-       },
-       {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261114A098EW00",
-        "published": "2026-11-14T13:22:00+08:00",
-        "host": "news.qq.com"
        }
       ]
      }
@@ -4691,7 +4586,7 @@
      "id": "59a4190f7159",
      "verify": {
       "level": "cross",
-      "count": 5,
+      "count": 2,
       "sources": [
        {
         "name": "腾讯网",
@@ -4704,24 +4599,6 @@
         "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
         "published": "2026-11-14T00:00:00+08:00",
         "host": "finance.eastmoney.com"
-       },
-       {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
-        "published": "2026-11-14T07:48:00+08:00",
-        "host": "finance.sina.com.cn"
-       },
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1101482064_122054251",
-        "published": "2026-11-14T12:32:00+08:00",
-        "host": "sohu.com"
-       },
-       {
-        "name": "凤凰网科技",
-        "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
-        "published": "2026-11-14T13:38:00+08:00",
-        "host": "tech.ifeng.com"
        }
       ]
      }
@@ -4744,7 +4621,7 @@
      "id": "e4a99354b548",
      "verify": {
       "level": "cross",
-      "count": 5,
+      "count": 3,
       "sources": [
        {
         "name": "sohu.com",
@@ -4753,28 +4630,16 @@
         "host": "sohu.com"
        },
        {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
-        "published": "2026-11-14T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
-       },
-       {
         "name": "新浪财经",
         "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
         "published": "2026-11-14T07:48:00+08:00",
         "host": "finance.sina.com.cn"
        },
        {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261114A098EW00",
-        "published": "2026-11-14T13:22:00+08:00",
-        "host": "news.qq.com"
-       },
-       {
-        "name": "凤凰网科技",
-        "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
-        "published": "2026-11-14T13:38:00+08:00",
-        "host": "tech.ifeng.com"
+        "name": "阿波罗新闻网",
+        "url": "https://www.aboluowang.com/2026/1115/2458005.html",
+        "published": "2026-11-15T11:03:00+08:00",
+        "host": "aboluowang.com"
        }
       ]
      }
@@ -4825,7 +4690,7 @@
        },
        {
         "name": "人人都是产品经理",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
         "published": "2026-11-15T03:16:53+08:00",
         "host": "msn.cn"
        }
@@ -4908,7 +4773,7 @@
        },
        {
         "name": "人人都是产品经理",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
         "published": "2026-11-15T03:16:53+08:00",
         "host": "msn.cn"
        }
@@ -4961,7 +4826,7 @@
        },
        {
         "name": "人人都是产品经理",
-        "url": "https://www.msn.cn/zh-cn/news/other/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
+        "url": "https://www.msn.cn/zh-cn/%E6%8A%80%E6%9C%AF/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/openai%E5%86%8D%E6%AC%A1%E8%A7%A3%E6%95%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9B%A2%E9%98%9F-gpt-6%E5%A4%AA%E5%BC%BA-%E5%86%B3%E5%AE%9Aall-in%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B/ar-AA2hui7P",
         "published": "2026-11-15T03:16:53+08:00",
         "host": "msn.cn"
        }
@@ -5015,7 +4880,7 @@
      "id": "147e03c3bff4",
      "verify": {
       "level": "cross",
-      "count": 5,
+      "count": 3,
       "sources": [
        {
         "name": "新浪财经",
@@ -5024,28 +4889,16 @@
         "host": "finance.sina.com.cn"
        },
        {
-        "name": "东方财富网财经频道",
-        "url": "https://finance.eastmoney.com/news/1354,202611143931326661.html",
-        "published": "2026-11-14T00:00:00+08:00",
-        "host": "finance.eastmoney.com"
-       },
-       {
         "name": "sohu.com",
         "url": "https://www.sohu.com/a/1101482064_122054251",
         "published": "2026-11-14T12:32:00+08:00",
         "host": "sohu.com"
        },
        {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261114A098EW00",
-        "published": "2026-11-14T13:22:00+08:00",
-        "host": "news.qq.com"
-       },
-       {
-        "name": "凤凰网科技",
-        "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
-        "published": "2026-11-14T13:38:00+08:00",
-        "host": "tech.ifeng.com"
+        "name": "阿波罗新闻网",
+        "url": "https://www.aboluowang.com/2026/1115/2458005.html",
+        "published": "2026-11-15T11:03:00+08:00",
+        "host": "aboluowang.com"
        }
       ]
      }
@@ -5116,21 +4969,21 @@
      "summary_original": "",
      "source": "The Cool Down on MSN",
      "via": "Bing",
-     "url": "https://www.msn.com/en-us/money/general/figure-ai-offers-up-to-45-an-hour-to-oversee-humanoid-robots-and-their-human-operators-overnight/ar-AA2hp0Iq",
+     "url": "https://www.msn.com/en-us/news/other/figure-ai-offers-up-to-45-an-hour-to-oversee-humanoid-robots-and-their-human-operators-overnight/ar-AA2hp0Iq",
      "published": "2026-11-14T01:15:00+08:00",
      "lang": "en",
      "companies": [
       "Figure"
      ],
      "is_placeholder": false,
-     "id": "2dd85d2e87c0",
+     "id": "d5afb6634f1e",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
         "name": "The Cool Down",
-        "url": "https://www.msn.com/en-us/money/general/figure-ai-offers-up-to-45-an-hour-to-oversee-humanoid-robots-and-their-human-operators-overnight/ar-AA2hp0Iq",
+        "url": "https://www.msn.com/en-us/news/other/figure-ai-offers-up-to-45-an-hour-to-oversee-humanoid-robots-and-their-human-operators-overnight/ar-AA2hp0Iq",
         "published": "2026-11-14T01:15:00+08:00",
         "host": "msn.com"
        }
@@ -5184,7 +5037,7 @@
      "id": "4e6160265a18",
      "verify": {
       "level": "cross",
-      "count": 5,
+      "count": 2,
       "sources": [
        {
         "name": "东方财富网财经频道",
@@ -5193,28 +5046,10 @@
         "host": "finance.eastmoney.com"
        },
        {
-        "name": "新浪财经",
-        "url": "https://finance.sina.com.cn/tech/roll/2026-11-14/doc-iniysepk7503820.shtml",
-        "published": "2026-11-14T07:48:00+08:00",
-        "host": "finance.sina.com.cn"
-       },
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1101482064_122054251",
-        "published": "2026-11-14T12:32:00+08:00",
-        "host": "sohu.com"
-       },
-       {
         "name": "腾讯网",
         "url": "https://news.qq.com/rain/a/20261114A098EW00",
         "published": "2026-11-14T13:22:00+08:00",
         "host": "news.qq.com"
-       },
-       {
-        "name": "凤凰网科技",
-        "url": "https://tech.ifeng.com/c/8y2U7xfQd2F",
-        "published": "2026-11-14T13:38:00+08:00",
-        "host": "tech.ifeng.com"
        }
       ]
      }
@@ -5225,25 +5060,54 @@
      "title_original": "",
      "summary": "英伟达的权力交接，来得比外界预想的突然。 11月12日，执掌英伟达33年的黄仁勋辞去CEO、总裁及董事职务。这位习惯穿着黑色皮衣、站在聚光灯下谈论AI未来的创始人，如今突然离开了自己一手建立的权力中心。 接替他的，是长期掌管英伟达财务的Colette Kress。不过，这位在公司工作了十余年的老将也只是临时接班。董事会已开始寻找新的CEO，资深董事Harvey C. Jones出任董事长。英伟达尚 ...",
      "summary_original": "",
-     "source": "腾讯网",
+     "source": "OFweek机器人网",
      "via": "Bing",
-     "url": "https://news.qq.com/rain/a/20261113A08YI000",
-     "published": "2026-11-13T15:03:00+08:00",
+     "url": "https://robot.ofweek.com/2026-11/ART-8321205-12003-30711721.html",
+     "published": "2026-11-13T17:25:00+08:00",
      "lang": "zh",
      "companies": [
       "英伟达"
      ],
      "is_placeholder": false,
-     "id": "23e2015f343a",
+     "id": "eb0f1f0464ba",
      "verify": {
       "level": "single",
       "count": 1,
       "sources": [
        {
-        "name": "腾讯网",
-        "url": "https://news.qq.com/rain/a/20261113A08YI000",
-        "published": "2026-11-13T15:03:00+08:00",
-        "host": "news.qq.com"
+        "name": "OFweek机器人网",
+        "url": "https://robot.ofweek.com/2026-11/ART-8321205-12003-30711721.html",
+        "published": "2026-11-13T17:25:00+08:00",
+        "host": "robot.ofweek.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "人形机器人爆发前夜！摩根大通首次覆盖Agility Robotics，物流场景已跑 ...",
+     "title_original": "",
+     "summary": "2026年开年，全球科技圈最躁动的关键词不是‘AI Agent’，也不是‘量子计算商用化’——而是：人形机器人。 没错，那个曾被戏称为‘硅谷行为艺术’、‘实验室里的钢铁芭蕾’的赛道，正在以肉眼可见的速度撕掉‘概念验证’的标签。就在刚刚过去的3月，摩根大通重磅出手：首次覆盖美国人形机器人明星公司Agility Robotics，并给出‘中性’评级、目标价11美元（当前股价9.13美元）。这不是一份例 ...",
+     "summary_original": "",
+     "source": "sohu.com",
+     "via": "",
+     "url": "https://www.sohu.com/a/1101048478_122066679",
+     "published": "2026-11-13T13:21:00+08:00",
+     "lang": "en",
+     "companies": [
+      "Agility"
+     ],
+     "is_placeholder": false,
+     "id": "f6b91d65123a",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1101048478_122066679",
+        "published": "2026-11-13T13:21:00+08:00",
+        "host": "sohu.com"
        }
       ]
      }
@@ -5366,6 +5230,35 @@
     },
     {
      "board": "bigtech",
+     "title": "Agility Robotics完成合并，上市前获4.65亿美元融资",
+     "title_original": "",
+     "summary": "人形机器人Digit研发商、美国企业Agility Robotics已完成与Churchill Capital Corp XI的业务合并，为其股票在纳斯达克以“AGLT”代码上市铺平道路。 该交易于2026年11月4日完成，此前两天刚获得股东批准，预计在扣除交易费用前可实现约4.65亿美元的总募资额。 10月30日公布的融资方案包括：来自Churchill XI信托账户的约1.64亿美元、由富士康 ...",
+     "summary_original": "",
+     "source": "腾讯网",
+     "via": "Bing",
+     "url": "https://news.qq.com/rain/a/20261112A0BYLW00",
+     "published": "2026-11-12T18:04:00+08:00",
+     "lang": "en",
+     "companies": [
+      "Agility"
+     ],
+     "is_placeholder": false,
+     "id": "a593c178abed",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "腾讯网",
+        "url": "https://news.qq.com/rain/a/20261112A0BYLW00",
+        "published": "2026-11-12T18:04:00+08:00",
+        "host": "news.qq.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
      "title": "566亿人形机器人独角兽诞生！曝软银、英伟达投了哈工大学霸",
      "title_original": "",
      "summary": "机器人前瞻11月12日消息，据外媒彭博社报道，思灵机器人（Agile Robots）完成一轮5亿美元（约合人民币33.35亿元）融资，估值达到85亿美元（约合人民币566.88亿元）。本轮融资由软银集团领投，英伟达、日立和T.Capital参投。该公司将利用新资金在美国和其他市场进行扩张，并增强制造能力。 ▲思灵机器人融资（图源：X） 思灵机器人成立于2018年，全球总部位于德国慕尼黑。彭博社拿到 ...",
@@ -5388,35 +5281,6 @@
         "name": "sohu.com",
         "url": "https://www.sohu.com/a/1100641785_122054251",
         "published": "2026-11-12T17:44:00+08:00",
-        "host": "sohu.com"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
-     "title": "OpenAI 奥特曼领投，进军欧洲，这家配送机器人公司做对了什么？",
-     "title_original": "",
-     "summary": "总部位于洛杉矶的配送机器人初创公司 Coco Robotics，宣布将业务拓展至英国。 这家成立于 2020 年的公司，已经获得超过 1.1 亿美元融资。投资人名单中不仅有OpenAI CEO 山姆·奥特曼及其亲兄弟麦克斯·奥特曼，还有 Founders Fund 等知名投资机构。 2021 年，公司便完成了 3600 万美元 A 轮融资；2025 年，又获得 8000 万美元新融资。短短五年，从 ...",
-     "summary_original": "",
-     "source": "sohu.com",
-     "via": "",
-     "url": "https://www.sohu.com/a/1100686025_99919085",
-     "published": "2026-11-12T17:30:00+08:00",
-     "lang": "en",
-     "companies": [
-      "OpenAI"
-     ],
-     "is_placeholder": false,
-     "id": "865af75b2aaf",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "sohu.com",
-        "url": "https://www.sohu.com/a/1100686025_99919085",
-        "published": "2026-11-12T17:30:00+08:00",
         "host": "sohu.com"
        }
       ]
@@ -5482,35 +5346,6 @@
     },
     {
      "board": "bigtech",
-     "title": "宇树上市后市值大起大落，科创板新股都这样吗？",
-     "title_original": "",
-     "summary": "11月12日早盘，宇树科技股价报721.01元，总市值再度跌破3000亿元。从8月19日登陆科创板至今，这只股票的走势像被按下了快进键：上市首日开盘冲至1100元，较发行价150.80元涨超629%，市值一度摸到4449亿元；随后快速回调，10月15日探到404.03元的低点，较高点回撤超六成；接着又用18个交易日接近翻倍，11月上旬重新站回3000亿关口，没几天又跌了回来。",
-     "summary_original": "",
-     "source": "cj.sina.com.cn",
-     "via": "",
-     "url": "https://cj.sina.com.cn/articles/view/9013270924/2193b998c07201xga6",
-     "published": "2026-11-12T11:03:00+08:00",
-     "lang": "zh",
-     "companies": [
-      "宇树 Unitree"
-     ],
-     "is_placeholder": false,
-     "id": "e64ec988ef38",
-     "verify": {
-      "level": "single",
-      "count": 1,
-      "sources": [
-       {
-        "name": "cj.sina.com.cn",
-        "url": "https://cj.sina.com.cn/articles/view/9013270924/2193b998c07201xga6",
-        "published": "2026-11-12T11:03:00+08:00",
-        "host": "cj.sina.com.cn"
-       }
-      ]
-     }
-    },
-    {
-     "board": "bigtech",
      "title": "A Robot That Learns by Watching Human Videos | NVIDIA's New AI 'GR00T 2'",
      "title_original": "",
      "summary": "Hello, this is Amamiya from AI Kawaraban.While AI news has been dominated by chat and image generation, this time we have a story about something with a physical body. On November 9, NVIDIA announced ...",
@@ -5534,6 +5369,64 @@
         "url": "https://note.com/lucid_wasp/n/n77ec255701f0?hl=en",
         "published": "2026-11-11T22:38:00+08:00",
         "host": "note.com"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "给机器人接上“心跳”与记忆，智元发布终身具身智能框架",
+     "title_original": "",
+     "summary": "近日，智元AGIBOT发布终身具身智能框架LIFE（Learning to Live：A Step Toward Lifelong Embodied Intelligence），该框架将持续感知、长期记忆与能力复用结合，用于支持机器人在任务执行期间及任务间隔期获取环境信息，并将历史观察用于后续决策。 简单来说，以往机器人大多“指令来了才工作”，任务结束就暂停感知，LIFE让机器人保持“持续在线”， ...",
+     "summary_original": "",
+     "source": "cj.sina.com.cn",
+     "via": "",
+     "url": "https://cj.sina.com.cn/articles/view/5952915705/162d248f906703t3p6",
+     "published": "2026-11-11T21:05:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "智元 AgiBot"
+     ],
+     "is_placeholder": false,
+     "id": "4cbbb4d7d7eb",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "cj.sina.com.cn",
+        "url": "https://cj.sina.com.cn/articles/view/5952915705/162d248f906703t3p6",
+        "published": "2026-11-11T21:05:00+08:00",
+        "host": "cj.sina.com.cn"
+       }
+      ]
+     }
+    },
+    {
+     "board": "bigtech",
+     "title": "美国首家人形机器人上市公司：获得英伟达青睐，市值超过130亿元",
+     "title_original": "",
+     "summary": "2026年11月5日， Agility Robotics通过与特殊目的收购公司Churchill Capital Corp XI合并完成上市，成为美国首家以人形机器人为核心业务的上市公司。截至发稿时，总市值为19.95亿美元（约合人民币133亿元）。 公开资料显示：Agility成立于2015年，总部位于俄勒冈州塞勒姆，并建有RoboFab工厂（2024年10月投产，目标是每年生产1万台人形机器人 ...",
+     "summary_original": "",
+     "source": "sohu.com",
+     "via": "",
+     "url": "https://www.sohu.com/a/1100264627_121948396",
+     "published": "2026-11-11T20:12:00+08:00",
+     "lang": "zh",
+     "companies": [
+      "英伟达"
+     ],
+     "is_placeholder": false,
+     "id": "8cb3901380b4",
+     "verify": {
+      "level": "single",
+      "count": 1,
+      "sources": [
+       {
+        "name": "sohu.com",
+        "url": "https://www.sohu.com/a/1100264627_121948396",
+        "published": "2026-11-11T20:12:00+08:00",
+        "host": "sohu.com"
        }
       ]
      }
@@ -5605,7 +5498,7 @@
    "board": "domestic",
    "url": "https://www.leiphone.com/feed",
    "status": "ok",
-   "count": 4,
+   "count": 3,
    "raw": 20,
    "error": ""
   },
@@ -5626,7 +5519,7 @@
    "url": "https://www.tmtpost.com/rss",
    "status": "ok",
    "count": 0,
-   "raw": 14,
+   "raw": 15,
    "error": ""
   },
   {
@@ -5646,7 +5539,7 @@
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BA%A7%E4%B8%9A%E9%93%BE&format=rss",
    "status": "ok",
    "count": 9,
-   "raw": 11,
+   "raw": 12,
    "error": ""
   },
   {
@@ -5665,7 +5558,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E4%BC%98%E5%BF%85%E9%80%89%20%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 5,
+   "count": 4,
    "raw": 12,
    "error": ""
   },
@@ -5675,8 +5568,8 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E8%9E%8D%E8%B5%84&format=rss",
    "status": "ok",
-   "count": 9,
-   "raw": 11,
+   "count": 8,
+   "raw": 12,
    "error": ""
   },
   {
@@ -5735,7 +5628,7 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=humanoid%20robot&format=rss",
    "status": "ok",
-   "count": 9,
+   "count": 8,
    "raw": 11,
    "error": ""
   },
@@ -5755,7 +5648,7 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=Boston%20Dynamics%20robot&format=rss",
    "status": "ok",
-   "count": 8,
+   "count": 9,
    "raw": 11,
    "error": ""
   },
@@ -5776,7 +5669,7 @@
    "url": "https://www.bing.com/news/search?q=robotics%20industry%20humanoid%20deployment&format=rss",
    "status": "ok",
    "count": 7,
-   "raw": 12,
+   "raw": 11,
    "error": ""
   },
   {
@@ -5785,7 +5678,7 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=Atlas%20robot%20Boston%20Dynamics&format=rss",
    "status": "ok",
-   "count": 8,
+   "count": 7,
    "raw": 12,
    "error": ""
   },
@@ -5835,8 +5728,8 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=OpenAI%20%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 12,
-   "raw": 12,
+   "count": 11,
+   "raw": 11,
    "error": ""
   },
   {
@@ -5846,7 +5739,7 @@
    "url": "https://www.bing.com/news/search?q=OpenAI%20%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD&format=rss",
    "status": "ok",
    "count": 6,
-   "raw": 9,
+   "raw": 8,
    "error": ""
   },
   {
@@ -5855,8 +5748,8 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=OpenAI%20robotics&format=rss",
    "status": "ok",
-   "count": 6,
-   "raw": 11,
+   "count": 4,
+   "raw": 12,
    "error": ""
   },
   {
@@ -5865,7 +5758,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=%E8%8B%B1%E4%BC%9F%E8%BE%BE%20%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 10,
+   "count": 11,
    "raw": 12,
    "error": ""
   },
@@ -5885,7 +5778,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=Google%20DeepMind%20robotics&format=rss",
    "status": "ok",
-   "count": 10,
+   "count": 9,
    "raw": 12,
    "error": ""
   },
@@ -5895,8 +5788,8 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=Meta%20robotics%20embodied%20AI&format=rss",
    "status": "ok",
-   "count": 3,
-   "raw": 5,
+   "count": 4,
+   "raw": 6,
    "error": ""
   },
   {
@@ -5905,7 +5798,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=OpenAI%20Figure%20%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 6,
+   "count": 5,
    "raw": 12,
    "error": ""
   },
@@ -5935,7 +5828,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=%E4%BC%98%E5%BF%85%E9%80%89%20%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA&format=rss",
    "status": "ok",
-   "count": 5,
+   "count": 7,
    "raw": 12,
    "error": ""
   },
@@ -5945,7 +5838,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=%E6%99%BA%E5%85%83%E6%9C%BA%E5%99%A8%E4%BA%BA%20AgiBot&format=rss",
    "status": "ok",
-   "count": 11,
+   "count": 10,
    "raw": 11,
    "error": ""
   },
@@ -5956,7 +5849,7 @@
    "url": "https://www.bing.com/news/search?q=Figure%20AI%20humanoid&format=rss",
    "status": "ok",
    "count": 3,
-   "raw": 9,
+   "raw": 10,
    "error": ""
   },
   {
@@ -5996,7 +5889,7 @@
    "url": "https://www.bing.com/news/search?q=Physical%20Intelligence%20robot&format=rss",
    "status": "ok",
    "count": 2,
-   "raw": 9,
+   "raw": 10,
    "error": ""
   },
   {
@@ -6095,7 +5988,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E6%94%BF%E7%AD%96&format=rss",
    "status": "ok",
-   "count": 5,
+   "count": 6,
    "raw": 12,
    "error": ""
   },
@@ -6105,7 +5998,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E9%87%8F%E4%BA%A7&format=rss",
    "status": "ok",
-   "count": 7,
+   "count": 5,
    "raw": 12,
    "error": ""
   },
@@ -6115,8 +6008,8 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E8%AE%A2%E5%8D%95%20%E4%BA%A4%E4%BB%98&format=rss",
    "status": "ok",
-   "count": 9,
-   "raw": 11,
+   "count": 10,
+   "raw": 12,
    "error": ""
   },
   {
@@ -6125,7 +6018,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E8%A1%8C%E4%B8%9A%20%E7%A0%94%E6%8A%A5&format=rss",
    "status": "ok",
-   "count": 7,
+   "count": 8,
    "raw": 11,
    "error": ""
   },
@@ -6135,8 +6028,8 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8&format=rss",
    "status": "ok",
-   "count": 9,
-   "raw": 11,
+   "count": 8,
+   "raw": 12,
    "error": ""
   },
   {
@@ -6145,7 +6038,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E4%B8%AD%E5%9B%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BA%A7%E4%B8%9A%E8%81%94%E7%9B%9F&format=rss",
    "status": "ok",
-   "count": 3,
+   "count": 4,
    "raw": 12,
    "error": ""
   },
@@ -6155,7 +6048,7 @@
    "board": "domestic",
    "url": "https://www.bing.com/news/search?q=%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%20%E8%9E%8D%E8%B5%84&format=rss",
    "status": "ok",
-   "count": 7,
+   "count": 9,
    "raw": 12,
    "error": ""
   },
@@ -6185,7 +6078,7 @@
    "board": "overseas",
    "url": "https://robohub.org/feed/",
    "status": "ok",
-   "count": 26,
+   "count": 27,
    "raw": 75,
    "error": ""
   },
@@ -6235,8 +6128,8 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=humanoid%20robot%20funding%20deployment&format=rss",
    "status": "ok",
-   "count": 6,
-   "raw": 11,
+   "count": 5,
+   "raw": 10,
    "error": ""
   },
   {
@@ -6245,8 +6138,8 @@
    "board": "overseas",
    "url": "https://www.bing.com/news/search?q=dexterous%20robot%20hand%20manipulation&format=rss",
    "status": "ok",
-   "count": 6,
-   "raw": 11,
+   "count": 5,
+   "raw": 10,
    "error": ""
   },
   {
@@ -6267,7 +6160,7 @@
    "status": "fail",
    "count": 0,
    "raw": 0,
-   "error": "HTTPError: HTTP Error 415: Unsupported Media Type"
+   "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
    "id": "metaai",
@@ -6325,7 +6218,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=%E5%AE%87%E6%A0%91%E7%A7%91%E6%8A%80%20%E4%B8%8A%E5%B8%82&format=rss",
    "status": "ok",
-   "count": 9,
+   "count": 10,
    "raw": 12,
    "error": ""
   },
@@ -6335,7 +6228,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=%E6%99%BA%E5%85%83%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E9%87%8F%E4%BA%A7&format=rss",
    "status": "ok",
-   "count": 2,
+   "count": 3,
    "raw": 8,
    "error": ""
   },
@@ -6355,7 +6248,7 @@
    "board": "bigtech",
    "url": "https://www.bing.com/news/search?q=Figure%2003%20humanoid&format=rss",
    "status": "ok",
-   "count": 4,
+   "count": 5,
    "raw": 11,
    "error": ""
   },
@@ -6576,13 +6469,13 @@
   "total_items": 180,
   "translated": 0,
   "bigtech_filter": {
-   "bt_raw": 411,
+   "bt_raw": 414,
    "bt_dropped": 252,
    "bt_demoted": 4
   },
   "verify": {
-   "cross": 39,
-   "single": 141
+   "cross": 37,
+   "single": 143
   },
   "note": "数据来自公开 RSS 与新闻检索；每条含来源与原文链接。抓取失败的源见 source_report。"
  }
