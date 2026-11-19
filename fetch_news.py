@@ -1345,7 +1345,7 @@ def deepseek_report(cfg, candidates, date_label, window=None):
             {"role": "user", "content": build_candidate_prompt(candidates, date_label, window)},
         ],
         "temperature": float(llm.get("temperature", 0.3)),
-        "max_tokens": int(llm.get("max_tokens", 2600)),
+        "max_tokens": int(llm.get("max_tokens", 4096)),
         "response_format": {"type": "json_object"},
         "stream": False,
     }
@@ -1594,6 +1594,11 @@ def parse_sogou_articles(page_html):
             href = "https://weixin.sogou.com" + href
         if title and href.startswith("http"):
             out.append((title, href, summary, ts))
+    if not out:
+        # 没有任何结果块：可能是真无结果，也可能是反爬/验证页伪装成 200
+        if "没有找到" in page_html or "暂无" in page_html:
+            return []
+        raise RuntimeError("搜狗微信未返回可解析结果（可能为反爬验证或页面结构变化）")
     return out
 
 
@@ -1930,7 +1935,7 @@ def load_config():
                    "model": "deepseek-chat",
                    "base_url": "https://api.deepseek.com",
                    "api_key_env": "DEEPSEEK_API_KEY",
-                   "max_tokens": 2600, "temperature": 0.3, "timeout": 60}}
+                   "max_tokens": 4096, "temperature": 0.3, "timeout": 60}}
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, "r", encoding="utf-8") as f:
