@@ -2,15 +2,28 @@
   "account": "汽车琰究",
   "type": "券商",
   "certified": "已认证",
-  "note": "国联民生证券汽车组官方公众号。links 为手动维护的文章直链，贴入后跑一次 fetch_news.py 即入库；auto_discover 尝试解析公众号合集页，仅覆盖该合集收录的文章，不能保证覆盖全号。券商类只允许本号，不使用其他券商或公众号内容顶替。",
+  "note": "国联民生证券汽车组官方公众号。栏目按近 7 天过滤、按发布时间倒序、不限主题。links 为手动维护的文章直链，可一次贴多篇；auto_discover 会遍历 albums 中配置的合集页，但合集只覆盖被收录进该合集的文章，不代表全号。券商类只允许本号，不使用其他券商或公众号内容顶替。",
   "auto_discover": true,
+  "window_days": 7,
+  "max_items": 20,
+  "albums": [
+    {
+      "album_id": "3603837058327773191",
+      "label": "琰究小鹏汽车系列报告",
+      "count": 20
+    },
+    {
+      "album_id": "3621238449392320515",
+      "label": "历史合集（2024 汽车出海系列）",
+      "count": 20
+    }
+  ],
   "album": {
     "biz": "MzU3ODYzODA1MQ==",
     "album_id": "3603837058327773191",
-    "label": "小鹏集团合集",
+    "label": "琰究小鹏汽车系列报告",
     "count": 20
   },
-  "max_items": 6,
   "links": [
     "https://mp.weixin.qq.com/s/sJpjfAaCFQ4jvJaQfP6puA"
   ]

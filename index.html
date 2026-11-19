@@ -756,12 +756,15 @@ details[open] summary:before{content:"−"}
       ? "最近成功抓取 " + String(wa.last_success).slice(0,16).replace("T"," ")
       : "尚未成功抓取";
     var autoTxt = auto.status === "ok"
-      ? "合集自动发现 " + (auto.count||0) + " 篇" + (auto.label ? " · " + auto.label : "")
+      ? "合集自动发现 " + (auto.count||0) + " 篇"
+        + (auto.albums ? " · " + auto.albums.length + " 个合集" : "")
       : (auto.status === "fail" ? "合集自动发现失败" : "合集自动发现未启用");
+    var winTxt = "近 " + (wa.window_days || 7) + " 天 · " + items.length + " 篇"
+      + (wa.dropped_old ? "（已过滤 " + wa.dropped_old + " 篇过期）" : "");
     var head = '<div class="wa-head"><span class="wa-badge">固定信源</span>'
       + '<span class="wa-name">' + esc(account) + '</span>'
       + '<span class="wa-badge">国联民生证券汽车组</span>'
-      + '<span class="wa-meta">' + esc(stamp) + '<br>' + esc(autoTxt) + '</span></div>';
+      + '<span class="wa-meta">' + esc(winTxt) + '<br>' + esc(stamp) + '<br>' + esc(autoTxt) + '</span></div>';
     var body;
     if(items.length){
       body = items.map(function(a){
@@ -774,7 +777,7 @@ details[open] summary:before{content:"−"}
           + '<span>点击查看原文 →</span></div></a>';
       }).join("");
     }else{
-      body = '<div class="wa-empty">本期没有抓到新文章。该栏目与「' + esc(account)
+      body = '<div class="wa-empty">近 ' + esc(String(wa.window_days||7)) + ' 天没有抓到该号的新文章。该栏目与「' + esc(account)
         + '」信源固定保留，不会因无更新而删除。'
         + (wa.error ? '<br>原因：' + esc(wa.error) : '') + '</div>';
     }

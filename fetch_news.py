@@ -1861,46 +1861,55 @@ def fetch_wechat_articles(cfg, now, verbose=True):
         except Exception as e:  # noqa: BLE001
             errors.append(f"手动链接失败 {url[-18:]}：{type(e).__name__}: {str(e)[:80]}")
 
-    # 2) 合集自动发现（只覆盖该合集收录的文章）
-    album = cfg.get("album") or {}
-    if auto["enabled"] and album.get("biz") and album.get("album_id"):
-        try:
-            arts = fetch_wechat_album(album["biz"], album["album_id"],
-                                      album.get("count", 20))
-            auto["status"] = "ok"
-            auto["count"] = len(arts)
-            auto["label"] = album.get("label") or "合集"
-            for a in sorted(arts, key=lambda x: x.get("published") or "", reverse=True)[:12]:
-                key = _wx_key(a["url"], a["title"], a["published"])
-                cached = prev.get(key)
-                if (cached and cached.get("summary")) or page_budget <= 0:
-                    items.append({
-                        "title": a["title"], "published": a["published"],
-                        "author": (cached or {}).get("author") or "",
-                        "summary": (cached or {}).get("summary")
-                                   or "（该文章未返回摘要，请点击原文查看）",
-                        "url": a["url"], "source": "公众号·" + account,
-                    })
-                    continue
-                try:
-                    page = fetch(a["url"], timeout=30, retries=1)
-                    meta = parse_wechat_article_page(page)
-                    meta["title"] = meta.get("title") or a["title"]
-                    meta["published"] = meta.get("published") or a["published"]
-                    add(meta, a["url"], a["title"])
-                except Exception as e:  # noqa: BLE001
-                    errors.append(f"合集文章失败 {a['title'][:14]}：{type(e).__name__}")
-                    items.append({
-                        "title": a["title"], "published": a["published"],
-                        "author": "", "summary": "（该文章未返回摘要，请点击原文查看）",
-                        "url": a["url"], "source": "公众号·" + account,
-                    })
-                page_budget -= 1
-        except Exception as e:  # noqa: BLE001
-            auto["status"] = "fail"
-            auto["error"] = f"{type(e).__name__}: {str(e)[:120]}"
+    # 2) 合集自动发现（遍历配置中的多个合集，只覆盖被合集收录的文章）
+    albums = cfg.get("albums") or []
+    if not albums and (cfg.get("album") or {}).get("album_id"):
+        albums = [cfg["album"]]
+    biz = ((cfg.get("album") or {}).get("biz") or cfg.get("biz") or "")
+    if auto["enabled"] and albums and biz:
+        auto["albums"] = []
+        for alb in albums:
+            aid = alb.get("album_id")
+            item_auto = {"album_id": aid, "label": alb.get("label") or "",
+                         "status": "fail", "count": 0, "error": ""}
+            try:
+                arts = fetch_wechat_album(biz, aid, alb.get("count", 20))
+                item_auto.update(status="ok", count=len(arts))
+                auto["count"] += len(arts)
+                for a in sorted(arts, key=lambda x: x.get("published") or "", reverse=True)[:12]:
+                    key = _wx_key(a["url"], a["title"], a["published"])
+                    cached = prev.get(key)
+                    if (cached and cached.get("summary")) or page_budget <= 0:
+                        items.append({
+                            "title": a["title"], "published": a["published"],
+                            "author": (cached or {}).get("author") or "",
+                            "summary": (cached or {}).get("summary")
+                                       or "（该文章未返回摘要，请点击原文查看）",
+                            "url": a["url"], "source": "公众号·" + account,
+                        })
+                        continue
+                    try:
+                        page = fetch(a["url"], timeout=30, retries=1)
+                        meta = parse_wechat_article_page(page)
+                        meta["title"] = meta.get("title") or a["title"]
+                        meta["published"] = meta.get("published") or a["published"]
+                        add(meta, a["url"], a["title"])
+                    except Exception as e:  # noqa: BLE001
+                        errors.append(f"合集文章失败 {a['title'][:14]}：{type(e).__name__}")
+                        items.append({
+                            "title": a["title"], "published": a["published"],
+                            "author": "", "summary": "（该文章未返回摘要，请点击原文查看）",
+                            "url": a["url"], "source": "公众号·" + account,
+                        })
+                    page_budget -= 1
+            except Exception as e:  # noqa: BLE001
+                item_auto["error"] = f"{type(e).__name__}: {str(e)[:100]}"
+            auto["albums"].append(item_auto)
+        auto["status"] = "ok" if any(a["status"] == "ok" for a in auto["albums"]) else "fail"
+        auto["error"] = "" if auto["status"] == "ok" else "所有合集都未能解析"
+        auto["label"] = "、".join(a["label"] for a in auto["albums"] if a["label"])
 
-    # 去重、按发布时间倒序、截断
+    # 去重、按发布时间倒序、按近 N 天过滤、截断
     uniq, seen = [], set()
     for it in sorted(items, key=lambda x: x.get("published") or "", reverse=True):
         k = _wx_key(it["url"], it["title"], it["published"])
@@ -1908,7 +1917,22 @@ def fetch_wechat_articles(cfg, now, verbose=True):
             continue
         seen.add(k)
         uniq.append(it)
-    uniq = uniq[:int(cfg.get("max_items") or 6)]
+    total_found = len(uniq)
+    window_days = int(cfg.get("window_days") or 7)
+    cutoff = now - timedelta(days=window_days)
+
+    def _in_window(it):
+        p = it.get("published") or ""
+        if not p:
+            return True          # 手动链接未能解析日期时保留，由页面显示“日期未解析”
+        try:
+            return datetime.fromisoformat(p) >= cutoff
+        except Exception:  # noqa: BLE001
+            return True
+
+    fresh = [it for it in uniq if _in_window(it)]
+    dropped_old = total_found - len(fresh)
+    uniq = fresh[:int(cfg.get("max_items") or 20)]
 
     if uniq:
         status, error = "ok", ""
@@ -1916,7 +1940,9 @@ def fetch_wechat_articles(cfg, now, verbose=True):
         status = "fail"
         error = cfg.get("_error") or "；".join(errors[:2]) or auto.get("error") or "抓取失败"
     else:
-        status, error = "empty", "清单为空，且合集中没有可解析文章"
+        status = "empty"
+        error = (f"近 {window_days} 天没有可解析文章"
+                 + (f"（已过滤 {dropped_old} 篇过期文章）" if dropped_old else ""))
 
     meta = {
         "account": account,
@@ -1924,6 +1950,9 @@ def fetch_wechat_articles(cfg, now, verbose=True):
         "certified": cfg.get("certified") or "已认证",
         "status": status,
         "error": error,
+        "window_days": window_days,
+        "total_found": total_found,
+        "dropped_old": dropped_old,
         "last_attempt": now.isoformat(),
         "last_success": now.isoformat() if uniq else "",
         "auto_discover": auto,
