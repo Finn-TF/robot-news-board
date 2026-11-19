@@ -1387,6 +1387,34 @@ def format_date_label(now):
     return f"{now.year}年{now.month}月{now.day}日 {WEEKDAYS[now.weekday()]}"
 
 
+def fill_listed_coverage(listed, judgement, limit=8):
+    """模型可能漏掉某个环节：对每个有方向的环节补齐至少一家白名单公司，
+    保证名单覆盖上游零部件、本体/直接竞争对手与下游应用。"""
+    have = {c["code"] for c in listed}
+    segs = {c["segment"] for c in listed}
+    for item in judgement.get("items") or []:
+        seg = item.get("segment")
+        if not seg or seg in segs or item.get("direction") not in ("利好", "利空"):
+            continue
+        for co in SEGMENT_MAP.get(seg, []):
+            if co["code"] in have:
+                continue
+            listed.append({
+                "name": co["name"], "code": co["code"], "segment": seg,
+                "direction": item["direction"], "impact": "中",
+                "confidence": co["confidence"],
+                "reason": (f"{seg}环节出现 {item.get('count', 0)} 条{item['direction']}信息；"
+                           f"公司主营{co['biz']}，属于该环节"
+                           f"{'核心' if co['confidence'] == '高' else '相关'}标的。"),
+            })
+            have.add(co["code"])
+            segs.add(seg)
+            break
+        if len(listed) >= limit:
+            break
+    return listed[:limit]
+
+
 def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
     """生成日报：规则式打底；DeepSeek 开启且有 key 时按固定模板改写，
     任何解析/超时/限流/鉴权失败都回落到规则式，页面始终有内容。
@@ -1463,7 +1491,8 @@ def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
         report["mainline"] = out["mainline"]
         report["key_changes"] = out.get("key_changes") or key_changes
         report["judgement"] = out.get("judgement") or judgement
-        report["listed_companies"] = out.get("listed_companies") or listed
+        report["listed_companies"] = fill_listed_coverage(
+            out.get("listed_companies") or listed, report["judgement"])
         report["top_news"] = out["top_news"]
         report["signals"] = out["signals"]
         report["mode"] = "deepseek"
