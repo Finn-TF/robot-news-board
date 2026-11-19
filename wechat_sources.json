@@ -1,0 +1,231 @@
+{
+  "updated": "2026-11-19",
+  "note": "公众号收录规则：只收权威、官方且已通过微信认证的号；券商类只收录国联民生证券汽车组「汽车琰究」。certified=已认证 且 status=active 的号会尝试经搜狗微信检索抓取；实际抓取失败、无更新或未启用都会写入 data.json 的 wechat.accounts 与页脚抓取状态，不用其他来源顶替、不伪造内容。",
+  "accounts": [
+    {
+      "id": "wechat-qicheyanjiu",
+      "name": "汽车琰究",
+      "type": "券商",
+      "certified": "已认证",
+      "reason": "国联民生证券汽车组官方公众号，日报固定信源",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-unitree",
+      "name": "宇树科技",
+      "type": "公司",
+      "certified": "已认证",
+      "reason": "宇树科技官方号，头部人形/四足机器人公司",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-ubtech",
+      "name": "优必选科技",
+      "type": "公司",
+      "certified": "已认证",
+      "reason": "优必选官方号，人形机器人上市公司",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-agibot",
+      "name": "智元机器人",
+      "type": "公司",
+      "certified": "已认证",
+      "reason": "智元机器人官方号，具身智能头部公司",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-tesla",
+      "name": "特斯拉",
+      "type": "公司",
+      "certified": "已认证",
+      "reason": "特斯拉官方号，Optimus 人形机器人进展的一手来源",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-nvidia",
+      "name": "NVIDIA英伟达",
+      "type": "公司",
+      "certified": "已认证",
+      "reason": "英伟达官方号，Isaac/GR00T 机器人平台的一手来源",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-estun",
+      "name": "埃斯顿自动化",
+      "type": "公司",
+      "certified": "待核验",
+      "reason": "工业机器人本体公司，需人工确认认证主体",
+      "status": "manual",
+      "error": "认证状态与公众号全称需人工核验，暂不自动抓取"
+    },
+    {
+      "id": "wechat-inovance",
+      "name": "汇川技术",
+      "type": "公司",
+      "certified": "待核验",
+      "reason": "伺服与运动控制龙头，需人工确认认证主体",
+      "status": "manual",
+      "error": "认证状态与公众号全称需人工核验，暂不自动抓取"
+    },
+    {
+      "id": "wechat-leaderdrive",
+      "name": "绿的谐波",
+      "type": "公司",
+      "certified": "待核验",
+      "reason": "谐波减速器公司，需人工确认认证主体",
+      "status": "manual",
+      "error": "认证状态与公众号全称需人工核验，暂不自动抓取"
+    },
+    {
+      "id": "wechat-robot-lecture",
+      "name": "机器人大讲堂",
+      "type": "行业",
+      "certified": "已认证",
+      "reason": "机器人产业垂直媒体，行业活动与技术解读",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-gg-robot",
+      "name": "高工机器人",
+      "type": "行业",
+      "certified": "已认证",
+      "reason": "高工机器人（GGII）产业媒体，出货与订单数据",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-leiphone",
+      "name": "雷峰网",
+      "type": "行业",
+      "certified": "已认证",
+      "reason": "科技与机器人产业报道媒体",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-qbitai",
+      "name": "量子位",
+      "type": "行业",
+      "certified": "已认证",
+      "reason": "人工智能与具身智能垂直媒体",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-jiqizhixin",
+      "name": "机器之心",
+      "type": "行业",
+      "certified": "已认证",
+      "reason": "人工智能与机器人技术媒体",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-zhidx",
+      "name": "智东西",
+      "type": "行业",
+      "certified": "已认证",
+      "reason": "智能产业媒体，机器人与具身智能报道",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-cnrobot",
+      "name": "中国机器人网",
+      "type": "行业",
+      "certified": "待核验",
+      "reason": "机器人行业门户，需人工确认认证主体",
+      "status": "manual",
+      "error": "认证状态与公众号全称需人工核验，暂不自动抓取"
+    },
+    {
+      "id": "wechat-cls",
+      "name": "财联社",
+      "type": "新闻",
+      "certified": "已认证",
+      "reason": "主流财经新闻机构，快讯与产业链信息",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-yicai",
+      "name": "第一财经",
+      "type": "新闻",
+      "certified": "已认证",
+      "reason": "主流财经媒体，产业与公司报道",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-nbd",
+      "name": "每日经济新闻",
+      "type": "新闻",
+      "certified": "已认证",
+      "reason": "主流财经媒体，上市公司与产业新闻",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-stcn",
+      "name": "证券时报",
+      "type": "新闻",
+      "certified": "已认证",
+      "reason": "主流财经媒体，资本市场与产业报道",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-jiemian",
+      "name": "界面新闻",
+      "type": "新闻",
+      "certified": "已认证",
+      "reason": "主流财经媒体，产业与公司报道",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-thepaper",
+      "name": "澎湃新闻",
+      "type": "新闻",
+      "certified": "已认证",
+      "reason": "主流新闻机构，科技与产业报道",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-cria",
+      "name": "中国机器人产业联盟",
+      "type": "智库",
+      "certified": "待核验",
+      "reason": "行业机构，产业数据与政策口径，需人工确认认证主体",
+      "status": "manual",
+      "error": "认证状态与公众号全称需人工核验，暂不自动抓取"
+    },
+    {
+      "id": "wechat-cie",
+      "name": "中国电子学会",
+      "type": "智库",
+      "certified": "已认证",
+      "reason": "行业学会，世界机器人大会主办方之一",
+      "status": "active",
+      "error": ""
+    },
+    {
+      "id": "wechat-wrc",
+      "name": "世界机器人大会",
+      "type": "智库",
+      "certified": "待核验",
+      "reason": "展会主办方，需人工确认认证主体",
+      "status": "manual",
+      "error": "认证状态与公众号全称需人工核验，暂不自动抓取"
+    }
+  ]
+}

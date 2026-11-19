@@ -38,6 +38,7 @@ DATA_JSON = os.path.join(BASE_DIR, "data.json")
 DATA_JS = os.path.join(BASE_DIR, "data.js")
 CACHE_FILE = os.path.join(BASE_DIR, "translate_cache.json")
 CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
+WECHAT_FILE = os.path.join(BASE_DIR, "wechat_sources.json")
 ARCHIVE_DIR = os.path.join(BASE_DIR, "archive")
 LOG_FILE = os.path.join(BASE_DIR, "daemon.log")
 
@@ -270,6 +271,42 @@ SOURCES = [
      "url": bing("Figure 03 humanoid"), "filter": "robot_only"},
     {"id": "bing-bt-21", "name": "Bing News", "board": "bigtech", "lang": "zh",
      "url": bing("1X NEO 家庭 机器人"), "filter": "robot_only"},
+
+    # ---- 主流财经媒体 / 上市公司公告 / 展会与协会（新增，走检索通道） ----
+    {"id": "bing-cn-15", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("site:yicai.com 机器人"), "filter": "zh"},
+    {"id": "bing-cn-16", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("site:nbd.com.cn 机器人"), "filter": "zh"},
+    {"id": "bing-cn-17", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("site:cls.cn 机器人"), "filter": "zh"},
+    {"id": "bing-cn-18", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("site:stcn.com 机器人"), "filter": "zh"},
+    {"id": "bing-cn-19", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("site:eeo.com.cn 机器人"), "filter": "zh"},
+    {"id": "bing-cn-20", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("site:cninfo.com.cn 机器人 公告"), "filter": "zh"},
+    {"id": "bing-cn-21", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("互动易 机器人 回复"), "filter": "zh"},
+    {"id": "bing-cn-22", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("世界机器人大会 人形机器人"), "filter": "zh"},
+    {"id": "bing-cn-23", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("世界人工智能大会 具身智能"), "filter": "zh"},
+    {"id": "bing-cn-24", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
+     "url": bing("高工机器人 人形机器人"), "filter": "zh"},
+
+    # ---- 海外宏观 / 科技 / 机器人垂直（新增，走检索通道） ----
+    {"id": "bing-en-11", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("site:reuters.com humanoid robot"), "filter": "en"},
+    {"id": "bing-en-12", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("site:bloomberg.com humanoid robotics"), "filter": "en"},
+    {"id": "bing-en-13", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("site:techxplore.com robotics"), "filter": "en"},
+    {"id": "bing-en-14", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("site:sciencedaily.com robotics"), "filter": "en"},
+    {"id": "bing-en-15", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("site:theverge.com humanoid robot"), "filter": "en"},
+    {"id": "bing-en-16", "name": "Bing News", "board": "overseas", "lang": "en",
+     "url": bing("embodied AI robot foundation model"), "filter": "en"},
 ]
 
 # ---------------------------------------------------------------- 工具 ----
@@ -599,6 +636,9 @@ SUMMARY_MAX_POINTS = 6
 SUMMARY_LINK_LIMIT = 4
 CANDIDATE_MAX = 16
 TOP_MIN, TOP_MAX = 3, 5
+# 日报时间窗口：覆盖近 3 天（72 小时）的新闻；当日条目置顶，其余按时间倒序
+WINDOW_DAYS = 3
+WINDOW_HOURS = WINDOW_DAYS * 24
 
 # 日报「影响判断」的规则口径：按事件类型给出通用判断，不含任何未在原文出现的事实
 IMPACT_BY_TOPIC = {
@@ -629,6 +669,127 @@ def clean_source_name(name):
     """把「澎湃新闻 on MSN」这类聚合站后缀去掉，保留原始媒体名。"""
     name = (name or "").strip()
     return re.sub(r"\s+on\s+MSN$", "", name, flags=re.I).strip()
+
+
+# ------------------------------------------------------------ 产业链映射 ----
+# 受影响中国上市公司白名单（代码已用东方财富行情接口逐个核验）。
+# DeepSeek 只能从这里选公司，避免编造不存在的公司或凭印象写代码。
+COMPANY_CHAIN = [
+    {"code": "688017", "name": "绿的谐波", "segment": "减速器", "biz": "谐波减速器", "confidence": "高"},
+    {"code": "002472", "name": "双环传动", "segment": "减速器", "biz": "齿轮与减速器", "confidence": "高"},
+    {"code": "002896", "name": "中大力德", "segment": "减速器", "biz": "减速器与电机", "confidence": "高"},
+    {"code": "000837", "name": "秦川机床", "segment": "减速器", "biz": "机床与减速器", "confidence": "中"},
+    {"code": "301368", "name": "丰立智能", "segment": "减速器", "biz": "精密齿轮", "confidence": "中"},
+    {"code": "001306", "name": "夏厦精密", "segment": "减速器", "biz": "精密齿轮", "confidence": "中"},
+    {"code": "603667", "name": "五洲新春", "segment": "丝杠", "biz": "轴承与丝杠", "confidence": "中"},
+    {"code": "601100", "name": "恒立液压", "segment": "丝杠", "biz": "液压件与丝杠", "confidence": "中"},
+    {"code": "300580", "name": "贝斯特", "segment": "丝杠", "biz": "精密零部件与丝杠", "confidence": "中"},
+    {"code": "603009", "name": "北特科技", "segment": "丝杠", "biz": "汽车零部件与丝杠", "confidence": "中"},
+    {"code": "873593", "name": "鼎智科技", "segment": "丝杠", "biz": "线性执行器与丝杠", "confidence": "高"},
+    {"code": "300124", "name": "汇川技术", "segment": "伺服/电机", "biz": "伺服系统与控制器", "confidence": "高"},
+    {"code": "002979", "name": "雷赛智能", "segment": "伺服/电机", "biz": "运动控制与伺服", "confidence": "高"},
+    {"code": "688160", "name": "步科股份", "segment": "伺服/电机", "biz": "伺服系统与人机界面", "confidence": "中"},
+    {"code": "300660", "name": "江苏雷利", "segment": "伺服/电机", "biz": "微特电机", "confidence": "中"},
+    {"code": "603728", "name": "鸣志电器", "segment": "伺服/电机", "biz": "步进电机", "confidence": "高"},
+    {"code": "003021", "name": "兆威机电", "segment": "灵巧手", "biz": "微型传动系统", "confidence": "高"},
+    {"code": "002050", "name": "三花智控", "segment": "执行器", "biz": "机电执行器与热管理", "confidence": "中"},
+    {"code": "601689", "name": "拓普集团", "segment": "执行器", "biz": "汽车零部件与机器人执行器", "confidence": "中"},
+    {"code": "002747", "name": "埃斯顿", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
+    {"code": "300024", "name": "机器人", "segment": "本体", "biz": "机器人整机与装备", "confidence": "高"},
+    {"code": "300607", "name": "拓斯达", "segment": "本体", "biz": "工业机器人与自动化", "confidence": "高"},
+    {"code": "688165", "name": "埃夫特", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
+    {"code": "002527", "name": "新时达", "segment": "本体", "biz": "机器人控制与整机", "confidence": "中"},
+    {"code": "603662", "name": "柯力传感", "segment": "传感器", "biz": "力传感器", "confidence": "高"},
+    {"code": "300007", "name": "汉威科技", "segment": "传感器", "biz": "传感器", "confidence": "中"},
+    {"code": "688322", "name": "奥比中光", "segment": "传感器", "biz": "3D 视觉", "confidence": "高"},
+    {"code": "300354", "name": "东华测试", "segment": "传感器", "biz": "测试仪器与力传感器", "confidence": "中"},
+    {"code": "301413", "name": "安培龙", "segment": "传感器", "biz": "压力与温度传感器", "confidence": "中"},
+    {"code": "688582", "name": "芯动联科", "segment": "传感器", "biz": "MEMS 惯性传感器", "confidence": "中"},
+    {"code": "688400", "name": "凌云光", "segment": "机器视觉", "biz": "机器视觉", "confidence": "高"},
+    {"code": "688003", "name": "天准科技", "segment": "机器视觉", "biz": "机器视觉装备", "confidence": "高"},
+    {"code": "688686", "name": "奥普特", "segment": "机器视觉", "biz": "机器视觉", "confidence": "高"},
+    {"code": "300802", "name": "矩子科技", "segment": "机器视觉", "biz": "机器视觉", "confidence": "中"},
+    {"code": "300496", "name": "中科创达", "segment": "软件/具身智能", "biz": "操作系统与边缘 AI", "confidence": "中"},
+    {"code": "002230", "name": "科大讯飞", "segment": "软件/具身智能", "biz": "人工智能与语音", "confidence": "中"},
+    {"code": "600699", "name": "均胜电子", "segment": "应用场景", "biz": "汽车电子", "confidence": "中"},
+    {"code": "002009", "name": "天奇股份", "segment": "应用场景", "biz": "汽车自动化装备", "confidence": "中"},
+    {"code": "600933", "name": "爱柯迪", "segment": "结构件", "biz": "铝合金精密压铸", "confidence": "中"},
+    {"code": "603305", "name": "旭升集团", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
+    {"code": "603348", "name": "文灿股份", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
+    {"code": "300953", "name": "震裕科技", "segment": "结构件", "biz": "精密结构件", "confidence": "中"},
+    {"code": "002126", "name": "银轮股份", "segment": "热管理", "biz": "热管理", "confidence": "中"},
+    {"code": "300258", "name": "精锻科技", "segment": "结构件", "biz": "精密锻造", "confidence": "中"},
+    {"code": "300718", "name": "长盛轴承", "segment": "结构件", "biz": "自润滑轴承", "confidence": "中"},
+]
+
+SEGMENT_ORDER = ["本体", "减速器", "伺服/电机", "丝杠", "灵巧手", "执行器",
+                 "传感器", "控制器", "机器视觉", "软件/具身智能",
+                 "结构件", "热管理", "应用场景"]
+SEGMENT_MAP = {}
+for _co in COMPANY_CHAIN:
+    SEGMENT_MAP.setdefault(_co["segment"], []).append(_co)
+
+SEGMENT_WORDS = {
+    "本体": ["人形机器人", "机器人本体", "整机", "humanoid", "humanoids"],
+    "减速器": ["减速器", "谐波", "RV", "行星减速", "gear"],
+    "伺服/电机": ["伺服", "电机", "编码器", "驱动器", "actuator", "motor"],
+    "丝杠": ["丝杠", "滚柱", "线性执行器", "行星滚柱", "ball screw"],
+    "灵巧手": ["灵巧手", "灵巧", "dexterous", "末端执行器", "gripper"],
+    "执行器": ["执行器", "关节模组", "机电执行器", "joint module"],
+    "传感器": ["传感器", "力觉", "触觉", "六维力", "3D视觉", "视觉感知", "惯性", "sensor"],
+    "控制器": ["控制器", "运动控制", "控制芯片", "controller"],
+    "机器视觉": ["机器视觉", "视觉检测", "工业相机", "machine vision"],
+    "软件/具身智能": ["具身智能", "大模型", "VLA", "世界模型", "算法", "操作系统",
+                       "仿真", "embodied", "foundation model"],
+    "结构件": ["结构件", "压铸", "轻量化", "镁合金", "铝合金", "轴承"],
+    "热管理": ["热管理", "散热", "液冷"],
+    "应用场景": ["工厂", "汽车", "物流", "仓储", "零售", "便利店", "家庭",
+                 "医疗", "巡检", "教育", "商业", "产线"],
+}
+
+BULL_WORDS = ["量产", "交付", "订单", "中标", "签约", "融资", "上市", "IPO",
+              "发布", "首发", "扩产", "投产", "增长", "扭亏", "超预期", "合作",
+              "收购", "试点", "补贴", "支持", "落地", "部署", "商用", "突破",
+              "funding", "deploy", "launch", "order", "raises", "partnership"]
+BEAR_WORDS = ["亏损", "下滑", "裁员", "解散", "取消", "延期", "召回", "事故",
+              "处罚", "调查", "降价", "过剩", "限制", "禁止", "退出", "失败",
+              "下修", "layoff", "lawsuit", "recall", "delay", "cancel"]
+DIRECTIONS = ("利好", "利空", "中性")
+
+
+def candidate_segments(c):
+    text = " ".join([c["rep"].get("title") or "",
+                     c["rep"].get("summary") or "",
+                     c["rep"].get("title_original") or "",
+                     " ".join(r.get("title") or "" for r in c["items"])]).lower()
+    # 具体环节优先；只有具体环节都没命中、且确实提到本体/人形机器人时，才算「本体」。
+    # 完全无关的条目不归类，避免把新闻硬塞给整机公司。
+    hit = [seg for seg in SEGMENT_ORDER
+           if seg != "本体"
+           and any(w.lower() in text for w in SEGMENT_WORDS.get(seg, []))]
+    if hit:
+        return hit
+    if any(w.lower() in text for w in SEGMENT_WORDS.get("本体", [])):
+        return ["本体"]
+    return []
+
+
+def candidate_direction(c):
+    text = " ".join([c["rep"].get("title") or "",
+                     c["rep"].get("summary") or "",
+                     c["rep"].get("title_original") or ""]).lower()
+    bear = any(w.lower() in text for w in BEAR_WORDS)
+    bull = any(w.lower() in text for w in BULL_WORDS)
+    if bear and not bull:
+        return "利空"
+    if bull and not bear:
+        return "利好"
+    if bear and bull:
+        # 同时出现时，负面事件与「延期/下滑」等词优先提示风险
+        negative = ["召回", "处罚", "取消", "解散", "事故", "延期", "放缓",
+                    "下滑", "失败", "裁员", "亏损", "召回"]
+        return "利空" if any(w in text for w in negative) else "利好"
+    return "中性"
 
 
 def fresh_hours(published, now):
@@ -822,21 +983,120 @@ def rule_signals(candidates, top_ids, limit=5):
     return out
 
 
-def rule_mainline(candidates, selected, cross_n, counts):
+def rule_mainline(candidates, selected, cross_n, counts, now=None):
     if not candidates:
-        return "本轮未抓到可用条目，暂无明确信号；请查看页脚抓取状态或稍后重试。"
+        return "近三日未抓到可用条目，暂无明确信号；请查看页脚抓取状态或稍后重试。"
+    now = now or datetime.now(CST)
     first = candidates[0]
     raw_title = clean_headline(first["rep"].get("title") or "")
-    # 主线里只取标题的主干（冒号/逗号前），避免出现截断的省略号
-    title = re.split(r"[：:，,（(]", raw_title)[0].strip()
-    title = shorten(title, 34)
+    # 主线里只取标题主干（逗号/括号前），不按冒号切，避免只留下「马斯克」这类发言人名
+    title = re.split(r"[，,（(]", raw_title)[0].strip()
+    title = shorten(title, 40)
     verify_txt = (f"{first['count']} 家独立站点交叉印证" if first["level"] == "cross"
                   else "单一来源、待进一步核实")
     hard_n = len([c for c in candidates if candidate_topic(c)])
-    return (f"今日机器人板块焦点为「{title}」（{verify_txt}）；"
-            f"本轮共收录 {len(selected)} 条公开信息（国内 {counts.get('domestic', 0)} / "
+    today = now.strftime("%Y-%m-%d")
+    today_n = len([c for c in candidates
+                   if (c["rep"].get("published") or "")[:10] == today])
+    return (f"近三日机器人板块焦点为「{title}」（{verify_txt}）；"
+            f"本轮覆盖近 {WINDOW_DAYS} 天 {len(selected)} 条公开信息"
+            f"（当日 {today_n} 条，国内 {counts.get('domestic', 0)} / "
             f"海外 {counts.get('overseas', 0)} / 大厂 {counts.get('bigtech', 0)}），"
             f"{cross_n} 条获多家印证，另有 {hard_n} 条量产、融资、政策类硬信息值得跟踪。")
+
+
+def build_key_changes(candidates, now, limit=5):
+    """关键变化：当日新闻置顶，其余按发布时间倒序。"""
+    pool = candidates[:max(limit, 6)]
+    today = now.strftime("%Y-%m-%d")
+
+    def is_today(c):
+        return (c["rep"].get("published") or "")[:10] == today
+
+    pool = sorted(pool, key=lambda c: (is_today(c),
+                                       c["rep"].get("published") or ""), reverse=True)
+    out = []
+    for c in pool[:limit]:
+        rep = c["rep"]
+        out.append({
+            "date": (rep.get("published") or "")[:10],
+            "text": clean_headline(rep.get("title") or ""),
+            "level": c["level"],
+            "count": c["count"],
+            "companies": rep.get("companies") or [],
+            "links": c["links"],
+        })
+    return out
+
+
+def rule_judgement(candidates, limit=5):
+    """规则口径的利好/利空：先按事件方向与产业链环节聚合，再写传导逻辑。"""
+    groups = {}
+    for c in candidates:
+        direction = candidate_direction(c)
+        if direction == "中性":
+            continue
+        for seg in candidate_segments(c)[:2]:
+            key = (seg, direction)
+            g = groups.setdefault(key, {"direction": direction, "segment": seg,
+                                        "events": [], "count": 0})
+            g["count"] += 1
+            title = clean_headline(c["rep"].get("title") or "")
+            if title and title not in g["events"]:
+                g["events"].append(title)
+
+    ordered = sorted(groups.values(),
+                     key=lambda g: (g["count"], g["direction"] == "利好"), reverse=True)
+    bull = sum(g["count"] for g in groups.values() if g["direction"] == "利好")
+    bear = sum(g["count"] for g in groups.values() if g["direction"] == "利空")
+
+    items = []
+    for g in ordered[:limit]:
+        ex = "；".join(shorten(t, 30) for t in g["events"][:2])
+        if g["direction"] == "利好":
+            logic = (f"{g['segment']}环节出现 {g['count']} 条积极信息（{ex}）。"
+                     f"若量产、订单或技术进展兑现，将直接抬升该环节需求，"
+                     f"并向上下游零部件与设备传导。")
+        else:
+            logic = (f"{g['segment']}环节出现 {g['count']} 条偏谨慎信息（{ex}）。"
+                     f"短期可能压制订单与估值预期，需跟踪事件后续进展与公司回应。")
+        items.append({"direction": g["direction"], "segment": g["segment"],
+                      "logic": logic, "count": g["count"]})
+
+    bullish_segs = [g["segment"] for g in ordered if g["direction"] == "利好"][:2]
+    bearish_segs = [g["segment"] for g in ordered if g["direction"] == "利空"][:2]
+    if not groups:
+        summary = "近三日未出现明确的方向性信号，整体判断中性；建议结合原文与公司公告核对。"
+    elif bull > bear * 1.15:
+        summary = (f"整体偏利好：近三日积极信息 {bull} 条、风险信息 {bear} 条，"
+                   f"主要集中在{'、'.join(bullish_segs) or '产业链'}环节。")
+    elif bear > bull * 1.15:
+        summary = (f"整体偏利空：近三日风险信息 {bear} 条、积极信息 {bull} 条，"
+                   f"主要集中在{'、'.join(bearish_segs) or '产业链'}环节。")
+    else:
+        summary = (f"多空交织、整体中性：近三日积极信息 {bull} 条、风险信息 {bear} 条，"
+                   f"方向性仍需后续订单与量产数据确认。")
+    return {"summary": summary, "items": items}
+
+
+def build_listed_companies(judgement_items, limit=8):
+    """按受影响的产业链环节，从已核验的白名单中挑 A 股公司。"""
+    seen = {}
+    for j in judgement_items:
+        for co in SEGMENT_MAP.get(j["segment"], [])[:3]:
+            if co["code"] in seen:
+                continue
+            core = co["confidence"] == "高"
+            reason = (f"{j['segment']}环节出现 {j['count']} 条{j['direction']}信息；"
+                      f"公司主营{co['biz']}，属于该环节{'核心' if core else '相关'}标的。")
+            seen[co["code"]] = {
+                "name": co["name"], "code": co["code"], "segment": j["segment"],
+                "direction": j["direction"], "impact": "高" if core else "中",
+                "confidence": co["confidence"], "reason": reason,
+            }
+    ordered = sorted(seen.values(), key=lambda x: (x["impact"] == "高", x["direction"] == "利好"),
+                     reverse=True)
+    return ordered[:limit]
 
 
 def http_post_json(url, payload, headers, timeout=45):
@@ -864,18 +1124,32 @@ DEEPSEEK_SYSTEM_PROMPT = """你是国联民生证券研究所汽车行业研究�
 2. 不得编造数据、链接、引述，不得给出目标价、投资评级或收益承诺。
 3. 只输出一个 JSON 对象，不要 markdown 代码块，不要输出 JSON 之外的任何文字。
 4. JSON 结构必须严格为：
-{"mainline":"一句话概括今日机器人板块核心变化（40-90 字）",
- "top_news":[{"candidate_id":1,"event":"一句话说清发生了什么（不超过 60 字）","impact":"1-2 句影响判断，说明对产业链、公司或市场情绪的含义（不超过 90 字）"}],
- "signals":[{"candidate_id":2,"text":"一句前瞻或跟踪信号（不超过 50 字）"}]}
-5. top_news 输出 3-5 条，按重要性从高到低排序；candidate_id 必须来自候选列表，且不能重复。
-6. signals 输出 0-4 条，聚焦量产节点、订单、融资、政策等前瞻信息；候选新闻里没有可用信号时输出空数组 []。
-7. 若某条新闻无法判断影响，impact 写「暂无明确信号」。
-8. mainline 不得罗列条目标题，要概括当日主线。"""
+{"mainline":"一句话概括近三日机器人板块核心变化（40-90 字）",
+ "key_changes":[{"candidate_id":1,"text":"一句话说清关键变化（不超过 70 字）"}],
+ "judgement":{"summary":"整体方向判断（不超过 90 字）",
+   "items":[{"direction":"利好|利空|中性","segment":"产业链环节","logic":"传导逻辑（不超过 160 字）"}]},
+ "listed_companies":[{"code":"688017","name":"绿的谐波","segment":"减速器",
+   "direction":"利好|利空","impact":"高|中|低","confidence":"高|中","reason":"受影响原因（不超过 90 字）"}],
+ "top_news":[{"candidate_id":2,"event":"一句话说清发生了什么（不超过 60 字）","impact":"1-2 句影响判断（不超过 90 字）"}],
+ "signals":[{"candidate_id":3,"text":"一句前瞻或跟踪信号（不超过 50 字）"}]}
+5. 时间窗口：候选新闻为近 3 天内容，每条已标注日期。key_changes 输出 3-5 条，当日条目排在前面，其余按日期倒序；candidate_id 必须来自候选列表。
+6. judgement：先给一句总判断（整体偏利好 / 整体偏利空 / 多空交织中性 / 暂无方向性信号），再按产业链环节给出方向与传导逻辑。环节只能取：本体、减速器、伺服/电机、丝杠、灵巧手、执行器、传感器、控制器、机器视觉、软件/具身智能、结构件、热管理、应用场景。每条 logic 必须写清「事件 → 影响哪个环节 → 如何传导到订单/成本/估值」，不能只贴标签；没有把握时 direction 用「中性」。
+7. listed_companies：只能从用户提供的 A 股白名单中选择，code 与 name 必须与白名单完全一致，禁止自创公司或凭印象写代码；输出 3-8 家，尽量覆盖上游零部件、本体、下游应用或直接竞争对手；reason 说明受影响原因，impact 取 高/中/低，confidence 取 高/中。白名单里没有合适标的时输出空数组 []。
+8. top_news 输出 3-5 条，按重要性从高到低排序；candidate_id 必须来自候选列表，且不能重复。
+9. signals 输出 0-4 条，聚焦量产节点、订单、融资、政策等前瞻信息；候选新闻里没有可用信号时输出空数组 []。
+10. 若某条新闻无法判断影响，impact 写「暂无明确信号」。
+11. mainline 不得罗列条目标题，要概括近三日主线。"""
 
 
-def build_candidate_prompt(candidates, date_label):
-    """固定模板：把候选池按编号交给模型，模型只能引用这些编号。"""
-    lines = [f"日期：{date_label}", f"候选新闻共 {len(candidates)} 条（只能引用这些编号）："]
+def build_candidate_prompt(candidates, date_label, window=None):
+    """固定模板：把候选池按编号交给模型，模型只能引用这些编号与白名单公司。"""
+    lines = [f"日期：{date_label}"]
+    if window:
+        lines.append(f"时间窗口：近 {window.get('days', WINDOW_DAYS)} 天"
+                     f"（{window.get('from', '')} 至 {window.get('to', '')}），"
+                     f"窗口内 {window.get('count', len(candidates))} 条，"
+                     f"其中当日 {window.get('today', 0)} 条。")
+    lines.append(f"候选新闻共 {len(candidates)} 条（只能引用这些编号）：")
     for c in candidates:
         rep = c["rep"]
         verify = (f"多家印证（{c['count']} 家独立站点）"
@@ -887,18 +1161,104 @@ def build_candidate_prompt(candidates, date_label):
         lines.append(f"     来源：{rep.get('source') or ''}；时间：{pub}；"
                      f"涉及公司：{cos}；印证：{verify}")
         lines.append(f"     摘要：{detail}")
+    lines.append("A 股公司白名单（listed_companies 只能从这里选，code 与 name 必须完全一致）：")
+    lines.append("；".join(f"{co['code']} {co['name']}（{co['segment']}，{co['biz']}）"
+                          for co in COMPANY_CHAIN))
     lines.append("请按固定 JSON 结构输出。")
     return "\n".join(lines)
 
 
 def validate_llm_report(obj, candidates, verbose=True):
-    """严格校验模型输出：编号必须来自候选池，越界/重复/过短一律丢弃。"""
+    """严格校验模型输出：编号必须来自候选池，越界/重复/过短一律丢弃；
+    公司必须与白名单的 code+name 完全一致，否则丢弃。"""
     by_id = {c["id"]: c for c in candidates}
     if not isinstance(obj, dict):
         raise RuntimeError("模型输出不是 JSON 对象")
     mainline = str(obj.get("mainline") or "").strip()
     if not (8 <= len(mainline) <= 240):
         raise RuntimeError("mainline 缺失或长度不合规")
+
+    key_changes, seen_kc = [], set()
+    for item in obj.get("key_changes") or []:
+        if not isinstance(item, dict):
+            continue
+        try:
+            cid = int(item.get("candidate_id"))
+        except (TypeError, ValueError):
+            continue
+        text = str(item.get("text") or "").strip()
+        if cid in seen_kc or cid not in by_id or not (6 <= len(text) <= 100):
+            continue
+        c = by_id[cid]
+        rep = c["rep"]
+        key_changes.append({
+            "date": (rep.get("published") or "")[:10],
+            "text": text,
+            "level": c["level"],
+            "count": c["count"],
+            "companies": rep.get("companies") or [],
+            "links": c["links"],
+        })
+        seen_kc.add(cid)
+        if len(key_changes) >= 5:
+            break
+
+    judgement = None
+    j = obj.get("judgement")
+    if isinstance(j, dict):
+        summary = str(j.get("summary") or "").strip()
+        jitems, seen_seg = [], set()
+        for it in j.get("items") or []:
+            if not isinstance(it, dict):
+                continue
+            direction = str(it.get("direction") or "").strip()
+            segment = str(it.get("segment") or "").strip().replace("／", "/")
+            logic = str(it.get("logic") or "").strip()
+            if direction not in DIRECTIONS or segment not in SEGMENT_ORDER:
+                continue
+            if not (16 <= len(logic) <= 280):
+                continue
+            if segment in seen_seg:
+                continue
+            related = len([c for c in candidates
+                           if segment in candidate_segments(c)
+                           and candidate_direction(c) == direction])
+            jitems.append({"direction": direction, "segment": segment,
+                           "logic": logic, "count": related})
+            seen_seg.add(segment)
+            if len(jitems) >= 6:
+                break
+        if jitems and 8 <= len(summary) <= 240:
+            judgement = {"summary": summary, "items": jitems}
+
+    allowed = {(co["code"], co["name"]): co for co in COMPANY_CHAIN}
+    listed, seen_code = [], set()
+    for it in obj.get("listed_companies") or []:
+        if not isinstance(it, dict):
+            continue
+        code = str(it.get("code") or "").strip()
+        name = str(it.get("name") or "").strip()
+        co = allowed.get((code, name))
+        if not co or code in seen_code:
+            continue
+        direction = str(it.get("direction") or "").strip()
+        impact = str(it.get("impact") or "").strip()
+        confidence = str(it.get("confidence") or "").strip()
+        reason = str(it.get("reason") or "").strip()
+        if direction not in ("利好", "利空") or not (12 <= len(reason) <= 260):
+            continue
+        if impact not in ("高", "中", "低"):
+            impact = "中"
+        if confidence not in ("高", "中"):
+            confidence = co["confidence"]
+        listed.append({
+            "name": co["name"], "code": co["code"], "segment": co["segment"],
+            "direction": direction, "impact": impact,
+            "confidence": confidence, "reason": reason,
+        })
+        seen_code.add(code)
+        if len(listed) >= 8:
+            break
 
     tops, seen = [], set()
     for item in obj.get("top_news") or []:
@@ -961,10 +1321,12 @@ def validate_llm_report(obj, candidates, verbose=True):
         seen_sig.add(cid)
         if len(signals) >= 4:
             break
-    return {"mainline": mainline, "top_news": tops, "signals": signals}
+    return {"mainline": mainline, "key_changes": key_changes,
+            "judgement": judgement, "listed_companies": listed,
+            "top_news": tops, "signals": signals}
 
 
-def deepseek_report(cfg, candidates, date_label):
+def deepseek_report(cfg, candidates, date_label, window=None):
     """按固定提示词模板调用 DeepSeek（OpenAI 兼容），返回校验后的日报内容。"""
     llm = cfg.get("llm") or {}
     model = (llm.get("model") or "").strip()
@@ -980,10 +1342,10 @@ def deepseek_report(cfg, candidates, date_label):
         "model": model,
         "messages": [
             {"role": "system", "content": DEEPSEEK_SYSTEM_PROMPT},
-            {"role": "user", "content": build_candidate_prompt(candidates, date_label)},
+            {"role": "user", "content": build_candidate_prompt(candidates, date_label, window)},
         ],
         "temperature": float(llm.get("temperature", 0.3)),
-        "max_tokens": int(llm.get("max_tokens", 1600)),
+        "max_tokens": int(llm.get("max_tokens", 2600)),
         "response_format": {"type": "json_object"},
         "stream": False,
     }
@@ -1022,31 +1384,58 @@ def format_date_label(now):
 
 def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
     """生成日报：规则式打底；DeepSeek 开启且有 key 时按固定模板改写，
-    任何解析/超时/限流/鉴权失败都回落到规则式，页面始终有内容。"""
+    任何解析/超时/限流/鉴权失败都回落到规则式，页面始终有内容。
+
+    统计窗口固定为近 3 天（72 小时）：当日条目置顶，其余按发布时间倒序，
+    三日内的新闻同时参与主线提炼、重点筛选与利好利空判断。
+    """
     counts = counts or {}
     llm = cfg.get("llm") or {}
-    candidates = build_candidates(selected, now)
-    cross_n = len([r for r in selected if (r.get("verify") or {}).get("level") == "cross"])
+
+    window_items = [r for r in selected
+                    if fresh_hours(r.get("published"), now) <= WINDOW_HOURS]
+    candidates = build_candidates(window_items, now)
+    cross_n = len([r for r in window_items
+                   if (r.get("verify") or {}).get("level") == "cross"])
+    today = now.strftime("%Y-%m-%d")
+    today_n = len([r for r in window_items if (r.get("published") or "")[:10] == today])
+    window = {
+        "days": WINDOW_DAYS,
+        "from": (now - timedelta(hours=WINDOW_HOURS)).strftime("%Y-%m-%d %H:%M"),
+        "to": now.strftime("%Y-%m-%d %H:%M"),
+        "count": len(window_items),
+        "today": today_n,
+    }
 
     top_news = rule_top_news(candidates)
     signals = rule_signals(candidates, {c["id"] for c in candidates[:TOP_MAX]})
+    key_changes = build_key_changes(candidates, now)
+    judgement = rule_judgement(candidates)
+    listed = build_listed_companies(judgement["items"])
+
     report = {
         "issue_no": issue_no,
-        "date": now.strftime("%Y-%m-%d"),
+        "date": today,
         "date_label": format_date_label(now),
         "team": "国联民生研究所汽车组",
         "mode": "rule",
         "generated_at": now.isoformat(),
         "generated_label": now.strftime("%Y-%m-%d %H:%M"),
-        "mainline": rule_mainline(candidates, selected, cross_n, counts),
+        "window": window,
+        "mainline": rule_mainline(candidates, window_items, cross_n, counts, now),
+        "key_changes": key_changes,
+        "judgement": judgement,
+        "listed_companies": listed,
         "top_news": top_news,
         "signals": signals,
         "stats": {
-            "items": len(selected),
+            "items": len(window_items),
             "cross": cross_n,
-            "single": len(selected) - cross_n,
-            "clusters": len(event_clusters(selected)),
+            "single": len(window_items) - cross_n,
+            "clusters": len(event_clusters(window_items)),
             "candidates": len(candidates),
+            "today": today_n,
+            "window_days": WINDOW_DAYS,
         },
         "llm": {
             "enabled": bool(llm.get("enabled")),
@@ -1060,13 +1449,16 @@ def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
     if not llm.get("enabled"):
         return report
     if not candidates:
-        report["llm"]["error"] = "本轮无候选条目"
+        report["llm"]["error"] = "近三日无候选条目"
         if verbose:
-            print("      日报：无候选条目，使用规则式", flush=True)
+            print("      日报：近三日无候选条目，使用规则式", flush=True)
         return report
     try:
-        out = deepseek_report(cfg, candidates, report["date_label"])
+        out = deepseek_report(cfg, candidates, report["date_label"], window)
         report["mainline"] = out["mainline"]
+        report["key_changes"] = out.get("key_changes") or key_changes
+        report["judgement"] = out.get("judgement") or judgement
+        report["listed_companies"] = out.get("listed_companies") or listed
         report["top_news"] = out["top_news"]
         report["signals"] = out["signals"]
         report["mode"] = "deepseek"
@@ -1143,6 +1535,145 @@ def fetch_sources(sources, workers=10):
             sid, xml_text, err = fut.result()
             results[sid] = (xml_text, err)
     return results
+
+
+def load_wechat_sources():
+    """读取公众号白名单；文件缺失或损坏时返回空列表，不影响其他通道。"""
+    if not os.path.exists(WECHAT_FILE):
+        return [], ""
+    try:
+        with open(WECHAT_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        accounts = data.get("accounts") if isinstance(data, dict) else data
+        return (accounts or []), (data.get("note") or "" if isinstance(data, dict) else "")
+    except Exception as e:  # noqa: BLE001
+        print(f"[WARN] wechat_sources.json 读取失败：{e}", flush=True)
+        return [], ""
+
+
+def wechat_search_url(name):
+    return ("https://weixin.sogou.com/weixin?type=2&ie=utf8&s_from=input&query="
+            + urllib.parse.quote(name))
+
+
+def wechat_allowed(account):
+    """收录规则：只收已认证号；券商类只允许国联民生证券汽车组「汽车琰究」。"""
+    name = (account.get("name") or "").strip()
+    if account.get("type") == "券商" and name != "汽车琰究":
+        return False, "按收录规则，券商类公众号只收录国联民生证券汽车组「汽车琰究」"
+    if account.get("certified") != "已认证":
+        return False, "认证状态未核验（certified≠已认证），暂不自动抓取"
+    return True, ""
+
+
+def parse_sogou_articles(page_html):
+    """解析搜狗微信搜索结果页；返回 [(title, url, summary, published_dt)]。"""
+    low = page_html.lower()
+    if "验证码" in page_html or "antispider" in low or "异常访问" in page_html:
+        raise RuntimeError("搜狗微信触发反爬验证（需人工登录/换 IP）")
+    out = []
+    blocks = re.split(r'<li id="sogou_vr_', page_html)[1:]
+    for b in blocks:
+        m = re.search(r'<h3[^>]*>\s*<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', b, re.S)
+        if not m:
+            continue
+        href = html.unescape(m.group(1)).strip()
+        title = strip_html(m.group(2))
+        summary = ""
+        sm = re.search(r'<p class="txt-info"[^>]*>(.*?)</p>', b, re.S)
+        if sm:
+            summary = strip_html(sm.group(1))
+        ts = None
+        tm = re.search(r"timeConvert\('(\d{10})'\)", b)
+        if tm:
+            try:
+                ts = datetime.fromtimestamp(int(tm.group(1)), CST)
+            except Exception:  # noqa: BLE001
+                ts = None
+        if href.startswith("/"):
+            href = "https://weixin.sogou.com" + href
+        if title and href.startswith("http"):
+            out.append((title, href, summary, ts))
+    return out
+
+
+def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
+    """抓取公众号白名单：成功则产出条目；失败/无更新/未启用都如实记录，不顶替。"""
+    records, report, meta = [], [], []
+    horizon = now - timedelta(days=30)
+    for acc in accounts:
+        name = (acc.get("name") or "").strip()
+        if not name:
+            continue
+        sid = acc.get("id") or ("wechat-" + hashlib.md5(name.encode("utf-8")).hexdigest()[:8])
+        status = {"id": sid, "name": "公众号·" + name, "board": "wechat",
+                  "url": wechat_search_url(name), "status": "ok", "count": 0,
+                  "raw": 0, "error": ""}
+        allowed, why = wechat_allowed(acc)
+        cfg_status = (acc.get("status") or "active").strip()
+        if not allowed:
+            status["status"] = "manual"
+            status["error"] = why
+        elif cfg_status != "active":
+            status["status"] = "manual"
+            status["error"] = acc.get("error") or f"白名单状态为 {cfg_status}，未启用自动抓取"
+        else:
+            try:
+                page = fetch(status["url"], timeout=15, retries=0)
+                arts = parse_sogou_articles(page)
+                status["raw"] = len(arts)
+                for title, url, summary, ts in arts:
+                    if ts is None or ts < horizon or ts > now + timedelta(hours=6):
+                        continue
+                    if not (is_robot_related(title, "zh")
+                            or is_robot_related(summary, "zh")
+                            or is_robot_strong(title, "zh")
+                            or is_robot_strong(summary, "zh")):
+                        continue
+                    url_key = re.sub(r"[#?].*$", "", url).rstrip("/")
+                    tkey = norm_title(title)[:28]
+                    if url_key in seen_urls or (tkey and tkey in seen_titles):
+                        continue
+                    seen_urls.add(url_key)
+                    if tkey:
+                        seen_titles.add(tkey)
+                    records.append({
+                        "board": "domestic",
+                        "title": title,
+                        "title_original": "",
+                        "summary": shorten(summary, 240),
+                        "summary_original": "",
+                        "source": "公众号·" + name,
+                        "source_id": sid,
+                        "via": name,
+                        "url": url,
+                        "published": ts.isoformat(),
+                        "lang": "zh",
+                        "companies": [],
+                        "is_placeholder": False,
+                    })
+                    status["count"] += 1
+                if status["count"] == 0:
+                    status["status"] = "empty"
+                    status["error"] = "抓取成功，但近 30 天没有命中机器人相关内容"
+            except Exception as e:  # noqa: BLE001
+                status["status"] = "fail"
+                status["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+        report.append(status)
+        meta.append({
+            "name": name,
+            "type": acc.get("type") or "",
+            "certified": acc.get("certified") or "",
+            "reason": acc.get("reason") or "",
+            "status": status["status"],
+            "error": status["error"],
+            "count": status["count"],
+        })
+        if verbose:
+            print(f"  [{'OK  ' if status['status'] == 'ok' else status['status'].upper():<6}]"
+                  f" {status['name']:<26} kept={status['count']}"
+                  + (f" {status['error']}" if status["error"] else ""))
+    return records, report, meta
 
 
 def collect(verbose=True):
@@ -1287,7 +1818,19 @@ def collect(verbose=True):
             flag = "OK  " if status["status"] == "ok" else "FAIL"
             print(f"  [{flag}] {src['name']:<26} raw={status['raw']:<4} kept={status['count']}")
 
-    return records, report, now, stats
+    # ---- 微信公众号白名单（独立通道：失败/无更新/未启用都如实记录） ----
+    wechat_accounts, wechat_note = load_wechat_sources()
+    wechat_meta = []
+    if wechat_accounts:
+        if verbose:
+            print(f"      公众号白名单 {len(wechat_accounts)} 个 ...", flush=True)
+        w_records, w_report, w_meta = fetch_wechat(wechat_accounts, now,
+                                                   seen_urls, seen_titles, verbose)
+        records.extend(w_records)
+        report.extend(w_report)
+        wechat_meta = {"note": wechat_note, "accounts": w_meta}
+
+    return records, report, now, stats, wechat_meta
 
 
 def assign_companies(rec):
@@ -1387,7 +1930,7 @@ def load_config():
                    "model": "deepseek-chat",
                    "base_url": "https://api.deepseek.com",
                    "api_key_env": "DEEPSEEK_API_KEY",
-                   "max_tokens": 1600, "temperature": 0.3, "timeout": 60}}
+                   "max_tokens": 2600, "temperature": 0.3, "timeout": 60}}
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, "r", encoding="utf-8") as f:
@@ -1505,8 +2048,8 @@ def run_round(args, cfg, daily=False):
     per_source = args.per_source or int(cfg.get("per_source", 16))
     do_translate = (not args.no_translate) and bool(cfg.get("translate", True))
 
-    print(f"[1/4] 抓取 {len(SOURCES)} 个公开来源 ...")
-    records, report, now, stats = collect()
+    print(f"[1/4] 抓取 {len(SOURCES)} 个公开来源 + 公众号白名单 ...")
+    records, report, now, stats, wechat_meta = collect()
     print(f"      原始命中 {len(records)} 条；大厂通道进入判定 {stats['bt_raw']} 条，"
           f"判定非机器人剔除 {stats['bt_dropped']} 条，"
           f"机器人相关但不属大厂分流 {stats['bt_demoted']} 条")
@@ -1588,7 +2131,9 @@ def run_round(args, cfg, daily=False):
             print("      日报：沿用今日已生成的 DeepSeek 版（常规轮次只更新列表）")
     mode_txt = "DeepSeek 生成" if daily_report["mode"] == "deepseek" else "规则式（常规轮次或无 key 降级）"
     print(f"      日报：第 {issue_no} 期，重点 {len(daily_report['top_news'])} 条、"
-          f"信号 {len(daily_report['signals'])} 条（{mode_txt}）")
+          f"信号 {len(daily_report['signals'])} 条、"
+          f"关键变化 {len(daily_report.get('key_changes') or [])} 条、"
+          f"上市公司 {len(daily_report.get('listed_companies') or [])} 家（{mode_txt}）")
 
     # 保留已有段子（脚本绝不改写段子内容）
     existing_jokes = []
@@ -1628,13 +2173,15 @@ def run_round(args, cfg, daily=False):
                       "items": boards["jokes"], "ok_sources": 0, "failed_sources": 0},
         },
         "source_report": report,
+        "wechat": wechat_meta,
         "report": daily_report,
         "meta": {
             "total_items": sum(len(boards[k]) for k in ["domestic", "overseas", "bigtech"]),
             "translated": 0 if not do_translate else len([r for r in selected if r["title_original"]]),
             "bigtech_filter": stats,
             "verify": {"cross": cross, "single": len(selected) - cross},
-            "note": "数据来自公开 RSS 与新闻检索；每条含来源与原文链接。抓取失败的源见 source_report。",
+            "note": "数据来自公开 RSS、新闻检索与公众号白名单；每条含来源与原文链接。"
+                    "日报统计窗口为近 3 天，当日条目置顶。抓取失败的源见 source_report。",
         },
     }
 

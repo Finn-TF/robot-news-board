@@ -51,6 +51,41 @@ a{color:inherit;text-decoration:none}
 .mainline .facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:13px;font-size:11.5px;color:var(--ink3)}
 .mainline .facts b{font-family:var(--mono);color:var(--ink);font-size:14px;margin-right:3px;font-variant-numeric:tabular-nums}
 
+/* ---------- 关键变化 ---------- */
+.keychanges{padding:18px 0 14px;border-bottom:1px solid var(--line)}
+.kc-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line2)}
+.kc{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line2)}
+.kd{font-family:var(--mono);font-size:10.5px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kd.today{color:var(--accent);font-weight:700}
+.kt{font-size:13.5px;line-height:1.58;font-weight:600;min-width:0}
+.kt a:hover{color:var(--blue)}
+.ks{font-size:10.5px;color:var(--ink3);white-space:nowrap}
+
+/* ---------- 利好利空 ---------- */
+.judgement{padding:18px 0 16px;border-bottom:1px solid var(--line)}
+.j-sum{margin:0 0 12px;font-size:15.5px;line-height:1.65;font-weight:650;letter-spacing:-.1px}
+.j-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.j-item{display:grid;grid-template-columns:54px 88px 1fr;gap:11px;align-items:start;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.jdir{font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 7px;text-align:center;white-space:nowrap;justify-self:start}
+.jdir.bull{color:#12703a;background:#eaf7ef;border:1px solid #cbe8d7}
+.jdir.bear{color:#b3261e;background:#fdeceb;border:1px solid #f6cfcb}
+.jdir.flat{color:var(--ink2);background:#eef0f2;border:1px solid var(--line)}
+.jseg{font-size:12px;font-weight:750;color:var(--ink2);padding-top:3px}
+.jlogic{font-size:13px;line-height:1.72;color:#2f353c;min-width:0}
+
+/* ---------- 受影响上市公司 ---------- */
+.listed{padding:18px 0 16px;border-bottom:1px solid var(--line)}
+.co-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.co-card{border:1px solid var(--line);border-radius:10px;padding:12px 13px;background:#fff}
+.co-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.co-name{font-size:14.5px;font-weight:750;letter-spacing:-.2px}
+.co-code{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.co-seg{font-size:10.5px;color:var(--blue);background:var(--blue-soft);border-radius:4px;padding:1px 6px;font-weight:600}
+.co-dir{font-size:10.5px;font-weight:800;border-radius:999px;padding:1px 7px;margin-left:auto;white-space:nowrap}
+.co-reason{margin:7px 0 0;font-size:12.5px;line-height:1.68;color:var(--ink2)}
+.co-meta{margin-top:7px;font-size:10.5px;color:var(--ink3);display:flex;gap:12px;flex-wrap:wrap}
+.co-note{margin:10px 0 0;font-size:11px;color:var(--ink3);line-height:1.6}
+
 /* ---------- 重点新闻 ---------- */
 .top-news{padding:20px 0 6px;border-bottom:1px solid var(--line)}
 .tcard{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:17px 0;border-top:1px solid var(--line)}
@@ -191,6 +226,11 @@ details[open] summary:before{content:"−"}
   .mainline p{font-size:16.5px}
   .mainline .facts{gap:14px}
   .mainline .facts b{font-size:13px}
+  .kc{grid-template-columns:52px 1fr;gap:8px}
+  .ks{grid-column:2;font-size:10px}
+  .j-item{grid-template-columns:1fr;gap:6px}
+  .jseg{padding-top:0}
+  .co-list{grid-template-columns:1fr}
   .tcard{grid-template-columns:30px 1fr;gap:9px;padding:15px 0}
   .tcard.lead{padding:15px;border-radius:12px}
   .trank{font-size:15px;padding-top:3px}
@@ -250,6 +290,22 @@ details[open] summary:before{content:"−"}
     <div class="facts" id="facts"></div>
   </section>
 
+  <section class="keychanges" aria-label="关键变化">
+    <div class="sec-label">关键变化<span class="sub" id="windowLabel">近 3 天 · 当日置顶</span></div>
+    <div id="keyChanges"></div>
+  </section>
+
+  <section class="judgement" aria-label="利好利空判断">
+    <div class="sec-label">利好利空判断<span class="sub">按产业链环节 · 含传导逻辑</span></div>
+    <div id="judgement"></div>
+  </section>
+
+  <section class="listed" aria-label="受影响的中国上市公司">
+    <div class="sec-label">受影响的中国上市公司<span class="sub">A 股 · 代码已核验</span></div>
+    <div id="listedCompanies"></div>
+    <p class="co-note">公司来自已核验的 A 股产业链白名单，按新闻涉及的产业链环节匹配；代码与名称逐一核对，未覆盖的环节宁可不列。方向与影响程度为基于公开新闻的研判，不构成投资建议。</p>
+  </section>
+
   <section class="top-news" aria-label="重点新闻">
     <div class="sec-label">重点新闻<span class="sub" id="topCount">TOP 3-5</span></div>
     <div id="topNews"></div>
@@ -290,7 +346,10 @@ details[open] summary:before{content:"−"}
       <span class="note">以上为通用占位表述，可由机构替换为正式合规模板（修改 index.html 页脚文字即可）。</span>
     </div>
     <div class="legend">
-      <span><b>数据口径</b>：公开 RSS、新闻检索与官方博客；每条保留来源与原文链接，摘要为原文摘录，英文条目附中文译文。抓取失败的通道在下方「抓取状态」中逐条标出，不用虚构内容填充。</span>
+      <span><b>日报结构</b>：今日主线 → 关键变化（近 3 天，当日置顶）→ 利好利空判断（按产业链环节）→ 受影响的中国上市公司 → 重点新闻 → 行业信号 → 四板块详情。结构固定，不随日期漂移。</span>
+    </div>
+    <div class="legend">
+      <span><b>数据口径</b>：公开 RSS、新闻检索、官方博客与已认证公众号；每条保留来源与原文链接，摘要为原文摘录，英文条目附中文译文。抓取失败或无更新的通道在下方「抓取状态」中逐条标出，不用虚构内容填充。</span>
     </div>
     <div class="legend">
       <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，只有 1 家 → <span class="vbadge single">单一来源</span>。点来源名可核对原文与发布时间。</span>
@@ -306,8 +365,8 @@ details[open] summary:before{content:"−"}
       <summary>口径与限制</summary>
       <div style="padding:8px 0 2px 0">
         摘要为原文摘录（英文条目机翻成中文，保留英文原标题可核对），不做二次改写；标题与链接均指向原始页面。
-        重点新闻与信号的链接一律取自本轮真实条目，不由模型生成。
-        微信公众号原文有反爬与登录限制，未直接抓取，相关报道通过媒体 RSS 与新闻检索覆盖。
+        重点新闻、关键变化与信号的链接一律取自本轮真实条目，不由模型生成。
+        公众号白名单只收已认证账号，券商类只收录国联民生证券汽车组「汽车琰究」；通过搜狗微信检索抓取，若触发反爬或无更新，会在「抓取状态」中标记，不用其他来源顶替、不伪造内容。
         抓取失败或某板块为空的来源会在上表标红，页面不会用虚构内容填充。
       </div>
     </details>
@@ -433,6 +492,73 @@ details[open] summary:before{content:"−"}
       });
   }
 
+  // ---------- 关键变化 / 利好利空 / 上市公司 ----------
+  function firstLink(links){
+    var list = (links||[]).filter(function(l){ return l && l.url; });
+    return list.length ? list[0] : null;
+  }
+  function dirClass(d){ return d === "利好" ? "bull" : (d === "利空" ? "bear" : "flat"); }
+
+  function renderKeyChanges(rep){
+    var list = (rep && rep.key_changes) || [];
+    if(!list.length){
+      $("keyChanges").innerHTML = '<p class="sig-empty">近三日暂无明确变化信号。</p>';
+      return;
+    }
+    var today = (rep && rep.date) || "";
+    $("keyChanges").innerHTML = '<ul class="kc-list">' + list.map(function(k){
+      var first = firstLink(k.links);
+      var txt = esc(k.text);
+      if(first) txt = '<a href="'+esc(first.url)+'" target="_blank" rel="noopener noreferrer">'+txt+'</a>';
+      var d = (k.date || "").slice(5);
+      var isToday = k.date && k.date === today;
+      var src = first ? (first.source || first.host || "原文") : "";
+      return '<li class="kc">'
+        + '<span class="kd'+(isToday?" today":"")+'">'+(isToday?"今天":esc(d||"—"))+'</span>'
+        + '<span class="kt">'+txt+'</span>'
+        + '<span class="ks">'+esc(src)+'</span></li>';
+    }).join("") + '</ul>';
+  }
+
+  function renderJudgement(rep){
+    var j = (rep && rep.judgement) || {};
+    var items = j.items || [];
+    var summary = j.summary || "近三日未出现明确的方向性信号，整体判断中性。";
+    var html = '<p class="j-sum">'+esc(summary)+'</p>';
+    if(items.length){
+      html += '<ul class="j-list">' + items.map(function(it){
+        var cls = dirClass(it.direction);
+        return '<li class="j-item">'
+          + '<span class="jdir '+cls+'">'+esc(it.direction||"中性")+'</span>'
+          + '<span class="jseg">'+esc(it.segment||"产业链")+'</span>'
+          + '<span class="jlogic">'+esc(it.logic||"暂无明确信号")+'</span></li>';
+      }).join("") + '</ul>';
+    }else{
+      html += '<p class="sig-empty">暂无按环节拆分的方向判断。</p>';
+    }
+    $("judgement").innerHTML = html;
+  }
+
+  function renderListed(rep){
+    var list = (rep && rep.listed_companies) || [];
+    if(!list.length){
+      $("listedCompanies").innerHTML = '<p class="sig-empty">本期新闻尚不足以归因到具体 A 股标的，暂不列示。</p>';
+      return;
+    }
+    $("listedCompanies").innerHTML = '<div class="co-list">' + list.map(function(co){
+      var cls = dirClass(co.direction);
+      return '<div class="co-card">'
+        + '<div class="co-top"><span class="co-name">'+esc(co.name)+'</span>'
+        + '<span class="co-code">'+esc(co.code)+'</span>'
+        + '<span class="co-seg">'+esc(co.segment||"产业链")+'</span>'
+        + '<span class="co-dir jdir '+cls+'">'+esc(co.direction||"中性")+'</span></div>'
+        + '<p class="co-reason">'+esc(co.reason||"")+'</p>'
+        + '<div class="co-meta"><span>影响程度：'+esc(co.impact||"—")+'</span>'
+        + '<span>确定性：'+esc(co.confidence||"—")+'</span></div>'
+        + '</div>';
+    }).join("") + '</div>';
+  }
+
   // ---------- 日报主体 ----------
   function renderReport(){
     var rep = DATA.report;
@@ -455,10 +581,18 @@ details[open] summary:before{content:"−"}
       ((DATA.boards[k]||{}).items||[]).forEach(function(it){ media[it.source]=1; });
     });
     $("facts").innerHTML =
-      '<span><b>'+((rep && rep.stats && rep.stats.items) || DATA.meta && DATA.meta.total_items || 0)+'</b>条收录</span>'+
+      '<span>近 '+((rep && rep.stats && rep.stats.window_days) || 3)+' 天 <b>'+((rep && rep.stats && rep.stats.items) || 0)+'</b>条</span>'+
+      '<span><b>'+((rep && rep.stats && rep.stats.today) || 0)+'</b>条当日</span>'+
       '<span><b>'+(st.cross||0)+'</b>条多家印证</span>'+
       '<span><b>'+Object.keys(media).length+'</b>家媒体</span>'+
       '<span><b>'+okN+'/'+srcN+'</b>通道成功</span>';
+    if(rep && rep.window){
+      $("windowLabel").textContent = "近 " + (rep.window.days||3) + " 天 · " + (rep.window.from||"").slice(5,10)
+        + " 至 " + (rep.window.to||"").slice(5,10) + " · 当日置顶";
+    }
+    renderKeyChanges(rep);
+    renderJudgement(rep);
+    renderListed(rep);
 
     var tops = (rep && rep.top_news) || [];
     $("topCount").textContent = tops.length ? ("TOP " + tops.length) : "暂无";
@@ -622,15 +756,41 @@ details[open] summary:before{content:"−"}
   function renderStatus(){
     var rep = DATA.source_report || [];
     var ok = rep.filter(function(s){ return s.status==="ok"; });
-    var bad = rep.filter(function(s){ return s.status!=="ok"; });
+    var bad = rep.filter(function(s){ return s.status==="fail"; });
+    var other = rep.filter(function(s){ return s.status!=="ok" && s.status!=="fail"; });
     var rows = rep.map(function(s){
-      var mark = s.status==="ok" ? '<span class="ok">OK</span>' : '<span class="bad">FAIL</span>';
+      var mark = s.status==="ok" ? '<span class="ok">OK</span>'
+        : (s.status==="fail" ? '<span class="bad">FAIL</span>'
+        : '<span style="color:#a86400">'+esc(s.status==="empty"?"无更新":"未启用")+'</span>');
       var note = s.status==="ok" ? ("保留 "+s.count+" 条") : esc(s.error||"抓取失败");
       return '<tr><td>'+mark+'</td><td>'+esc(s.name)+'</td><td class="n">'+(s.raw||0)+'</td><td>'+note+'</td></tr>';
     }).join("");
+
+    var wx = DATA.wechat;
+    var wxHtml = "";
+    if(wx){
+      var accounts = wx.accounts || (Array.isArray(wx) ? wx : []);
+      var wnote = wx.note || "";
+      if(accounts.length){
+        var wrows = accounts.map(function(a){
+          var sm = a.status==="ok" ? '<span class="ok">OK</span>'
+            : (a.status==="fail" ? '<span class="bad">FAIL</span>'
+            : esc(a.status==="empty"?"无更新":"未启用"));
+          return '<tr><td>'+sm+'</td><td>'+esc(a.name)+'</td><td>'+esc(a.type||"")+'</td><td>'
+            + esc(a.certified||"")+'</td><td class="n">'+(a.count||0)+'</td><td>'
+            + esc(a.error||a.reason||"")+'</td></tr>';
+        }).join("");
+        wxHtml = '<div style="margin-top:14px;font-size:11.5px;color:#464c55"><b>公众号白名单</b>'
+          + (wnote ? '<span style="display:block;margin-top:4px;color:#8c929a">'+esc(wnote)+'</span>' : '')
+          + '</div><table class="srctable"><tbody>'+wrows+'</tbody></table>';
+      }
+    }
+
     $("srcbody").innerHTML =
-      '<div style="margin-top:8px;font-size:11.5px;color:#464c55">本次运行：'+ok.length+' 个通道成功，'+bad.length+' 个失败。表内 <span class="mono">原始</span> 为源条目数，最后一列为入库条数或失败原因。</div>'
+      '<div style="margin-top:8px;font-size:11.5px;color:#464c55">本次运行：'+ok.length+' 个通道成功，'+bad.length+' 个失败'
+      + (other.length ? '，'+other.length+' 个无更新/未启用' : '')+ '。表内 <span class="mono">原始</span> 为源条目数，最后一列为入库条数或原因。</div>'
       + '<table class="srctable"><tbody>'+rows+'</tbody></table>'
+      + wxHtml
       + '<div style="margin-top:8px;font-size:11px;color:#8c929a">数据文件：data.json（最新一期）· archive/&lt;日期&gt;.json（往期快照）· data.js（本地双击时的内嵌副本）</div>';
 
     if(bad.length){
