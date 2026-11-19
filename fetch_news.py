@@ -2231,22 +2231,6 @@ def translate_records(records, verbose=True):
     return len([r for r in records if r["title_original"]])
 
 
-PLACEHOLDER_JOKES = [
-    {"id": "demo-1", "board": "jokes", "title": "示例占位：这里以后放用户提供的机器人段子",
-     "summary": "本条为结构占位，不是真实流传的段子。请在 jokes 数据中用真实内容替换。",
-     "source": "手动录入", "url": "", "published": "", "lang": "zh",
-     "companies": [], "is_placeholder": True},
-    {"id": "demo-2", "board": "jokes", "title": "示例占位：段子二（待替换）",
-     "summary": "示例占位。字段说明见 README：title / summary / source / published 可填。",
-     "source": "手动录入", "url": "", "published": "", "lang": "zh",
-     "companies": [], "is_placeholder": True},
-    {"id": "demo-3", "board": "jokes", "title": "示例占位：段子三（待替换）",
-     "summary": "示例占位。段子可按时间倒序展示，也支持搜索。",
-     "source": "手动录入", "url": "", "published": "", "lang": "zh",
-     "companies": [], "is_placeholder": True},
-]
-
-
 def load_config():
     """读取 config.json；缺失或损坏时回落到默认值，不让进程因此退出。"""
     cfg = {"interval_minutes": 60, "retries": 1, "max": 60,
@@ -2460,18 +2444,19 @@ def run_round(args, cfg, daily=False):
           f"关键变化 {len(daily_report.get('key_changes') or [])} 条、"
           f"上市公司 {len(daily_report.get('listed_companies') or [])} 家（{mode_txt}）")
 
-    # 保留已有段子（脚本绝不改写段子内容）
+    # 保留已有段子（脚本绝不改写段子内容，也不写入任何示例占位内容）
     existing_jokes = []
     if os.path.exists(DATA_JSON):
         try:
             with open(DATA_JSON, "r", encoding="utf-8") as f:
                 old = json.load(f)
-            old_jokes = old.get("boards", {}).get("jokes", [])
-            if isinstance(old_jokes, list) and old_jokes:
-                existing_jokes = old_jokes
+            old_jokes = old.get("boards", {}).get("jokes", {}).get("items", [])
+            if isinstance(old_jokes, list):
+                existing_jokes = [j for j in old_jokes
+                                  if isinstance(j, dict) and not j.get("is_placeholder")]
         except Exception:  # noqa: BLE001
             existing_jokes = []
-    boards["jokes"] = existing_jokes or PLACEHOLDER_JOKES
+    boards["jokes"] = existing_jokes
 
     def board_meta(key):
         alive = [r for r in report if r["board"] == key]
@@ -2494,7 +2479,7 @@ def run_round(args, cfg, daily=False):
                         "desc": "机器人大厂动态：OpenAI、特斯拉、英伟达、DeepMind、Meta，以及宇树、优必选、智元、Figure、Boston Dynamics 等",
                         "items": boards["bigtech"], **board_meta("bigtech")},
             "jokes": {"key": "jokes", "name": "近期段子",
-                      "desc": "机器人相关段子与梗，由用户手动提供（当前为示例占位）",
+                      "desc": "机器人相关段子与梗，由用户手动提供；暂无内容时显示空态",
                       "items": boards["jokes"], "ok_sources": 0, "failed_sources": 0},
         },
         "source_report": report,

@@ -5363,45 +5363,8 @@
   "jokes": {
    "key": "jokes",
    "name": "近期段子",
-   "desc": "机器人相关段子与梗，由用户手动提供（当前为示例占位）",
-   "items": [
-    {
-     "id": "demo-1",
-     "board": "jokes",
-     "title": "示例占位：这里以后放用户提供的机器人段子",
-     "summary": "本条为结构占位，不是真实流传的段子。请在 jokes 数据中用真实内容替换。",
-     "source": "手动录入",
-     "url": "",
-     "published": "",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": true
-    },
-    {
-     "id": "demo-2",
-     "board": "jokes",
-     "title": "示例占位：段子二（待替换）",
-     "summary": "示例占位。字段说明见 README：title / summary / source / published 可填。",
-     "source": "手动录入",
-     "url": "",
-     "published": "",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": true
-    },
-    {
-     "id": "demo-3",
-     "board": "jokes",
-     "title": "示例占位：段子三（待替换）",
-     "summary": "示例占位。段子可按时间倒序展示，也支持搜索。",
-     "source": "手动录入",
-     "url": "",
-     "published": "",
-     "lang": "zh",
-     "companies": [],
-     "is_placeholder": true
-    }
-   ],
+   "desc": "机器人相关段子与梗，由用户手动提供；暂无内容时显示空态",
+   "items": [],
    "ok_sources": 0,
    "failed_sources": 0
   }

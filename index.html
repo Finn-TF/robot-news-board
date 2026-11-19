@@ -179,7 +179,6 @@ a{color:inherit;text-decoration:none}
 .item.joke{grid-template-columns:118px 1fr}
 .joke .title{font-weight:600}
 .joke .sum{padding:10px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-top:8px;-webkit-line-clamp:unset;display:block;font-size:13.5px}
-.placeholder{color:var(--amber);background:var(--amber-soft);border-radius:4px;padding:1.5px 6px;font-size:10.5px;font-weight:600}
 .joke-note{margin:14px 0 0;padding:14px 16px;border:1px dashed #e3d6bd;background:#fffdf7;border-radius:10px;font-size:12.5px;color:#7a5a1c;line-height:1.68}
 .joke-note code{font-family:var(--mono);background:#fff;border:1px solid #eee3cc;border-radius:4px;padding:1px 5px;font-size:11.5px}
 
@@ -730,9 +729,8 @@ details[open] summary:before{content:"−"}
       : hl(it.title, state.q);
     var sum = it.summary
       ? '<p class="sum">'+hl(it.summary, state.q)+'</p>'
-      : '<p class="sum empty">'+(it.is_placeholder ? "" : "该来源未提供摘要，点击标题查看原文")+'</p>';
+      : '<p class="sum empty">该来源未提供摘要，点击标题查看原文</p>';
     var tags = (it.companies||[]).map(function(c){ return '<span class="tag">'+esc(c)+'</span>'; }).join("");
-    if(it.is_placeholder) tags = '<span class="placeholder">示例占位</span>' + tags;
     var orig = it.title_original ? '<p class="orig">'+esc(it.title_original)+'</p>' : '';
     return '<article class="item'+(isJoke?" joke":"")+'">'
       + '<div class="lcol"><span class="time">'
@@ -808,17 +806,13 @@ details[open] summary:before{content:"−"}
     var body = list.length
       ? '<div class="list">'+list.map(renderItem).join("")+'</div>'
       : emptyState();
-    var jokeNote = "";
-    if(state.tab === "jokes"){
-      var ph = (b.items||[]).length && (b.items||[]).every(function(x){ return x.is_placeholder; });
-      if(ph){
-        jokeNote = '<p class="joke-note">当前条目为<b>示例占位</b>，不是真实段子。可把真实段子按 '
-          + '<code>{"title":"…","summary":"…","source":"…","published":"2026-11-14T15:00:00+08:00"}</code> '
-          + '写入 <code>data.json</code> 的 <code>boards.jokes.items</code>，刷新页面即可显示。</p>';
-      }
+    if(state.tab === "jokes" && !(b.items||[]).length && !state.q && !state.company){
+      body = '<p class="joke-note">暂无段子，可随时补充。新增方式：把段子写入 '
+        + '<code>data.json</code> 的 <code>boards.jokes.items</code>，'
+        + '再运行 <code>python fetch_news.py --sync-only</code> 同步到 <code>data.js</code>。</p>';
     }
     var waHtml = state.tab === "jokes" ? renderWechatArticles() : "";
-    $("main").innerHTML = head + waHtml + body + jokeNote;
+    $("main").innerHTML = head + waHtml + body;
   }
 
   function renderStatus(){
