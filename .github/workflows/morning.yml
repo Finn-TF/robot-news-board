@@ -1,0 +1,70 @@
+name: 早间抓取（8:50）
+
+# 北京时间每天 08:50 = UTC 00:50
+# 目的：在 9:00 正式日报之前把网页/检索通道、公众号白名单、
+#       「汽车琰究」文章栏全部刷新一遍；不调用大模型。
+on:
+  schedule:
+    - cron: "50 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 与 30 分钟抓取、9:00 日报共用同一队列：后到的任务等待前一个跑完，
+# 不会并发写 data.json；9:00 日报还会在内部重新抓取一次，避免用旧数据。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 早间全量抓取（不调用模型）
+        run: python fetch_news.py --max 60 --per-source 16
+
+      - name: 提交数据变更
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json data.js archive
+          if git diff --cached --quiet; then
+            echo "数据无变化，跳过提交"
+          else
+            git commit -m "chore: 早间抓取（$(date -u +'%Y-%m-%d %H:%M') UTC）"
+            git push
+          fi
+
+  deploy:
+    needs: fetch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: 准备静态站点文件
+        run: |
+          mkdir -p _site
+          cp index.html data.json data.js _site/
+          if [ -d archive ]; then cp -r archive _site/; fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

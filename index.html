@@ -183,6 +183,19 @@ a{color:inherit;text-decoration:none}
 .joke-note{margin:14px 0 0;padding:14px 16px;border:1px dashed #e3d6bd;background:#fffdf7;border-radius:10px;font-size:12.5px;color:#7a5a1c;line-height:1.68}
 .joke-note code{font-family:var(--mono);background:#fff;border:1px solid #eee3cc;border-radius:4px;padding:1px 5px;font-size:11.5px}
 
+/* ---------- 汽车琰究文章栏（近期段子板块内） ---------- */
+.wa-wrap{margin:0 0 18px;border:1px solid #dbe6f2;border-radius:12px;background:linear-gradient(180deg,#f7fbff,#fff);overflow:hidden}
+.wa-head{display:flex;align-items:center;gap:8px;padding:12px 15px;border-bottom:1px solid #e4edf7;flex-wrap:wrap}
+.wa-badge{font-size:10.5px;font-weight:800;color:#1b4f8a;background:#e8f1fb;border:1px solid #cfe0f3;border-radius:999px;padding:2px 8px}
+.wa-name{font-size:14.5px;font-weight:800;letter-spacing:-.2px}
+.wa-meta{margin-left:auto;font-size:10.5px;color:#8c929a;text-align:right;line-height:1.5}
+.wa-item{display:block;padding:12px 15px;border-top:1px solid #eef3f9;text-decoration:none;color:inherit}
+.wa-item:hover{background:#f5f9ff}
+.wa-t{font-size:13.5px;font-weight:650;line-height:1.6}
+.wa-s{margin:5px 0 0;font-size:12px;line-height:1.66;color:#5b626b}
+.wa-m{margin-top:6px;font-size:10.5px;color:#98a0a8;display:flex;gap:12px;flex-wrap:wrap}
+.wa-empty{padding:14px 15px;font-size:12px;color:#8a9098;line-height:1.65}
+
 /* 状态 */
 .state{padding:48px 0 54px;text-align:center;color:var(--ink3)}
 .state h3{margin:0 0 7px;font-size:15px;color:var(--ink2);font-weight:650}
@@ -734,6 +747,43 @@ details[open] summary:before{content:"−"}
       + '</div></div></article>';
   }
 
+  function renderWechatArticles(){
+    var wa = DATA.wechat_articles || {};
+    var account = wa.account || "汽车琰究";
+    var items = wa.items || [];
+    var auto = wa.auto_discover || {};
+    var stamp = wa.last_success
+      ? "最近成功抓取 " + String(wa.last_success).slice(0,16).replace("T"," ")
+      : "尚未成功抓取";
+    var autoTxt = auto.status === "ok"
+      ? "合集自动发现 " + (auto.count||0) + " 篇" + (auto.label ? " · " + auto.label : "")
+      : (auto.status === "fail" ? "合集自动发现失败" : "合集自动发现未启用");
+    var head = '<div class="wa-head"><span class="wa-badge">固定信源</span>'
+      + '<span class="wa-name">' + esc(account) + '</span>'
+      + '<span class="wa-badge">国联民生证券汽车组</span>'
+      + '<span class="wa-meta">' + esc(stamp) + '<br>' + esc(autoTxt) + '</span></div>';
+    var body;
+    if(items.length){
+      body = items.map(function(a){
+        return '<a class="wa-item" href="' + esc(a.url) + '" target="_blank" rel="noopener noreferrer">'
+          + '<div class="wa-t">' + esc(a.title||"") + '</div>'
+          + '<p class="wa-s">' + esc(a.summary||"") + '</p>'
+          + '<div class="wa-m"><span>' + esc((a.published||"").slice(0,10)) + '</span>'
+          + (a.author ? '<span>作者：' + esc(a.author) + '</span>' : '')
+          + '<span>公众号·' + esc(account) + '</span>'
+          + '<span>点击查看原文 →</span></div></a>';
+      }).join("");
+    }else{
+      body = '<div class="wa-empty">本期没有抓到新文章。该栏目与「' + esc(account)
+        + '」信源固定保留，不会因无更新而删除。'
+        + (wa.error ? '<br>原因：' + esc(wa.error) : '') + '</div>';
+    }
+    if(items.length && wa.error){
+      body += '<div class="wa-empty">部分文章抓取异常：' + esc(wa.error) + '</div>';
+    }
+    return '<section class="wa-wrap" aria-label="汽车琰究最新文章">' + head + body + '</section>';
+  }
+
   function renderList(){
     var list = filterItems(), b = board();
     var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
@@ -750,7 +800,8 @@ details[open] summary:before{content:"−"}
           + '写入 <code>data.json</code> 的 <code>boards.jokes.items</code>，刷新页面即可显示。</p>';
       }
     }
-    $("main").innerHTML = head + body + jokeNote;
+    var waHtml = state.tab === "jokes" ? renderWechatArticles() : "";
+    $("main").innerHTML = head + waHtml + body + jokeNote;
   }
 
   function renderStatus(){

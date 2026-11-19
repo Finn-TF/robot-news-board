@@ -1,0 +1,17 @@
+{
+  "account": "汽车琰究",
+  "type": "券商",
+  "certified": "已认证",
+  "note": "国联民生证券汽车组官方公众号。links 为手动维护的文章直链，贴入后跑一次 fetch_news.py 即入库；auto_discover 尝试解析公众号合集页，仅覆盖该合集收录的文章，不能保证覆盖全号。券商类只允许本号，不使用其他券商或公众号内容顶替。",
+  "auto_discover": true,
+  "album": {
+    "biz": "MzU3ODYzODA1MQ==",
+    "album_id": "3603837058327773191",
+    "label": "小鹏集团合集",
+    "count": 20
+  },
+  "max_items": 6,
+  "links": [
+    "https://mp.weixin.qq.com/s/sJpjfAaCFQ4jvJaQfP6puA"
+  ]
+}

@@ -32,7 +32,21 @@ jobs:
           # 在仓库 Settings → Secrets and variables → Actions 配置；
           # 未配置时脚本自动使用规则式日报并照常归档，不会让当天没有日报。
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        # --daily 内部会重新执行一次完整抓取（网页/检索、公众号白名单、
+        # 汽车琰究文章栏），因此即使 8:50 那轮延迟或未完成，也不会用旧数据。
         run: python fetch_news.py --daily --max 60 --per-source 16
+
+      - name: 校验本轮数据新鲜度
+        run: |
+          python - <<'PY'
+          import json, datetime
+          d = json.load(open("data.json", encoding="utf-8"))
+          t = datetime.datetime.fromisoformat(d["generated_at"])
+          now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
+          age = (now - t).total_seconds() / 60
+          print(f"数据生成时间：{d['generated_at']}，距今 {age:.1f} 分钟")
+          assert age < 30, "日报数据不是本轮新抓的，停止发布"
+          PY
 
       - name: 提交日报与归档
         run: |

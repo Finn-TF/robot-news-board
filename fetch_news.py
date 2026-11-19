@@ -39,6 +39,7 @@ DATA_JS = os.path.join(BASE_DIR, "data.js")
 CACHE_FILE = os.path.join(BASE_DIR, "translate_cache.json")
 CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
 WECHAT_FILE = os.path.join(BASE_DIR, "wechat_sources.json")
+WECHAT_ARTICLES_FILE = os.path.join(BASE_DIR, "wechat_articles.json")
 ARCHIVE_DIR = os.path.join(BASE_DIR, "archive")
 LOG_FILE = os.path.join(BASE_DIR, "daemon.log")
 
@@ -1722,6 +1723,219 @@ def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
     return records, report, meta
 
 
+def load_wechat_article_cfg():
+    """读取「汽车琰究」文章栏配置；缺失时返回一个可渲染的失败态。"""
+    base = {
+        "account": "汽车琰究", "type": "券商", "certified": "已认证",
+        "auto_discover": True, "links": [], "max_items": 6,
+        "album": {}, "note": "",
+    }
+    if not os.path.exists(WECHAT_ARTICLES_FILE):
+        base["_error"] = "wechat_articles.json 不存在"
+        return base
+    try:
+        with open(WECHAT_ARTICLES_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        base.update(data if isinstance(data, dict) else {})
+    except Exception as e:  # noqa: BLE001
+        base["_error"] = f"wechat_articles.json 读取失败：{e}"
+    return base
+
+
+def _wx_meta(pat, text, flags=re.S):
+    m = re.search(pat, text, flags)
+    return html.unescape(m.group(1)).strip() if m else ""
+
+
+def parse_wechat_article_page(page_html):
+    """解析 mp.weixin.qq.com 文章页：标题、发布时间、作者、摘要。"""
+    if "环境异常" in page_html or "该内容已被发布者删除" in page_html:
+        raise RuntimeError("微信返回环境异常/文章已删除")
+    title = _wx_meta(r'<meta property="og:title" content="(.*?)"', page_html)
+    if not title:
+        title = _wx_meta(r'<h1[^>]*class="rich_media_title"[^>]*>(.*?)</h1>', page_html)
+    title = strip_html(title)
+    ct = _wx_meta(r'var ct = "(\d+)"', page_html)
+    if not ct:
+        ct = _wx_meta(r'<meta property="article:published_time" content="(\d+)"', page_html)
+    published = ""
+    if ct:
+        try:
+            published = datetime.fromtimestamp(int(ct), CST).isoformat()
+        except Exception:  # noqa: BLE001
+            published = ""
+    author = _wx_meta(r'var author = "(.*?)"', page_html)
+    if not author:
+        author = _wx_meta(r'<meta name="author" content="(.*?)"', page_html)
+    desc = _wx_meta(r'<meta name="description" content="(.*?)"', page_html)
+    body = ""
+    m = re.search(r'id="js_content"[^>]*>(.*?)</div>', page_html, re.S)
+    if m:
+        body = re.sub(r"\s+", " ", strip_html(m.group(1))).strip()
+    summary = desc or body[:200]
+    if not title:
+        raise RuntimeError("未解析到文章标题")
+    return {"title": title, "published": published,
+            "author": strip_html(author), "summary": summary[:240]}
+
+
+def fetch_wechat_album(biz, album_id, count=20):
+    """解析公众号合集页（公开 JSON），返回文章列表；拿不到就抛错。"""
+    url = ("https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz="
+           + urllib.parse.quote(biz, safe="")
+           + "&album_id=" + urllib.parse.quote(str(album_id), safe="")
+           + f"&count={int(count)}&f=json")
+    raw = fetch(url, timeout=25, retries=1)
+    data = json.loads(raw)
+    arts = (data.get("getalbum_resp") or {}).get("article_list") or []
+    out = []
+    for a in arts:
+        ts = a.get("create_time") or a.get("publish_time")
+        published = ""
+        if ts:
+            try:
+                published = datetime.fromtimestamp(int(ts), CST).isoformat()
+            except Exception:  # noqa: BLE001
+                published = ""
+        u = (a.get("url") or "").replace("http://", "https://", 1)
+        if a.get("title") and u:
+            out.append({"title": strip_html(a["title"]), "url": u,
+                        "published": published})
+    return out
+
+
+def _wx_key(url, title="", published=""):
+    """同一篇文章的短链与 __biz 长链不同，用标题+日期做去重签名。"""
+    t = re.sub(r"\s+", "", title or "")
+    if t:
+        return "t:" + t[:40] + "|" + (published or "")[:10]
+    m = re.search(r"[?&]sn=([0-9a-fA-F]+)", url or "")
+    if m:
+        return "sn:" + m.group(1).lower()
+    return (url or "").split("#")[0]
+
+
+def load_prev_article_cache():
+    try:
+        with open(DATA_JSON, "r", encoding="utf-8") as f:
+            d = json.load(f)
+        return {_wx_key(i.get("url"), i.get("title"), i.get("published")): i
+                for i in ((d.get("wechat_articles") or {}).get("items") or [])}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def fetch_wechat_articles(cfg, now, verbose=True):
+    """抓取「汽车琰究」最新文章：手动链接清单 + 合集自动发现。
+    抓不到也保留栏目，返回 last_success 与失败原因。"""
+    account = cfg.get("account") or "汽车琰究"
+    prev = load_prev_article_cache()
+    items, errors = [], []
+    auto = {"enabled": bool(cfg.get("auto_discover")),
+            "status": "off", "count": 0, "label": "", "error": ""}
+
+    def add(meta, url, fallback_title=""):
+        cached = prev.get(_wx_key(url, meta.get("title") or fallback_title,
+                                  meta.get("published"))) or {}
+        item = {
+            "title": meta.get("title") or fallback_title or cached.get("title") or "（无标题）",
+            "published": meta.get("published") or cached.get("published") or "",
+            "author": meta.get("author") or cached.get("author") or "",
+            "summary": (meta.get("summary") or cached.get("summary")
+                        or "（该文章未返回摘要，请点击原文查看）"),
+            "url": url,
+            "source": "公众号·" + account,
+        }
+        sig = _wx_key(url, item["title"], item["published"])
+        if any(_wx_key(x["url"], x["title"], x["published"]) == sig for x in items):
+            return
+        items.append(item)
+
+    # 1) 手动链接：逐个抓文章页
+    links = [u for u in (cfg.get("links") or []) if isinstance(u, str) and u.strip()]
+    page_budget = 4
+    for url in links[:12]:
+        try:
+            page = fetch(url.strip(), timeout=30, retries=1)
+            add(parse_wechat_article_page(page), url.strip())
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"手动链接失败 {url[-18:]}：{type(e).__name__}: {str(e)[:80]}")
+
+    # 2) 合集自动发现（只覆盖该合集收录的文章）
+    album = cfg.get("album") or {}
+    if auto["enabled"] and album.get("biz") and album.get("album_id"):
+        try:
+            arts = fetch_wechat_album(album["biz"], album["album_id"],
+                                      album.get("count", 20))
+            auto["status"] = "ok"
+            auto["count"] = len(arts)
+            auto["label"] = album.get("label") or "合集"
+            for a in sorted(arts, key=lambda x: x.get("published") or "", reverse=True)[:12]:
+                key = _wx_key(a["url"], a["title"], a["published"])
+                cached = prev.get(key)
+                if (cached and cached.get("summary")) or page_budget <= 0:
+                    items.append({
+                        "title": a["title"], "published": a["published"],
+                        "author": (cached or {}).get("author") or "",
+                        "summary": (cached or {}).get("summary")
+                                   or "（该文章未返回摘要，请点击原文查看）",
+                        "url": a["url"], "source": "公众号·" + account,
+                    })
+                    continue
+                try:
+                    page = fetch(a["url"], timeout=30, retries=1)
+                    meta = parse_wechat_article_page(page)
+                    meta["title"] = meta.get("title") or a["title"]
+                    meta["published"] = meta.get("published") or a["published"]
+                    add(meta, a["url"], a["title"])
+                except Exception as e:  # noqa: BLE001
+                    errors.append(f"合集文章失败 {a['title'][:14]}：{type(e).__name__}")
+                    items.append({
+                        "title": a["title"], "published": a["published"],
+                        "author": "", "summary": "（该文章未返回摘要，请点击原文查看）",
+                        "url": a["url"], "source": "公众号·" + account,
+                    })
+                page_budget -= 1
+        except Exception as e:  # noqa: BLE001
+            auto["status"] = "fail"
+            auto["error"] = f"{type(e).__name__}: {str(e)[:120]}"
+
+    # 去重、按发布时间倒序、截断
+    uniq, seen = [], set()
+    for it in sorted(items, key=lambda x: x.get("published") or "", reverse=True):
+        k = _wx_key(it["url"], it["title"], it["published"])
+        if k in seen:
+            continue
+        seen.add(k)
+        uniq.append(it)
+    uniq = uniq[:int(cfg.get("max_items") or 6)]
+
+    if uniq:
+        status, error = "ok", ""
+    elif errors or auto["status"] == "fail" or cfg.get("_error"):
+        status = "fail"
+        error = cfg.get("_error") or "；".join(errors[:2]) or auto.get("error") or "抓取失败"
+    else:
+        status, error = "empty", "清单为空，且合集中没有可解析文章"
+
+    meta = {
+        "account": account,
+        "type": cfg.get("type") or "券商",
+        "certified": cfg.get("certified") or "已认证",
+        "status": status,
+        "error": error,
+        "last_attempt": now.isoformat(),
+        "last_success": now.isoformat() if uniq else "",
+        "auto_discover": auto,
+        "items": uniq,
+    }
+    if verbose:
+        print(f"  [{'OK  ' if status == 'ok' else status.upper():<6}] 公众号·{account} 文章栏"
+              f" kept={len(uniq)} auto={auto['status']}/{auto['count']}"
+              + (f" {error}" if error else ""))
+    return meta
+
+
 def collect(verbose=True):
     now = datetime.now(CST)
     horizon = now - timedelta(days=60)
@@ -1876,7 +2090,18 @@ def collect(verbose=True):
         report.extend(w_report)
         wechat_meta = {"note": wechat_note, "accounts": w_meta}
 
-    return records, report, now, stats, wechat_meta
+    # ---- 「汽车琰究」文章栏：手动链接清单 + 合集自动发现，抓不到也保留栏目 ----
+    article_cfg = load_wechat_article_cfg()
+    article_meta = fetch_wechat_articles(article_cfg, now, verbose)
+    if not article_meta.get("last_success"):
+        try:
+            with open(DATA_JSON, "r", encoding="utf-8") as fh:
+                prev = (json.load(fh).get("wechat_articles") or {}).get("last_success")
+            article_meta["last_success"] = prev or ""
+        except Exception:  # noqa: BLE001
+            pass
+
+    return records, report, now, stats, wechat_meta, article_meta
 
 
 def assign_companies(rec):
@@ -2095,7 +2320,7 @@ def run_round(args, cfg, daily=False):
     do_translate = (not args.no_translate) and bool(cfg.get("translate", True))
 
     print(f"[1/4] 抓取 {len(SOURCES)} 个公开来源 + 公众号白名单 ...")
-    records, report, now, stats, wechat_meta = collect()
+    records, report, now, stats, wechat_meta, article_meta = collect()
     print(f"      原始命中 {len(records)} 条；大厂通道进入判定 {stats['bt_raw']} 条，"
           f"判定非机器人剔除 {stats['bt_dropped']} 条，"
           f"机器人相关但不属大厂分流 {stats['bt_demoted']} 条")
@@ -2220,6 +2445,7 @@ def run_round(args, cfg, daily=False):
         },
         "source_report": report,
         "wechat": wechat_meta,
+        "wechat_articles": article_meta,
         "report": daily_report,
         "meta": {
             "total_items": sum(len(boards[k]) for k in ["domestic", "overseas", "bigtech"]),
