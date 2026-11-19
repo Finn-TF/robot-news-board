@@ -1767,6 +1767,10 @@ def parse_wechat_article_page(page_html):
     author = _wx_meta(r'var author = "(.*?)"', page_html)
     if not author:
         author = _wx_meta(r'<meta name="author" content="(.*?)"', page_html)
+    account = _wx_meta(r'id="js_name"[^>]*>(.*?)</a>', page_html)
+    if not account:
+        account = _wx_meta(r'nick_name["\']?\s*[:=]\s*["\'](.*?)["\']', page_html)
+    biz = _wx_meta(r'var biz = "(.*?)"', page_html)
     desc = _wx_meta(r'<meta name="description" content="(.*?)"', page_html)
     body = ""
     m = re.search(r'id="js_content"[^>]*>(.*?)</div>', page_html, re.S)
@@ -1776,7 +1780,8 @@ def parse_wechat_article_page(page_html):
     if not title:
         raise RuntimeError("未解析到文章标题")
     return {"title": title, "published": published,
-            "author": strip_html(author), "summary": summary[:240]}
+            "author": strip_html(author), "summary": summary[:240],
+            "account": strip_html(account), "biz": biz}
 
 
 def fetch_wechat_album(biz, album_id, count=20):
@@ -1851,13 +1856,45 @@ def fetch_wechat_articles(cfg, now, verbose=True):
             return
         items.append(item)
 
-    # 1) 手动链接：逐个抓文章页
+    # 1) 手动链接：逐个抓文章页，并核对公众号归属
     links = [u for u in (cfg.get("links") or []) if isinstance(u, str) and u.strip()]
     page_budget = 4
+    wl_accounts, _ = load_wechat_sources()
+    wl = {(a.get("name") or "").strip(): a for a in wl_accounts}
+    rejected, external_records = [], []
+    cfg_biz = ((cfg.get("album") or {}).get("biz") or cfg.get("biz") or "")
     for url in links[:12]:
         try:
             page = fetch(url.strip(), timeout=30, retries=1)
-            add(parse_wechat_article_page(page), url.strip())
+            meta = parse_wechat_article_page(page)
+            acc = (meta.get("account") or "").strip()
+            if not acc:
+                rejected.append({"url": url.strip(), "account": "",
+                                 "reason": "无法确认公众号归属，未入库"})
+                continue
+            if acc != account:
+                info = wl.get(acc)
+                if info and info.get("type") == "券商":
+                    rejected.append({"url": url.strip(), "account": acc,
+                                     "reason": "其他券商公众号，按规则只收国联民生「汽车琰究」"})
+                elif info and info.get("certified") == "已认证":
+                    external_records.append({
+                        "board": "domestic", "title": meta["title"],
+                        "title_original": "", "summary": meta["summary"],
+                        "summary_original": "", "source": "公众号·" + acc,
+                        "source_id": "", "via": acc, "url": url.strip(),
+                        "published": meta["published"], "lang": "zh",
+                        "companies": [], "is_placeholder": False,
+                    })
+                else:
+                    rejected.append({"url": url.strip(), "account": acc,
+                                     "reason": "不在公众号白名单或未认证，未入库"})
+                continue
+            if cfg_biz and meta.get("biz") and meta["biz"] != cfg_biz:
+                rejected.append({"url": url.strip(), "account": acc,
+                                 "reason": "公众号 biz 与「汽车琰究」不一致，未入库"})
+                continue
+            add(meta, url.strip())
         except Exception as e:  # noqa: BLE001
             errors.append(f"手动链接失败 {url[-18:]}：{type(e).__name__}: {str(e)[:80]}")
 
@@ -1918,21 +1955,8 @@ def fetch_wechat_articles(cfg, now, verbose=True):
         seen.add(k)
         uniq.append(it)
     total_found = len(uniq)
-    window_days = int(cfg.get("window_days") or 7)
-    cutoff = now - timedelta(days=window_days)
-
-    def _in_window(it):
-        p = it.get("published") or ""
-        if not p:
-            return True          # 手动链接未能解析日期时保留，由页面显示“日期未解析”
-        try:
-            return datetime.fromisoformat(p) >= cutoff
-        except Exception:  # noqa: BLE001
-            return True
-
-    fresh = [it for it in uniq if _in_window(it)]
-    dropped_old = total_found - len(fresh)
-    uniq = fresh[:int(cfg.get("max_items") or 20)]
+    max_items = int(cfg.get("max_items") or 7)
+    uniq = uniq[:max_items]
 
     if uniq:
         status, error = "ok", ""
@@ -1940,9 +1964,7 @@ def fetch_wechat_articles(cfg, now, verbose=True):
         status = "fail"
         error = cfg.get("_error") or "；".join(errors[:2]) or auto.get("error") or "抓取失败"
     else:
-        status = "empty"
-        error = (f"近 {window_days} 天没有可解析文章"
-                 + (f"（已过滤 {dropped_old} 篇过期文章）" if dropped_old else ""))
+        status, error = "empty", "暂未抓到可解析文章"
 
     meta = {
         "account": account,
@@ -1950,9 +1972,10 @@ def fetch_wechat_articles(cfg, now, verbose=True):
         "certified": cfg.get("certified") or "已认证",
         "status": status,
         "error": error,
-        "window_days": window_days,
+        "max_items": max_items,
         "total_found": total_found,
-        "dropped_old": dropped_old,
+        "rejected": rejected,
+        "external_records": external_records,
         "last_attempt": now.isoformat(),
         "last_success": now.isoformat() if uniq else "",
         "auto_discover": auto,
@@ -2122,6 +2145,8 @@ def collect(verbose=True):
     # ---- 「汽车琰究」文章栏：手动链接清单 + 合集自动发现，抓不到也保留栏目 ----
     article_cfg = load_wechat_article_cfg()
     article_meta = fetch_wechat_articles(article_cfg, now, verbose)
+    # 手动链接中属于其他已认证官方号的，按白名单转入国内新闻板块
+    records.extend(article_meta.pop("external_records", []))
     if not article_meta.get("last_success"):
         try:
             with open(DATA_JSON, "r", encoding="utf-8") as fh:

@@ -759,12 +759,18 @@ details[open] summary:before{content:"−"}
       ? "合集自动发现 " + (auto.count||0) + " 篇"
         + (auto.albums ? " · " + auto.albums.length + " 个合集" : "")
       : (auto.status === "fail" ? "合集自动发现失败" : "合集自动发现未启用");
-    var winTxt = "近 " + (wa.window_days || 7) + " 天 · " + items.length + " 篇"
-      + (wa.dropped_old ? "（已过滤 " + wa.dropped_old + " 篇过期）" : "");
+    var winTxt = "最新 " + (wa.max_items || 7) + " 篇 · 共发现 "
+      + (wa.total_found || items.length) + " 篇";
+    var dates = items.map(function(a){ return (a.published||"").slice(0,10); })
+      .filter(Boolean).sort();
+    var spanTxt = dates.length > 1
+      ? "日期跨度 " + dates[0] + " ~ " + dates[dates.length-1] : "";
     var head = '<div class="wa-head"><span class="wa-badge">固定信源</span>'
       + '<span class="wa-name">' + esc(account) + '</span>'
       + '<span class="wa-badge">国联民生证券汽车组</span>'
-      + '<span class="wa-meta">' + esc(winTxt) + '<br>' + esc(stamp) + '<br>' + esc(autoTxt) + '</span></div>';
+      + '<span class="wa-meta">' + esc(winTxt) + '<br>'
+      + (spanTxt ? esc(spanTxt) + '<br>' : '')
+      + esc(stamp) + '<br>' + esc(autoTxt) + '</span></div>';
     var body;
     if(items.length){
       body = items.map(function(a){
@@ -777,9 +783,17 @@ details[open] summary:before{content:"−"}
           + '<span>点击查看原文 →</span></div></a>';
       }).join("");
     }else{
-      body = '<div class="wa-empty">近 ' + esc(String(wa.window_days||7)) + ' 天没有抓到该号的新文章。该栏目与「' + esc(account)
+      body = '<div class="wa-empty">暂未抓到该号的可解析文章。该栏目与「' + esc(account)
         + '」信源固定保留，不会因无更新而删除。'
         + (wa.error ? '<br>原因：' + esc(wa.error) : '') + '</div>';
+    }
+    var rejected = wa.rejected || [];
+    if(rejected.length){
+      body += '<div class="wa-empty" style="border-top:1px solid #eef3f9">未入库链接：'
+        + rejected.map(function(r){
+            return '<br>' + esc(r.account || "未知公众号") + ' — ' + esc(r.reason || "未入库");
+          }).join("")
+        + '</div>';
     }
     if(items.length && wa.error){
       body += '<div class="wa-empty">部分文章抓取异常：' + esc(wa.error) + '</div>';

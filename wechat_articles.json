@@ -2,10 +2,9 @@
   "account": "汽车琰究",
   "type": "券商",
   "certified": "已认证",
-  "note": "国联民生证券汽车组官方公众号。栏目按近 7 天过滤、按发布时间倒序、不限主题。links 为手动维护的文章直链，可一次贴多篇；auto_discover 会遍历 albums 中配置的合集页，但合集只覆盖被收录进该合集的文章，不代表全号。券商类只允许本号，不使用其他券商或公众号内容顶替。",
+  "note": "国联民生证券汽车组官方公众号。栏目按发布时间倒序取最新 max_items 篇，不限日期；日期跨度较大时逐篇显示发布时间，避免把旧文当成新文。links 为手动维护的文章直链，可一次贴多篇；auto_discover 会遍历 albums 中配置的合集页，但合集只覆盖被收录进该合集的文章，不代表全号。券商类只允许本号，不使用其他券商或公众号内容顶替。",
   "auto_discover": true,
-  "window_days": 7,
-  "max_items": 20,
+  "max_items": 7,
   "albums": [
     {
       "album_id": "3603837058327773191",
@@ -25,6 +24,10 @@
     "count": 20
   },
   "links": [
-    "https://mp.weixin.qq.com/s/sJpjfAaCFQ4jvJaQfP6puA"
+    "https://mp.weixin.qq.com/s/sJpjfAaCFQ4jvJaQfP6puA",
+    "https://mp.weixin.qq.com/s/Tn_aokxLpI2XrcFqcFVMwg",
+    "https://mp.weixin.qq.com/s/RseRBAf6yT8XPE-9-97I7g",
+    "https://mp.weixin.qq.com/s/mVM3-M-L4qJXcnE-7VeGhQ",
+    "https://mp.weixin.qq.com/s/LFCzGo4jZhQVbr48sEzPxg"
   ]
 }
