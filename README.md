@@ -93,7 +93,7 @@ key 在 DeepSeek 开放平台 <https://platform.deepseek.com> 的 **API keys** �
   "model": "deepseek-chat",
   "base_url": "https://api.deepseek.com",
   "api_key_env": "DEEPSEEK_API_KEY",
-  "max_tokens": 1600,
+  "max_tokens": 4096,
   "temperature": 0.3,
   "timeout": 60
 }
