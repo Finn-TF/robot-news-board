@@ -1478,6 +1478,12 @@ def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
         if verbose:
             print(f"      日报：DeepSeek 失败，降级为规则式（{report['llm']['error']}）",
                   flush=True)
+    # 固定排序：当日条目置顶，其余严格按日期倒序（模型顺序也统一纠正）
+    report["key_changes"] = sorted(
+        report.get("key_changes") or [],
+        key=lambda k: ((k.get("date") or "") == today, k.get("date") or ""),
+        reverse=True,
+    )
     return report
 
 
@@ -1601,9 +1607,9 @@ def parse_sogou_articles(page_html):
             out.append((title, href, summary, ts))
     if not out:
         # 没有任何结果块：可能是真无结果，也可能是反爬/验证页伪装成 200
-        if "没有找到" in page_html or "暂无" in page_html:
+        if "没有找到" in page_html or "暂无相关" in page_html:
             return []
-        raise RuntimeError("搜狗微信未返回可解析结果（可能为反爬验证或页面结构变化）")
+        raise RuntimeError("搜狗微信未返回可解析文章（可能为反爬验证或页面结构变化）")
     return out
 
 
@@ -1665,7 +1671,8 @@ def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
                     status["count"] += 1
                 if status["count"] == 0:
                     status["status"] = "empty"
-                    status["error"] = "抓取成功，但近 30 天没有命中机器人相关内容"
+                    status["error"] = ("搜狗微信未返回该号近 30 天的可解析文章"
+                                       "（可能无更新或触发反爬），未使用其他来源顶替")
             except Exception as e:  # noqa: BLE001
                 status["status"] = "fail"
                 status["error"] = f"{type(e).__name__}: {str(e)[:160]}"
