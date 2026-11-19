@@ -1368,10 +1368,15 @@ def deepseek_report(cfg, candidates, date_label, window=None):
     try:
         obj = json.loads(content)
     except Exception:  # noqa: BLE001
-        m = re.search(r"\{.*\}", content, re.S)
-        if not m:
-            raise RuntimeError("模型输出不是合法 JSON")
-        obj = json.loads(m.group(0))
+        # 模型偶尔会在 JSON 后追加说明文字或多输出一个对象：
+        # 用 raw_decode 只取第一个完整 JSON 对象，避免整份日报被降级。
+        try:
+            obj, _ = json.JSONDecoder().raw_decode(content.lstrip())
+        except Exception:  # noqa: BLE001
+            m = re.search(r"\{.*\}", content, re.S)
+            if not m:
+                raise RuntimeError("模型输出不是合法 JSON")
+            obj = json.loads(m.group(0))
     return validate_llm_report(obj, candidates)
 
 
