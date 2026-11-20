@@ -2574,6 +2574,7 @@ _GENERIC_LATIN = {
     "robot", "robots", "robotic", "robotics", "humanoid", "humanoids",
     "the", "and", "with", "for", "from", "that", "this", "into", "will",
     "has", "have", "its", "artificial", "intelligence", "news",
+    "physical", "embodied", "foundation", "model", "models", "data",
 }
 
 
@@ -2606,7 +2607,7 @@ def display_event_clusters(items):
             for ent in common_ent:
                 company_tokens |= latin_tokens(ent)
             distinct_shared = bool((lt & g["rep_lt"]) - company_tokens)
-            if sim >= 0.34 or (same_entity and (sim >= 0.28 or distinct_shared)):
+            if sim >= 0.34 or (same_entity and distinct_shared):
                 if sim > best_sim:
                     best, best_sim = g, sim
         if best is not None:
