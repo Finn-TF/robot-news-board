@@ -1354,6 +1354,9 @@ def validate_llm_report(obj, candidates, verbose=True):
         if len(tops) >= TOP_MAX:
             break
     if len(tops) < TOP_MIN:
+        if verbose:
+            print(f"      模型输出字段：{list(obj.keys())}", flush=True)
+            print(f"      top_news 原始值：{str(obj.get('top_news'))[:400]}", flush=True)
         raise RuntimeError(f"有效重点新闻仅 {len(tops)} 条（模型返回 {len(raw_tops)} 条），"
                            f"低于 {TOP_MIN} 条")
 
