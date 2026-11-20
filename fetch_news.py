@@ -308,6 +308,26 @@ SOURCES = [
      "url": bing("site:theverge.com humanoid robot"), "filter": "en"},
     {"id": "bing-en-16", "name": "Bing News", "board": "overseas", "lang": "en",
      "url": bing("embodied AI robot foundation model"), "filter": "en"},
+
+    # ---- 一手直连补充（新增，非检索通道） ----
+    {"id": "techxplore-robotics", "name": "TechXplore Robotics", "board": "overseas", "lang": "en",
+     "url": "https://techxplore.com/rss-feed/robotics-news/", "filter": None},
+    {"id": "sciencedaily-robotics", "name": "ScienceDaily Robotics", "board": "overseas", "lang": "en",
+     "url": "https://www.sciencedaily.com/rss/computers_math/robotics.xml", "filter": None},
+    {"id": "ieee-ai", "name": "IEEE Spectrum AI", "board": "overseas", "lang": "en",
+     "url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss", "filter": "en_title"},
+    {"id": "tc-ai", "name": "TechCrunch AI", "board": "overseas", "lang": "en",
+     "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "filter": "en_title"},
+    {"id": "siliconangle-ai", "name": "SiliconANGLE AI", "board": "overseas", "lang": "en",
+     "url": "https://siliconangle.com/category/ai/feed/", "filter": "en_title"},
+    {"id": "samsung-news", "name": "Samsung Newsroom", "board": "bigtech", "lang": "en",
+     "url": "https://news.samsung.com/global/feed", "filter": "robot_only"},
+    {"id": "gongkong", "name": "中国工控网", "board": "domestic", "lang": "zh",
+     "url": "http://www.gongkong.com/rss/news.xml", "filter": "zh_title"},
+    {"id": "xinhua-tech", "name": "新华网科技", "board": "domestic", "lang": "zh",
+     "url": "http://www.news.cn/tech/news_tech.xml", "filter": "zh_title"},
+    {"id": "people-tech", "name": "人民网科技", "board": "domestic", "lang": "zh",
+     "url": "http://www.people.com.cn/rss/it.xml", "filter": "zh_title"},
 ]
 
 # ---------------------------------------------------------------- 工具 ----
@@ -676,56 +696,100 @@ def clean_source_name(name):
 # 受影响中国上市公司白名单（代码已用东方财富行情接口逐个核验）。
 # DeepSeek 只能从这里选公司，避免编造不存在的公司或凭印象写代码。
 COMPANY_CHAIN = [
+    # 上游零部件：减速器
     {"code": "688017", "name": "绿的谐波", "segment": "减速器", "biz": "谐波减速器", "confidence": "高"},
     {"code": "002472", "name": "双环传动", "segment": "减速器", "biz": "齿轮与减速器", "confidence": "高"},
     {"code": "002896", "name": "中大力德", "segment": "减速器", "biz": "减速器与电机", "confidence": "高"},
     {"code": "000837", "name": "秦川机床", "segment": "减速器", "biz": "机床与减速器", "confidence": "中"},
     {"code": "301368", "name": "丰立智能", "segment": "减速器", "biz": "精密齿轮", "confidence": "中"},
     {"code": "001306", "name": "夏厦精密", "segment": "减速器", "biz": "精密齿轮", "confidence": "中"},
+    {"code": "002031", "name": "巨轮智能", "segment": "减速器", "biz": "轮胎模具与RV减速器", "confidence": "中"},
+    # 丝杠 / 线性执行器
     {"code": "603667", "name": "五洲新春", "segment": "丝杠", "biz": "轴承与丝杠", "confidence": "中"},
     {"code": "601100", "name": "恒立液压", "segment": "丝杠", "biz": "液压件与丝杠", "confidence": "中"},
     {"code": "300580", "name": "贝斯特", "segment": "丝杠", "biz": "精密零部件与丝杠", "confidence": "中"},
     {"code": "603009", "name": "北特科技", "segment": "丝杠", "biz": "汽车零部件与丝杠", "confidence": "中"},
     {"code": "873593", "name": "鼎智科技", "segment": "丝杠", "biz": "线性执行器与丝杠", "confidence": "高"},
+    # 伺服 / 电机
     {"code": "300124", "name": "汇川技术", "segment": "伺服/电机", "biz": "伺服系统与控制器", "confidence": "高"},
     {"code": "002979", "name": "雷赛智能", "segment": "伺服/电机", "biz": "运动控制与伺服", "confidence": "高"},
     {"code": "688160", "name": "步科股份", "segment": "伺服/电机", "biz": "伺服系统与人机界面", "confidence": "中"},
     {"code": "300660", "name": "江苏雷利", "segment": "伺服/电机", "biz": "微特电机", "confidence": "中"},
     {"code": "603728", "name": "鸣志电器", "segment": "伺服/电机", "biz": "步进电机", "confidence": "高"},
+    {"code": "688698", "name": "伟创电气", "segment": "伺服/电机", "biz": "变频器与伺服", "confidence": "中"},
+    # 灵巧手 / 执行器
     {"code": "003021", "name": "兆威机电", "segment": "灵巧手", "biz": "微型传动系统", "confidence": "高"},
     {"code": "002050", "name": "三花智控", "segment": "执行器", "biz": "机电执行器与热管理", "confidence": "中"},
     {"code": "601689", "name": "拓普集团", "segment": "执行器", "biz": "汽车零部件与机器人执行器", "confidence": "中"},
+    # 本体与整机（含直接竞争对手）
     {"code": "002747", "name": "埃斯顿", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
     {"code": "300024", "name": "机器人", "segment": "本体", "biz": "机器人整机与装备", "confidence": "高"},
     {"code": "300607", "name": "拓斯达", "segment": "本体", "biz": "工业机器人与自动化", "confidence": "高"},
     {"code": "688165", "name": "埃夫特", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
     {"code": "002527", "name": "新时达", "segment": "本体", "biz": "机器人控制与整机", "confidence": "中"},
+    {"code": "002698", "name": "博实股份", "segment": "本体", "biz": "工业机器人与智能装备", "confidence": "中"},
+    {"code": "688218", "name": "江苏北人", "segment": "本体", "biz": "焊接机器人系统", "confidence": "中"},
+    {"code": "688090", "name": "瑞松科技", "segment": "本体", "biz": "机器人系统集成", "confidence": "中"},
+    {"code": "002403", "name": "爱仕达", "segment": "本体", "biz": "炊具与工业机器人", "confidence": "中"},
+    {"code": "688169", "name": "石头科技", "segment": "本体", "biz": "扫地机器人", "confidence": "高"},
+    {"code": "603486", "name": "科沃斯", "segment": "本体", "biz": "服务机器人", "confidence": "高"},
+    {"code": "603666", "name": "亿嘉和", "segment": "本体", "biz": "电力巡检机器人", "confidence": "中"},
+    {"code": "09880.HK", "name": "优必选", "segment": "本体", "biz": "人形机器人整机", "confidence": "高"},
+    {"code": "02432.HK", "name": "越疆", "segment": "本体", "biz": "协作机器人", "confidence": "中"},
+    # 传感器
     {"code": "603662", "name": "柯力传感", "segment": "传感器", "biz": "力传感器", "confidence": "高"},
     {"code": "300007", "name": "汉威科技", "segment": "传感器", "biz": "传感器", "confidence": "中"},
     {"code": "688322", "name": "奥比中光", "segment": "传感器", "biz": "3D 视觉", "confidence": "高"},
     {"code": "300354", "name": "东华测试", "segment": "传感器", "biz": "测试仪器与力传感器", "confidence": "中"},
     {"code": "301413", "name": "安培龙", "segment": "传感器", "biz": "压力与温度传感器", "confidence": "中"},
     {"code": "688582", "name": "芯动联科", "segment": "传感器", "biz": "MEMS 惯性传感器", "confidence": "中"},
+    {"code": "688052", "name": "纳芯微", "segment": "传感器", "biz": "传感与信号链芯片", "confidence": "中"},
+    # 控制器
+    {"code": "300161", "name": "华中数控", "segment": "控制器", "biz": "数控系统与控制器", "confidence": "中"},
+    {"code": "603416", "name": "信捷电气", "segment": "控制器", "biz": "PLC 与伺服系统", "confidence": "中"},
+    {"code": "688320", "name": "禾川科技", "segment": "控制器", "biz": "伺服与运动控制", "confidence": "中"},
+    {"code": "002851", "name": "麦格米特", "segment": "控制器", "biz": "工控电源与驱动", "confidence": "中"},
+    # 机器视觉
     {"code": "688400", "name": "凌云光", "segment": "机器视觉", "biz": "机器视觉", "confidence": "高"},
     {"code": "688003", "name": "天准科技", "segment": "机器视觉", "biz": "机器视觉装备", "confidence": "高"},
     {"code": "688686", "name": "奥普特", "segment": "机器视觉", "biz": "机器视觉", "confidence": "高"},
     {"code": "300802", "name": "矩子科技", "segment": "机器视觉", "biz": "机器视觉", "confidence": "中"},
+    {"code": "603297", "name": "永新光学", "segment": "机器视觉", "biz": "光学镜头与显微系统", "confidence": "中"},
+    {"code": "300790", "name": "宇瞳光学", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
+    {"code": "002338", "name": "奥普光电", "segment": "机器视觉", "biz": "光电测控与光学", "confidence": "中"},
+    # 软件 / 具身智能
     {"code": "300496", "name": "中科创达", "segment": "软件/具身智能", "biz": "操作系统与边缘 AI", "confidence": "中"},
     {"code": "002230", "name": "科大讯飞", "segment": "软件/具身智能", "biz": "人工智能与语音", "confidence": "中"},
-    {"code": "600699", "name": "均胜电子", "segment": "应用场景", "biz": "汽车电子", "confidence": "中"},
-    {"code": "002009", "name": "天奇股份", "segment": "应用场景", "biz": "汽车自动化装备", "confidence": "中"},
+    {"code": "09660.HK", "name": "地平线机器人-W", "segment": "软件/具身智能", "biz": "智驾与机器人芯片", "confidence": "中"},
+    # 结构件 / 精密制造
     {"code": "600933", "name": "爱柯迪", "segment": "结构件", "biz": "铝合金精密压铸", "confidence": "中"},
     {"code": "603305", "name": "旭升集团", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
     {"code": "603348", "name": "文灿股份", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
     {"code": "300953", "name": "震裕科技", "segment": "结构件", "biz": "精密结构件", "confidence": "中"},
-    {"code": "002126", "name": "银轮股份", "segment": "热管理", "biz": "热管理", "confidence": "中"},
     {"code": "300258", "name": "精锻科技", "segment": "结构件", "biz": "精密锻造", "confidence": "中"},
     {"code": "300718", "name": "长盛轴承", "segment": "结构件", "biz": "自润滑轴承", "confidence": "中"},
+    {"code": "300115", "name": "长盈精密", "segment": "结构件", "biz": "精密结构件", "confidence": "中"},
+    {"code": "002600", "name": "领益智造", "segment": "结构件", "biz": "精密功能件", "confidence": "中"},
+    {"code": "002965", "name": "祥鑫科技", "segment": "结构件", "biz": "精密冲压结构件", "confidence": "中"},
+    {"code": "301029", "name": "怡合达", "segment": "结构件", "biz": "FA 自动化零部件", "confidence": "中"},
+    # 上游材料
+    {"code": "000970", "name": "中科三环", "segment": "材料", "biz": "钕铁硼永磁材料", "confidence": "中"},
+    {"code": "600366", "name": "宁波韵升", "segment": "材料", "biz": "稀土永磁材料", "confidence": "中"},
+    {"code": "300748", "name": "金力永磁", "segment": "材料", "biz": "高性能磁材", "confidence": "中"},
+    # 热管理
+    {"code": "002126", "name": "银轮股份", "segment": "热管理", "biz": "热管理", "confidence": "中"},
+    # 下游应用与场景
+    {"code": "600699", "name": "均胜电子", "segment": "应用场景", "biz": "汽车电子", "confidence": "中"},
+    {"code": "002009", "name": "天奇股份", "segment": "应用场景", "biz": "汽车自动化装备", "confidence": "中"},
+    {"code": "300486", "name": "东杰智能", "segment": "应用场景", "biz": "物流自动化系统", "confidence": "中"},
+    {"code": "688360", "name": "德马科技", "segment": "应用场景", "biz": "物流输送装备", "confidence": "中"},
+    {"code": "02590.HK", "name": "极智嘉-W", "segment": "应用场景", "biz": "仓储物流机器人", "confidence": "中"},
+    {"code": "603960", "name": "克来机电", "segment": "应用场景", "biz": "汽车电子装备", "confidence": "中"},
 ]
 
 SEGMENT_ORDER = ["本体", "减速器", "伺服/电机", "丝杠", "灵巧手", "执行器",
                  "传感器", "控制器", "机器视觉", "软件/具身智能",
-                 "结构件", "热管理", "应用场景"]
+                 "结构件", "材料", "热管理", "应用场景"]
 SEGMENT_MAP = {}
 for _co in COMPANY_CHAIN:
     SEGMENT_MAP.setdefault(_co["segment"], []).append(_co)
@@ -743,6 +807,7 @@ SEGMENT_WORDS = {
     "软件/具身智能": ["具身智能", "大模型", "VLA", "世界模型", "算法", "操作系统",
                        "仿真", "embodied", "foundation model"],
     "结构件": ["结构件", "压铸", "轻量化", "镁合金", "铝合金", "轴承"],
+    "材料": ["磁材", "钕铁硼", "永磁", "稀土", "磁性材料", "伺服材料"],
     "热管理": ["热管理", "散热", "液冷"],
     "应用场景": ["工厂", "汽车", "物流", "仓储", "零售", "便利店", "家庭",
                  "医疗", "巡检", "教育", "商业", "产线"],
@@ -1093,7 +1158,7 @@ def rule_judgement(candidates, limit=5):
     return {"summary": summary, "items": items}
 
 
-def build_listed_companies(judgement_items, limit=8):
+def build_listed_companies(judgement_items, limit=10):
     """按受影响的产业链环节，从已核验的白名单中挑 A 股公司。"""
     seen = {}
     for j in judgement_items:
@@ -1147,8 +1212,8 @@ DEEPSEEK_SYSTEM_PROMPT = """你是国联民生证券研究所汽车行业研究�
  "top_news":[{"candidate_id":2,"event":"一句话说清发生了什么（不超过 60 字）","impact":"1-2 句影响判断（不超过 90 字）"}],
  "signals":[{"candidate_id":3,"text":"一句前瞻或跟踪信号（不超过 50 字）"}]}
 5. 时间窗口：候选新闻为近 3 天内容，每条已标注日期。key_changes 输出 3-5 条，当日条目排在前面，其余按日期倒序；candidate_id 必须来自候选列表。
-6. judgement：先给一句总判断（整体偏利好 / 整体偏利空 / 多空交织中性 / 暂无方向性信号），再按产业链环节给出方向与传导逻辑。环节只能取：本体、减速器、伺服/电机、丝杠、灵巧手、执行器、传感器、控制器、机器视觉、软件/具身智能、结构件、热管理、应用场景。每条 logic 必须写清「事件 → 影响哪个环节 → 如何传导到订单/成本/估值」，不能只贴标签；没有把握时 direction 用「中性」。
-7. listed_companies：只能从用户提供的 A 股白名单中选择，code 与 name 必须与白名单完全一致，禁止自创公司或凭印象写代码；输出 3-8 家，尽量覆盖上游零部件、本体、下游应用或直接竞争对手；reason 说明受影响原因，impact 取 高/中/低，confidence 取 高/中。白名单里没有合适标的时输出空数组 []。
+6. judgement：先给一句总判断（整体偏利好 / 整体偏利空 / 多空交织中性 / 暂无方向性信号），再按产业链环节给出方向与传导逻辑。环节只能取：本体、减速器、伺服/电机、丝杠、灵巧手、执行器、传感器、控制器、机器视觉、软件/具身智能、结构件、材料、热管理、应用场景。每条 logic 必须写清「事件 → 影响哪个环节 → 如何传导到订单/成本/估值」，不能只贴标签；没有把握时 direction 用「中性」。
+7. listed_companies：只能从用户提供的白名单中选择（A 股为主，含代码经核验的港股），code 与 name 必须与白名单完全一致，禁止自创公司或凭印象写代码；输出 4-10 家，尽量覆盖上游零部件/材料、本体与整机、软件与算法、下游应用与场景，同时纳入直接竞争对手与间接受益方；reason 说明受影响原因，impact 取 高/中/低，confidence 取 高/中。白名单里没有合适标的时输出空数组 []。
 8. top_news 输出 3-5 条，按重要性从高到低排序；candidate_id 必须来自候选列表，且不能重复。
 9. signals 输出 0-4 条，聚焦量产节点、订单、融资、政策等前瞻信息；候选新闻里没有可用信号时输出空数组 []。
 10. 若某条新闻无法判断影响，impact 写「暂无明确信号」。
@@ -1461,7 +1526,7 @@ def format_date_label(now):
     return f"{now.year}年{now.month}月{now.day}日 {WEEKDAYS[now.weekday()]}"
 
 
-def fill_listed_coverage(listed, judgement, limit=8):
+def fill_listed_coverage(listed, judgement, limit=10):
     """模型可能漏掉某个环节：对每个有方向的环节补齐至少一家白名单公司，
     保证名单覆盖上游零部件、本体/直接竞争对手与下游应用。"""
     have = {c["code"] for c in listed}
@@ -2188,6 +2253,7 @@ def collect(verbose=True):
                 "source": media if (is_gnews or is_bing) and media else (
                     site_of(link) if (is_gnews or is_bing) else src["name"]),
                 "source_id": src["id"],
+                "source_kind": ("bing" if is_bing else ("gnews" if is_gnews else "direct")),
                 "via": ("Bing" if is_bing and media else
                         (src["name"] if is_gnews and media else "")),
                 "url": link,
@@ -2420,6 +2486,62 @@ def log_line(msg):
         pass
 
 
+def pick_board_records(records, key, max_items, per_source):
+    """板块选入：直连源优先，Bing/Google 等检索源最多占板块约一半。"""
+    pool = [r for r in records if r.get("board") == key]
+    direct = [r for r in pool if r.get("source_kind", "direct") == "direct"]
+    search = [r for r in pool if r.get("source_kind", "direct") != "direct"]
+
+    def take(cands, quota):
+        out, cnt = [], {}
+        for rec in cands:
+            if len(out) >= quota:
+                break
+            sid = rec.get("source_id") or ""
+            # Google 检索源多为「标题+跳转链接」，无摘要，限额小一些；自有 RSS 可多留
+            cap = 6 if sid.startswith("gnews") else (16 if sid.startswith("bing") else 20)
+            cap = min(cap, per_source)
+            if cnt.get(sid, 0) >= cap:
+                continue
+            out.append(rec)
+            cnt[sid] = cnt.get(sid, 0) + 1
+        return out
+
+    picked = take(direct, max_items)
+    # 检索通道配额：不超过板块一半，保证直连优先，同时避免板块条数骤降
+    search_cap = min(max_items - len(picked), max(10, round(max_items * 0.5)))
+    picked += take(search, max(0, search_cap))
+    picked.sort(key=lambda r: r.get("published") or "", reverse=True)
+    return picked
+
+
+def merge_board_events(items):
+    """把同一板块内同一事件的零碎报道合并成一条完整事件，多个原文链接挂在同一条下。"""
+    out = []
+    for g in event_clusters(items):
+        group = g["items"]
+        if not group:
+            continue
+        if len(group) == 1:
+            out.append(group[0])
+            continue
+        rep = pick_rep(group)
+        merged = dict(rep)
+        zh_sum = [r for r in group if CJK_CHAR.search(r.get("summary") or "")]
+        best = max(zh_sum or group, key=lambda r: len(r.get("summary") or ""))
+        if best.get("summary"):
+            merged["summary"] = best["summary"]
+        merged["links"] = build_links(group, limit=6)
+        merged["related"] = len(group)
+        merged["verify"] = rep.get("verify") or {}
+        # 合并后按最早发布时间展示，避免旧事件被误标成今天
+        merged["published"] = min((r.get("published") or "" for r in group),
+                                  default=rep.get("published") or "")
+        out.append(merged)
+    out.sort(key=lambda r: r.get("published") or "", reverse=True)
+    return out
+
+
 def run_round(args, cfg, daily=False):
     """跑一轮抓取 + 翻译 + 写数据文件，返回 data payload。
 
@@ -2443,25 +2565,11 @@ def run_round(args, cfg, daily=False):
     records.sort(key=lambda r: r["published"], reverse=True)
     boards = {}
     for key in ["domestic", "overseas", "bigtech"]:
-        picked, used, src_counter = [], set(), {}
-        for rec in records:
-            if rec["board"] != key or rec["id"] in used:
-                continue
-            sid = rec["source_id"]
-            # Google 检索源多为「标题+跳转链接」，无摘要，限额小一些；自有 RSS 可多留
-            cap = 6 if sid.startswith("gnews") else (16 if sid.startswith("bing") else 20)
-            cap = min(cap, per_source)
-            if src_counter.get(sid, 0) >= cap:
-                continue
-            picked.append(rec)
-            used.add(rec["id"])
-            src_counter[sid] = src_counter.get(sid, 0) + 1
-            if len(picked) >= max_items:
-                break
-        boards[key] = picked
+        boards[key] = pick_board_records(records, key, max_items, per_source)
 
     for rec in records:
         rec.pop("source_id", None)
+        rec.pop("source_kind", None)
 
     selected = [r for k in ["domestic", "overseas", "bigtech"] for r in boards[k]]
     if do_translate:
@@ -2487,6 +2595,13 @@ def run_round(args, cfg, daily=False):
     attach_verification(selected)
     cross = len([r for r in selected if r["verify"]["level"] == "cross"])
     print(f"      信息核对：已交叉印证 {cross} 条，单一来源 {len(selected) - cross} 条")
+
+    # 同一板块内同一事件的零碎报道合并为一条，多个原文链接挂在同一条下
+    raw_total = len(selected)
+    for key in ["domestic", "overseas", "bigtech"]:
+        boards[key] = merge_board_events(boards[key])
+    merged_total = sum(len(boards[k]) for k in ["domestic", "overseas", "bigtech"])
+    print(f"      同事件合并：列表 {raw_total} 条 → {merged_total} 条")
 
     # 期号：同一日期重跑沿用原期号，新日期顺延
     archive_index = load_archive_index()
