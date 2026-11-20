@@ -1198,6 +1198,43 @@ def parse_candidate_id(value):
     return int(m.group()) if m else None
 
 
+def repair_json_quotes(text):
+    """修复模型在字符串内部写了未转义英文双引号导致的 JSON 解析失败。
+
+    判定方式：字符串内的 `"` 后面若不是 , } ] : 或结尾，就视为正文里的引号并转义。
+    中文引号「」和 “” 不受影响。
+    """
+    out, in_str, esc = [], False, False
+    n = len(text)
+    for i, ch in enumerate(text):
+        if not in_str:
+            if ch == '"':
+                in_str = True
+            out.append(ch)
+            continue
+        if esc:
+            out.append(ch)
+            esc = False
+            continue
+        if ch == "\\":
+            out.append(ch)
+            esc = True
+            continue
+        if ch == '"':
+            j = i + 1
+            while j < n and text[j] in " \t\r\n":
+                j += 1
+            nxt = text[j] if j < n else ""
+            if nxt in (",", "}", "]", ":", ""):
+                in_str = False
+                out.append(ch)
+            else:
+                out.append('\\"')
+            continue
+        out.append(ch)
+    return "".join(out)
+
+
 def validate_llm_report(obj, candidates, verbose=True):
     """严格校验模型输出：编号必须来自候选池，越界/重复/过短一律丢弃；
     公司必须与白名单的 code+name 完全一致，否则丢弃。"""
@@ -1368,7 +1405,7 @@ def deepseek_report(cfg, candidates, date_label, window=None):
             {"role": "user", "content": build_candidate_prompt(candidates, date_label, window)},
         ],
         "temperature": float(llm.get("temperature", 0.3)),
-        "max_tokens": int(llm.get("max_tokens", 4096)),
+        "max_tokens": int(llm.get("max_tokens", 8192)),
         "response_format": {"type": "json_object"},
         "stream": False,
     }
@@ -1399,7 +1436,18 @@ def deepseek_report(cfg, candidates, date_label, window=None):
             m = re.search(r"\{.*\}", content, re.S)
             if not m:
                 raise RuntimeError("模型输出不是合法 JSON")
-            obj = json.loads(m.group(0))
+            try:
+                obj = json.loads(m.group(0))
+            except Exception as e:  # noqa: BLE001
+                pos = getattr(e, "pos", 0) or 0
+                print(f"      DeepSeek 原始输出 {len(content)} 字，JSON 不完整：{e}；"
+                      f"出错位置附近：{content[max(0, pos-60):pos+60]!r}", flush=True)
+                # 常见原因：正文里写了未转义的英文双引号，尝试修复后重新解析
+                try:
+                    obj = json.loads(repair_json_quotes(m.group(0)))
+                except Exception:  # noqa: BLE001
+                    print(f"      末尾：…{content[-60:]!r}", flush=True)
+                    raise
     return validate_llm_report(obj, candidates)
 
 
