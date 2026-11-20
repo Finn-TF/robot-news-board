@@ -1386,8 +1386,14 @@ def validate_llm_report(obj, candidates, verbose=True):
             "confidence": confidence, "reason": reason,
         })
         seen_code.add(code)
-        if len(listed) >= 8:
+        if len(listed) >= 10:
             break
+
+    # 模型漏掉判断或公司名单时，用规则口径从同一候选池补齐，保证板块完整
+    if judgement is None:
+        judgement = rule_judgement(candidates)
+    if not listed:
+        listed = build_listed_companies(judgement.get("items") or [])
 
     raw_tops = obj.get("top_news") or []
     tops, seen = [], set()
@@ -1419,9 +1425,33 @@ def validate_llm_report(obj, candidates, verbose=True):
         if len(tops) >= TOP_MAX:
             break
     if len(tops) < TOP_MIN:
+        # 模型偶尔漏输出或多给了无效编号：用同一候选池的规则口径补齐，
+        # 保留模型的主线/判断，避免整份日报降级。
         if verbose:
             print(f"      模型输出字段：{list(obj.keys())}", flush=True)
             print(f"      top_news 原始值：{str(obj.get('top_news'))[:400]}", flush=True)
+        for c in candidates:
+            if len(tops) >= TOP_MAX:
+                break
+            if c["id"] in seen:
+                continue
+            rep = c["rep"]
+            tops.append({
+                "event": clean_headline(rep.get("title") or ""),
+                "impact": impact_for(c),
+                "impact_mode": "rule",
+                "level": c["level"],
+                "count": c["count"],
+                "companies": rep.get("companies") or [],
+                "board": rep.get("board") or "",
+                "published": rep.get("published") or "",
+                "detail": candidate_detail(c),
+                "links": c["links"],
+            })
+            seen.add(c["id"])
+        if verbose:
+            print(f"      重点新闻不足，已用候选池规则补齐至 {len(tops)} 条", flush=True)
+    if len(tops) < TOP_MIN:
         raise RuntimeError(f"有效重点新闻仅 {len(tops)} 条（模型返回 {len(raw_tops)} 条），"
                            f"低于 {TOP_MIN} 条")
 
