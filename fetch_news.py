@@ -2598,9 +2598,14 @@ def display_event_clusters(items):
         best, best_sim = None, 0.0
         for g in groups:
             sim = title_sim(key_text, g["key"])
-            same_entity = bool(cos & g["cos"])
-            shared_token = bool(lt & g["lt"])
-            if sim >= 0.34 or (same_entity and (sim >= 0.22 or shared_token)):
+            common_ent = cos & g["cos"]
+            same_entity = bool(common_ent)
+            # 共享的英文专名不能只是公司名本身，否则同一家公司的不同新闻会被硬拼
+            company_tokens = set()
+            for ent in common_ent:
+                company_tokens |= latin_tokens(ent)
+            distinct_shared = bool((lt & g["lt"]) - company_tokens)
+            if sim >= 0.34 or (same_entity and (sim >= 0.28 or distinct_shared)):
                 if sim > best_sim:
                     best, best_sim = g, sim
         if best is not None:
