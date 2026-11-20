@@ -2570,27 +2570,45 @@ def pick_board_records(records, key, max_items, per_source):
     return picked
 
 
+_GENERIC_LATIN = {
+    "robot", "robots", "robotic", "robotics", "humanoid", "humanoids",
+    "the", "and", "with", "for", "from", "that", "this", "into", "will",
+    "has", "have", "its", "artificial", "intelligence", "news",
+}
+
+
+def latin_tokens(text):
+    """提取标题里的英文专名（产品名/公司名），用于判断是否为同一事件。"""
+    return {w.lower() for w in re.findall(r"[A-Za-z][A-Za-z0-9\-]{3,}", text or "")
+            if w.lower() not in _GENERIC_LATIN}
+
+
 def display_event_clusters(items):
     """展示用的事件聚类：比信息核对更宽松，但要求同一主体，避免把不同事件硬拼。
 
     - 标题高度相似（≥0.34）直接合并；
-    - 相似度 ≥0.22 且命中同一家大厂/头部公司时才合并。
+    - 相似度 ≥0.22 且命中同一家大厂/头部公司时合并；
+    - 同一主体且标题共享英文专名（如 Atlas / GlobalFoundries / Spot）时合并。
     """
     groups = []
     for rec in sorted(items, key=lambda r: r.get("published") or "", reverse=True):
         key_text = (rec.get("title") or "") + " " + (rec.get("title_original") or "")
         cos = set(rec.get("companies") or [])
+        lt = latin_tokens(key_text)
         best, best_sim = None, 0.0
         for g in groups:
             sim = title_sim(key_text, g["key"])
             same_entity = bool(cos & g["cos"])
-            if (sim >= 0.34 or (sim >= 0.22 and same_entity)) and sim > best_sim:
-                best, best_sim = g, sim
+            shared_token = bool(lt & g["lt"])
+            if sim >= 0.34 or (same_entity and (sim >= 0.22 or shared_token)):
+                if sim > best_sim:
+                    best, best_sim = g, sim
         if best is not None:
             best["items"].append(rec)
             best["cos"] |= cos
+            best["lt"] |= lt
         else:
-            groups.append({"key": key_text, "items": [rec], "cos": cos})
+            groups.append({"key": key_text, "items": [rec], "cos": cos, "lt": lt})
     return groups
 
 
