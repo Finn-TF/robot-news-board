@@ -328,6 +328,10 @@ SOURCES = [
      "url": "http://www.news.cn/tech/news_tech.xml", "filter": "zh_title"},
     {"id": "people-tech", "name": "人民网科技", "board": "domestic", "lang": "zh",
      "url": "http://www.people.com.cn/rss/it.xml", "filter": "zh_title"},
+    {"id": "geekpark", "name": "极客公园", "board": "domestic", "lang": "zh",
+     "url": "http://www.geekpark.net/rss", "filter": "zh_title"},
+    {"id": "chinanews-fin", "name": "中国新闻网财经", "board": "domestic", "lang": "zh",
+     "url": "https://www.chinanews.com.cn/rss/finance.xml", "filter": "zh_title"},
 ]
 
 # ---------------------------------------------------------------- 工具 ----
@@ -1581,6 +1585,26 @@ def fill_listed_coverage(listed, judgement, limit=10):
             break
         if len(listed) >= limit:
             break
+
+    # 覆盖仍不足时，在同一环节补可比公司，保证至少覆盖 8 家（不引入白名单外公司）
+    target = min(8, limit)
+    if len(listed) < target:
+        seg_dir = {c["segment"]: c["direction"] for c in listed}
+        for seg, direction in seg_dir.items():
+            if len(listed) >= target:
+                break
+            for co in SEGMENT_MAP.get(seg, []):
+                if co["code"] in have:
+                    continue
+                listed.append({
+                    "name": co["name"], "code": co["code"], "segment": seg,
+                    "direction": direction, "impact": "中",
+                    "confidence": co["confidence"],
+                    "reason": (f"{seg}环节出现{direction}信号；"
+                               f"公司主营{co['biz']}，为同环节可比标的。"),
+                })
+                have.add(co["code"])
+                break
     return listed[:limit]
 
 

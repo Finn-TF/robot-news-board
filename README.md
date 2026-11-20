@@ -158,9 +158,9 @@ python fetch_news.py --daemon        # 常驻定时抓取（间隔读 config.jso
 8. **分类详表**：国内新闻 / 海外新闻 / 机器人大厂 / 近期段子，保留原有 Tab、搜索、时间与公司筛选、核对徽标；
 9. **页脚**：免责声明（通用占位，可替换为机构合规模板）、日报结构说明、数据口径、抓取状态与来源清单、公众号白名单。
 
-## 抓取来源（共 103 个通道 + 公众号白名单，其中 41 个直连、62 个检索）
+## 抓取来源（共 105 个通道 + 公众号白名单，其中 43 个直连、62 个检索）
 
-- **国内财经与科技媒体**：量子位、雷峰网、IT之家、钛媒体、36氪、虎嗅、机器之心、智东西、爱范儿、界面新闻、新浪科技、中国机器人网、OFweek 机器人、中国工控网、新华网科技、人民网科技；
+- **国内财经与科技媒体**：量子位、雷峰网、IT之家、钛媒体、36氪、虎嗅、机器之心、智东西、爱范儿、界面新闻、新浪科技、中国机器人网、OFweek 机器人、中国工控网、新华网科技、人民网科技、极客公园、中国新闻网财经；
 - **国内检索**：Bing 中文新闻检索（人形机器人、机器人产业链、具身智能、优必选、机器人融资、机器人量产、外骨骼、政策、订单交付、行业研报、上市公司、机器人产业联盟、具身智能融资，以及第一财经、每日经济新闻、财联社、证券时报、经济观察网、巨潮公告、互动易、世界机器人大会、世界人工智能大会、高工机器人等站点检索）；
 - **海外机器人垂直媒体**：IEEE Spectrum Robotics、TechCrunch Robotics、The Robot Report、Robotics 24/7、Robohub、VentureBeat AI、The Verge、Engadget、WIRED AI、Ars Technica、TechXplore Robotics、ScienceDaily Robotics、IEEE Spectrum AI、TechCrunch AI、SiliconANGLE AI；
 - **海外检索**：Bing 英文检索（humanoid robot、Figure AI、Boston Dynamics、robotics funding、humanoid deployment、dexterous hand、warehouse automation，以及 Reuters、Bloomberg、TechXplore、ScienceDaily、The Verge 等站点检索）；
@@ -226,7 +226,7 @@ python fetch_news.py --daemon        # 常驻定时抓取（间隔读 config.jso
 `fetch_news.py` 中的 `COMPANY_CHAIN` 是受影响上市公司白名单，共 76 家（73 家 A 股 + 3 家港股：优必选、越疆、极智嘉-W），覆盖 14 个环节：本体 14、减速器 7、伺服/电机 6、丝杠 5、灵巧手 1、执行器 2、传感器 7、控制器 4、机器视觉 7、软件/具身智能 3、结构件 10、材料 3、热管理 1、应用场景 6。所有代码均通过东方财富行情接口逐个核验（A 股与港股分别核对），避免凭印象写代码或编造不存在的公司。
 
 - DeepSeek 只能从该白名单选公司，且 `code + name` 必须完全一致，否则该条直接丢弃；
-- 规则模式按新闻命中的产业链环节匹配，每个环节最多取 3 家，最多 10 家；
+- 规则模式按新闻命中的产业链环节匹配，每个环节最多取 3 家，最多 10 家；不足 8 家时在同环节补可比公司，保证名单覆盖面；
 - 白名单同时包含直接竞争对手（埃斯顿、新时达、埃夫特等本体厂商）与间接受益方（磁材、结构件、物流自动化等）；
 - 拿不准的环节宁可不列，页面不会展示白名单之外的公司。
 
