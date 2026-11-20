@@ -2254,6 +2254,7 @@ def collect(verbose=True):
                     site_of(link) if (is_gnews or is_bing) else src["name"]),
                 "source_id": src["id"],
                 "source_kind": ("bing" if is_bing else ("gnews" if is_gnews else "direct")),
+                "via_kind": ("bing" if is_bing else ("gnews" if is_gnews else "direct")),
                 "via": ("Bing" if is_bing and media else
                         (src["name"] if is_gnews and media else "")),
                 "url": link,
@@ -2515,10 +2516,34 @@ def pick_board_records(records, key, max_items, per_source):
     return picked
 
 
+def display_event_clusters(items):
+    """展示用的事件聚类：比信息核对更宽松，但要求同一主体，避免把不同事件硬拼。
+
+    - 标题高度相似（≥0.34）直接合并；
+    - 相似度 ≥0.22 且命中同一家大厂/头部公司时才合并。
+    """
+    groups = []
+    for rec in sorted(items, key=lambda r: r.get("published") or "", reverse=True):
+        key_text = (rec.get("title") or "") + " " + (rec.get("title_original") or "")
+        cos = set(rec.get("companies") or [])
+        best, best_sim = None, 0.0
+        for g in groups:
+            sim = title_sim(key_text, g["key"])
+            same_entity = bool(cos & g["cos"])
+            if (sim >= 0.34 or (sim >= 0.22 and same_entity)) and sim > best_sim:
+                best, best_sim = g, sim
+        if best is not None:
+            best["items"].append(rec)
+            best["cos"] |= cos
+        else:
+            groups.append({"key": key_text, "items": [rec], "cos": cos})
+    return groups
+
+
 def merge_board_events(items):
     """把同一板块内同一事件的零碎报道合并成一条完整事件，多个原文链接挂在同一条下。"""
     out = []
-    for g in event_clusters(items):
+    for g in display_event_clusters(items):
         group = g["items"]
         if not group:
             continue
@@ -2533,7 +2558,11 @@ def merge_board_events(items):
             merged["summary"] = best["summary"]
         merged["links"] = build_links(group, limit=6)
         merged["related"] = len(group)
-        merged["verify"] = rep.get("verify") or {}
+        # 合并后按事件内覆盖最全的来源清单标记核对状态
+        tmp = [dict(r) for r in group]
+        attach_verification(tmp)
+        merged["verify"] = max((r.get("verify") or {} for r in tmp),
+                               key=lambda v: v.get("count") or 1)
         # 合并后按最早发布时间展示，避免旧事件被误标成今天
         merged["published"] = min((r.get("published") or "" for r in group),
                                   default=rep.get("published") or "")
