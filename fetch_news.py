@@ -2597,23 +2597,23 @@ def display_event_clusters(items):
         lt = latin_tokens(key_text)
         best, best_sim = None, 0.0
         for g in groups:
-            sim = title_sim(key_text, g["key"])
-            common_ent = cos & g["cos"]
+            # 只与组内代表条目比较，避免中间条目把不相关的事件“桥接”进来
+            sim = title_sim(key_text, g["rep_key"])
+            common_ent = cos & g["rep_cos"]
             same_entity = bool(common_ent)
             # 共享的英文专名不能只是公司名本身，否则同一家公司的不同新闻会被硬拼
             company_tokens = set()
             for ent in common_ent:
                 company_tokens |= latin_tokens(ent)
-            distinct_shared = bool((lt & g["lt"]) - company_tokens)
+            distinct_shared = bool((lt & g["rep_lt"]) - company_tokens)
             if sim >= 0.34 or (same_entity and (sim >= 0.28 or distinct_shared)):
                 if sim > best_sim:
                     best, best_sim = g, sim
         if best is not None:
             best["items"].append(rec)
-            best["cos"] |= cos
-            best["lt"] |= lt
         else:
-            groups.append({"key": key_text, "items": [rec], "cos": cos, "lt": lt})
+            groups.append({"rep_key": key_text, "items": [rec],
+                           "rep_cos": cos, "rep_lt": lt})
     return groups
 
 
