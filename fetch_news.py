@@ -984,7 +984,8 @@ def rule_signals(candidates, top_ids, limit=5):
     return out
 
 
-def rule_mainline(candidates, selected, cross_n, counts, now=None):
+def rule_mainline(candidates, judgement, now=None):
+    """规则式主线：只写结论与判断，不出现条数、通道、交叉印证等统计信息。"""
     if not candidates:
         return "近三日未抓到可用条目，暂无明确信号；请查看页脚抓取状态或稍后重试。"
     now = now or datetime.now(CST)
@@ -993,17 +994,30 @@ def rule_mainline(candidates, selected, cross_n, counts, now=None):
     # 主线里只取标题主干（逗号/括号前），不按冒号切，避免只留下「马斯克」这类发言人名
     title = re.split(r"[，,（(]", raw_title)[0].strip()
     title = shorten(title, 40)
-    verify_txt = (f"{first['count']} 家独立站点交叉印证" if first["level"] == "cross"
-                  else "单一来源、待进一步核实")
-    hard_n = len([c for c in candidates if candidate_topic(c)])
-    today = now.strftime("%Y-%m-%d")
-    today_n = len([c for c in candidates
-                   if (c["rep"].get("published") or "")[:10] == today])
-    return (f"近三日机器人板块焦点为「{title}」（{verify_txt}）；"
-            f"本轮覆盖近 {WINDOW_DAYS} 天 {len(selected)} 条公开信息"
-            f"（当日 {today_n} 条，国内 {counts.get('domestic', 0)} / "
-            f"海外 {counts.get('overseas', 0)} / 大厂 {counts.get('bigtech', 0)}），"
-            f"{cross_n} 条获多家印证，另有 {hard_n} 条量产、融资、政策类硬信息值得跟踪。")
+    summary = (judgement or {}).get("summary") or ""
+    items = (judgement or {}).get("items") or []
+    if summary.startswith("整体偏利好"):
+        segs = [it.get("segment") for it in items
+                if it.get("direction") == "利好" and it.get("segment")][:2]
+    elif summary.startswith("整体偏利空"):
+        segs = [it.get("segment") for it in items
+                if it.get("direction") == "利空" and it.get("segment")][:2]
+    else:
+        segs = [it.get("segment") for it in items if it.get("segment")][:2]
+    seg_txt = "、".join(segs)
+    if summary.startswith("整体偏利好"):
+        tail = (f"{seg_txt}环节进展较集中，后续看量产与订单兑现。"
+                if seg_txt else "后续看量产、订单与交付兑现。")
+        return f"近三日机器人板块主线在「{title}」，整体偏利好，{tail}"
+    if summary.startswith("整体偏利空"):
+        tail = (f"{seg_txt}环节相对承压，需跟踪后续订单与公司回应。"
+                if seg_txt else "需跟踪后续订单与公司回应。")
+        return f"近三日机器人板块主线在「{title}」，整体偏利空，{tail}"
+    if summary.startswith("多空交织"):
+        return (f"近三日机器人板块主线在「{title}」，多空交织、方向尚未明确，"
+                f"需等订单与量产数据进一步确认。")
+    return (f"近三日机器人板块主线在「{title}」，暂无明确方向性信号，"
+            f"建议结合原文与公司公告核对。")
 
 
 def build_key_changes(candidates, now, limit=5):
@@ -1055,11 +1069,11 @@ def rule_judgement(candidates, limit=5):
     for g in ordered[:limit]:
         ex = "；".join(shorten(t, 30) for t in g["events"][:2])
         if g["direction"] == "利好":
-            logic = (f"{g['segment']}环节出现 {g['count']} 条积极信息（{ex}）。"
+            logic = (f"{g['segment']}环节出现积极进展（{ex}）。"
                      f"若量产、订单或技术进展兑现，将直接抬升该环节需求，"
                      f"并向上下游零部件与设备传导。")
         else:
-            logic = (f"{g['segment']}环节出现 {g['count']} 条偏谨慎信息（{ex}）。"
+            logic = (f"{g['segment']}环节出现偏谨慎信息（{ex}）。"
                      f"短期可能压制订单与估值预期，需跟踪事件后续进展与公司回应。")
         items.append({"direction": g["direction"], "segment": g["segment"],
                       "logic": logic, "count": g["count"]})
@@ -1069,14 +1083,13 @@ def rule_judgement(candidates, limit=5):
     if not groups:
         summary = "近三日未出现明确的方向性信号，整体判断中性；建议结合原文与公司公告核对。"
     elif bull > bear * 1.15:
-        summary = (f"整体偏利好：近三日积极信息 {bull} 条、风险信息 {bear} 条，"
-                   f"主要集中在{'、'.join(bullish_segs) or '产业链'}环节。")
+        summary = (f"整体偏利好：积极进展主要集中在{'、'.join(bullish_segs) or '产业链'}环节，"
+                   f"后续看量产与订单兑现。")
     elif bear > bull * 1.15:
-        summary = (f"整体偏利空：近三日风险信息 {bear} 条、积极信息 {bull} 条，"
-                   f"主要集中在{'、'.join(bearish_segs) or '产业链'}环节。")
+        summary = (f"整体偏利空：风险信号主要集中在{'、'.join(bearish_segs) or '产业链'}环节，"
+                   f"短期需关注订单与估值压力。")
     else:
-        summary = (f"多空交织、整体中性：近三日积极信息 {bull} 条、风险信息 {bear} 条，"
-                   f"方向性仍需后续订单与量产数据确认。")
+        summary = ("多空交织、整体中性：方向性仍需后续订单与量产数据确认。")
     return {"summary": summary, "items": items}
 
 
@@ -1088,7 +1101,7 @@ def build_listed_companies(judgement_items, limit=8):
             if co["code"] in seen:
                 continue
             core = co["confidence"] == "高"
-            reason = (f"{j['segment']}环节出现 {j['count']} 条{j['direction']}信息；"
+            reason = (f"{j['segment']}环节出现{j['direction']}信号；"
                       f"公司主营{co['biz']}，属于该环节{'核心' if core else '相关'}标的。")
             seen[co["code"]] = {
                 "name": co["name"], "code": co["code"], "segment": j["segment"],
@@ -1139,7 +1152,9 @@ DEEPSEEK_SYSTEM_PROMPT = """你是国联民生证券研究所汽车行业研究�
 8. top_news 输出 3-5 条，按重要性从高到低排序；candidate_id 必须来自候选列表，且不能重复。
 9. signals 输出 0-4 条，聚焦量产节点、订单、融资、政策等前瞻信息；候选新闻里没有可用信号时输出空数组 []。
 10. 若某条新闻无法判断影响，impact 写「暂无明确信号」。
-11. mainline 不得罗列条目标题，要概括近三日主线。"""
+11. mainline 不得罗列条目标题，要概括近三日主线。
+12. 日报正文（mainline、key_changes 的 text、judgement 的 summary/logic、top_news 的 event/impact、signals 的 text、listed_companies 的 reason）只写事实、结论与判断：禁止出现条数、多少条、覆盖多少信息、通道数、来源数、交叉印证数量、多家印证、覆盖率、窗口条数、抓取统计等任何过程性或统计性表述，也不要复述候选列表里「印证：多家印证（N 家独立站点）」这类标注。用户消息中的统计数字只用于你判断，不得写进正文。
+13. mainline 必须是一句完整的结论判断（说清主线在哪个事件/方向、整体偏多还是偏空、后续看什么），不要写「本轮覆盖…」「共…条」这类统计句。"""
 
 
 def build_candidate_prompt(candidates, date_label, window=None):
@@ -1150,6 +1165,7 @@ def build_candidate_prompt(candidates, date_label, window=None):
                      f"（{window.get('from', '')} 至 {window.get('to', '')}），"
                      f"窗口内 {window.get('count', len(candidates))} 条，"
                      f"其中当日 {window.get('today', 0)} 条。")
+        lines.append("（以上统计仅供你判断主次，不得写进日报正文；正文只写结论与判断。）")
     lines.append(f"候选新闻共 {len(candidates)} 条（只能引用这些编号）：")
     for c in candidates:
         rep = c["rep"]
@@ -1165,8 +1181,21 @@ def build_candidate_prompt(candidates, date_label, window=None):
     lines.append("A 股公司白名单（listed_companies 只能从这里选，code 与 name 必须完全一致）：")
     lines.append("；".join(f"{co['code']} {co['name']}（{co['segment']}，{co['biz']}）"
                           for co in COMPANY_CHAIN))
-    lines.append("请按固定 JSON 结构输出。")
+    lines.append("请按固定 JSON 结构输出。正文（含 mainline）只写结论与判断，"
+                 "禁止出现条数、来源数、交叉印证、覆盖率、抓取统计等元信息。")
     return "\n".join(lines)
+
+
+def parse_candidate_id(value):
+    """模型可能把候选编号写成 12 / "12" / "#12" / "[#12]"，统一还原为整数。"""
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    m = re.search(r"\d+", str(value or ""))
+    return int(m.group()) if m else None
 
 
 def validate_llm_report(obj, candidates, verbose=True):
@@ -1183,12 +1212,9 @@ def validate_llm_report(obj, candidates, verbose=True):
     for item in obj.get("key_changes") or []:
         if not isinstance(item, dict):
             continue
-        try:
-            cid = int(item.get("candidate_id"))
-        except (TypeError, ValueError):
-            continue
+        cid = parse_candidate_id(item.get("candidate_id"))
         text = str(item.get("text") or "").strip()
-        if cid in seen_kc or cid not in by_id or not (6 <= len(text) <= 100):
+        if cid is None or cid in seen_kc or cid not in by_id or not (6 <= len(text) <= 100):
             continue
         c = by_id[cid]
         rep = c["rep"]
@@ -1261,15 +1287,13 @@ def validate_llm_report(obj, candidates, verbose=True):
         if len(listed) >= 8:
             break
 
+    raw_tops = obj.get("top_news") or []
     tops, seen = [], set()
-    for item in obj.get("top_news") or []:
+    for item in raw_tops:
         if not isinstance(item, dict):
             continue
-        try:
-            cid = int(item.get("candidate_id"))
-        except (TypeError, ValueError):
-            continue
-        if cid in seen or cid not in by_id:
+        cid = parse_candidate_id(item.get("candidate_id"))
+        if cid is None or cid in seen or cid not in by_id:
             continue
         event = str(item.get("event") or "").strip()
         impact = str(item.get("impact") or "").strip()
@@ -1293,18 +1317,16 @@ def validate_llm_report(obj, candidates, verbose=True):
         if len(tops) >= TOP_MAX:
             break
     if len(tops) < TOP_MIN:
-        raise RuntimeError(f"有效重点新闻仅 {len(tops)} 条，低于 {TOP_MIN} 条")
+        raise RuntimeError(f"有效重点新闻仅 {len(tops)} 条（模型返回 {len(raw_tops)} 条），"
+                           f"低于 {TOP_MIN} 条")
 
     signals, seen_sig = [], set()
     for item in obj.get("signals") or []:
         if not isinstance(item, dict):
             continue
-        try:
-            cid = int(item.get("candidate_id"))
-        except (TypeError, ValueError):
-            continue
+        cid = parse_candidate_id(item.get("candidate_id"))
         text = str(item.get("text") or "").strip()
-        if cid in seen_sig or cid not in by_id or not (4 <= len(text) <= 70):
+        if cid is None or cid in seen_sig or cid not in by_id or not (4 <= len(text) <= 70):
             continue
         c = by_id[cid]
         rep = c["rep"]
@@ -1404,7 +1426,7 @@ def fill_listed_coverage(listed, judgement, limit=8):
                 "name": co["name"], "code": co["code"], "segment": seg,
                 "direction": item["direction"], "impact": "中",
                 "confidence": co["confidence"],
-                "reason": (f"{seg}环节出现 {item.get('count', 0)} 条{item['direction']}信息；"
+                "reason": (f"{seg}环节出现{item['direction']}信号；"
                            f"公司主营{co['biz']}，属于该环节"
                            f"{'核心' if co['confidence'] == '高' else '相关'}标的。"),
             })
@@ -1456,7 +1478,7 @@ def build_report(selected, now, cfg, counts=None, issue_no=1, verbose=True):
         "generated_at": now.isoformat(),
         "generated_label": now.strftime("%Y-%m-%d %H:%M"),
         "window": window,
-        "mainline": rule_mainline(candidates, window_items, cross_n, counts, now),
+        "mainline": rule_mainline(candidates, judgement, now),
         "key_changes": key_changes,
         "judgement": judgement,
         "listed_companies": listed,
