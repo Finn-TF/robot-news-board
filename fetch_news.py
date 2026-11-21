@@ -25,6 +25,7 @@ import json
 import zlib
 import os
 import re
+import socket
 import sys
 import threading
 import time
@@ -47,6 +48,9 @@ LOG_FILE = os.path.join(BASE_DIR, "daemon.log")
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 CST = timezone(timedelta(hours=8))
+
+# 兜底：任何漏配 timeout 的 socket 都按 20 秒处理，避免个别源无限期挂起
+socket.setdefaulttimeout(20)
 
 # ---------------------------------------------------------------- 关键词 ----
 # 机器人相关词（标题级判定：命中即可视为在讲机器人）
@@ -3166,6 +3170,11 @@ def main():
         daemon_loop(args, cfg)
     else:
         run_round(args, cfg, daily=args.daily)
+        # 个别源的 socket 会「慢速吐字节」拖住线程池收尾，解释器退出时还会等它们；
+        # 数据文件此时已落盘，直接退出，避免整个 CI 任务被拖到超时。
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(0)
 
 
 if __name__ == "__main__":
