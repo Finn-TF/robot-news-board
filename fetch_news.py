@@ -26,6 +26,7 @@ import zlib
 import os
 import re
 import sys
+import threading
 import time
 import urllib.parse
 import urllib.request
@@ -1896,6 +1897,9 @@ def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
     """抓取公众号白名单：成功则产出条目；失败/无更新/未启用都如实记录，不顶替。"""
     records, report, meta = [], [], []
     horizon = now - timedelta(days=30)
+    # 搜狗微信可能以「慢速吐字节」方式拖住连接，单靠 socket 超时不足以兜底，
+    # 这里给整个公众号环节设总预算，超出的账号如实标记，下轮再试。
+    deadline = time.time() + 240
     for acc in accounts:
         name = (acc.get("name") or "").strip()
         if not name:
@@ -1912,6 +1916,9 @@ def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
         elif cfg_status != "active":
             status["status"] = "manual"
             status["error"] = acc.get("error") or f"白名单状态为 {cfg_status}，未启用自动抓取"
+        elif time.time() > deadline:
+            status["status"] = "timeout"
+            status["error"] = "本轮超过公众号抓取时间预算，未完成，下轮重试；未用其他来源顶替"
         else:
             try:
                 page = fetch(status["url"], timeout=15, retries=0)
@@ -2085,6 +2092,8 @@ def fetch_wechat_articles(cfg, now, verbose=True):
     account = cfg.get("account") or "汽车琰究"
     prev = load_prev_article_cache()
     items, errors = [], []
+    # 与公众号白名单同理：给文章栏设总预算，避免个别页面拖住整轮任务
+    deadline = time.time() + 180
     auto = {"enabled": bool(cfg.get("auto_discover")),
             "status": "off", "count": 0, "label": "", "error": ""}
 
@@ -2113,6 +2122,9 @@ def fetch_wechat_articles(cfg, now, verbose=True):
     rejected, external_records = [], []
     cfg_biz = ((cfg.get("album") or {}).get("biz") or cfg.get("biz") or "")
     for url in links[:12]:
+        if time.time() > deadline:
+            errors.append("本轮超过文章栏抓取时间预算，其余手动链接跳过")
+            break
         try:
             page = fetch(url.strip(), timeout=30, retries=1)
             meta = parse_wechat_article_page(page)
@@ -2155,6 +2167,11 @@ def fetch_wechat_articles(cfg, now, verbose=True):
     if auto["enabled"] and albums and biz:
         auto["albums"] = []
         for alb in albums:
+            if time.time() > deadline:
+                auto["albums"].append({"album_id": alb.get("album_id"),
+                                       "label": alb.get("label") or "", "status": "fail",
+                                       "count": 0, "error": "超过文章栏抓取时间预算"})
+                continue
             aid = alb.get("album_id")
             item_auto = {"album_id": aid, "label": alb.get("label") or "",
                          "status": "fail", "count": 0, "error": ""}
@@ -2165,7 +2182,8 @@ def fetch_wechat_articles(cfg, now, verbose=True):
                 for a in sorted(arts, key=lambda x: x.get("published") or "", reverse=True)[:12]:
                     key = _wx_key(a["url"], a["title"], a["published"])
                     cached = prev.get(key)
-                    if (cached and cached.get("summary")) or page_budget <= 0:
+                    if (cached and cached.get("summary")) or page_budget <= 0 \
+                            or time.time() > deadline:
                         items.append({
                             "title": a["title"], "published": a["published"],
                             "author": (cached or {}).get("author") or "",
@@ -2413,15 +2431,53 @@ def collect(verbose=True):
     if wechat_accounts:
         if verbose:
             print(f"      公众号白名单 {len(wechat_accounts)} 个 ...", flush=True)
-        w_records, w_report, w_meta = fetch_wechat(wechat_accounts, now,
-                                                   seen_urls, seen_titles, verbose)
+        # 搜狗微信在境外机房可能长时间不返回，用守护线程加硬上限，避免拖垮整轮
+        box = []
+        th = threading.Thread(
+            target=lambda: box.append(fetch_wechat(wechat_accounts, now,
+                                                   seen_urls, seen_titles, verbose)),
+            daemon=True)
+        th.start()
+        th.join(timeout=300)
+        if box:
+            w_records, w_report, w_meta = box[0]
+        else:
+            w_records = []
+            w_report = [{"id": a.get("id") or "wechat", "name": "公众号·" + (a.get("name") or ""),
+                         "board": "wechat", "url": "", "status": "timeout", "count": 0,
+                         "raw": 0,
+                         "error": "公众号抓取超过 5 分钟上限，本轮未完成；未用其他来源顶替"}
+                        for a in wechat_accounts]
+            w_meta = [{"name": a.get("name") or "", "type": a.get("type") or "",
+                       "certified": a.get("certified") or "", "reason": a.get("reason") or "",
+                       "status": "timeout", "error": "超过本轮时间上限", "count": 0}
+                      for a in wechat_accounts]
         records.extend(w_records)
         report.extend(w_report)
         wechat_meta = {"note": wechat_note, "accounts": w_meta}
 
     # ---- 「汽车琰究」文章栏：手动链接清单 + 合集自动发现，抓不到也保留栏目 ----
     article_cfg = load_wechat_article_cfg()
-    article_meta = fetch_wechat_articles(article_cfg, now, verbose)
+    abox = []
+    th2 = threading.Thread(target=lambda: abox.append(fetch_wechat_articles(article_cfg, now,
+                                                                           verbose)),
+                           daemon=True)
+    th2.start()
+    th2.join(timeout=240)
+    if abox:
+        article_meta = abox[0]
+    else:
+        article_meta = {
+            "account": "汽车琰究", "type": "券商", "certified": "已认证",
+            "status": "fail", "error": "文章栏抓取超过 4 分钟上限，本轮未完成",
+            "max_items": int(article_cfg.get("max_items") or 7), "total_found": 0,
+            "rejected": [], "external_records": [], "last_attempt": now.isoformat(),
+            "last_success": "",
+            "auto_discover": {"enabled": bool(article_cfg.get("auto_discover")),
+                              "status": "fail", "count": 0, "label": "",
+                              "error": "超过本轮时间上限", "albums": []},
+            "items": [],
+        }
     # 手动链接中属于其他已认证官方号的，按白名单转入国内新闻板块
     records.extend(article_meta.pop("external_records", []))
     if not article_meta.get("last_success"):

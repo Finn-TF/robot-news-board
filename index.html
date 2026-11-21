@@ -849,7 +849,7 @@ details[open] summary:before{content:"−"}
         var wrows = accounts.map(function(a){
           var sm = a.status==="ok" ? '<span class="ok">OK</span>'
             : (a.status==="fail" ? '<span class="bad">FAIL</span>'
-            : esc(a.status==="empty"?"无更新":"未启用"));
+            : esc(a.status==="empty"?"无更新":(a.status==="timeout"?"超时":"未启用")));
           return '<tr><td>'+sm+'</td><td>'+esc(a.name)+'</td><td>'+esc(a.type||"")+'</td><td>'
             + esc(a.certified||"")+'</td><td class="n">'+(a.count||0)+'</td><td>'
             + esc(a.error||a.reason||"")+'</td></tr>';
