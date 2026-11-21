@@ -149,6 +149,10 @@ a{color:inherit;text-decoration:none}
 .board-head .d{font-size:11.5px;color:var(--ink3)}
 .board-head .live{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
 .list{border-top:1px solid var(--line)}
+.seg-h{display:flex;align-items:center;gap:8px;padding:12px 2px 9px;background:var(--bg2)}
+.seg-h i{width:5px;height:5px;background:var(--accent);border-radius:1px;transform:rotate(45deg);display:block}
+.seg-h b{font-size:12px;font-weight:750;letter-spacing:.3px;color:var(--ink)}
+.seg-h span{font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
 .item{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:16px 2px 17px;border-bottom:1px solid var(--line)}
 .lcol{display:flex;flex-direction:column;gap:5px;padding-top:1px}
 .time{font-family:var(--mono);font-size:11.5px;color:var(--ink2);letter-spacing:-.2px;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -848,12 +852,34 @@ details[open] summary:before{content:"−"}
     return '<section class="wa-wrap" aria-label="汽车琰究最新文章">' + head + body + '</section>';
   }
 
+  function renderGrouped(list){
+    // 「全部环节」时按产业链环节分组展示，顺序与筛选按钮一致
+    var order = {};
+    SEGMENTS.forEach(function(s, i){ order[s] = i; });
+    var seen = {}, groups = [];
+    list.forEach(function(it){
+      var s = segOf(it);
+      if(!seen[s]){ seen[s] = {seg:s, items:[]}; groups.push(seen[s]); }
+      seen[s].items.push(it);
+    });
+    groups.sort(function(a,b){
+      var ia = order.hasOwnProperty(a.seg) ? order[a.seg] : 900;
+      var ib = order.hasOwnProperty(b.seg) ? order[b.seg] : 900;
+      return ia - ib;
+    });
+    return '<div class="list">' + groups.map(function(g){
+      return '<div class="seg-h"><i></i><b>'+esc(g.seg)+'</b><span>'+g.items.length+' 条</span></div>'
+        + g.items.map(renderItem).join("");
+    }).join("") + '</div>';
+  }
+
   function renderList(){
     var list = filterItems(), b = board();
     var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
       + '<span class="live">'+((state.q||state.segment) ? list.length+" / "+(b.items||[]).length+" 条" : (b.items||[]).length+" 条 · 按发布时间倒序")+'</span></div>';
+    var flat = !!(state.segment || state.tab === "jokes");
     var body = list.length
-      ? '<div class="list">'+list.map(renderItem).join("")+'</div>'
+      ? (flat ? '<div class="list">'+list.map(renderItem).join("")+'</div>' : renderGrouped(list))
       : emptyState();
     if(state.tab === "jokes" && !(b.items||[]).length && !state.q && !state.company){
       body = '<p class="joke-note">暂无段子，可随时补充。新增方式：把段子写入 '

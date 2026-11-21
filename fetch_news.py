@@ -774,21 +774,26 @@ COMPANY_CHAIN = [
     {"code": "301255", "name": "通力科技", "segment": "减速器", "biz": "减速机", "confidence": "中"},
     {"code": "002164", "name": "宁波东力", "segment": "减速器", "biz": "齿轮箱", "confidence": "中"},
     {"code": "002765", "name": "蓝黛科技", "segment": "减速器", "biz": "传动与减速器", "confidence": "中"},
+    {"code": "603809", "name": "豪能股份", "segment": "减速器", "biz": "同步器与行星传动", "confidence": "中"},
     # 丝杠 / 线性执行器
     {"code": "603667", "name": "五洲新春", "segment": "丝杠", "biz": "轴承与丝杠", "confidence": "中"},
     {"code": "601100", "name": "恒立液压", "segment": "丝杠", "biz": "液压件与丝杠", "confidence": "中"},
     {"code": "300580", "name": "贝斯特", "segment": "丝杠", "biz": "精密零部件与丝杠", "confidence": "中"},
     {"code": "603009", "name": "北特科技", "segment": "丝杠", "biz": "汽车零部件与丝杠", "confidence": "中"},
-    {"code": "873593", "name": "鼎智科技", "segment": "丝杠", "biz": "线性执行器与丝杠", "confidence": "高"},
+    {"code": "920593", "name": "鼎智科技", "segment": "丝杠", "biz": "线性执行器与丝杠", "confidence": "高"},
     {"code": "300100", "name": "双林股份", "segment": "丝杠", "biz": "汽车零部件与滚柱丝杠", "confidence": "中"},
     {"code": "301261", "name": "恒工精密", "segment": "丝杠", "biz": "精密铸件与丝杠", "confidence": "中"},
     {"code": "300809", "name": "华辰装备", "segment": "丝杠", "biz": "磨床（丝杠加工设备）", "confidence": "中"},
     {"code": "688305", "name": "科德数控", "segment": "丝杠", "biz": "五轴机床", "confidence": "中"},
     {"code": "002520", "name": "日发精机", "segment": "丝杠", "biz": "机床与航空装备", "confidence": "中"},
+    {"code": "002903", "name": "宇环数控", "segment": "丝杠", "biz": "磨床（丝杠加工）", "confidence": "中"},
     # 轴承
     {"code": "002046", "name": "国机精工", "segment": "轴承", "biz": "轴承与磨料磨具", "confidence": "中"},
     {"code": "300421", "name": "力星股份", "segment": "轴承", "biz": "精密滚子", "confidence": "中"},
     {"code": "002553", "name": "南方精工", "segment": "轴承", "biz": "滚针轴承", "confidence": "中"},
+    {"code": "002633", "name": "申科股份", "segment": "轴承", "biz": "滑动轴承", "confidence": "中"},
+    {"code": "301548", "name": "崇德科技", "segment": "轴承", "biz": "动压滑动轴承", "confidence": "中"},
+    {"code": "300850", "name": "新强联", "segment": "轴承", "biz": "大型回转支承", "confidence": "中"},
     # 伺服 / 电机
     {"code": "300124", "name": "汇川技术", "segment": "伺服/电机", "biz": "伺服系统与控制器", "confidence": "高"},
     {"code": "002979", "name": "雷赛智能", "segment": "伺服/电机", "biz": "运动控制与伺服", "confidence": "高"},
@@ -801,15 +806,18 @@ COMPANY_CHAIN = [
     {"code": "002801", "name": "微光股份", "segment": "伺服/电机", "biz": "微电机", "confidence": "中"},
     {"code": "002892", "name": "科力尔", "segment": "伺服/电机", "biz": "伺服电机", "confidence": "中"},
     {"code": "603819", "name": "神力股份", "segment": "伺服/电机", "biz": "电机定转子", "confidence": "中"},
+    {"code": "002196", "name": "方正电机", "segment": "伺服/电机", "biz": "微特电机", "confidence": "中"},
+    {"code": "002576", "name": "通达动力", "segment": "伺服/电机", "biz": "电机铁芯", "confidence": "中"},
+    {"code": "002334", "name": "英威腾", "segment": "伺服/电机", "biz": "变频器与伺服", "confidence": "中"},
+    {"code": "300484", "name": "蓝海华腾", "segment": "伺服/电机", "biz": "伺服驱动器", "confidence": "中"},
     # 灵巧手 / 执行器
     {"code": "003021", "name": "兆威机电", "segment": "灵巧手", "biz": "微型传动系统", "confidence": "高"},
     {"code": "002050", "name": "三花智控", "segment": "执行器", "biz": "机电执行器与热管理", "confidence": "中"},
     {"code": "601689", "name": "拓普集团", "segment": "执行器", "biz": "汽车零部件与机器人执行器", "confidence": "中"},
     # 本体与整机（含直接竞争对手）
     {"code": "002747", "name": "埃斯顿", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
-    {"code": "300024", "name": "机器人", "segment": "本体", "biz": "机器人整机与装备", "confidence": "高"},
     {"code": "300607", "name": "拓斯达", "segment": "本体", "biz": "工业机器人与自动化", "confidence": "高"},
-    {"code": "688165", "name": "埃夫特", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
+    {"code": "688165", "name": "埃夫特-U", "segment": "本体", "biz": "工业机器人", "confidence": "高"},
     {"code": "002527", "name": "新时达", "segment": "本体", "biz": "机器人控制与整机", "confidence": "中"},
     {"code": "002698", "name": "博实股份", "segment": "本体", "biz": "工业机器人与智能装备", "confidence": "中"},
     {"code": "688218", "name": "江苏北人", "segment": "本体", "biz": "焊接机器人系统", "confidence": "中"},
@@ -820,25 +828,33 @@ COMPANY_CHAIN = [
     {"code": "603666", "name": "亿嘉和", "segment": "本体", "biz": "电力巡检机器人", "confidence": "中"},
     {"code": "09880.HK", "name": "优必选", "segment": "本体", "biz": "人形机器人整机", "confidence": "高"},
     {"code": "02432.HK", "name": "越疆", "segment": "本体", "biz": "协作机器人", "confidence": "中"},
+    {"code": "601608", "name": "中信重工", "segment": "本体", "biz": "特种机器人", "confidence": "中"},
+    {"code": "002997", "name": "瑞鹄模具", "segment": "本体", "biz": "模具与机器人集成", "confidence": "中"},
     # 传感器
     {"code": "603662", "name": "柯力传感", "segment": "传感器", "biz": "力传感器", "confidence": "高"},
     {"code": "300007", "name": "汉威科技", "segment": "传感器", "biz": "传感器", "confidence": "中"},
-    {"code": "688322", "name": "奥比中光", "segment": "传感器", "biz": "3D 视觉", "confidence": "高"},
+    {"code": "688322", "name": "奥比中光-W", "segment": "传感器", "biz": "3D 视觉", "confidence": "高"},
     {"code": "300354", "name": "东华测试", "segment": "传感器", "biz": "测试仪器与力传感器", "confidence": "中"},
     {"code": "301413", "name": "安培龙", "segment": "传感器", "biz": "压力与温度传感器", "confidence": "中"},
     {"code": "688582", "name": "芯动联科", "segment": "传感器", "biz": "MEMS 惯性传感器", "confidence": "中"},
     {"code": "688052", "name": "纳芯微", "segment": "传感器", "biz": "传感与信号链芯片", "confidence": "中"},
     {"code": "300667", "name": "必创科技", "segment": "传感器", "biz": "MEMS 传感器", "confidence": "中"},
     {"code": "300503", "name": "昊志机电", "segment": "传感器", "biz": "六维力传感器与谐波减速器", "confidence": "中"},
+    {"code": "688286", "name": "敏芯股份", "segment": "传感器", "biz": "MEMS 传感器", "confidence": "中"},
+    {"code": "688002", "name": "睿创微纳", "segment": "传感器", "biz": "红外探测与传感", "confidence": "中"},
+    {"code": "002414", "name": "高德红外", "segment": "传感器", "biz": "红外探测器与系统", "confidence": "中"},
     # 电子皮肤 / 柔性传感
     {"code": "605488", "name": "福莱新材", "segment": "电子皮肤", "biz": "柔性触觉传感器", "confidence": "中"},
     {"code": "300657", "name": "弘信电子", "segment": "电子皮肤", "biz": "柔性电子与传感器", "confidence": "中"},
+    {"code": "603683", "name": "晶华新材", "segment": "电子皮肤", "biz": "柔性功能材料", "confidence": "中"},
     # 控制器
     {"code": "300161", "name": "华中数控", "segment": "控制器", "biz": "数控系统与控制器", "confidence": "中"},
     {"code": "603416", "name": "信捷电气", "segment": "控制器", "biz": "PLC 与伺服系统", "confidence": "中"},
     {"code": "688320", "name": "禾川科技", "segment": "控制器", "biz": "伺服与运动控制", "confidence": "中"},
     {"code": "002851", "name": "麦格米特", "segment": "控制器", "biz": "工控电源与驱动", "confidence": "中"},
     {"code": "301510", "name": "固高科技", "segment": "控制器", "biz": "运动控制", "confidence": "中"},
+    {"code": "300508", "name": "维宏股份", "segment": "控制器", "biz": "运动控制", "confidence": "中"},
+    {"code": "300353", "name": "东土科技", "segment": "控制器", "biz": "工业控制与总线", "confidence": "中"},
     # 机器视觉
     {"code": "688400", "name": "凌云光", "segment": "机器视觉", "biz": "机器视觉", "confidence": "高"},
     {"code": "688003", "name": "天准科技", "segment": "机器视觉", "biz": "机器视觉装备", "confidence": "高"},
@@ -852,6 +868,9 @@ COMPANY_CHAIN = [
     {"code": "300691", "name": "联合光电", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
     {"code": "688307", "name": "中润光学", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
     {"code": "002362", "name": "汉王科技", "segment": "机器视觉", "biz": "视觉识别", "confidence": "中"},
+    {"code": "688502", "name": "茂莱光学", "segment": "机器视觉", "biz": "精密光学元件", "confidence": "中"},
+    {"code": "688010", "name": "福光股份", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
+    {"code": "301421", "name": "波长光电", "segment": "机器视觉", "biz": "红外与激光光学", "confidence": "中"},
     # 软件 / 具身智能
     {"code": "300496", "name": "中科创达", "segment": "软件/具身智能", "biz": "操作系统与边缘 AI", "confidence": "中"},
     {"code": "002230", "name": "科大讯飞", "segment": "软件/具身智能", "biz": "人工智能与语音", "confidence": "中"},
@@ -859,6 +878,8 @@ COMPANY_CHAIN = [
     {"code": "603893", "name": "瑞芯微", "segment": "软件/具身智能", "biz": "边缘 AI 芯片", "confidence": "中"},
     {"code": "300458", "name": "全志科技", "segment": "软件/具身智能", "biz": "智能应用处理器", "confidence": "中"},
     {"code": "688018", "name": "乐鑫科技", "segment": "软件/具身智能", "biz": "IoT 芯片", "confidence": "中"},
+    {"code": "688343", "name": "云天励飞-U", "segment": "软件/具身智能", "biz": "AI 视觉芯片", "confidence": "中"},
+    {"code": "688327", "name": "云从科技-UW", "segment": "软件/具身智能", "biz": "人机协同算法", "confidence": "中"},
     # 结构件 / 精密制造
     {"code": "600933", "name": "爱柯迪", "segment": "结构件", "biz": "铝合金精密压铸", "confidence": "中"},
     {"code": "603305", "name": "旭升集团", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
@@ -872,11 +893,14 @@ COMPANY_CHAIN = [
     {"code": "301029", "name": "怡合达", "segment": "结构件", "biz": "FA 自动化零部件", "confidence": "中"},
     {"code": "300709", "name": "精研科技", "segment": "结构件", "biz": "MIM 精密结构件", "confidence": "中"},
     {"code": "688210", "name": "统联精密", "segment": "结构件", "biz": "MIM 精密结构件", "confidence": "中"},
+    {"code": "603626", "name": "科森科技", "segment": "结构件", "biz": "精密结构件", "confidence": "中"},
+    {"code": "002947", "name": "恒铭达", "segment": "结构件", "biz": "精密功能件", "confidence": "中"},
     # 连接器与线缆
     {"code": "002475", "name": "立讯精密", "segment": "连接器", "biz": "连接器与精密制造", "confidence": "中"},
     {"code": "688668", "name": "鼎通科技", "segment": "连接器", "biz": "高速连接器", "confidence": "中"},
     {"code": "688800", "name": "瑞可达", "segment": "连接器", "biz": "连接器", "confidence": "中"},
     {"code": "300679", "name": "电连技术", "segment": "连接器", "biz": "连接器", "confidence": "中"},
+    {"code": "002897", "name": "意华股份", "segment": "连接器", "biz": "连接器", "confidence": "中"},
     # 上游材料
     {"code": "000970", "name": "中科三环", "segment": "材料", "biz": "钕铁硼永磁材料", "confidence": "中"},
     {"code": "600366", "name": "宁波韵升", "segment": "材料", "biz": "稀土永磁材料", "confidence": "中"},
@@ -888,8 +912,12 @@ COMPANY_CHAIN = [
     {"code": "600114", "name": "东睦股份", "segment": "材料", "biz": "粉末冶金", "confidence": "中"},
     {"code": "300328", "name": "宜安科技", "segment": "材料", "biz": "镁合金", "confidence": "中"},
     {"code": "300811", "name": "铂科新材", "segment": "材料", "biz": "金属软磁粉芯", "confidence": "中"},
+    {"code": "002182", "name": "宝武镁业", "segment": "材料", "biz": "镁铝合金", "confidence": "中"},
+    {"code": "688786", "name": "悦安新材", "segment": "材料", "biz": "金属粉末", "confidence": "中"},
     # 热管理
     {"code": "002126", "name": "银轮股份", "segment": "热管理", "biz": "热管理", "confidence": "中"},
+    {"code": "002536", "name": "飞龙股份", "segment": "热管理", "biz": "热管理部件", "confidence": "中"},
+    {"code": "002011", "name": "盾安环境", "segment": "热管理", "biz": "热管理部件", "confidence": "中"},
     # 下游应用与场景
     {"code": "600699", "name": "均胜电子", "segment": "应用场景", "biz": "汽车电子", "confidence": "中"},
     {"code": "002009", "name": "天奇股份", "segment": "应用场景", "biz": "汽车自动化装备", "confidence": "中"},
@@ -903,6 +931,8 @@ COMPANY_CHAIN = [
     {"code": "688251", "name": "井松智能", "segment": "应用场景", "biz": "AGV/AMR", "confidence": "中"},
     {"code": "300276", "name": "三丰智能", "segment": "应用场景", "biz": "智能输送与 AGV", "confidence": "中"},
     {"code": "603611", "name": "诺力股份", "segment": "应用场景", "biz": "仓储物流装备", "confidence": "中"},
+    {"code": "300532", "name": "今天国际", "segment": "应用场景", "biz": "智能物流系统", "confidence": "中"},
+    {"code": "603066", "name": "音飞储存", "segment": "应用场景", "biz": "仓储货架与自动化", "confidence": "中"},
 ]
 
 SEGMENT_ORDER = ["本体", "减速器", "伺服/电机", "丝杠", "轴承", "灵巧手", "执行器",
@@ -1426,7 +1456,7 @@ def build_candidate_prompt(candidates, date_label, window=None):
     for c in candidates:
         rep = c["rep"]
         verify = (f"多家印证（{c['count']} 家独立站点）"
-                  if c["level"] == "cross" else "单一来源")
+                  if c["level"] == "cross" else "单家报道")
         cos = "、".join(rep.get("companies") or []) or "未标注"
         detail = candidate_detail(c, 220) or "无摘要"
         pub = (rep.get("published") or "")[:16].replace("T", " ")
