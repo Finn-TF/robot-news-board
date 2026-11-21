@@ -345,6 +345,7 @@ details[open] summary:before{content:"−"}
           <div class="chips" id="rangeChips"></div>
         </div>
         <div class="chips" id="companyChips" hidden></div>
+        <div class="chips" id="segmentChips" hidden></div>
       </div>
     </div>
     <main id="main">
@@ -398,7 +399,7 @@ details[open] summary:before{content:"−"}
     {key:"bigtech",  name:"机器人大厂", short:"大厂"},
     {key:"jokes",    name:"近期段子", short:"段子"}
   ];
-  var state = {tab:"domestic", q:"", range:"all", company:null};
+  var state = {tab:"domestic", q:"", range:"all", company:null, segment:null};
   // 「机器人大厂」标准集合：抓取脚本 ROBOT_COMPANIES 与此保持一致
   var COMPANIES = ["OpenAI","特斯拉","英伟达","谷歌 DeepMind","Meta",
                    "宇树 Unitree","优必选 UBTECH","智元 AgiBot","Figure",
@@ -447,7 +448,12 @@ details[open] summary:before{content:"−"}
   function items(){ return DATA && DATA.boards && DATA.boards[state.tab] ? DATA.boards[state.tab].items || [] : []; }
   function board(){ return DATA.boards[state.tab]; }
 
-  function filterItems(){
+  var SEGMENTS = ["大模型与算法","感知与传感器","执行器与关节","减速器与传动","伺服与电机",
+                  "材料与结构件","量产与供应链","融资与政策","落地应用与场景","本体与整机","其他"];
+
+  function segOf(it){ return it.segment || "其他"; }
+
+  function baseItems(){
     var q = state.q.trim().toLowerCase();
     return items().filter(function(it){
       if(state.range === "today" && ageHours(it.published) > 24) return false;
@@ -456,6 +462,12 @@ details[open] summary:before{content:"−"}
       if(!q) return true;
       var hay = (it.title+" "+(it.title_original||"")+" "+(it.summary||"")+" "+(it.source||"")+" "+(it.companies||[]).join(" ")).toLowerCase();
       return hay.indexOf(q) >= 0;
+    });
+  }
+
+  function filterItems(){
+    return baseItems().filter(function(it){
+      return !state.segment || segOf(it) === state.segment;
     }).sort(function(a,b){ return (b.published||"").localeCompare(a.published||""); });
   }
 
@@ -489,14 +501,14 @@ details[open] summary:before{content:"−"}
     if(!date || !LATEST) return;
     var latestDate = LATEST.report ? LATEST.report.date : "";
     if(date === latestDate){
-      DATA = LATEST; state.tab = "domestic"; renderAll();
+      DATA = LATEST; state.tab = "domestic"; state.company = null; state.segment = null; renderAll();
       history.replaceState(null,"",location.pathname); window.scrollTo({top:0,behavior:"smooth"});
       return;
     }
     fetch("archive/" + date + ".json", {cache:"no-store"})
       .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
       .then(function(j){
-        DATA = j; state.tab = "domestic"; state.q = ""; state.company = null;
+        DATA = j; state.tab = "domestic"; state.q = ""; state.company = null; state.segment = null;
         if($("q")) $("q").value = "";
         renderAll(); window.scrollTo({top:0,behavior:"smooth"});
         try{ history.replaceState(null,"",location.pathname + "?date=" + date); }catch(e){}
@@ -656,7 +668,7 @@ details[open] summary:before{content:"−"}
     }).join("");
     Array.prototype.forEach.call(host.querySelectorAll(".tab"), function(btn){
       btn.addEventListener("click", function(){
-        state.tab = btn.dataset.key; state.company = null; state.q = ""; $("q").value = "";
+        state.tab = btn.dataset.key; state.company = null; state.q = ""; state.segment = null; $("q").value = "";
         syncUrl(); renderAll(); window.scrollTo({top:0, behavior:"smooth"});
       });
     });
@@ -672,20 +684,44 @@ details[open] summary:before{content:"−"}
     });
 
     var box = $("companyChips");
-    if(state.tab !== "bigtech"){ box.hidden = true; return; }
-    var counts = {};
-    items().forEach(function(it){ (it.companies||[]).forEach(function(c){ counts[c]=(counts[c]||0)+1; }); });
-    var extra = Object.keys(counts).filter(function(c){ return COMPANIES.indexOf(c) < 0; });
-    var list = COMPANIES.concat(extra.sort(function(a,b){ return counts[b]-counts[a]; }));
-    box.hidden = false;
-    var html = '<button class="chip" data-co="" aria-pressed="'+(state.company===null)+'">全部大厂</button>';
-    html += list.map(function(c){
-      var n = counts[c] || 0;
-      return '<button class="chip'+(n?"":" zero")+'" data-co="'+esc(c)+'" aria-pressed="'+(state.company===c)+'" title="'+(n?"":"本期无收录")+'">'+esc(c)+' <span class="mono" style="opacity:.55">'+n+'</span></button>';
+    if(state.tab === "bigtech"){
+      var counts = {};
+      items().forEach(function(it){ (it.companies||[]).forEach(function(c){ counts[c]=(counts[c]||0)+1; }); });
+      var extra = Object.keys(counts).filter(function(c){ return COMPANIES.indexOf(c) < 0; });
+      var list = COMPANIES.concat(extra.sort(function(a,b){ return counts[b]-counts[a]; }));
+      box.hidden = false;
+      var html = '<button class="chip" data-co="" aria-pressed="'+(state.company===null)+'">全部大厂</button>';
+      html += list.map(function(c){
+        var n = counts[c] || 0;
+        return '<button class="chip'+(n?"":" zero")+'" data-co="'+esc(c)+'" aria-pressed="'+(state.company===c)+'" title="'+(n?"":"本期无收录")+'">'+esc(c)+' <span class="mono" style="opacity:.55">'+n+'</span></button>';
+      }).join("");
+      box.innerHTML = html;
+      Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
+        c.addEventListener("click", function(){ state.company = c.dataset.co || null; renderAll(); });
+      });
+    }else{
+      box.hidden = true; box.innerHTML = "";
+    }
+
+    // 产业链环节：条数按当前搜索/时间/大厂筛选后的口径统计，点选后与其余筛选叠加
+    var sbox = $("segmentChips");
+    if(state.tab === "jokes" || !items().some(function(it){ return it.segment; })){
+      sbox.hidden = true; sbox.innerHTML = ""; return;
+    }
+    var base = baseItems(), sc = {};
+    base.forEach(function(it){ var s = segOf(it); sc[s] = (sc[s]||0)+1; });
+    var keys = SEGMENTS.filter(function(s){ return sc[s]; });
+    Object.keys(sc).forEach(function(s){ if(SEGMENTS.indexOf(s) < 0) keys.push(s); });
+    sbox.hidden = false;
+    var shtml = '<button class="chip" data-seg="" aria-pressed="'+(state.segment===null)+'">全部环节'
+      + ' <span class="mono" style="opacity:.55">'+base.length+'</span></button>';
+    shtml += keys.map(function(s){
+      return '<button class="chip" data-seg="'+esc(s)+'" aria-pressed="'+(state.segment===s)+'">'
+        + esc(s)+' <span class="mono" style="opacity:.55">'+sc[s]+'</span></button>';
     }).join("");
-    box.innerHTML = html;
-    Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
-      c.addEventListener("click", function(){ state.company = c.dataset.co || null; renderAll(); });
+    sbox.innerHTML = shtml;
+    Array.prototype.forEach.call(sbox.querySelectorAll(".chip"), function(c){
+      c.addEventListener("click", function(){ state.segment = c.dataset.seg || null; renderAll(); });
     });
   }
 
@@ -698,6 +734,9 @@ details[open] summary:before{content:"−"}
     if(state.company){
       return '<div class="state"><div class="ic">—</div><h3>「'+esc(state.company)+'」本期无收录</h3><p>该大厂通道本期没有通过机器人相关性判定的条目。'
         + '抓不到就留空，页面不会用旧内容或虚构内容填充。</p></div>';
+    }
+    if(state.segment){
+      return '<div class="state"><div class="ic">—</div><h3>「'+esc(state.segment)+'」环节本期无条目</h3><p>可切回「全部环节」，或调整搜索与时间范围。</p></div>';
     }
     return '<div class="state"><div class="ic">—</div><h3>暂无数据</h3><p>本板块当前没有可用条目（数据生成于 '+esc(DATA.generated_label||"")+'）。'
       + (b.failed_sources ? '<br>有 '+b.failed_sources+' 个来源抓取失败，可查看页脚「抓取状态」。' : '')
@@ -814,7 +853,7 @@ details[open] summary:before{content:"−"}
   function renderList(){
     var list = filterItems(), b = board();
     var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
-      + '<span class="live">'+(state.q ? list.length+" / "+(b.items||[]).length+" 条" : (b.items||[]).length+" 条 · 按发布时间倒序")+'</span></div>';
+      + '<span class="live">'+((state.q||state.segment) ? list.length+" / "+(b.items||[]).length+" 条" : (b.items||[]).length+" 条 · 按发布时间倒序")+'</span></div>';
     var body = list.length
       ? '<div class="list">'+list.map(renderItem).join("")+'</div>'
       : emptyState();
@@ -887,6 +926,7 @@ details[open] summary:before{content:"−"}
       var p = new URLSearchParams();
       if(state.tab !== "domestic") p.set("tab", state.tab);
       if(state.q) p.set("q", state.q);
+      if(state.segment) p.set("seg", state.segment);
       var cur = DATA && DATA.report ? DATA.report.date : "";
       if(cur && LATEST && LATEST.report && cur !== LATEST.report.date) p.set("date", cur);
       var qs = p.toString();
@@ -900,6 +940,8 @@ details[open] summary:before{content:"−"}
       if(t && TABS.some(function(x){ return x.key === t; })) state.tab = t;
       var q = p.get("q");
       if(q) state.q = q;
+      var seg = p.get("seg");
+      if(seg && SEGMENTS.indexOf(seg) >= 0) state.segment = seg;
       return p.get("date") || "";
     }catch(e){ return ""; }
   }
@@ -957,7 +999,7 @@ details[open] summary:before{content:"−"}
     });
     $("archSelect").addEventListener("change", function(e){ switchDay(e.target.value); });
     $("backLatest").addEventListener("click", function(){
-      DATA = LATEST; state.tab = "domestic"; renderAll();
+      DATA = LATEST; state.tab = "domestic"; state.company = null; state.segment = null; renderAll();
       try{ history.replaceState(null,"",location.pathname); }catch(e){}
       window.scrollTo({top:0,behavior:"smooth"});
     });

@@ -766,12 +766,25 @@ COMPANY_CHAIN = [
     {"code": "301368", "name": "丰立智能", "segment": "减速器", "biz": "精密齿轮", "confidence": "中"},
     {"code": "001306", "name": "夏厦精密", "segment": "减速器", "biz": "精密齿轮", "confidence": "中"},
     {"code": "002031", "name": "巨轮智能", "segment": "减速器", "biz": "轮胎模具与RV减速器", "confidence": "中"},
+    {"code": "603915", "name": "国茂股份", "segment": "减速器", "biz": "减速机", "confidence": "中"},
+    {"code": "301255", "name": "通力科技", "segment": "减速器", "biz": "减速机", "confidence": "中"},
+    {"code": "002164", "name": "宁波东力", "segment": "减速器", "biz": "齿轮箱", "confidence": "中"},
+    {"code": "002765", "name": "蓝黛科技", "segment": "减速器", "biz": "传动与减速器", "confidence": "中"},
     # 丝杠 / 线性执行器
     {"code": "603667", "name": "五洲新春", "segment": "丝杠", "biz": "轴承与丝杠", "confidence": "中"},
     {"code": "601100", "name": "恒立液压", "segment": "丝杠", "biz": "液压件与丝杠", "confidence": "中"},
     {"code": "300580", "name": "贝斯特", "segment": "丝杠", "biz": "精密零部件与丝杠", "confidence": "中"},
     {"code": "603009", "name": "北特科技", "segment": "丝杠", "biz": "汽车零部件与丝杠", "confidence": "中"},
     {"code": "873593", "name": "鼎智科技", "segment": "丝杠", "biz": "线性执行器与丝杠", "confidence": "高"},
+    {"code": "300100", "name": "双林股份", "segment": "丝杠", "biz": "汽车零部件与滚柱丝杠", "confidence": "中"},
+    {"code": "301261", "name": "恒工精密", "segment": "丝杠", "biz": "精密铸件与丝杠", "confidence": "中"},
+    {"code": "300809", "name": "华辰装备", "segment": "丝杠", "biz": "磨床（丝杠加工设备）", "confidence": "中"},
+    {"code": "688305", "name": "科德数控", "segment": "丝杠", "biz": "五轴机床", "confidence": "中"},
+    {"code": "002520", "name": "日发精机", "segment": "丝杠", "biz": "机床与航空装备", "confidence": "中"},
+    # 轴承
+    {"code": "002046", "name": "国机精工", "segment": "轴承", "biz": "轴承与磨料磨具", "confidence": "中"},
+    {"code": "300421", "name": "力星股份", "segment": "轴承", "biz": "精密滚子", "confidence": "中"},
+    {"code": "002553", "name": "南方精工", "segment": "轴承", "biz": "滚针轴承", "confidence": "中"},
     # 伺服 / 电机
     {"code": "300124", "name": "汇川技术", "segment": "伺服/电机", "biz": "伺服系统与控制器", "confidence": "高"},
     {"code": "002979", "name": "雷赛智能", "segment": "伺服/电机", "biz": "运动控制与伺服", "confidence": "高"},
@@ -779,6 +792,11 @@ COMPANY_CHAIN = [
     {"code": "300660", "name": "江苏雷利", "segment": "伺服/电机", "biz": "微特电机", "confidence": "中"},
     {"code": "603728", "name": "鸣志电器", "segment": "伺服/电机", "biz": "步进电机", "confidence": "高"},
     {"code": "688698", "name": "伟创电气", "segment": "伺服/电机", "biz": "变频器与伺服", "confidence": "中"},
+    {"code": "600580", "name": "卧龙电驱", "segment": "伺服/电机", "biz": "电机与驱动", "confidence": "中"},
+    {"code": "002249", "name": "大洋电机", "segment": "伺服/电机", "biz": "微特电机", "confidence": "中"},
+    {"code": "002801", "name": "微光股份", "segment": "伺服/电机", "biz": "微电机", "confidence": "中"},
+    {"code": "002892", "name": "科力尔", "segment": "伺服/电机", "biz": "伺服电机", "confidence": "中"},
+    {"code": "603819", "name": "神力股份", "segment": "伺服/电机", "biz": "电机定转子", "confidence": "中"},
     # 灵巧手 / 执行器
     {"code": "003021", "name": "兆威机电", "segment": "灵巧手", "biz": "微型传动系统", "confidence": "高"},
     {"code": "002050", "name": "三花智控", "segment": "执行器", "biz": "机电执行器与热管理", "confidence": "中"},
@@ -806,11 +824,17 @@ COMPANY_CHAIN = [
     {"code": "301413", "name": "安培龙", "segment": "传感器", "biz": "压力与温度传感器", "confidence": "中"},
     {"code": "688582", "name": "芯动联科", "segment": "传感器", "biz": "MEMS 惯性传感器", "confidence": "中"},
     {"code": "688052", "name": "纳芯微", "segment": "传感器", "biz": "传感与信号链芯片", "confidence": "中"},
+    {"code": "300667", "name": "必创科技", "segment": "传感器", "biz": "MEMS 传感器", "confidence": "中"},
+    {"code": "300503", "name": "昊志机电", "segment": "传感器", "biz": "六维力传感器与谐波减速器", "confidence": "中"},
+    # 电子皮肤 / 柔性传感
+    {"code": "605488", "name": "福莱新材", "segment": "电子皮肤", "biz": "柔性触觉传感器", "confidence": "中"},
+    {"code": "300657", "name": "弘信电子", "segment": "电子皮肤", "biz": "柔性电子与传感器", "confidence": "中"},
     # 控制器
     {"code": "300161", "name": "华中数控", "segment": "控制器", "biz": "数控系统与控制器", "confidence": "中"},
     {"code": "603416", "name": "信捷电气", "segment": "控制器", "biz": "PLC 与伺服系统", "confidence": "中"},
     {"code": "688320", "name": "禾川科技", "segment": "控制器", "biz": "伺服与运动控制", "confidence": "中"},
     {"code": "002851", "name": "麦格米特", "segment": "控制器", "biz": "工控电源与驱动", "confidence": "中"},
+    {"code": "301510", "name": "固高科技", "segment": "控制器", "biz": "运动控制", "confidence": "中"},
     # 机器视觉
     {"code": "688400", "name": "凌云光", "segment": "机器视觉", "biz": "机器视觉", "confidence": "高"},
     {"code": "688003", "name": "天准科技", "segment": "机器视觉", "biz": "机器视觉装备", "confidence": "高"},
@@ -819,25 +843,47 @@ COMPANY_CHAIN = [
     {"code": "603297", "name": "永新光学", "segment": "机器视觉", "biz": "光学镜头与显微系统", "confidence": "中"},
     {"code": "300790", "name": "宇瞳光学", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
     {"code": "002338", "name": "奥普光电", "segment": "机器视觉", "biz": "光电测控与光学", "confidence": "中"},
+    {"code": "600288", "name": "大恒科技", "segment": "机器视觉", "biz": "工业相机与视觉系统", "confidence": "中"},
+    {"code": "688088", "name": "虹软科技", "segment": "机器视觉", "biz": "视觉算法", "confidence": "中"},
+    {"code": "300691", "name": "联合光电", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
+    {"code": "688307", "name": "中润光学", "segment": "机器视觉", "biz": "光学镜头", "confidence": "中"},
+    {"code": "002362", "name": "汉王科技", "segment": "机器视觉", "biz": "视觉识别", "confidence": "中"},
     # 软件 / 具身智能
     {"code": "300496", "name": "中科创达", "segment": "软件/具身智能", "biz": "操作系统与边缘 AI", "confidence": "中"},
     {"code": "002230", "name": "科大讯飞", "segment": "软件/具身智能", "biz": "人工智能与语音", "confidence": "中"},
     {"code": "09660.HK", "name": "地平线机器人-W", "segment": "软件/具身智能", "biz": "智驾与机器人芯片", "confidence": "中"},
+    {"code": "603893", "name": "瑞芯微", "segment": "软件/具身智能", "biz": "边缘 AI 芯片", "confidence": "中"},
+    {"code": "300458", "name": "全志科技", "segment": "软件/具身智能", "biz": "智能应用处理器", "confidence": "中"},
+    {"code": "688018", "name": "乐鑫科技", "segment": "软件/具身智能", "biz": "IoT 芯片", "confidence": "中"},
     # 结构件 / 精密制造
     {"code": "600933", "name": "爱柯迪", "segment": "结构件", "biz": "铝合金精密压铸", "confidence": "中"},
     {"code": "603305", "name": "旭升集团", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
     {"code": "603348", "name": "文灿股份", "segment": "结构件", "biz": "铝压铸件", "confidence": "中"},
     {"code": "300953", "name": "震裕科技", "segment": "结构件", "biz": "精密结构件", "confidence": "中"},
     {"code": "300258", "name": "精锻科技", "segment": "结构件", "biz": "精密锻造", "confidence": "中"},
-    {"code": "300718", "name": "长盛轴承", "segment": "结构件", "biz": "自润滑轴承", "confidence": "中"},
+    {"code": "300718", "name": "长盛轴承", "segment": "轴承", "biz": "自润滑轴承", "confidence": "中"},
     {"code": "300115", "name": "长盈精密", "segment": "结构件", "biz": "精密结构件", "confidence": "中"},
     {"code": "002600", "name": "领益智造", "segment": "结构件", "biz": "精密功能件", "confidence": "中"},
     {"code": "002965", "name": "祥鑫科技", "segment": "结构件", "biz": "精密冲压结构件", "confidence": "中"},
     {"code": "301029", "name": "怡合达", "segment": "结构件", "biz": "FA 自动化零部件", "confidence": "中"},
+    {"code": "300709", "name": "精研科技", "segment": "结构件", "biz": "MIM 精密结构件", "confidence": "中"},
+    {"code": "688210", "name": "统联精密", "segment": "结构件", "biz": "MIM 精密结构件", "confidence": "中"},
+    # 连接器与线缆
+    {"code": "002475", "name": "立讯精密", "segment": "连接器", "biz": "连接器与精密制造", "confidence": "中"},
+    {"code": "688668", "name": "鼎通科技", "segment": "连接器", "biz": "高速连接器", "confidence": "中"},
+    {"code": "688800", "name": "瑞可达", "segment": "连接器", "biz": "连接器", "confidence": "中"},
+    {"code": "300679", "name": "电连技术", "segment": "连接器", "biz": "连接器", "confidence": "中"},
     # 上游材料
     {"code": "000970", "name": "中科三环", "segment": "材料", "biz": "钕铁硼永磁材料", "confidence": "中"},
     {"code": "600366", "name": "宁波韵升", "segment": "材料", "biz": "稀土永磁材料", "confidence": "中"},
     {"code": "300748", "name": "金力永磁", "segment": "材料", "biz": "高性能磁材", "confidence": "中"},
+    {"code": "300224", "name": "正海磁材", "segment": "材料", "biz": "钕铁硼永磁", "confidence": "中"},
+    {"code": "688077", "name": "大地熊", "segment": "材料", "biz": "钕铁硼永磁", "confidence": "中"},
+    {"code": "000795", "name": "英洛华", "segment": "材料", "biz": "稀土永磁与电机", "confidence": "中"},
+    {"code": "600206", "name": "有研新材", "segment": "材料", "biz": "稀有金属材料", "confidence": "中"},
+    {"code": "600114", "name": "东睦股份", "segment": "材料", "biz": "粉末冶金", "confidence": "中"},
+    {"code": "300328", "name": "宜安科技", "segment": "材料", "biz": "镁合金", "confidence": "中"},
+    {"code": "300811", "name": "铂科新材", "segment": "材料", "biz": "金属软磁粉芯", "confidence": "中"},
     # 热管理
     {"code": "002126", "name": "银轮股份", "segment": "热管理", "biz": "热管理", "confidence": "中"},
     # 下游应用与场景
@@ -847,11 +893,17 @@ COMPANY_CHAIN = [
     {"code": "688360", "name": "德马科技", "segment": "应用场景", "biz": "物流输送装备", "confidence": "中"},
     {"code": "02590.HK", "name": "极智嘉-W", "segment": "应用场景", "biz": "仓储物流机器人", "confidence": "中"},
     {"code": "603960", "name": "克来机电", "segment": "应用场景", "biz": "汽车电子装备", "confidence": "中"},
+    {"code": "300853", "name": "申昊科技", "segment": "应用场景", "biz": "电力巡检机器人", "confidence": "中"},
+    {"code": "688290", "name": "景业智能", "segment": "应用场景", "biz": "核工业机器人", "confidence": "中"},
+    {"code": "688557", "name": "兰剑智能", "segment": "应用场景", "biz": "物流机器人", "confidence": "中"},
+    {"code": "688251", "name": "井松智能", "segment": "应用场景", "biz": "AGV/AMR", "confidence": "中"},
+    {"code": "300276", "name": "三丰智能", "segment": "应用场景", "biz": "智能输送与 AGV", "confidence": "中"},
+    {"code": "603611", "name": "诺力股份", "segment": "应用场景", "biz": "仓储物流装备", "confidence": "中"},
 ]
 
-SEGMENT_ORDER = ["本体", "减速器", "伺服/电机", "丝杠", "灵巧手", "执行器",
-                 "传感器", "控制器", "机器视觉", "软件/具身智能",
-                 "结构件", "材料", "热管理", "应用场景"]
+SEGMENT_ORDER = ["本体", "减速器", "伺服/电机", "丝杠", "轴承", "灵巧手", "执行器",
+                 "传感器", "电子皮肤", "控制器", "机器视觉", "软件/具身智能",
+                 "结构件", "连接器", "材料", "热管理", "应用场景"]
 SEGMENT_MAP = {}
 for _co in COMPANY_CHAIN:
     SEGMENT_MAP.setdefault(_co["segment"], []).append(_co)
@@ -861,14 +913,17 @@ SEGMENT_WORDS = {
     "减速器": ["减速器", "谐波", "RV", "行星减速", "gear"],
     "伺服/电机": ["伺服", "电机", "编码器", "驱动器", "actuator", "motor"],
     "丝杠": ["丝杠", "滚柱", "线性执行器", "行星滚柱", "ball screw"],
+    "轴承": ["轴承", "滚子", "滚针", "自润滑"],
     "灵巧手": ["灵巧手", "灵巧", "dexterous", "末端执行器", "gripper"],
     "执行器": ["执行器", "关节模组", "机电执行器", "joint module"],
     "传感器": ["传感器", "力觉", "触觉", "六维力", "3D视觉", "视觉感知", "惯性", "sensor"],
+    "电子皮肤": ["电子皮肤", "柔性传感", "柔性触觉", "electronic skin"],
     "控制器": ["控制器", "运动控制", "控制芯片", "controller"],
     "机器视觉": ["机器视觉", "视觉检测", "工业相机", "machine vision"],
     "软件/具身智能": ["具身智能", "大模型", "VLA", "世界模型", "算法", "操作系统",
                        "仿真", "embodied", "foundation model"],
-    "结构件": ["结构件", "压铸", "轻量化", "镁合金", "铝合金", "轴承"],
+    "结构件": ["结构件", "压铸", "轻量化", "镁合金", "铝合金"],
+    "连接器": ["连接器", "线缆", "线束", "connector"],
     "材料": ["磁材", "钕铁硼", "永磁", "稀土", "磁性材料", "伺服材料"],
     "热管理": ["热管理", "散热", "液冷"],
     "应用场景": ["工厂", "汽车", "物流", "仓储", "零售", "便利店", "家庭",
@@ -918,6 +973,56 @@ def candidate_direction(c):
                     "下滑", "失败", "裁员", "亏损", "召回"]
         return "利空" if any(w in text for w in negative) else "利好"
     return "中性"
+
+
+# 新闻按产业链环节归组：(关键词, 权重)，顺序即同分时的优先级（越靠前越具体）
+NEWS_SEGMENTS = [
+    ("大模型与算法", [("具身智能", 3), ("大模型", 3), ("世界模型", 3), ("vla", 3),
+                     ("端到端", 3), ("基础模型", 3), ("embodied ai", 3), ("world model", 3),
+                     ("强化学习", 2), ("模型训练", 2), ("神经网络", 2), ("智能体", 2),
+                     ("ai agent", 2), ("算法", 2), ("仿真", 2), ("数字孪生", 2)]),
+    ("感知与传感器", [("电子皮肤", 3), ("六维力", 3), ("力矩传感", 3), ("3d视觉", 3),
+                     ("激光雷达", 3), ("机器视觉", 3), ("传感器", 3), ("力觉", 3),
+                     ("触觉", 3), ("视觉感知", 2), ("惯性测量", 2), ("毫米波", 2),
+                     ("imu", 2), ("摄像头", 2), ("感知", 1)]),
+    ("执行器与关节", [("灵巧手", 3), ("滚柱丝杠", 3), ("行星滚柱", 3), ("关节模组", 3),
+                     ("执行器", 3), ("线性执行", 3), ("末端执行", 3), ("丝杠", 3),
+                     ("关节", 2), ("夹爪", 2), ("手部", 2)]),
+    ("减速器与传动", [("谐波减速", 3), ("rv减速", 3), ("行星减速", 3), ("减速器", 3),
+                     ("谐波", 2), ("齿轮", 2), ("传动", 2), ("导轨", 2), ("轴承", 2)]),
+    ("伺服与电机", [("伺服电机", 3), ("无框力矩", 3), ("微特电机", 3), ("驱动模组", 2),
+                    ("伺服", 3), ("电机", 2), ("驱动器", 2), ("电控", 2)]),
+    ("材料与结构件", [("钕铁硼", 3), ("稀土", 3), ("永磁", 3), ("镁合金", 3),
+                     ("粉末冶金", 3), ("碳纤维", 3), ("peek", 3), ("铝合金", 2),
+                     ("压铸", 2), ("mim", 2), ("结构件", 2), ("轻量化", 2),
+                     ("注塑", 2), ("磁材", 2), ("材料", 1)]),
+    ("量产与供应链", [("量产", 3), ("扩产", 3), ("产能", 2), ("产线", 2), ("投产", 2),
+                     ("交付", 2), ("订单", 2), ("供应链", 2), ("代工", 2), ("备货", 2),
+                     ("出货", 2), ("定点", 2), ("供货", 2)]),
+    ("融资与政策", [("融资", 3), ("ipo", 3), ("funding", 3), ("raises", 3), ("领投", 3),
+                   ("轮融资", 3), ("估值", 2), ("上市", 2), ("政策", 2), ("补贴", 2),
+                   ("规划", 2), ("募资", 2), ("定增", 2), ("收购", 2), ("并购", 2),
+                   ("基金", 2), ("投资", 1), ("股东", 1)]),
+    ("落地应用与场景", [("落地", 3), ("场景", 2), ("工厂", 2), ("物流", 2), ("仓储", 2),
+                     ("零售", 2), ("家庭", 2), ("医疗", 2), ("巡检", 2), ("教育", 2),
+                     ("商用", 2), ("部署", 2), ("服务业", 2), ("应用", 1)]),
+    ("本体与整机", [("人形机器人", 3), ("四足机器人", 3), ("机器狗", 3), ("协作机器人", 3),
+                   ("工业机器人", 3), ("服务机器人", 3), ("扫地机器人", 3),
+                   ("机器人本体", 3), ("双足", 3), ("轮式机器人", 3), ("机械臂", 3),
+                   ("humanoid", 3), ("整机", 2), ("机器人", 1), ("robot", 1),
+                   ("robotics", 1)]),
+]
+
+
+def classify_news_segment(title, summary=""):
+    """按关键词权重把一条新闻归到一个主环节；同分时按 NEWS_SEGMENTS 顺序取前者。"""
+    text = f"{title} {summary}".lower()
+    best, score = "其他", 0
+    for name, words in NEWS_SEGMENTS:
+        s = sum(w for word, w in words if word in text)
+        if s > score:
+            best, score = name, s
+    return best
 
 
 def fresh_hours(published, now):
@@ -1274,7 +1379,7 @@ DEEPSEEK_SYSTEM_PROMPT = """你是国联民生证券研究所汽车行业研究�
  "top_news":[{"candidate_id":2,"event":"一句话说清发生了什么（不超过 60 字）","impact":"1-2 句影响判断（不超过 90 字）"}],
  "signals":[{"candidate_id":3,"text":"一句前瞻或跟踪信号（不超过 50 字）"}]}
 5. 时间窗口：候选新闻为近 3 天内容，每条已标注日期。key_changes 输出 3-5 条，当日条目排在前面，其余按日期倒序；candidate_id 必须来自候选列表。
-6. judgement：先给一句总判断（整体偏利好 / 整体偏利空 / 多空交织中性 / 暂无方向性信号），再按产业链环节给出方向与传导逻辑。环节只能取：本体、减速器、伺服/电机、丝杠、灵巧手、执行器、传感器、控制器、机器视觉、软件/具身智能、结构件、材料、热管理、应用场景。每条 logic 必须写清「事件 → 影响哪个环节 → 如何传导到订单/成本/估值」，不能只贴标签；没有把握时 direction 用「中性」。
+6. judgement：先给一句总判断（整体偏利好 / 整体偏利空 / 多空交织中性 / 暂无方向性信号），再按产业链环节给出方向与传导逻辑。环节只能取：本体、减速器、伺服/电机、丝杠、轴承、灵巧手、执行器、传感器、电子皮肤、控制器、机器视觉、软件/具身智能、结构件、连接器、材料、热管理、应用场景。每条 logic 必须写清「事件 → 影响哪个环节 → 如何传导到订单/成本/估值」，不能只贴标签；没有把握时 direction 用「中性」。
 7. listed_companies：只能从用户提供的白名单中选择（A 股为主，含代码经核验的港股），code 与 name 必须与白名单完全一致，禁止自创公司或凭印象写代码；输出 4-10 家，尽量覆盖上游零部件/材料、本体与整机、软件与算法、下游应用与场景，同时纳入直接竞争对手与间接受益方；reason 说明受影响原因，impact 取 高/中/低，confidence 取 高/中。白名单里没有合适标的时输出空数组 []。
 8. top_news 输出 3-5 条，按重要性从高到低排序；candidate_id 必须来自候选列表，且不能重复。
 9. signals 输出 0-4 条，聚焦量产节点、订单、融资、政策等前瞻信息；候选新闻里没有可用信号时输出空数组 []。
@@ -2410,6 +2515,7 @@ def collect(verbose=True):
                 "published": dt.isoformat(),
                 "lang": lang,
                 "companies": (bt_title or bt_all)[:2],
+                "segment": classify_news_segment(title, summary),
                 "is_placeholder": False,
             }
             if is_site:
