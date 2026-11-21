@@ -2081,6 +2081,7 @@ def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
                         "published": ts.isoformat(),
                         "lang": "zh",
                         "companies": [],
+                        "segment": classify_news_segment(title, summary),
                         "is_placeholder": False,
                     })
                     status["count"] += 1
