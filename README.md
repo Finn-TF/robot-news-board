@@ -158,20 +158,24 @@ python fetch_news.py --daemon        # 常驻定时抓取（间隔读 config.jso
 8. **分类详表**：国内新闻 / 海外新闻 / 机器人大厂 / 近期段子，保留原有 Tab、搜索、时间与公司筛选、核对徽标；
 9. **页脚**：免责声明（通用占位，可替换为机构合规模板）、日报结构说明、数据口径、抓取状态与来源清单、公众号白名单。
 
-## 抓取来源（共 105 个通道 + 公众号白名单，其中 43 个直连、62 个检索）
+## 抓取来源（共 129 个通道 + 公众号白名单，其中 48 个直连、1 个转载、23 个定向检索、57 个泛检索）
 
-- **国内财经与科技媒体**：量子位、雷峰网、IT之家、钛媒体、36氪、虎嗅、机器之心、智东西、爱范儿、界面新闻、新浪科技、中国机器人网、OFweek 机器人、中国工控网、新华网科技、人民网科技、极客公园、中国新闻网财经；
-- **国内检索**：Bing 中文新闻检索（人形机器人、机器人产业链、具身智能、优必选、机器人融资、机器人量产、外骨骼、政策、订单交付、行业研报、上市公司、机器人产业联盟、具身智能融资，以及第一财经、每日经济新闻、财联社、证券时报、经济观察网、巨潮公告、互动易、世界机器人大会、世界人工智能大会、高工机器人等站点检索）；
+- **国内财经与科技媒体（直连）**：量子位、雷峰网、IT之家、钛媒体、36氪、虎嗅、机器之心、智东西、爱范儿、界面新闻、新浪科技、中国机器人网、OFweek 机器人、中国工控网、新华网科技、人民网科技、极客公园、中国新闻网财经；
+- **境外可访问的中文转载/聚合源（直连）**：cnBeta（转载，页面标「转载」）、科技新报、iThome 台湾、中央社科技、联合报财经、科技橘报；这类站点在境外机房可直连，作为国内站被拦时的补充；
+- **国内定向检索（23 个 channel=bing_site）**：为财联社、证券时报、第一财经、每日经济新闻、经济观察网、36氪、虎嗅、机器之心、量子位、界面、IT之家、钛媒体、智东西、OFweek、雷峰网、极客公园、爱范儿、中国工控网、新浪财经、东方财富、网易科技、腾讯新闻、搜狐科技各配一条 `site:域名 机器人` 通道。页面来源显示原站名（如 36氪、IT之家），`data.json` 条目保留 `via_kind="bing_site"`、`channel`、`channel_detail`（含 site: 查询串），页脚「抓取状态」逐条列出「Bing 定向检索 · 站点名」；
+- **国内泛检索**：Bing 中文新闻检索（人形机器人、机器人产业链、具身智能、优必选、机器人融资、机器人量产、外骨骼、政策、订单交付、行业研报、上市公司、机器人产业联盟、具身智能融资、巨潮公告、互动易、世界机器人大会、世界人工智能大会、高工机器人等）；
 - **海外机器人垂直媒体**：IEEE Spectrum Robotics、TechCrunch Robotics、The Robot Report、Robotics 24/7、Robohub、VentureBeat AI、The Verge、Engadget、WIRED AI、Ars Technica、TechXplore Robotics、ScienceDaily Robotics、IEEE Spectrum AI、TechCrunch AI、SiliconANGLE AI；
 - **海外检索**：Bing 英文检索（humanoid robot、Figure AI、Boston Dynamics、robotics funding、humanoid deployment、dexterous hand、warehouse automation，以及 Reuters、Bloomberg、TechXplore、ScienceDaily、The Verge 等站点检索）；
 - **大厂官方博客 / 新闻室**：OpenAI、NVIDIA、Google DeepMind、Google AI、Meta AI、Microsoft Research、Amazon Science、Apple Machine Learning、Boston Dynamics Blog、Samsung Newsroom；
 - **大厂与头部公司检索**：OpenAI、英伟达、特斯拉 Optimus、DeepMind、Meta、宇树、优必选、智元、Figure、Boston Dynamics、Agility、1X、Physical Intelligence 等。
 
-每个通道的成败逐条记录在 `data.json.source_report`，页面页脚可展开查看「原始条数 / 入库条数 / 失败原因」；抓不到的通道如实标红，不会用假数据填充。云端抓取受 GitHub 美国机房网络影响，国内部分站点（36氪、虎嗅、机器之心、界面等）可能返回 403/超时，属已知情况。
+每个通道的成败逐条记录在 `data.json.source_report`（含 `kind` 字段区分 direct / reprint / bing / bing_site），页面页脚可展开查看「原始条数 / 入库条数 / 失败原因」；抓不到的通道如实标红，不会用假数据填充。云端抓取受 GitHub 美国机房网络影响，国内部分站点（36氪、虎嗅、机器之心、界面等）可能返回 403/超时，属已知情况；机器之心、中国机器人网在 Bing 新闻索引中几乎无结果，定向通道会显示 0 条，不做数据填充。
 
-**直连优先与同事件合并**：
+公众号白名单与「汽车琰究」文章栏分别设 5 分钟 / 4 分钟总预算（搜狗微信偶尔慢速吐字节，单靠 socket 超时兜不住）。超时未完成的账号标 `timeout`，页脚显示「超时」，下轮重试，不顶替、不伪造。
 
-- 每个板块选入时先放直连源条目、再放检索条目，检索通道最多占该板块一半，避免列表被 Bing 结果淹没；
+**直连优先、定向补充与同事件合并**：
+
+- 每个板块选入时先放直连源条目，检索通道最多占该板块一半；检索池内再优先放定向检索条目、按媒体轮转保证每家至少一条，泛检索只用于补位，避免列表被 Bing 结果淹没；
 - 同一板块内标题指纹相似的报道会合并成一条「事件」，保留覆盖最全的摘要，并把最多 6 个原文链接挂在同一条下（页面显示「同事件原文：媒体 A / 媒体 B」）；只合并同一事件，不做跨事件拼接。
 
 ### 微信公众号白名单
