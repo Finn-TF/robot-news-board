@@ -875,9 +875,12 @@ details[open] summary:before{content:"−"}
 
   function renderList(){
     var list = filterItems(), b = board();
-    var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
-      + '<span class="live">'+((state.q||state.segment) ? list.length+" / "+(b.items||[]).length+" 条" : (b.items||[]).length+" 条 · 按发布时间倒序")+'</span></div>';
     var flat = !!(state.segment || state.tab === "jokes");
+    var total = (b.items||[]).length;
+    var live = (state.q||state.segment) ? list.length+" / "+total+" 条"
+      : (flat ? total+" 条 · 按发布时间倒序" : total+" 条 · 按环节分组，组内按发布时间倒序");
+    var head = '<div class="board-head"><h2>'+esc(b.name)+'</h2><span class="d">'+esc(b.desc||"")+'</span>'
+      + '<span class="live">'+live+'</span></div>';
     var body = list.length
       ? (flat ? '<div class="list">'+list.map(renderItem).join("")+'</div>' : renderGrouped(list))
       : emptyState();

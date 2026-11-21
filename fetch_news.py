@@ -2680,21 +2680,29 @@ def extract_meta_desc(page_html):
 
 def enrich_summaries(records, verbose=True, limit=40):
     """对「有直链但无摘要」的条目，抓原文页面的 meta 描述补摘要（抓不到就留空）。"""
+    from concurrent.futures import ThreadPoolExecutor
+
     cand = [r for r in records if not r["summary"] and r["url"].startswith("http")
-            and "news.google.com" not in r["url"]]
-    filled = 0
-    for rec in cand[:limit]:
+            and "news.google.com" not in r["url"]][:limit]
+
+    def fill(rec):
         try:
-            page = fetch(rec["url"], timeout=12, retries=0)
+            page = fetch(rec["url"], timeout=8, retries=0)
         except Exception:  # noqa: BLE001
-            continue
+            return 0
         desc = extract_meta_desc(page)
-        if desc:
-            rec["summary"] = shorten(desc, 240 if rec["lang"] == "zh" else 460)
-            filled += 1
-        time.sleep(0.2)
+        if not desc:
+            return 0
+        rec["summary"] = shorten(desc, 240 if rec["lang"] == "zh" else 460)
+        return 1
+
+    filled = 0
+    if cand:
+        # 串行抓 40 个页面最坏要 8 分钟，CI 里容易被拖到超时；并发抓取并压短超时
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            filled = sum(pool.map(fill, cand))
     if verbose:
-        print(f"      补摘要：{filled}/{min(len(cand), limit)} 条", flush=True)
+        print(f"      补摘要：{filled}/{len(cand)} 条", flush=True)
     return filled
 
 
@@ -2986,11 +2994,11 @@ def run_round(args, cfg, daily=False):
     per_source = args.per_source or int(cfg.get("per_source", 16))
     do_translate = (not args.no_translate) and bool(cfg.get("translate", True))
 
-    print(f"[1/4] 抓取 {len(SOURCES)} 个公开来源 + 公众号白名单 ...")
+    print(f"[1/4] 抓取 {len(SOURCES)} 个公开来源 + 公众号白名单 ...", flush=True)
     records, report, now, stats, wechat_meta, article_meta = collect()
     print(f"      原始命中 {len(records)} 条；大厂通道进入判定 {stats['bt_raw']} 条，"
           f"判定非机器人剔除 {stats['bt_dropped']} 条，"
-          f"机器人相关但不属大厂分流 {stats['bt_demoted']} 条")
+          f"机器人相关但不属大厂分流 {stats['bt_demoted']} 条", flush=True)
 
     for rec in records:
         rec["companies"] = assign_companies(rec)
@@ -3007,12 +3015,12 @@ def run_round(args, cfg, daily=False):
 
     selected = [r for k in ["domestic", "overseas", "bigtech"] for r in boards[k]]
     if do_translate:
-        print(f"[2/4] 补全缺失摘要 + 翻译英文条目（{len([r for r in selected if r['lang'] == 'en'])} 条英文待翻译）...")
+        print(f"[2/4] 补全缺失摘要 + 翻译英文条目（{len([r for r in selected if r['lang'] == 'en'])} 条英文待翻译）...", flush=True)
         enrich_summaries(selected)
         translated = translate_records(selected)
-        print(f"      已翻译 {translated} 条")
+        print(f"      已翻译 {translated} 条", flush=True)
     else:
-        print("[2/4] 跳过翻译（--no-translate）")
+        print("[2/4] 跳过翻译（--no-translate）", flush=True)
 
     # 翻译后再去一次重：同一站点同标题（如 Unite.AI 中英文版同稿）只保留一条
     for key in ["domestic", "overseas", "bigtech"]:
@@ -3121,8 +3129,8 @@ def run_round(args, cfg, daily=False):
     archive_index = save_archive(payload, force=daily)
     write_data_files(payload, archive_index)
 
-    print("[3/4] 写入 data.json / data.js / archive 完成")
-    print("[4/4] 汇总：")
+    print("[3/4] 写入 data.json / data.js / archive 完成", flush=True)
+    print("[4/4] 汇总：", flush=True)
     for k in ["domestic", "overseas", "bigtech", "jokes"]:
         n = len(payload["boards"][k]["items"])
         print(f"      {payload['boards'][k]['name']}: {n} 条")
