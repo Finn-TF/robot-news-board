@@ -364,7 +364,7 @@ details[open] summary:before{content:"−"}
       <span><b>日报结构</b>：今日主线 → 关键变化（近 3 天，当日置顶）→ 利好利空判断（按产业链环节）→ 受影响的中国上市公司 → 重点新闻 → 行业信号 → 四板块详情。结构固定，不随日期漂移。</span>
     </div>
     <div class="legend">
-      <span><b>数据口径</b>：公开 RSS、新闻检索、官方博客与已认证公众号；每条保留来源与原文链接，摘要为原文摘录，英文条目附中文译文。抓取失败或无更新的通道在下方「抓取状态」中逐条标出，不用虚构内容填充。</span>
+      <span><b>数据口径</b>：公开 RSS（含境外可访问的中文转载/聚合站）、按站点限定的定向检索、官方博客与已认证公众号；每条保留来源与原文链接，摘要为原文摘录，英文条目附中文译文。国内站直连被拦时，用锁定该站域名的定向检索取稿，页面仍按原站署名，并在条目与「抓取状态」中注明取数通道；转载稿会标「转载」。抓取失败或无更新的通道在下方「抓取状态」中逐条标出，不用虚构内容填充。</span>
     </div>
     <div class="legend">
       <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，只有 1 家 → <span class="vbadge single">单一来源</span>。点来源名可核对原文与发布时间。</span>
@@ -752,6 +752,7 @@ details[open] summary:before{content:"−"}
       + (isJoke ? '' : verifyHtml(it))
       + (tags ? '<span class="divider"></span>'+tags : '')
       + (it.via && it.via !== it.source ? '<span class="via">经 '+esc(it.via)+'</span>' : '')
+      + (it.reprint ? '<span class="via">转载</span>' : '')
       + (it.url ? '<a class="goto" href="'+esc(it.url)+'" target="_blank" rel="noopener noreferrer">原文 ↗</a>' : '')
       + '</div></div></article>';
   }

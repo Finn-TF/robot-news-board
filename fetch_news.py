@@ -101,6 +101,22 @@ def gnews(query, hl="zh-CN", gl="CN", ceid="CN:zh-Hans"):
     q = urllib.parse.quote(query)
     return (f"https://news.google.com/rss/search?q={q}&hl={hl}&gl={gl}&ceid={ceid}")
 
+SITE_CHANNEL = "Bing 定向检索"
+
+
+def bsite(domain, query="机器人"):
+    """Bing 新闻检索锁定单一站点域名（境外可执行，用于国内站直连被拦时兜底）。"""
+    return bing(f"site:{domain} {query}")
+
+
+def site_channel(sid, origin, domain, query="机器人", board="domestic", lang="zh",
+                 filt="zh_title"):
+    """定向检索通道：展示署名仍用原站名，取数通道在 source_report / 条目里单独标注。"""
+    return {"id": sid, "name": f"{SITE_CHANNEL} · {origin}", "board": board, "lang": lang,
+            "url": bsite(domain, query), "filter": filt, "origin": origin,
+            "domain": domain, "channel": "bing_site", "query": query}
+
+
 SOURCES = [
     # ---- 国内新闻 ----
     {"id": "qbitai", "name": "量子位", "board": "domestic", "lang": "zh",
@@ -203,7 +219,7 @@ SOURCES = [
     {"id": "ifanr", "name": "爱范儿", "board": "domestic", "lang": "zh",
      "url": "https://www.ifanr.com/feed", "filter": "zh_title"},
     {"id": "jiemian", "name": "界面新闻", "board": "domestic", "lang": "zh",
-     "url": "https://www.jiemian.com/rss", "filter": "zh_title"},
+     "url": "https://a.jiemian.com/index.php?m=article&a=rss", "filter": "zh_title"},
     {"id": "sina-tech", "name": "新浪科技", "board": "domestic", "lang": "zh",
      "url": "http://rss.sina.com.cn/tech/rollnews.xml", "filter": "zh_title"},
     {"id": "robotchina", "name": "中国机器人网", "board": "domestic", "lang": "zh",
@@ -273,17 +289,31 @@ SOURCES = [
     {"id": "bing-bt-21", "name": "Bing News", "board": "bigtech", "lang": "zh",
      "url": bing("1X NEO 家庭 机器人"), "filter": "robot_only"},
 
-    # ---- 主流财经媒体 / 上市公司公告 / 展会与协会（新增，走检索通道） ----
-    {"id": "bing-cn-15", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
-     "url": bing("site:yicai.com 机器人"), "filter": "zh"},
-    {"id": "bing-cn-16", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
-     "url": bing("site:nbd.com.cn 机器人"), "filter": "zh"},
-    {"id": "bing-cn-17", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
-     "url": bing("site:cls.cn 机器人"), "filter": "zh"},
-    {"id": "bing-cn-18", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
-     "url": bing("site:stcn.com 机器人"), "filter": "zh"},
-    {"id": "bing-cn-19", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
-     "url": bing("site:eeo.com.cn 机器人"), "filter": "zh"},
+    # ---- 国内主流财经/科技站：Bing 定向检索（每站一条 site: 通道，展示用原站署名） ----
+    site_channel("site-cls", "财联社", "cls.cn"),
+    site_channel("site-stcn", "证券时报", "stcn.com"),
+    site_channel("site-yicai", "第一财经", "yicai.com"),
+    site_channel("site-nbd", "每日经济新闻", "nbd.com.cn"),
+    site_channel("site-eeo", "经济观察网", "eeo.com.cn"),
+    site_channel("site-36kr", "36氪", "36kr.com"),
+    site_channel("site-huxiu", "虎嗅", "huxiu.com"),
+    site_channel("site-jiqizhixin", "机器之心", "jiqizhixin.com", query="具身智能"),
+    site_channel("site-qbitai", "量子位", "qbitai.com", query="具身智能"),
+    site_channel("site-jiemian", "界面新闻", "jiemian.com"),
+    site_channel("site-ithome", "IT之家", "ithome.com"),
+    site_channel("site-tmtpost", "钛媒体", "tmtpost.com"),
+    site_channel("site-zhidx", "智东西", "zhidx.com"),
+    site_channel("site-ofweek", "OFweek机器人网", "ofweek.com"),
+    site_channel("site-leiphone", "雷峰网", "leiphone.com"),
+    site_channel("site-geekpark", "极客公园", "geekpark.net"),
+    site_channel("site-ifanr", "爱范儿", "ifanr.com"),
+    site_channel("site-gongkong", "中国工控网", "gongkong.com"),
+    site_channel("site-sina-fin", "新浪财经", "finance.sina.com.cn"),
+    site_channel("site-eastmoney", "东方财富", "eastmoney.com"),
+    site_channel("site-netease", "网易科技", "163.com"),
+    site_channel("site-qq", "腾讯新闻", "qq.com"),
+    site_channel("site-sohu", "搜狐科技", "sohu.com"),
+
     {"id": "bing-cn-20", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
      "url": bing("site:cninfo.com.cn 机器人 公告"), "filter": "zh"},
     {"id": "bing-cn-21", "name": "Bing 新闻检索", "board": "domestic", "lang": "zh",
@@ -332,6 +362,21 @@ SOURCES = [
      "url": "http://www.geekpark.net/rss", "filter": "zh_title"},
     {"id": "chinanews-fin", "name": "中国新闻网财经", "board": "domestic", "lang": "zh",
      "url": "https://www.chinanews.com.cn/rss/finance.xml", "filter": "zh_title"},
+
+    # ---- 境外可访问的中文转载/聚合源（直连 RSS，非检索通道） ----
+    # 这些站点本身即转载/聚合方，署名用其站名，并标 reprint 以区别于首发媒体。
+    {"id": "cnbeta", "name": "cnBeta", "board": "domestic", "lang": "zh",
+     "url": "https://www.cnbeta.com.tw/backend.php", "filter": "zh_title", "reprint": True},
+    {"id": "technews", "name": "科技新报", "board": "domestic", "lang": "zh",
+     "url": "https://technews.tw/feed/", "filter": "zh_title"},
+    {"id": "ithome-tw", "name": "iThome 台湾", "board": "domestic", "lang": "zh",
+     "url": "https://www.ithome.com.tw/rss", "filter": "zh_title"},
+    {"id": "cna-tech", "name": "中央社科技", "board": "domestic", "lang": "zh",
+     "url": "https://feeds.feedburner.com/rsscna/technology", "filter": "zh_title"},
+    {"id": "udn-fin", "name": "联合报财经", "board": "domestic", "lang": "zh",
+     "url": "https://udn.com/rssfeed/news/2/6649?ch=news", "filter": "zh_title"},
+    {"id": "techorange", "name": "科技橘报", "board": "domestic", "lang": "zh",
+     "url": "https://buzzorange.com/techorange/feed/", "filter": "zh_title"},
 ]
 
 # ---------------------------------------------------------------- 工具 ----
@@ -422,7 +467,11 @@ def nodes_text(node, paths):
 
 def parse_feed(xml_text):
     """解析 RSS 2.0 / Atom，返回统一结构的条目列表。"""
-    root = ET.fromstring(xml_text.strip().lstrip("\ufeff"))
+    text = xml_text.strip().lstrip("\ufeff")
+    # 部分源（如 cnBeta）会输出未转义的 &，直接解析会失败，先修补再解析
+    text = re.sub(r"&(?!(?:#\d+|#x[0-9A-Fa-f]+|[A-Za-z][A-Za-z0-9]*);)", "&amp;", text)
+    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", text)
+    root = ET.fromstring(text)
     items = []
     entries = root.findall(".//item")
     is_atom = False
@@ -579,6 +628,14 @@ def site_of(url):
     except Exception:  # noqa: BLE001
         return ""
     return host[4:] if host.startswith("www.") else host
+
+
+def host_matches(url, domain):
+    """链接是否属于指定站点域名（用于定向检索结果的署名核验）。"""
+    host = site_of(url)
+    if not host or not domain:
+        return False
+    return host == domain or host.endswith("." + domain) or domain.endswith("." + host)
 
 
 def event_clusters(records):
@@ -2192,8 +2249,12 @@ def collect(verbose=True):
     fetched = fetch_sources(SOURCES)
 
     for src in SOURCES:
+        kind = src.get("channel") or ("bing" if src["id"].startswith("bing") else "direct")
+        if src.get("reprint"):
+            kind = "reprint"
         status = {"id": src["id"], "name": src["name"], "board": src["board"],
-                  "url": src["url"], "status": "ok", "count": 0, "raw": 0, "error": ""}
+                  "kind": kind, "url": src["url"], "status": "ok",
+                  "count": 0, "raw": 0, "error": ""}
         xml_text, err = fetched.get(src["id"], (None, "未抓取"))
         if xml_text is None or err:
             status["status"] = "fail"
@@ -2233,6 +2294,7 @@ def collect(verbose=True):
 
             is_gnews = src["id"].startswith("gnews")
             is_bing = src["id"].startswith("bing")
+            is_site = src.get("channel") == "bing_site"
             media = clean_media(ent.get("media", ""))
             if is_gnews:
                 title = unwrap_gnews_title(title)
@@ -2295,28 +2357,49 @@ def collect(verbose=True):
 
             summary = shorten(ent["summary_raw"], 240 if lang == "zh" else 460)
 
+            # 取数通道：定向检索的条目在页面按原站署名，真实通道另存字段以便追溯
+            if is_site:
+                if host_matches(link, src.get("domain") or ""):
+                    display_source = src["origin"]
+                else:
+                    display_source = media or site_of(link)
+                src_kind, via = "bing_site", "定向检索"
+            elif is_bing:
+                display_source = media or site_of(link)
+                src_kind, via = "bing", ("Bing" if media else "")
+            elif is_gnews:
+                display_source = media or site_of(link)
+                src_kind, via = "gnews", (src["name"] if media else "")
+            else:
+                display_source = src["name"]
+                src_kind, via = "direct", ""
+
             seen_urls.add(url_key)
             if tkey:
                 seen_titles.add(tkey)
-            records.append({
+            record = {
                 "board": board,
                 "title": title,
                 "title_original": "",
                 "summary": summary,
                 "summary_original": "",
-                "source": media if (is_gnews or is_bing) and media else (
-                    site_of(link) if (is_gnews or is_bing) else src["name"]),
+                "source": display_source,
                 "source_id": src["id"],
-                "source_kind": ("bing" if is_bing else ("gnews" if is_gnews else "direct")),
-                "via_kind": ("bing" if is_bing else ("gnews" if is_gnews else "direct")),
-                "via": ("Bing" if is_bing and media else
-                        (src["name"] if is_gnews and media else "")),
+                "source_kind": src_kind,
+                "via_kind": src_kind,
+                "via": via,
                 "url": link,
                 "published": dt.isoformat(),
                 "lang": lang,
                 "companies": (bt_title or bt_all)[:2],
                 "is_placeholder": False,
-            })
+            }
+            if is_site:
+                record["channel"] = f"{SITE_CHANNEL}（site:{src['domain']}）"
+                record["channel_detail"] = f"site:{src['domain']} {src.get('query', '')}".strip()
+            if src.get("reprint"):
+                record["reprint"] = True
+            records.append(record)
             status["count"] += 1
 
         report.append(status)
@@ -2565,7 +2648,33 @@ def pick_board_records(records, key, max_items, per_source):
     picked = take(direct, max_items)
     # 检索通道配额：不超过板块一半，保证直连优先，同时避免板块条数骤降
     search_cap = min(max_items - len(picked), max(10, round(max_items * 0.5)))
-    picked += take(search, max(0, search_cap))
+
+    def take_balanced(cands, quota):
+        """按来源轮转取条目：先保证每家媒体至少一条，避免单一站点占满板块。"""
+        if quota <= 0:
+            return []
+        buckets = {}
+        for rec in cands:                       # cands 已按发布时间倒序
+            sid = rec.get("source_id") or ""
+            cap = min(6, per_source)
+            if len(buckets.get(sid, [])) >= cap:
+                continue
+            buckets.setdefault(sid, []).append(rec)
+        out, queues = [], [q for q in buckets.values() if q]
+        while len(out) < quota and queues:
+            for q in queues:
+                if len(out) >= quota:
+                    break
+                if q:
+                    out.append(q.pop(0))
+        return out
+
+    # 定向检索（原站可追溯）优先于泛检索补位
+    site_pool = [r for r in search if r.get("source_kind") == "bing_site"]
+    other_pool = [r for r in search if r.get("source_kind") != "bing_site"]
+    site_picked = take_balanced(site_pool, search_cap)
+    picked += site_picked
+    picked += take_balanced(other_pool, max(0, search_cap - len(site_picked)))
     picked.sort(key=lambda r: r.get("published") or "", reverse=True)
     return picked
 
@@ -2786,7 +2895,7 @@ def run_round(args, cfg, daily=False):
             "translated": 0 if not do_translate else len([r for r in selected if r["title_original"]]),
             "bigtech_filter": stats,
             "verify": {"cross": cross, "single": len(selected) - cross},
-            "note": "数据来自公开 RSS、新闻检索与公众号白名单；每条含来源与原文链接。"
+            "note": "数据来自公开 RSS、按站点限定的定向检索与公众号白名单；每条含来源与原文链接。"
                     "日报统计窗口为近 3 天，当日条目置顶。抓取失败的源见 source_report。",
         },
     }
