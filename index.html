@@ -368,7 +368,7 @@ details[open] summary:before{content:"−"}
       <span><b>数据口径</b>：公开 RSS（含境外可访问的中文转载/聚合站）、按站点限定的定向检索、官方博客与已认证公众号；每条保留来源与原文链接，摘要为原文摘录，英文条目附中文译文。国内站直连被拦时，用锁定该站域名的定向检索取稿，页面仍按原站署名，并在条目与「抓取状态」中注明取数通道；转载稿会标「转载」。抓取失败或无更新的通道在下方「抓取状态」中逐条标出，不用虚构内容填充。</span>
     </div>
     <div class="legend">
-      <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现 → <span class="vbadge cross">✓ 已核</span>，只有 1 家 → <span class="vbadge single">单一来源</span>。点来源名可核对原文与发布时间。</span>
+      <span><b>信息核对</b>：同一事件在 ≥2 家独立站点出现时标 <span class="vbadge cross">✓ 已核</span>。点来源名可核对原文与发布时间。</span>
     </div>
     <div class="legend">
       <span><b>日报生成</b>：规则先按事件聚类筛候选池（多家印证 / 硬信息 / 头部公司），再由 DeepSeek 在候选池内排序并撰写影响判断；无 key 或调用失败时自动使用规则口径，页面不会空白。</span>
@@ -630,7 +630,7 @@ details[open] summary:before{content:"−"}
       if(first) event = '<a href="'+esc(first.url)+'" target="_blank" rel="noopener noreferrer">'+event+'</a>';
       var badge = t.level === "cross"
         ? '<span class="vbadge cross">✓ 多家印证'+(t.count>2?" · "+t.count+" 家":"")+'</span>'
-        : '<span class="vbadge single">单一来源</span>';
+        : '';
       var names = links.slice(0,3).map(function(l){
         return '<a href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer" title="'+esc(l.title||"")+'">'
           + esc(l.source || l.host || "原文") + '</a>';
@@ -757,8 +757,6 @@ details[open] summary:before{content:"−"}
     var badge = "";
     if(v.level === "cross"){
       badge = '<span class="vbadge cross" title="同一事件在 '+v.count+' 家独立站点出现">✓ 已核</span>';
-    }else if(v.level === "single"){
-      badge = '<span class="vbadge single" title="仅 1 家独立站点报道">单一来源</span>';
     }
     return '<span class="vgroup"><span class="vsrc">'+src+'</span>'+badge+'</span>';
   }
