@@ -2122,6 +2122,58 @@ def fetch_wechat(accounts, now, seen_urls, seen_titles, verbose=True):
             except Exception as e:  # noqa: BLE001
                 status["status"] = "fail"
                 status["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+            # 固定链接兜底：搜狗只能按关键词返回前 10 条，常常拿不到该号最新文章；
+            # 白名单里配置的 links 逐条直连文章页，人工选定后每轮都会检查是否在窗口内。
+            links = [u for u in (acc.get("links") or [])
+                     if isinstance(u, str) and u.startswith("http")]
+            pinned = 0
+            for link in links:
+                if time.time() > deadline:
+                    break
+                try:
+                    page = fetch(link, timeout=15, retries=0)
+                    info = parse_wechat_article_page(page)
+                except Exception as e:  # noqa: BLE001
+                    status["error"] = ((status["error"] + "；") if status["error"] else "") \
+                        + f"固定链接抓取失败 {link[-12:]}：{type(e).__name__}"
+                    continue
+                ts = None
+                if info.get("published"):
+                    try:
+                        ts = datetime.fromisoformat(info["published"])
+                    except Exception:  # noqa: BLE001
+                        ts = None
+                if ts is None or ts < horizon or ts > now + timedelta(hours=6):
+                    continue
+                url_key = re.sub(r"[#?].*$", "", link).rstrip("/")
+                tkey = norm_title(info["title"])[:28]
+                if url_key in seen_urls or (tkey and tkey in seen_titles):
+                    continue
+                seen_urls.add(url_key)
+                if tkey:
+                    seen_titles.add(tkey)
+                records.append({
+                    "board": "domestic",
+                    "title": info["title"],
+                    "title_original": "",
+                    "summary": shorten(info.get("summary") or "", 240),
+                    "summary_original": "",
+                    "source": "公众号·" + name,
+                    "source_id": sid,
+                    "via": name,
+                    "url": link,
+                    "published": ts.isoformat(),
+                    "lang": "zh",
+                    "companies": [],
+                    "segment": classify_news_segment(info["title"], info.get("summary") or ""),
+                    "is_placeholder": False,
+                })
+                pinned += 1
+            if pinned:
+                status["status"] = "ok"
+                status["count"] += pinned
+                status["error"] = ((status["error"] + "；") if status["error"] else "") \
+                    + f"固定链接补收 {pinned} 篇"
         report.append(status)
         meta.append({
             "name": name,
